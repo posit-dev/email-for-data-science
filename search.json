@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Email for Data Science",
+    "section": "",
+    "text": "1 Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  The whole game",
+    "section": "",
+    "text": "Preview of nice email result\nConnecting to gmail\nWriting the email content\nSending the email\nContent: Sending a fancier email\nConfiguring: subject and attachments\nOrchestration: testing email",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The whole game</span>"
+    ]
+  }
+]
