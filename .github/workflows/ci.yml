@@ -1,0 +1,46 @@
+name: Build and Deploy
+on: [push, pull_request]
+permissions:
+    contents: write
+jobs:
+    build-and-deploy:
+        concurrency: ci-${{ github.ref }}
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            actions: write
+            contents: write
+        steps:
+            - name: Checkout 🛎️
+              uses: actions/checkout@v4
+
+            # python ----
+            #- uses: actions/checkout@v2
+            #- name: Install uv
+            #  uses: astral-sh/setup-uv@v5
+            #- name: "Set up Python"
+            #  uses: actions/setup-python@v5
+            #  with:
+            #    python-version-file: ".python-version"
+
+            # quarto docs build ----
+            - uses: quarto-dev/quarto-actions/setup@v2
+
+            - name: Build docs
+              run: |
+                  quarto render
+
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@v4
+              if: ${{ github.ref == 'refs/heads/main' }}
+              with:
+                  force: false
+                  folder: _book
+                  clean-exclude: pr-preview
+
+            - name: Deploy (preview)
+              uses: rossjrw/pr-preview-action@v1
+              # if in a PR
+              if: ${{ github.event_name == 'pull_request' }}
+              with:
+                  source-dir: _book
