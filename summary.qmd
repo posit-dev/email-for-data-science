@@ -1,0 +1,9 @@
+# The whole game
+
+* Preview of nice email result
+* Connecting to gmail
+* Writing the email content
+* Sending the email
+* Content: Sending a fancier email
+* Configuring: subject and attachments
+* Orchestration: testing email

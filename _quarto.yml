@@ -1,0 +1,34 @@
+project:
+  type: book
+
+book:
+  title: "Email for Data Science"
+  author: "Norah Jones"
+  date: "10/6/2025"
+  chapters:
+    - index.qmd
+    - summary.qmd
+    - part: Content
+      chapters: 
+        - content-embedding.qmd
+        - content-layout.qmd
+    - part: Configuring
+      chapters:
+        - configuring-subject.qmd
+        - configuring-attachments.qmd
+    - part: Orchestrating
+      chapters: 
+        - orchestrating-auth.qmd
+        - orchestrating-tests.qmd
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
