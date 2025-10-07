@@ -33,7 +33,7 @@ jobs:
 
             - name: Build docs
               run: |
-                  quarto render
+                  uv run quarto render
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@v4
