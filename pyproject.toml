@@ -1,0 +1,18 @@
+[project]
+name = "email-for-data-science"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "redmail>=0.6.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "dotenv",
+    "PyYAML",
+    "nbformat",
+    "nbclient",
+]
