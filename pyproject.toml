@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "redmail>=0.6.0",
+    "jupyter",
 ]
 
 [dependency-groups]
@@ -15,4 +16,5 @@ dev = [
     "PyYAML",
     "nbformat",
     "nbclient",
+
 ]
