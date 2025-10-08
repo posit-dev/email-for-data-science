@@ -209,3 +209,5 @@ __marimo__/
 /.quarto/
 
 _book
+
+.DS_Store
