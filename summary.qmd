@@ -25,7 +25,7 @@ This is just one of many options: it is also possible to send emails in Python f
 
 Once you've created your App Password, that is used as your Gmail password for sending with Python. 
 
-There are many ways to store the password seperate from your email-sending code, so as to not expose any sensitive information. One such appraoch uses a `.env` file, and the ``dotenv` and `os` packages.
+There are many ways to store the password seperate from your email-sending code, so as to not expose any sensitive information. One such approach uses a `.env` file, and the ``dotenv` and `os` packages.
 
 ```{.sh filename=".env"}
 GMAIL_APP_PASSWORD=abcd abcd abcd abcd
@@ -44,6 +44,14 @@ gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
 Check out the email content we will send.
 
 <!-- {{< embed email-examples/summary-example.qmd#abc >}} -->
+
+
+```{python}
+from data_polars import sp500
+
+sp500.head(10).style
+
+```
 
 And now we send the email!
 
