@@ -12,6 +12,12 @@ dependencies = [
     "PyYAML",
     "nbformat",
     "nbclient",
+    "great-tables>=0.18.0",
+    "pandas>=2.3.3",
+    "polars>=1.34.0",
+    "css-inline>=0.17.0",
+    "plotnine>=0.13.6",
+    "pyarrow>=21.0.0",
 ]
 
 [dependency-groups]
