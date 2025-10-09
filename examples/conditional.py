@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from dotenv import load_dotenv
 import redmail
@@ -50,14 +51,26 @@ table_html = (
 
 email_body = intro + table_html + salutation
 
+today = datetime.today()
+is_weekday = today.weekday() < 5  # Monday=0, ..., Friday=4
+is_monday = today.weekday() == 0
+
 # This is here to emphasize the sender does not have to be the same as the receiver
-email_receiver = gmail_address
+# and the receiver list can vary
+if is_weekday:
+    if is_monday:
+        email_receivers = [gmail_address, gmail_address, gmail_address]
+    else:
+        email_receivers = [gmail_address, gmail_address]
+else:
+    email_receivers = [gmail_address]
+    
 
 redmail.gmail.username = gmail_address
 redmail.gmail.password = gmail_app_password
 
 redmail.gmail.send(
     subject=email_subject,
-    receivers=["jules.walzergoldfeld@posit.co"],
+    receivers=email_receivers,
     html=email_body,
 )
