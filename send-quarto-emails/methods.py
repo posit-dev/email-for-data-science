@@ -1,8 +1,10 @@
 ## TODO: work in progress
-
+from __future__ import annotations
 from dataclasses import dataclass
 import base64
 import json
+import re
+
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -15,13 +17,35 @@ from email.message import EmailMessage
 @dataclass
 class IntermediateDataStruct:
     html: str
-    attachments: dict[str, str]
     subject: str
     rsc_email_supress_report_attachment: bool
     rsc_email_supress_scheduled: bool
 
-    text: str = None  # sometimes present in quarto
-    recipients: list[str] = None  # not present in quarto
+    external_attachments: dict[str, str] | None = None
+    inline_attachments: dict[str, str] | None = None
+
+    text: str | None = None  # sometimes present in quarto
+    recipients: list[str] | None = None  # not present in quarto
+
+    def write_preview_email(self, out_file: str = "preview_email.html") -> None:
+        html_with_inline = re.sub(
+            r'src="cid:([^"\s]+)"',
+            _add_base_64_to_inline_attachments(self.inline_attachments),
+            self.html,
+        )
+
+        with open(out_file, "w", encoding="utf-8") as f:
+            f.write(html_with_inline)
+
+        if self.external_attachments:
+            raise ValueError("Preview does not yet support external attachments.")
+
+    def write_email_message(self) -> EmailMessage:
+        pass
+
+    # sends just to some preview recipient?
+    def preview_send_email():
+        pass
 
 
 # You will have to call redmail get_message, and pass that EmailMessage object to this
@@ -30,6 +54,8 @@ class IntermediateDataStruct:
 # Or make the intermediate struct hold that payload (the EmailMessage class)
 def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
     email_body = msg.get_body()
+    raise NotImplementedError
+    # TODO incomplete
     attachments = {}
     # maybe do walk
     for elem in msg.iter_attachments():
@@ -37,11 +63,9 @@ def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
             # This can fail if there's no associated filename?
             attachments[elem.get_filename()] = elem.get_content()
 
-
     iStruct = IntermediateDataStruct(html=email_body)
 
     return iStruct
-
 
 
 def yagmail_to_intermediate_struct():
@@ -81,7 +105,7 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
     iStruct = IntermediateDataStruct(
         html=email_html,
         text=email_text,
-        attachments=email_images,
+        inline_attachments=email_images,
         subject=email_subject,
         rsc_email_supress_report_attachment=supress_report_attachment,
         rsc_email_supress_scheduled=supress_scheduled,
@@ -89,8 +113,10 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
 
     return iStruct
 
+
 # what to return?
 # consider malformed request?
+
 
 def send_quarto_email_with_gmail(
     username: str,
@@ -98,9 +124,9 @@ def send_quarto_email_with_gmail(
     json_path: str,
     recipients: list[str],
 ):
-    '''
+    """
     End to end sending of quarto meta data
-    '''
+    """
     email_struct: IntermediateDataStruct = _read_quarto_email_json(json_path)
     email_struct.recipients = recipients
     send_struct_email_with_gmail(
@@ -115,9 +141,9 @@ def send_quarto_email_with_gmail(
 def send_struct_email_with_gmail(
     username: str, password: str, email_struct: IntermediateDataStruct
 ):
-    '''
+    """
     Send the email struct content via gmail with smptlib
-    '''
+    """
     # Compose the email
     msg = MIMEMultipart("related")
     msg["Subject"] = email_struct.subject
@@ -132,13 +158,22 @@ def send_struct_email_with_gmail(
     if email_struct.text:
         msg_alt.attach(MIMEText(email_struct.text, "plain"))
 
-    # Attach images
-    for image_name, image_base64 in email_struct.attachments.items():
+    # Attach inline images
+    for image_name, image_base64 in email_struct.inline_attachments.items():
         img_bytes = base64.b64decode(image_base64)
         img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
 
-        img.add_header('Content-ID', f'<{image_name}>')
-        img.add_header("Content-Disposition", "inline", filename=f"{image_name}") 
+        img.add_header("Content-ID", f"<{image_name}>")
+        img.add_header("Content-Disposition", "inline", filename=f"{image_name}")
+
+        msg.attach(img)
+
+    for image_name, image_base64 in email_struct.external_attachments.items():
+        img_bytes = base64.b64decode(image_base64)
+        img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
+
+        img.add_header("Content-ID", f"<{image_name}>")
+        img.add_header("Content-Disposition", "attachment", filename=f"{image_name}")
 
         msg.attach(img)
 
@@ -148,11 +183,81 @@ def send_struct_email_with_gmail(
 
 
 def send_struct_email_with_redmail(email_struct: IntermediateDataStruct):
-    
     pass
+
 
 def send_struct_email_with_yagmail(email_struct: IntermediateDataStruct):
     pass
 
+
 def send_struct_email_with_mailgun(email_struct: IntermediateDataStruct):
     pass
+
+
+def send_struct_email_with_smtp(email_struct: IntermediateDataStruct):
+    pass
+
+
+def write_email_message_to_file(
+    msg: EmailMessage, out_file: str = "preview_email.html"
+):
+    """
+    Writes the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).
+
+    This function extracts all attachments referenced by Content-ID from the given EmailMessage,
+    replaces any `src="cid:..."` references in the HTML body with base64-encoded image data,
+    and writes the resulting HTML to the specified output file.
+
+    Params:
+        msg (EmailMessage): The email message object containing the HTML body and attachments.
+        out_file (str, optional): The path to the output HTML file. Defaults to "preview_email.html".
+
+    Returns:
+        None
+    """
+    inline_attachments = {}
+
+    for part in msg.walk():
+        content_id = part.get("Content-ID")
+        if content_id:
+            cid = content_id.strip("<>")
+
+            payload = part.get_payload(decode=True)
+            inline_attachments[cid] = payload
+
+    html = msg.get_body(preferencelist=("html")).get_content()
+
+    # Replace each cid reference with base64 data
+    html_inline = re.sub(
+        r'src="cid:([^"]+)"',
+        _add_base_64_to_inline_attachments(inline_attachments),
+        html,
+    )
+
+    # Write to file
+    with open(out_file, "w", encoding="utf-8") as f:
+        f.write(html_inline)
+
+
+# TODO: make sure this is not losing other attributes of the inline attachments
+def _add_base_64_to_inline_attachments(inline_attachments: dict[str, str]):
+    # Replace all src="cid:..." in the HTML
+    def replace_cid(match):
+        cid = match.group(1)
+        img_data = inline_attachments.get(cid)
+        if img_data:
+            # TODO: this is kinda hacky
+            # If it's a string, decode from base64 to bytes first
+            if isinstance(img_data, str):
+                try:
+                    img_bytes = base64.b64decode(img_data)
+                except Exception:
+                    # If not base64, treat as raw bytes
+                    img_bytes = img_data.encode("utf-8")
+            else:
+                img_bytes = img_data
+            b64 = base64.b64encode(img_bytes).decode("utf-8")
+            return f'src="data:image;base64,{b64}"'
+        return match.group(0)
+
+    return replace_cid
