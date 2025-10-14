@@ -12,6 +12,7 @@ from email.mime.image import MIMEImage
 import smtplib
 
 from email.message import EmailMessage
+from mjml import mjml2html
 
 
 @dataclass
@@ -21,6 +22,7 @@ class IntermediateDataStruct:
     rsc_email_supress_report_attachment: bool
     rsc_email_supress_scheduled: bool
 
+    # has structure {filename: base64_string}
     external_attachments: dict[str, str] | None = None
     inline_attachments: dict[str, str] | None = None
 
@@ -48,11 +50,11 @@ class IntermediateDataStruct:
         pass
 
 
-# You will have to call redmail get_message, and pass that EmailMessage object to this
-# It feels wrong to deconstruct a mime multipart email message.
-# Why not just send the original payload?
-# Or make the intermediate struct hold that payload (the EmailMessage class)
 def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
+    # We will have to call redmail get_message, and pass that EmailMessage object to this
+    # It feels wrong to deconstruct a mime multipart email message.
+    # Why not just send the original payload?
+    # Or make the intermediate struct hold that payload (the EmailMessage class)
     email_body = msg.get_body()
     raise NotImplementedError
     # TODO incomplete
@@ -72,11 +74,28 @@ def yagmail_to_intermediate_struct():
     pass
 
 
-def mjml_to_intermediate_struct():
-    ## This will require 2 steps:
-    # 1. mjml2html
-    # 2. pulling attachments out
-    pass
+def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateDataStruct:
+    email_content = mjml2html(mjml_content)
+
+    # Find all <img> tags and extract their src attributes
+    pattern = r'<img[^>]+src="([^"\s]+)"[^>]*>'
+    matches = re.findall(pattern, email_content)
+    inline_attachments = {}
+    for src in matches:
+        # in theory, retrieve the externally hosted images and save to bytes
+        # the user would need to pass CID-referenced images directly somehow,
+        # as mjml doesn't handle them
+        raise NotImplementedError("mj-image tags are not yet supported")
+
+    iStruct = IntermediateDataStruct(
+        html=email_content,
+        subject="",
+        rsc_email_supress_report_attachment=False,
+        rsc_email_supress_scheduled=False,
+        inline_attachments=inline_attachments,
+    )
+
+    return iStruct
 
 
 # Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
@@ -116,8 +135,6 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
 
 # what to return?
 # consider malformed request?
-
-
 def send_quarto_email_with_gmail(
     username: str,
     password: str,
