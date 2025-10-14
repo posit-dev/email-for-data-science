@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 import redmail
 import random
 
-import sys
+# import sys
 
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
+# sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
 from data_polars import sp500
 
 

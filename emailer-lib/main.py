@@ -9,8 +9,6 @@ import pandas as pd
 import base64
 from io import BytesIO
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 load_dotenv()
 
 password = os.environ["POSIT_APP_PASSWORD"]
