@@ -110,7 +110,10 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
 
     # Other metadata fields, as per https://github.com/posit-dev/connect/wiki/Rendering#output-metadata-fields-and-validation
     # These might be rmd specific, not quarto
-    # metadata.get("rsc_output_files", [])
+    
+    # This is a list of paths that connect dumps attached files into.
+    # Should be in same output directory
+    output_files = metadata.get("rsc_output_files", [])
     # metadata.get("rsc_email_attachments", [])
 
     # Get email images (dictionary: {filename: base64_string})
