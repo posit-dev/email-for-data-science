@@ -1,25 +1,32 @@
 project:
-  type: book
+  type: website
 
-book:
+website:
   title: "Email for Data Science"
-  author: "Norah Jones"
-  date: "10/6/2025"
-  chapters:
-    - index.qmd
-    - summary.qmd
-    - part: Content
-      chapters: 
-        - content-embedding.qmd
-        - content-layout.qmd
-    - part: Configuring
-      chapters:
-        - configuring-subject.qmd
-        - configuring-attachments.qmd
-    - part: Orchestrating
-      chapters: 
-        - orchestrating-auth.qmd
-        - orchestrating-tests.qmd
+  site-url: https://posit-dev.github.io/email-for-data-science/
+  navbar:
+    left:
+      - text: User Guide
+        file: index.qmd
+      - text: Reference
+        file: reference/index.qmd
+  sidebar:
+    - title: User Guide
+      contents:
+        - index.qmd
+        - summary.qmd
+        - section: Content
+          contents: 
+            - content-embedding.qmd
+            - content-layout.qmd
+        - section: Configuring
+          contents:
+            - configuring-subject.qmd
+            - configuring-attachments.qmd
+        - section: Orchestrating
+          contents:
+            - orchestrating-auth.qmd
+            - orchestrating-tests.qmd
 
 
 format:
@@ -27,8 +34,5 @@ format:
     theme:
       - cosmo
       - brand
-  pdf:
-    documentclass: scrreprt
-
 
 

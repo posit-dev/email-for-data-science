@@ -10,7 +10,119 @@
 * Orchestration: testing email 
 -->
 
+Emailing reports is a critical but challenging task for data science.
+Mainly because you have to figure out generating the email content, configuring pieces like attachments, and orchestrating it (e.g. testing, or sending on a schedule). Moreover, content can range from simple layouts to more complex ones.
 
+In this tutorial, we'll walk through the whole game of sending email. We'll start with this simple example:
+
+```{python}
+# | code-fold: true
+# | eval: false
+import os
+from dotenv import load_dotenv
+from data_polars import sp500
+import redmail
+
+load_dotenv()
+gmail_address = os.environ["GMAIL_ADDRESS"]
+gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
+
+
+email_subject = "Report on Cars"
+email_body = sp500.head(10).style.as_raw_html(inline_css=True)
+
+# This is here to emphasize the sender does not have to be the same as the receiver
+email_receiver = gmail_address
+
+redmail.gmail.username = gmail_address
+redmail.gmail.password = gmail_app_password
+
+redmail.gmail.send(
+    subject=email_subject,
+    receivers=[email_receiver],
+    html=email_body,
+)
+```
+
+
+![](./assets/whole-game-email-annotated.png){width=50% fig-align="center"}
+
+* **Content**: writing the text of the email, including plots and tables.
+* **Composing**: setting up the subject, sender, and receivers.
+* **Orchestrating**: previewing, testing, and scheduling the email.
+
+We'll also quickly review writing more advanced content layouts, and authoring email reports that involve running code with Quarto.
+
+## A simple email
+
+![](./assets/whole-game-email.png){width=50% fig-align="center"}
+
+* Generate and preview
+* Authenticate (may need to refer to its own authentication page in guide)
+* Send
+
+```{python}
+# | code-fold: true
+# | eval: false
+import os
+from dotenv import load_dotenv
+from data_polars import sp500
+import redmail
+
+load_dotenv()
+gmail_address = os.environ["GMAIL_ADDRESS"]
+gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
+
+
+email_subject = "Report on Cars"
+email_body = sp500.head(10).style.as_raw_html(inline_css=True)
+
+# This is here to emphasize the sender does not have to be the same as the receiver
+email_receiver = gmail_address
+
+redmail.gmail.username = gmail_address
+redmail.gmail.password = gmail_app_password
+
+redmail.gmail.send(
+    subject=email_subject,
+    receivers=[email_receiver],
+    html=email_body,
+)
+```
+
+## Configure: subject, recipients, attachments
+
+* you could attach the data as a CSV attachment
+
+
+## Orchestrate: save and preview
+
+* previewing email
+* intermediate json, easy for sending email later
+* embedding images makes previewing hard
+* can always email to yourself (or use a test service like Litmus)
+
+## Content: Quarto authoring
+
+Here's our same simple email generated using quarto.
+
+
+
+![](./assets/whole-game-quarto.png){width=50% fig-align="center"}
+
+* Focused on basic configuring, and content
+* Sending happens via our tool
+* Generate using quarto render
+* Can preview email
+
+## Content: advanced layouts
+
+We'll highlight the key pieces (discussed later in this guide) to go from that simple email, to a more advanced on like below:
+
+![](./assets/whole-game-fancy.png){width=50% fig-align="center"}
+
+
+## Fridge
 
 In this tutorial, we are going to send an email from a Gmail account. To do so, you will need to [create an App Password](https://support.google.com/accounts/answer/185833). Note this is only possible if you've [enabled 2-step verification](https://support.google.com/accounts/answer/185839).
 

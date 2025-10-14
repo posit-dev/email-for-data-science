@@ -1,0 +1,22 @@
+---
+title: "Email report generation with Quarto"
+jupyter: python3
+format: email
+---
+
+:::{.email}
+
+:::{.subject}
+Report on cars
+:::
+
+
+```{python}
+# | code-fold: true
+# | eval: false
+from data_polars import sp500
+
+sp500.head(10).style
+```
+
+:::
