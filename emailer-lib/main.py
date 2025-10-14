@@ -1,4 +1,4 @@
-from methods import send_quarto_email_with_gmail, write_email_message_to_file, _read_quarto_email_json
+from methods import write_email_message_to_file
 import os
 from dotenv import load_dotenv
 
