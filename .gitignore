@@ -208,6 +208,6 @@ __marimo__/
 
 /.quarto/
 
-_book
+_site
 
 .DS_Store
