@@ -14,7 +14,7 @@ import smtplib
 load_dotenv()
 
 password = os.environ["GMAIL_APP_PASSWORD"]
-username = "jules.walzergoldfeld@gmail.com"
+username = os.environ["GMAIL_ADDRESS"]
 
 with open(".output_metadata.json", "r", encoding="utf-8") as f:
     metadata = json.load(f)

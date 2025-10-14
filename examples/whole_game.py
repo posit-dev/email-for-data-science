@@ -39,6 +39,6 @@ redmail.gmail.password = gmail_app_password
 
 redmail.gmail.send(
     subject=email_subject,
-    receivers=["jules.walzergoldfeld@posit.co"],
+    receivers=[gmail_address],
     html=email_body,
 )

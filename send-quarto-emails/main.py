@@ -20,7 +20,7 @@ username = os.environ["POSIT_ADDRESS"]
 #     username=username,
 #     password=password,
 #     json_path=".output_metadata.json",
-#     recipients=[username, "jules.walzergoldfeld@gmail.com"]
+#     recipients=[username]
 # )
 
 
@@ -80,7 +80,7 @@ load_dotenv()
 from redmail import gmail
 
 password = os.environ["GMAIL_APP_PASSWORD"]
-username = "jules.walzergoldfeld@gmail.com"
+username = os.environ["GMAIL_ADDRESS"]
 
 gmail.username = username
 gmail.password = password
