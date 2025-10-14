@@ -1,14 +1,16 @@
+```{python}
+#| label: test
+
+print("hi")
+```
 
 ```{python}
-# | label: soccer_email
-# | code-fold: true
-# | code-summary: "Show the email content"
-
+# | label: email
 
 email_subject = "World Cup Soccer Balls"
 
-email_sender = "SampleSender@gmail.com"
-email_receiver = "You@gmail.com"
+email_sender = "YourGmail@gmail.com"
+email_receiver = "Recipient@gmail.com"
 
 email_html = """
 For a number of decades in the middle of the 20th century, the nature of the soccer ball changed quite drastically in each iteration of the World Cup. The accepted number of panels constantly changed (and is still changing to this day). Presented below are the years during the transition from local manufacturers to multi-national corporations.
@@ -74,4 +76,61 @@ I hope you enjoy! <br><br>
 Regards, <br>
 Jules
 """
+```
+
+```{python}
+# | echo: false
+# | output: true
+# | html-table-processing: none
+# | label: email-output
+
+from redmail import gmail
+from IPython.display import HTML
+
+gmail.username = email_sender
+
+msg = gmail.get_message(
+    subject="An Example Email",
+    receivers=[email_receiver],
+    html=email_html,
+)
+
+# Extract headers
+subject = msg['Subject']
+sender = msg['From']
+receiver = msg['To']
+date = msg['Date']
+
+# Extract HTML body
+for part in msg.walk():
+    if part.get_content_type() == "text/html":
+        html_content = part.get_payload(decode=True).decode(part.get_content_charset())
+        break
+
+rendered_email = f"""
+<div style="
+  background: #f8f9fa;
+  border: 2px solid #0074D9;
+  border-radius: 8px;
+  padding: 1.5em;
+  margin-bottom: 1em;
+  font-family: sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  max-width: 700px;
+">
+  <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #ddd;">
+    <strong>Subject:</strong> {subject}<br>
+    <strong>From:</strong> {sender}<br>
+    <strong>To:</strong> {receiver}<br>
+    <strong>Date:</strong> {date}<br>
+  </div>
+  <div style="margin-top: 1em;">
+    {html_content}
+  </div>
+</div>
+"""
+
+HTML(rendered_email)
 ```

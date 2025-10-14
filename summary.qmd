@@ -1,112 +1,180 @@
 # The whole game
 
+<!-- 
 * Preview of nice email result
 * Connecting to gmail
 * Writing the email content
 * Sending the email
 * Content: Sending a fancier email
 * Configuring: subject and attachments
-* Orchestration: testing email
-
-<!-- 
-```{python}
-# | code-fold: true
-# | code-summary: "Show the email content"
-
-
-email_subject = "World Cup Soccer Balls"
-
-email_sender = "SampleSender@gmail.com"
-email_receiver = "You@gmail.com"
-
-email_html = """
-For a number of decades in the middle of the 20th century, the nature of the soccer ball changed quite drastically in each iteration of the World Cup. The accepted number of panels constantly changed (and is still changing to this day). Presented below are the years during the transition from local manufacturers to multi-national corporations.
-
-<table style="width: 100%; font-size: 0.8em;">
-  <thead>
-    <tr>
-      <th style="border-bottom: 1px solid #ccc;">Year</th>
-      <th style="border-bottom: 1px solid #ccc;">Name</th>
-      <th style="border-bottom: 1px solid #ccc;">Country</th>
-      <th style="border-bottom: 1px solid #ccc;">Manufacturer</th>
-      <th style="border-bottom: 1px solid #ccc; text-align: right;">Panels</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1950</td>
-      <td>Duplo T</td>
-      <td>Brazil</td>
-      <td>Superball</td>
-      <td style="padding: 0px 5px; text-align: right;">12</td>
-    </tr>
-    <tr>
-      <td>1954</td>
-      <td>Swiss World Champ</td>
-      <td>Switzerland</td>
-      <td>Kost Sport</td>
-      <td style="padding: 0px 5px; text-align: right;">18</td>
-    </tr>
-    <tr>
-      <td>1958</td>
-      <td>Top Star</td>
-      <td>Sweden</td>
-      <td>Sydlader AB</td>
-      <td style="padding: 0px 5px; text-align: right;">24</td>
-    </tr>
-    <tr>
-      <td>1962</td>
-      <td>Crack</td>
-      <td>Chile</td>
-      <td>Curtiembres Salvador Caussade</td>
-      <td style="padding: 0px 5px; text-align: right;">18</td>
-    </tr>
-    <tr>
-      <td>1966</td>
-      <td>Challenge 4-Star</td>
-      <td>England</td>
-      <td>Slazenger</td>
-      <td style="padding: 0px 5px; text-align: right;">25</td>
-    </tr>
-    <tr>
-      <td>1970</td>
-      <td>Telstar</td>
-      <td>Mexico</td>
-      <td>Adidas</td>
-      <td style="padding: 0px 5px; text-align: right;">32</td>
-    </tr>
-  </tbody>
-</table>
-
-I hope you enjoy! <br><br>
-
-Regards, <br>
-Jules
-"""
-```
+* Orchestration: testing email 
 -->
 
+Emailing reports is a critical but challenging task for data science.
+Mainly because you have to figure out generating the email content, configuring pieces like attachments, and orchestrating it (e.g. testing, or sending on a schedule). Moreover, content can range from simple layouts to more complex ones.
+
+In this tutorial, we'll walk through the whole game of sending email. We'll start with this simple example:
 
 ```{python}
-from dotenv import load_dotenv
+# | code-fold: true
+# | eval: false
 import os
-from redmail import gmail
+from dotenv import load_dotenv
+from data_polars import sp500
+import redmail
+
+load_dotenv()
+gmail_address = os.environ["GMAIL_ADDRESS"]
+gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
+
+
+email_subject = "Report on Cars"
+email_body = sp500.head(10).style.as_raw_html(inline_css=True)
+
+# This is here to emphasize the sender does not have to be the same as the receiver
+email_receiver = gmail_address
+
+redmail.gmail.username = gmail_address
+redmail.gmail.password = gmail_app_password
+
+redmail.gmail.send(
+    subject=email_subject,
+    receivers=[email_receiver],
+    html=email_body,
+)
 ```
 
 
-{{< include email-examples/summary-example.qmd >}}
+![](./assets/whole-game-email-annotated.png){width=50% fig-align="center"}
+
+* **Content**: writing the text of the email, including plots and tables.
+* **Composing**: setting up the subject, sender, and receivers.
+* **Orchestrating**: previewing, testing, and scheduling the email.
+
+We'll also quickly review writing more advanced content layouts, and authoring email reports that involve running code with Quarto.
+
+## A simple email
+
+![](./assets/whole-game-email.png){width=50% fig-align="center"}
+
+* Generate and preview
+* Authenticate (may need to refer to its own authentication page in guide)
+* Send
+
+```{python}
+# | code-fold: true
+# | eval: false
+import os
+from dotenv import load_dotenv
+from data_polars import sp500
+import redmail
+
+load_dotenv()
+gmail_address = os.environ["GMAIL_ADDRESS"]
+gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
+
+
+email_subject = "Report on Cars"
+email_body = sp500.head(10).style.as_raw_html(inline_css=True)
+
+# This is here to emphasize the sender does not have to be the same as the receiver
+email_receiver = gmail_address
+
+redmail.gmail.username = gmail_address
+redmail.gmail.password = gmail_app_password
+
+redmail.gmail.send(
+    subject=email_subject,
+    receivers=[email_receiver],
+    html=email_body,
+)
+```
+
+## Configure: subject, recipients, attachments
+
+* you could attach the data as a CSV attachment
+
+
+## Orchestrate: save and preview
+
+* previewing email
+* intermediate json, easy for sending email later
+* embedding images makes previewing hard
+* can always email to yourself (or use a test service like Litmus)
+
+## Content: Quarto authoring
+
+Here's our same simple email generated using quarto.
+
+
+
+![](./assets/whole-game-quarto.png){width=50% fig-align="center"}
+
+* Focused on basic configuring, and content
+* Sending happens via our tool
+* Generate using quarto render
+* Can preview email
+
+## Content: advanced layouts
+
+We'll highlight the key pieces (discussed later in this guide) to go from that simple email, to a more advanced on like below:
+
+![](./assets/whole-game-fancy.png){width=50% fig-align="center"}
+
+
+## Fridge
+
+In this tutorial, we are going to send an email from a Gmail account. To do so, you will need to [create an App Password](https://support.google.com/accounts/answer/185833). Note this is only possible if you've [enabled 2-step verification](https://support.google.com/accounts/answer/185839).
+
+<!--
+I'm hestitant to directly put links like this: https://myaccount.google.com/apppasswords
+Because it will instantly prompt the user to login to their gmail account, which might feel sketchy on a webpage from an unknown url.
+-->
+
+::: {.callout-tip}
+This is just one of many options: it is also possible to send emails in Python from other email providers (Outlook, ProtonMail, etc.), or even from a custom domain. To skip ahead to a discussion of alternative sending methods, see [Authentication](orchestrating-auth.qmd)
+:::
+
+Once you've created your App Password, that is used as your Gmail password for sending with Python. 
+
+There are many ways to store the password seperate from your email-sending code, so as to not expose any sensitive information. One such approach uses a `.env` file, and the ``dotenv` and `os` packages.
+
+```{.sh filename=".env"}
+GMAIL_APP_PASSWORD=abcd abcd abcd abcd
+```
+
+```{.python filename="main.py"}
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+your_gmail_address = "YourGmail@gmail.com"
+gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
+```
+
+Check out the email content we will send.
+
+<!-- {{< embed email-examples/summary-example.qmd#abc >}} -->
+
+
+```{python}
+from data_polars import sp500
+
+sp500.head(10).style
+
+```
+
+And now we send the email!
 
 ```{python}
 # | eval: false
-load_dotenv()
+import redmail
 
-email_sender = "yourGmail@gmail.com"
-password = os.environ["GMAIL_APP_PASSWORD"]
+redmail.gmail.username = your_gmail_address
+redmail.gmail.password = gmail_app_password
 
-gmail.username = email_sender
-gmail.password = password
-
-gmail.send(
+redmail.gmail.send(
     subject="An Example Email",
     receivers=[username],
     html=email_html,
@@ -114,72 +182,8 @@ gmail.send(
 )
 ```
 
-```{python}
-# | echo: false
-# | output: true
-# | html-table-processing: none
+<!-- 
+Explain why email_plaintext is there?
+-->
 
-
-from IPython.display import HTML
-
-msg = gmail.get_message(
-    subject="An Example Email",
-    receivers=[email_receiver],
-    html=email_html,
-)
-
-# Extract headers
-subject = msg['Subject']
-sender = msg['From']
-receiver = msg['To']
-date = msg['Date']
-
-# Extract HTML body
-for part in msg.walk():
-    if part.get_content_type() == "text/html":
-        html_content = part.get_payload(decode=True).decode(part.get_content_charset())
-        break
-
-rendered_email = f"""
-<div style="
-  background: #f8f9fa;
-  border: 2px solid #0074D9;
-  border-radius: 8px;
-  padding: 1.5em;
-  margin-bottom: 1em;
-  font-family: sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  line-height: 1.6;
-  overflow-wrap: break-word;
-  max-width: 700px;
-">
-  <div style="margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #ddd;">
-    <strong>Subject:</strong> {subject}<br>
-    <strong>From:</strong> {sender}<br>
-    <strong>To:</strong> {receiver}<br>
-    <strong>Date:</strong> {date}<br>
-  </div>
-  <div style="margin-top: 1em;">
-    {html_content}
-  </div>
-</div>
-"""
-
-HTML(rendered_email)
-```
-
-
-```{python}
-#| eval: false
-
-username = "me@gmail.com"
-
-gmail.username = username
-gmail.password = os.environ["GMAIL_APP_PASSWORD"]
-
-gmail.send(
-    subject="An example email",
-    receivers=[username],
-    html=email_html,
-)
-```
+{{< embed email-examples/summary-example.qmd#email-output >}}

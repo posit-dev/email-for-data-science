@@ -6,6 +6,19 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "redmail>=0.6.0",
+    "jupyter",
+    "ipykernel>=6.29.5",
+    "dotenv",
+    "PyYAML",
+    "nbformat",
+    "nbclient",
+    "great-tables>=0.18.0",
+    "pandas>=2.3.3",
+    "polars>=1.34.0",
+    "css-inline>=0.17.0",
+    "plotnine>=0.13.6",
+    "pyarrow>=21.0.0",
+    "mjml-python>=1.3.6",
 ]
 
 [dependency-groups]
@@ -15,4 +28,5 @@ dev = [
     "PyYAML",
     "nbformat",
     "nbclient",
+
 ]
