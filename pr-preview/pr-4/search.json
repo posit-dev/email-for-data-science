@@ -1,0 +1,162 @@
+[
+  {
+    "objectID": "configuring-subject.html",
+    "href": "configuring-subject.html",
+    "title": "Subject and something else",
+    "section": "",
+    "text": "Subject and something else",
+    "crumbs": [
+      "User Guide",
+      "Configuring",
+      "Subject and something else"
+    ]
+  },
+  {
+    "objectID": "orchestrating-auth.html",
+    "href": "orchestrating-auth.html",
+    "title": "Authentication",
+    "section": "",
+    "text": "Authentication",
+    "crumbs": [
+      "User Guide",
+      "Orchestrating",
+      "Authentication"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
+    "crumbs": [
+      "User Guide",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "content-embedding.html",
+    "href": "content-embedding.html",
+    "title": "Embedding images and tables",
+    "section": "",
+    "text": "Embedding images and tables",
+    "crumbs": [
+      "User Guide",
+      "Content",
+      "Embedding images and tables"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "The whole game",
+    "section": "",
+    "text": "Emailing reports is a critical but challenging task for data science. Mainly because you have to figure out generating the email content, configuring pieces like attachments, and orchestrating it (e.g. testing, or sending on a schedule). Moreover, content can range from simple layouts to more complex ones.\nIn this tutorial, we’ll walk through the whole game of sending email. We’ll start with this simple example:\nCode\nimport os\nfrom dotenv import load_dotenv\nfrom data_polars import sp500\nimport redmail\n\nload_dotenv()\ngmail_address = os.environ[\"GMAIL_ADDRESS\"]\ngmail_app_password = os.environ[\"GMAIL_APP_PASSWORD\"]\n\n\nemail_subject = \"Report on Cars\"\nemail_body = sp500.head(10).style.as_raw_html(inline_css=True)\n\n# This is here to emphasize the sender does not have to be the same as the receiver\nemail_receiver = gmail_address\n\nredmail.gmail.username = gmail_address\nredmail.gmail.password = gmail_app_password\n\nredmail.gmail.send(\n    subject=email_subject,\n    receivers=[email_receiver],\n    html=email_body,\n)\nWe’ll also quickly review writing more advanced content layouts, and authoring email reports that involve running code with Quarto.",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#a-simple-email",
+    "href": "summary.html#a-simple-email",
+    "title": "The whole game",
+    "section": "A simple email",
+    "text": "A simple email\n\n\n\n\n\n\nGenerate and preview\nAuthenticate (may need to refer to its own authentication page in guide)\nSend\n\n\n\nCode\nimport os\nfrom dotenv import load_dotenv\nfrom data_polars import sp500\nimport redmail\n\nload_dotenv()\ngmail_address = os.environ[\"GMAIL_ADDRESS\"]\ngmail_app_password = os.environ[\"GMAIL_APP_PASSWORD\"]\n\n\nemail_subject = \"Report on Cars\"\nemail_body = sp500.head(10).style.as_raw_html(inline_css=True)\n\n# This is here to emphasize the sender does not have to be the same as the receiver\nemail_receiver = gmail_address\n\nredmail.gmail.username = gmail_address\nredmail.gmail.password = gmail_app_password\n\nredmail.gmail.send(\n    subject=email_subject,\n    receivers=[email_receiver],\n    html=email_body,\n)",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#configure-subject-recipients-attachments",
+    "href": "summary.html#configure-subject-recipients-attachments",
+    "title": "The whole game",
+    "section": "Configure: subject, recipients, attachments",
+    "text": "Configure: subject, recipients, attachments\n\nyou could attach the data as a CSV attachment",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#orchestrate-save-and-preview",
+    "href": "summary.html#orchestrate-save-and-preview",
+    "title": "The whole game",
+    "section": "Orchestrate: save and preview",
+    "text": "Orchestrate: save and preview\n\npreviewing email\nintermediate json, easy for sending email later\nembedding images makes previewing hard\ncan always email to yourself (or use a test service like Litmus)",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#content-quarto-authoring",
+    "href": "summary.html#content-quarto-authoring",
+    "title": "The whole game",
+    "section": "Content: Quarto authoring",
+    "text": "Content: Quarto authoring\nHere’s our same simple email generated using quarto.\n\n\n\n\n\n\nFocused on basic configuring, and content\nSending happens via our tool\nGenerate using quarto render\nCan preview email",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#content-advanced-layouts",
+    "href": "summary.html#content-advanced-layouts",
+    "title": "The whole game",
+    "section": "Content: advanced layouts",
+    "text": "Content: advanced layouts\nWe’ll highlight the key pieces (discussed later in this guide) to go from that simple email, to a more advanced on like below:",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "summary.html#fridge",
+    "href": "summary.html#fridge",
+    "title": "The whole game",
+    "section": "Fridge",
+    "text": "Fridge\nIn this tutorial, we are going to send an email from a Gmail account. To do so, you will need to create an App Password. Note this is only possible if you’ve enabled 2-step verification.\n\n\n\n\n\n\n\nTip\n\n\n\nThis is just one of many options: it is also possible to send emails in Python from other email providers (Outlook, ProtonMail, etc.), or even from a custom domain. To skip ahead to a discussion of alternative sending methods, see Authentication\n\n\nOnce you’ve created your App Password, that is used as your Gmail password for sending with Python.\nThere are many ways to store the password seperate from your email-sending code, so as to not expose any sensitive information. One such approach uses a .env file, and the `dotenv and os packages.\n\n\n.env\n\nGMAIL_APP_PASSWORD=abcd abcd abcd abcd\n\n\n\nmain.py\n\nimport os\nfrom dotenv import load_dotenv\n\nload_dotenv()\n\nyour_gmail_address = \"YourGmail@gmail.com\"\ngmail_app_password = os.environ[\"GMAIL_APP_PASSWORD\"]\n\nCheck out the email content we will send.\n\nfrom data_polars import sp500\n\nsp500.head(10).style\n\n\n\n\n\n\n\ndate\nopen\nhigh\nlow\nclose\nvolume\nadj_close\n\n\n\n\n2015-12-31\n2060.5901\n2062.54\n2043.62\n2043.9399\n2655330000.0\n2043.9399\n\n\n2015-12-30\n2077.3401\n2077.3401\n2061.97\n2063.3601\n2367430000.0\n2063.3601\n\n\n2015-12-29\n2060.54\n2081.5601\n2060.54\n2078.3601\n2542000000.0\n2078.3601\n\n\n2015-12-28\n2057.77\n2057.77\n2044.2\n2056.5\n2492510000.0\n2056.5\n\n\n2015-12-24\n2063.52\n2067.3601\n2058.73\n2060.99\n1411860000.0\n2060.99\n\n\n2015-12-23\n2042.2\n2064.73\n2042.2\n2064.29\n3484090000.0\n2064.29\n\n\n2015-12-22\n2023.15\n2042.74\n2020.49\n2038.97\n3520860000.0\n2038.97\n\n\n2015-12-21\n2010.27\n2022.9\n2005.9301\n2021.15\n3760280000.0\n2021.15\n\n\n2015-12-18\n2040.8101\n2040.8101\n2005.33\n2005.55\n6683070000.0\n2005.55\n\n\n2015-12-17\n2073.76\n2076.3701\n2041.66\n2041.89\n4327390000.0\n2041.89\n\n\n\n\n\n\n\n\nAnd now we send the email!\n\nimport redmail\n\nredmail.gmail.username = your_gmail_address\nredmail.gmail.password = gmail_app_password\n\nredmail.gmail.send(\n    subject=\"An Example Email\",\n    receivers=[username],\n    html=email_html,\n    text=email_plaintext,\n)",
+    "crumbs": [
+      "User Guide",
+      "The whole game"
+    ]
+  },
+  {
+    "objectID": "content-layout.html",
+    "href": "content-layout.html",
+    "title": "Layout main components",
+    "section": "",
+    "text": "Layout main components",
+    "crumbs": [
+      "User Guide",
+      "Content",
+      "Layout main components"
+    ]
+  },
+  {
+    "objectID": "configuring-attachments.html",
+    "href": "configuring-attachments.html",
+    "title": "Attachments",
+    "section": "",
+    "text": "Attachments",
+    "crumbs": [
+      "User Guide",
+      "Configuring",
+      "Attachments"
+    ]
+  },
+  {
+    "objectID": "orchestrating-tests.html",
+    "href": "orchestrating-tests.html",
+    "title": "Testing emails",
+    "section": "",
+    "text": "Testing emails",
+    "crumbs": [
+      "User Guide",
+      "Orchestrating",
+      "Testing emails"
+    ]
+  }
+]

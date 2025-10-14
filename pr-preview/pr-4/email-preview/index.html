@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!-- utf-8 works for most cases -->
+<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+<meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+<meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+<!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<style>
+body {
+font-family: Helvetica, sans-serif;
+font-size: 14px;
+}
+.content {
+background-color: white;
+}
+.content .message-block {
+margin-bottom: 24px;
+}
+.header .message-block, .footer message-block {
+margin-bottom: 12px;
+}
+img {
+max-width: 100%;
+}
+@media only screen and (max-width: 767px) {
+.container {
+width: 100%;
+}
+.articles, .articles tr, .articles td {
+display: block;
+width: 100%;
+}
+.article {
+margin-bottom: 24px;
+}
+}
+</style>
+</head>
+<div style="text-align: center; background-color: #fcfcfc; padding-top: 12px; font-size: large;"><span style="margin-left: 25px"><strong><span style="font-variant: small-caps;">subject: </span></strong>Report on cars</span><hr /></div>
+<body style="background-color:#f6f6f6;font-family:Helvetica, sans-serif;color:#222;margin:0;padding:0;">
+<table width="85%" align="center" class="container" style="max-width:1000px;">
+<tr>
+<td style="padding:24px;">
+<div class="header" style="font-family:Helvetica, sans-serif;color:#999999;font-size:12px;font-weight:normal;margin:0 0 24px 0;text-align:center;">
+</div>
+<table width="100%" class="content" style="background-color:white;">
+<tr>
+<td style="padding:12px;"><div class="email">
+<div id="2eb68057" class="cell" data-execution_count="1">
+<div class="quarto-scaffold">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> data_polars <span class="im">import</span> sp500</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sp500.head(<span class="dv">10</span>).style</span></code></pre></div>
+</details>
+</div>
+</div>
+</div></td></tr>
+</table>
+<div class="footer" style="font-family:Helvetica, sans-serif;color:#999999;font-size:12px;font-weight:normal;margin:24px 0 0 0;">
+<p>This message was generated on 2025-10-14 21:00:30.</p>
+
+<p>If HTML documents are attached, they may not render correctly when viewed in some email clients. For a better experience, download HTML documents to disk before opening in a web browser.</p>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
