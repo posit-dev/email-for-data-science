@@ -24,6 +24,13 @@
     ]
   },
   {
+    "objectID": "reference/redmail_to_intermediate_email.html",
+    "href": "reference/redmail_to_intermediate_email.html",
+    "title": "redmail_to_intermediate_email",
+    "section": "",
+    "text": "redmail_to_intermediate_email\nredmail_to_intermediate_email(msg)"
+  },
+  {
     "objectID": "reference/send_quarto_email_with_gmail.html",
     "href": "reference/send_quarto_email_with_gmail.html",
     "title": "send_quarto_email_with_gmail",
@@ -147,14 +154,28 @@
     "href": "reference/index.html",
     "title": "API Reference",
     "section": "",
-    "text": "A test section\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
+    "text": "Converting emails to a serializable, previewable format\n\n\n\nredmail_to_intermediate_email\n\n\n\nmjml_to_intermediate_email\n\n\n\n\n\n\n\nSending emails\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
   },
   {
-    "objectID": "reference/index.html#section-1",
-    "href": "reference/index.html#section-1",
+    "objectID": "reference/index.html#ingress",
+    "href": "reference/index.html#ingress",
     "title": "API Reference",
     "section": "",
-    "text": "A test section\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
+    "text": "Converting emails to a serializable, previewable format\n\n\n\nredmail_to_intermediate_email\n\n\n\nmjml_to_intermediate_email"
+  },
+  {
+    "objectID": "reference/index.html#sending",
+    "href": "reference/index.html#sending",
+    "title": "API Reference",
+    "section": "",
+    "text": "Sending emails\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
+  },
+  {
+    "objectID": "reference/mjml_to_intermediate_email.html",
+    "href": "reference/mjml_to_intermediate_email.html",
+    "title": "mjml_to_intermediate_email",
+    "section": "",
+    "text": "mjml_to_intermediate_email\nmjml_to_intermediate_email(mjml_content)"
   },
   {
     "objectID": "configuring-attachments.html",
