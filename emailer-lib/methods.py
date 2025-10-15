@@ -19,7 +19,7 @@ from email import encoders
 
 
 @dataclass
-class IntermediateDataStruct:
+class IntermediateEmail:
     html: str
     subject: str
     rsc_email_supress_report_attachment: bool
@@ -55,7 +55,7 @@ class IntermediateDataStruct:
         pass
 
 
-def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
+def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateEmail:
     # We will have to call redmail's get_message, and pass that EmailMessage object to this
     return _email_message_to_intermediate_struct(msg)
 
@@ -64,7 +64,7 @@ def yagmail_to_intermediate_struct():
     pass
 
 
-def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateDataStruct:
+def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateEmail:
     email_content = mjml2html(mjml_content)
 
     # Find all <img> tags and extract their src attributes
@@ -77,7 +77,7 @@ def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateDataStruct:
         # as mjml doesn't handle them
         raise NotImplementedError("mj-image tags are not yet supported")
 
-    iStruct = IntermediateDataStruct(
+    i_email = IntermediateEmail(
         html=email_content,
         subject="",
         rsc_email_supress_report_attachment=False,
@@ -85,12 +85,12 @@ def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateDataStruct:
         inline_attachments=inline_attachments,
     )
 
-    return iStruct
+    return i_email
 
 
 # Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
 # Helper method to parse the quarto JSON
-def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
+def _read_quarto_email_json(path: str) -> IntermediateEmail:
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
 
@@ -114,7 +114,7 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
     )
     supress_scheduled = metadata.get("rsc_email_supress_scheduled", False)
 
-    iStruct = IntermediateDataStruct(
+    i_email = IntermediateEmail(
         html=email_html,
         text=email_text,
         inline_attachments=email_images,
@@ -124,7 +124,7 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
         rsc_email_supress_scheduled=supress_scheduled,
     )
 
-    return iStruct
+    return i_email
 
 
 # what to return?
@@ -138,10 +138,10 @@ def send_quarto_email_with_gmail(
     """
     End to end sending of quarto meta data
     """
-    email_struct: IntermediateDataStruct = _read_quarto_email_json(json_path)
-    email_struct.recipients = recipients
+    i_email: IntermediateEmail = _read_quarto_email_json(json_path)
+    i_email.recipients = recipients
     send_struct_email_with_gmail(
-        username=username, password=password, email_struct=email_struct
+        username=username, password=password, i_email=i_email
     )
 
 
@@ -150,27 +150,27 @@ def send_quarto_email_with_gmail(
 
 # Could also take creds object
 def send_struct_email_with_gmail(
-    username: str, password: str, email_struct: IntermediateDataStruct
+    username: str, password: str, i_email: IntermediateEmail
 ):
     """
     Send the email struct content via gmail with smptlib
     """
     # Compose the email
     msg = MIMEMultipart("related")
-    msg["Subject"] = email_struct.subject
+    msg["Subject"] = i_email.subject
     msg["From"] = username
-    msg["To"] = ", ".join(email_struct.recipients)  # Header must be a string
+    msg["To"] = ", ".join(i_email.recipients)  # Header must be a string
 
     msg_alt = MIMEMultipart("alternative")
     msg.attach(msg_alt)
-    msg_alt.attach(MIMEText(email_struct.html, "html"))
+    msg_alt.attach(MIMEText(i_email.html, "html"))
 
     # Attach the plaintext
-    if email_struct.text:
-        msg_alt.attach(MIMEText(email_struct.text, "plain"))
+    if i_email.text:
+        msg_alt.attach(MIMEText(i_email.text, "plain"))
 
     # Attach inline images
-    for image_name, image_base64 in email_struct.inline_attachments.items():
+    for image_name, image_base64 in i_email.inline_attachments.items():
         img_bytes = base64.b64decode(image_base64)
         img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
 
@@ -180,7 +180,7 @@ def send_struct_email_with_gmail(
         msg.attach(img)
 
     # Attach external files (any type)
-    for filename in email_struct.external_attachments:
+    for filename in i_email.external_attachments:
         with open(filename, "rb") as f:
             file_data = f.read()
 
@@ -198,22 +198,22 @@ def send_struct_email_with_gmail(
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(username, password)
-        server.sendmail(msg["From"], email_struct.recipients, msg.as_string())
+        server.sendmail(msg["From"], i_email.recipients, msg.as_string())
 
 
-def send_struct_email_with_redmail(email_struct: IntermediateDataStruct):
+def send_struct_email_with_redmail(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_yagmail(email_struct: IntermediateDataStruct):
+def send_struct_email_with_yagmail(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_mailgun(email_struct: IntermediateDataStruct):
+def send_struct_email_with_mailgun(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_smtp(email_struct: IntermediateDataStruct):
+def send_struct_email_with_smtp(i_email: IntermediateEmail):
     pass
 
 
@@ -258,7 +258,7 @@ def write_email_message_to_file(
         f.write(html_inline)
 
 # useful because redmail bundles an email message... may help in other cases too
-def _email_message_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
+def _email_message_to_intermediate_struct(msg: EmailMessage) -> IntermediateEmail:
     # It feels wrong to deconstruct a mime multipart email message.
     # Why not just send the original payload?
     # Or make the intermediate struct hold that payload (the EmailMessage class)
@@ -310,7 +310,7 @@ def _email_message_to_intermediate_struct(msg: EmailMessage) -> IntermediateData
             # Not certain that all attached files have associated filenames
             external_attachments.append(filename)
 
-    return IntermediateDataStruct(
+    return IntermediateEmail(
         html=html or "",
         subject=subject,
         external_attachments=external_attachments if external_attachments else None,
