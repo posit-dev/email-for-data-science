@@ -13,6 +13,9 @@ import smtplib
 
 from email.message import EmailMessage
 from mjml import mjml2html
+import mimetypes
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 @dataclass
@@ -22,8 +25,10 @@ class IntermediateDataStruct:
     rsc_email_supress_report_attachment: bool
     rsc_email_supress_scheduled: bool
 
+    # is a list of files in path from current directory
+    external_attachments: list[str] | None = None
+
     # has structure {filename: base64_string}
-    external_attachments: dict[str, str] | None = None
     inline_attachments: dict[str, str] | None = None
 
     text: str | None = None  # sometimes present in quarto
@@ -51,23 +56,8 @@ class IntermediateDataStruct:
 
 
 def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
-    # We will have to call redmail get_message, and pass that EmailMessage object to this
-    # It feels wrong to deconstruct a mime multipart email message.
-    # Why not just send the original payload?
-    # Or make the intermediate struct hold that payload (the EmailMessage class)
-    email_body = msg.get_body()
-    raise NotImplementedError
-    # TODO incomplete
-    attachments = {}
-    # maybe do walk
-    for elem in msg.iter_attachments():
-        if elem.is_attachment():
-            # This can fail if there's no associated filename?
-            attachments[elem.get_filename()] = elem.get_content()
-
-    iStruct = IntermediateDataStruct(html=email_body)
-
-    return iStruct
+    # We will have to call redmail's get_message, and pass that EmailMessage object to this
+    return _email_message_to_intermediate_struct(msg)
 
 
 def yagmail_to_intermediate_struct():
@@ -114,8 +104,8 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
     # This is a list of paths that connect dumps attached files into.
     # Should be in same output directory
     output_files = metadata.get("rsc_output_files", [])
-    # metadata.get("rsc_email_attachments", [])
-
+    output_files += metadata.get("rsc_email_attachments", [])
+    
     # Get email images (dictionary: {filename: base64_string})
     email_images = metadata.get("rsc_email_images", {})
 
@@ -128,6 +118,7 @@ def _read_quarto_email_json(path: str) -> IntermediateDataStruct:
         html=email_html,
         text=email_text,
         inline_attachments=email_images,
+        external_attachments=output_files,
         subject=email_subject,
         rsc_email_supress_report_attachment=supress_report_attachment,
         rsc_email_supress_scheduled=supress_scheduled,
@@ -188,14 +179,22 @@ def send_struct_email_with_gmail(
 
         msg.attach(img)
 
-    for image_name, image_base64 in email_struct.external_attachments.items():
-        img_bytes = base64.b64decode(image_base64)
-        img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
+    # Attach external files (any type)
+    for filename in email_struct.external_attachments:
+        with open(filename, "rb") as f:
+            file_data = f.read()
 
-        img.add_header("Content-ID", f"<{image_name}>")
-        img.add_header("Content-Disposition", "attachment", filename=f"{image_name}")
+        # Guess MIME type based on file extension
+        mime_type, _ = mimetypes.guess_type(filename)
+        if mime_type is None:
+            mime_type = "application/octet-stream"
+        main_type, sub_type = mime_type.split("/", 1)
 
-        msg.attach(img)
+        part = MIMEBase(main_type, sub_type)
+        part.set_payload(file_data)
+        encoders.encode_base64(part)
+        part.add_header("Content-Disposition", "attachment", filename=filename)
+        msg.attach(part)
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(username, password)
@@ -257,6 +256,68 @@ def write_email_message_to_file(
     # Write to file
     with open(out_file, "w", encoding="utf-8") as f:
         f.write(html_inline)
+
+# useful because redmail bundles an email message... may help in other cases too
+def _email_message_to_intermediate_struct(msg: EmailMessage) -> IntermediateDataStruct:
+    # It feels wrong to deconstruct a mime multipart email message.
+    # Why not just send the original payload?
+    # Or make the intermediate struct hold that payload (the EmailMessage class)
+
+    # Extract subject
+    subject = msg.get('Subject', '')
+
+    # Extract recipients (To, Cc, Bcc)
+    # Recipients get flattened to one list. Maybe in the future we keep these 3 separate?
+    recipients = []
+    for header in ['To', 'Cc', 'Bcc']:
+        value = msg.get(header)
+        if value:
+            recipients += [addr.strip() for addr in value.split(',') if addr.strip()]
+    recipients = recipients if recipients else None
+
+    # Extract HTML and plain text bodies
+    html = None
+    text = None
+
+    if msg.is_multipart():
+        for part in msg.walk():
+            ctype = part.get_content_type()
+            disp = part.get_content_disposition()
+            if ctype == 'text/html' and disp != 'attachment':
+                html = part.get_content()
+            elif ctype == 'text/plain' and disp != 'attachment':
+                text = part.get_content()
+    else:
+        ctype = msg.get_content_type()
+        if ctype == 'text/html':
+            html = msg.get_content()
+        elif ctype == 'text/plain':
+            text = msg.get_content()
+
+    # Extract inline attachments (images with Content-ID)
+    inline_attachments = {}
+    external_attachments = []
+    for part in msg.iter_attachments():
+        filename = part.get_filename()
+        content_id = part.get('Content-ID')
+        payload = part.get_payload(decode=True)
+        if content_id:
+            cid = content_id.strip('<>')
+            # Store as base64 string
+            inline_attachments[cid] = base64.b64encode(payload).decode('utf-8')
+        elif filename:
+            # Save filename for external attachments
+            # Not certain that all attached files have associated filenames
+            external_attachments.append(filename)
+
+    return IntermediateDataStruct(
+        html=html or "",
+        subject=subject,
+        external_attachments=external_attachments if external_attachments else None,
+        inline_attachments=inline_attachments if inline_attachments else None,
+        text=text,
+        recipients=recipients,
+    )
 
 
 # TODO: make sure this is not losing other attributes of the inline attachments
