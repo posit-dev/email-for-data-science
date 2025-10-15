@@ -55,16 +55,16 @@ class IntermediateEmail:
         pass
 
 
-def redmail_to_intermediate_struct(msg: EmailMessage) -> IntermediateEmail:
+def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
     # We will have to call redmail's get_message, and pass that EmailMessage object to this
-    return _email_message_to_intermediate_struct(msg)
+    return _email_message_to_intermediate_email(msg)
 
 
-def yagmail_to_intermediate_struct():
+def yagmail_to_intermediate_email():
     pass
 
 
-def mjml_to_intermediate_struct(mjml_content: str) -> IntermediateEmail:
+def mjml_to_intermediate_email(mjml_content: str) -> IntermediateEmail:
     email_content = mjml2html(mjml_content)
 
     # Find all <img> tags and extract their src attributes
@@ -140,7 +140,7 @@ def send_quarto_email_with_gmail(
     """
     i_email: IntermediateEmail = _read_quarto_email_json(json_path)
     i_email.recipients = recipients
-    send_struct_email_with_gmail(
+    send_intermediate_email_with_gmail(
         username=username, password=password, i_email=i_email
     )
 
@@ -149,7 +149,7 @@ def send_quarto_email_with_gmail(
 
 
 # Could also take creds object
-def send_struct_email_with_gmail(
+def send_intermediate_email_with_gmail(
     username: str, password: str, i_email: IntermediateEmail
 ):
     """
@@ -201,19 +201,19 @@ def send_struct_email_with_gmail(
         server.sendmail(msg["From"], i_email.recipients, msg.as_string())
 
 
-def send_struct_email_with_redmail(i_email: IntermediateEmail):
+def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_yagmail(i_email: IntermediateEmail):
+def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_mailgun(i_email: IntermediateEmail):
+def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
     pass
 
 
-def send_struct_email_with_smtp(i_email: IntermediateEmail):
+def send_intermediate_email_with_smtp(i_email: IntermediateEmail):
     pass
 
 
@@ -258,7 +258,7 @@ def write_email_message_to_file(
         f.write(html_inline)
 
 # useful because redmail bundles an email message... may help in other cases too
-def _email_message_to_intermediate_struct(msg: EmailMessage) -> IntermediateEmail:
+def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
     # It feels wrong to deconstruct a mime multipart email message.
     # Why not just send the original payload?
     # Or make the intermediate struct hold that payload (the EmailMessage class)
