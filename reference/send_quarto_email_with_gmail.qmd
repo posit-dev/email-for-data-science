@@ -1,0 +1,7 @@
+# send_quarto_email_with_gmail { #emailer-lib.send_quarto_email_with_gmail }
+
+```python
+send_quarto_email_with_gmail(username, password, json_path, recipients)
+```
+
+End to end sending of quarto meta data

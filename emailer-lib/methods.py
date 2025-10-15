@@ -56,7 +56,7 @@ class IntermediateEmail:
 
 
 def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
-    # We will have to call redmail's get_message, and pass that EmailMessage object to this
+    # User will have to call redmail's get_message, and pass that EmailMessage object to this
     return _email_message_to_intermediate_email(msg)
 
 

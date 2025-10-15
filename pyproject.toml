@@ -19,6 +19,7 @@ dependencies = [
     "plotnine>=0.13.6",
     "pyarrow>=21.0.0",
     "mjml-python>=1.3.6",
+    "quartodoc>=0.11.1",
 ]
 
 [dependency-groups]
@@ -28,5 +29,6 @@ dev = [
     "PyYAML",
     "nbformat",
     "nbclient",
+    "quartodoc",
 
 ]

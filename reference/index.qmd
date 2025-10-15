@@ -1,3 +1,10 @@
----
-title: This will be the reference index
----
+# API Reference {.doc .doc-index}
+
+## Section 1
+
+A test section
+
+
+| | |
+| --- | --- |
+| [send_quarto_email_with_gmail](send_quarto_email_with_gmail.qmd#emailer-lib.send_quarto_email_with_gmail) | End to end sending of quarto meta data |
