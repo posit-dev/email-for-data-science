@@ -32,13 +32,13 @@ pip install -e ./emailer-lib
 
 ```python
 from emailer_lib import (
-    read_quarto_email_json,
+    quarto_json_to_intermediate_email,
     IntermediateEmail,
     send_intermediate_email_with_gmail,
 )
 
 # Read a Quarto email JSON file
-email_struct = read_quarto_email_json("email.json")
+email_struct = quarto_json_to_intermediate_email("email.json")
 
 # Preview the email as HTML
 email_struct.write_preview_email("preview.html")

@@ -7,8 +7,8 @@ Converting emails to a serializable, previewable format
 
 | | |
 | --- | --- |
-| [redmail_to_intermediate_email](redmail_to_intermediate_email.qmd#emailer-lib.redmail_to_intermediate_email) |  |
 | [mjml_to_intermediate_email](mjml_to_intermediate_email.qmd#emailer-lib.mjml_to_intermediate_email) |  |
+| [quarto_json_to_intermediate_email](quarto_json_to_intermediate_email.qmd#emailer-lib.quarto_json_to_intermediate_email) |  |
 
 ## Sending
 
@@ -18,3 +18,13 @@ Sending emails
 | | |
 | --- | --- |
 | [send_quarto_email_with_gmail](send_quarto_email_with_gmail.qmd#emailer-lib.send_quarto_email_with_gmail) | End to end sending of quarto meta data |
+| [send_intermediate_email_with_gmail](send_intermediate_email_with_gmail.qmd#emailer-lib.send_intermediate_email_with_gmail) | Send the email struct content via gmail with smptlib |
+
+## Utilities
+
+Miscelanneous 
+
+
+| | |
+| --- | --- |
+| [write_email_message_to_file](write_email_message_to_file.qmd#emailer-lib.write_email_message_to_file) | Writes the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid). |

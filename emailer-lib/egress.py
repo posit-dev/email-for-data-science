@@ -10,7 +10,7 @@ import mimetypes
 from email.mime.base import MIMEBase
 from email import encoders
 
-from .ingress import _read_quarto_email_json
+from .ingress import quarto_json_to_intermediate_email
 
 from .structs import IntermediateEmail
 
@@ -35,7 +35,7 @@ def send_quarto_email_with_gmail(
     """
     End to end sending of quarto meta data
     """
-    i_email: IntermediateEmail = _read_quarto_email_json(json_path)
+    i_email: IntermediateEmail = quarto_json_to_intermediate_email(json_path)
     i_email.recipients = recipients
     send_intermediate_email_with_gmail(
         username=username, password=password, i_email=i_email

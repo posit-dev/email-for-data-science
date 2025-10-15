@@ -12,7 +12,7 @@ __all__ = [
     "redmail_to_intermediate_email",
     "yagmail_to_intermediate_email",
     "mjml_to_intermediate_email",
-    "read_quarto_email_json",
+    "quarto_json_to_intermediate_email",
 ]
 
 
@@ -114,7 +114,7 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
 
 # Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
 # Helper method to parse the quarto JSON
-def read_quarto_email_json(path: str) -> IntermediateEmail:
+def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
 

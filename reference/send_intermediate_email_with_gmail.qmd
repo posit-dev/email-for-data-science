@@ -1,0 +1,7 @@
+# send_intermediate_email_with_gmail { #emailer-lib.send_intermediate_email_with_gmail }
+
+```python
+send_intermediate_email_with_gmail(username, password, i_email)
+```
+
+Send the email struct content via gmail with smptlib
