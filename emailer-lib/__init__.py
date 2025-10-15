@@ -2,6 +2,7 @@ from .ingress import (
     redmail_to_intermediate_email,
     yagmail_to_intermediate_email,
     mjml_to_intermediate_email,
+    read_quarto_email_json,
 )
 
 from .egress import (
@@ -19,6 +20,7 @@ from .structs import IntermediateEmail
 
 
 __all__ = [
+    "read_quarto_email_json",
     "IntermediateEmail",
     "redmail_to_intermediate_email",
     "yagmail_to_intermediate_email",

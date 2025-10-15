@@ -107,7 +107,7 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
 
 # Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
 # Helper method to parse the quarto JSON
-def _read_quarto_email_json(path: str) -> IntermediateEmail:
+def read_quarto_email_json(path: str) -> IntermediateEmail:
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
 
