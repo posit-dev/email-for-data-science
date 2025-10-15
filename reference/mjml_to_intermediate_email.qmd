@@ -1,0 +1,6 @@
+# mjml_to_intermediate_email { #emailer-lib.mjml_to_intermediate_email }
+
+```python
+mjml_to_intermediate_email(mjml_content)
+```
+

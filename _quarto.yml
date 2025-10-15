@@ -38,9 +38,17 @@ quartodoc:
     table_style: description-list
 
   sections:
-    - title: Section 1
+    - title: Ingress
       desc: >
-        A test section
+        Converting emails to a serializable, previewable format
+      contents:
+        - redmail_to_intermediate_email
+        - mjml_to_intermediate_email
+        
+
+    - title: Sending
+      desc: >
+        Sending emails
       contents:
         - send_quarto_email_with_gmail
 

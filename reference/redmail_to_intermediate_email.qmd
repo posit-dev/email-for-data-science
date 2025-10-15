@@ -1,0 +1,6 @@
+# redmail_to_intermediate_email { #emailer-lib.redmail_to_intermediate_email }
+
+```python
+redmail_to_intermediate_email(msg)
+```
+

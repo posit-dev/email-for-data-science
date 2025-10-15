@@ -7,7 +7,6 @@ from email.message import EmailMessage
 from mjml import mjml2html
 
 from .structs import IntermediateEmail
-from .utils import _email_message_to_intermediate_email
 
 
 def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
