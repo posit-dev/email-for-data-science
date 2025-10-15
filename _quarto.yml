@@ -28,6 +28,22 @@ website:
             - orchestrating-auth.qmd
             - orchestrating-tests.qmd
 
+quartodoc:
+  package: emailer-lib
+  dir: reference
+  title: API Reference
+  css: reference/_styles-quartodoc.css
+  renderer:
+    style: markdown
+    table_style: description-list
+
+  sections:
+    - title: Section 1
+      desc: >
+        A test section
+      contents:
+        - send_quarto_email_with_gmail
+
 
 format:
   html:
