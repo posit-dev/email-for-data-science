@@ -14,6 +14,15 @@ from .ingress import _read_quarto_email_json
 
 from .structs import IntermediateEmail
 
+__all__ = [
+    "send_quarto_email_with_gmail",
+    "send_intermediate_email_with_gmail",
+    "send_intermediate_email_with_redmail",
+    "send_intermediate_email_with_yagmail",
+    "send_intermediate_email_with_mailgun",
+    "send_intermediate_email_with_smtp",
+]
+
 
 # what to return?
 # consider malformed request?

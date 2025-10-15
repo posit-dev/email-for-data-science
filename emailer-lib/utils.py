@@ -3,6 +3,8 @@ import base64
 from email.message import EmailMessage
 import re
 
+__all__ = ["write_email_message_to_file"]
+
 
 # TODO: make sure this is not losing other attributes of the inline attachments
 def _add_base_64_to_inline_attachments(inline_attachments: dict[str, str]):

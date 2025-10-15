@@ -8,6 +8,13 @@ from mjml import mjml2html
 
 from .structs import IntermediateEmail
 
+__all__ = [
+    "redmail_to_intermediate_email",
+    "yagmail_to_intermediate_email",
+    "mjml_to_intermediate_email",
+    "read_quarto_email_json",
+]
+
 
 def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
     # User will have to call redmail's get_message, and pass that EmailMessage object to this

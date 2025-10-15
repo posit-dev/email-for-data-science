@@ -6,6 +6,8 @@ from email.message import EmailMessage
 
 from .utils import _add_base_64_to_inline_attachments
 
+__all__ = ["IntermediateEmail"]
+
 
 @dataclass
 class IntermediateEmail:
