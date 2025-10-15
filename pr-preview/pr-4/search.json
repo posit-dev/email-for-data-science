@@ -24,26 +24,22 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
+    "objectID": "reference/send_quarto_email_with_gmail.html",
+    "href": "reference/send_quarto_email_with_gmail.html",
+    "title": "send_quarto_email_with_gmail",
     "section": "",
-    "text": "Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
-    "crumbs": [
-      "User Guide",
-      "Introduction"
-    ]
+    "text": "send_quarto_email_with_gmail\nsend_quarto_email_with_gmail(username, password, json_path, recipients)\nEnd to end sending of quarto meta data"
   },
   {
-    "objectID": "content-embedding.html",
-    "href": "content-embedding.html",
-    "title": "Embedding images and tables",
+    "objectID": "content-layout.html",
+    "href": "content-layout.html",
+    "title": "Layout main components",
     "section": "",
-    "text": "Embedding images and tables",
+    "text": "Layout main components",
     "crumbs": [
       "User Guide",
       "Content",
-      "Embedding images and tables"
+      "Layout main components"
     ]
   },
   {
@@ -124,16 +120,41 @@
     ]
   },
   {
-    "objectID": "content-layout.html",
-    "href": "content-layout.html",
-    "title": "Layout main components",
+    "objectID": "content-embedding.html",
+    "href": "content-embedding.html",
+    "title": "Embedding images and tables",
     "section": "",
-    "text": "Layout main components",
+    "text": "Embedding images and tables",
     "crumbs": [
       "User Guide",
       "Content",
-      "Layout main components"
+      "Embedding images and tables"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
+    "crumbs": [
+      "User Guide",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "API Reference",
+    "section": "",
+    "text": "A test section\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
+  },
+  {
+    "objectID": "reference/index.html#section-1",
+    "href": "reference/index.html#section-1",
+    "title": "API Reference",
+    "section": "",
+    "text": "A test section\n\n\n\nsend_quarto_email_with_gmail\nEnd to end sending of quarto meta data"
   },
   {
     "objectID": "configuring-attachments.html",
