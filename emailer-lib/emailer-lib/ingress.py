@@ -17,15 +17,43 @@ __all__ = [
 
 
 def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
-    # User will have to call redmail's get_message, and pass that EmailMessage object to this
+    """
+    Convert a Redmail EmailMessage object to an IntermediateEmail
+
+    Params
+    ------
+    msg
+        The Redmail-generated EmailMessage object
+
+    Converts the input EmailMessage to the intermediate email structure
+    """
     return _email_message_to_intermediate_email(msg)
 
 
 def yagmail_to_intermediate_email():
+    """
+    Convert a Yagmail email object to an IntermediateEmail
+
+    Params
+    ------
+    (none)
+
+    Not yet implemented
+    """
     pass
 
 
 def mjml_to_intermediate_email(mjml_content: str) -> IntermediateEmail:
+    """
+    Convert MJML markup to an IntermediateEmail
+
+    Params
+    ------
+    mjml_content
+        MJML markup string
+
+    Converts MJML markup to the intermediate email structure
+    """
     email_content = mjml2html(mjml_content)
 
     # Find all <img> tags and extract their src attributes
@@ -51,6 +79,16 @@ def mjml_to_intermediate_email(mjml_content: str) -> IntermediateEmail:
 
 # useful because redmail bundles an email message... may help in other cases too
 def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
+    """
+    Convert a Python EmailMessage object to an IntermediateEmail
+
+    Params
+    ------
+    msg
+        The email message to convert
+
+    Converts the input EmailMessage to the intermediate email structure
+    """
     # It feels wrong to deconstruct a mime multipart email message.
     # Why not just send the original payload?
     # Or make the intermediate struct hold that payload (the EmailMessage class)
@@ -115,6 +153,16 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
 # Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
 # Helper method to parse the quarto JSON
 def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
+    """
+    Convert a Quarto output metadata JSON file to an IntermediateEmail
+
+    Params
+    ------
+    path
+        Path to the Quarto output metadata JSON file
+
+    Converts the Quarto output metadata to the intermediate email structure
+    """
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
 

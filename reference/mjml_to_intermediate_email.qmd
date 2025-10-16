@@ -4,3 +4,11 @@
 mjml_to_intermediate_email(mjml_content)
 ```
 
+Convert MJML markup to an IntermediateEmail
+
+## Params {.doc-section .doc-section-params}
+
+mjml_content
+    MJML markup string
+
+Converts MJML markup to the intermediate email structure

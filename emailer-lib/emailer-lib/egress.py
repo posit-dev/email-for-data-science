@@ -33,7 +33,7 @@ def send_quarto_email_with_gmail(
     recipients: list[str],
 ):
     """
-    End to end sending of quarto meta data
+    End to end sending of quarto meta data (test text!!)
     """
     i_email: IntermediateEmail = quarto_json_to_intermediate_email(json_path)
     i_email.recipients = recipients

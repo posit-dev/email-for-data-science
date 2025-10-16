@@ -4,4 +4,4 @@
 send_quarto_email_with_gmail(username, password, json_path, recipients)
 ```
 
-End to end sending of quarto meta data
+End to end sending of quarto meta data (test text!!)

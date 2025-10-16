@@ -71,5 +71,7 @@ format:
     theme:
       - cosmo
       - brand
+    # css:
+    #   - reference/_styles-quartodoc.css
 
 
