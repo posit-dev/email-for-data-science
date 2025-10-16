@@ -33,7 +33,37 @@ def send_quarto_email_with_gmail(
     recipients: list[str],
 ):
     """
-    End to end sending of quarto meta data (test text!!)
+    Send an email using Gmail with content from a Quarto metadata JSON file.
+    
+    Parameters
+    ----------
+    username
+        Gmail account username for sending the email
+    
+    password
+        Gmail app password
+    
+    json_path
+        Path to the Quarto-generated .output_metadata.json file
+    
+    recipients
+        List of email addresses to send the email to
+    
+    Returns
+    -------
+    None
+        The function sends an email but doesn't return a value
+    
+    Examples
+    --------
+    ```python
+    send_quarto_email_with_gmail(
+        "user@gmail.com", 
+        "password123", 
+        "path/to/output_metadata.json",
+        ["recipient1@example.com", "recipient2@example.com"]
+    )
+    ```
     """
     i_email: IntermediateEmail = quarto_json_to_intermediate_email(json_path)
     i_email.recipients = recipients
@@ -50,7 +80,35 @@ def send_intermediate_email_with_gmail(
     username: str, password: str, i_email: IntermediateEmail
 ):
     """
-    Send the email struct content via gmail with smptlib
+    Send an email via Gmail using the contents of an IntermediateEmail structure.
+    
+    Parameters
+    ----------
+    username
+        Gmail account username for sending the email
+    
+    password
+        Gmail app password
+    
+    i_email
+        IntermediateEmail object containing the email content and attachments
+    
+    Returns
+    -------
+    None
+        The function sends an email but doesn't return a value
+    
+    Examples
+    --------
+    ```python
+    email = IntermediateEmail(
+        html="<p>Hello world</p>",
+        subject="Test Email",
+        recipients=["user@example.com"],
+    )
+    
+    send_intermediate_email_with_gmail("user@gmail.com", "password123", email)
+    ```
     """
     # Compose the email
     msg = MIMEMultipart("related")
@@ -99,16 +157,80 @@ def send_intermediate_email_with_gmail(
 
 
 def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
+    """
+    Send an email via Redmail using the contents of an IntermediateEmail structure.
+    
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+    
+    Returns
+    -------
+    None
+    
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
     pass
 
 
 def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
+    """
+    Send an email via Yagmail using the contents of an IntermediateEmail structure.
+    
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+    
+    Returns
+    -------
+    None
+    
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
     pass
 
 
 def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
+    """
+    Send an email via Mailgun using the contents of an IntermediateEmail structure.
+    
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+    
+    Returns
+    -------
+    None
+    
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
     pass
 
 
 def send_intermediate_email_with_smtp(i_email: IntermediateEmail):
+    """
+    Send an email via generic SMTP using the contents of an IntermediateEmail structure.
+    
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+    
+    Returns
+    -------
+    None
+    
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
     pass

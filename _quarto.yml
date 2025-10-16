@@ -29,7 +29,7 @@ website:
             - orchestrating-tests.qmd
 
 quartodoc:
-  package: emailer-lib
+  package: emailer_lib
   dir: reference
   title: API Reference
   css: reference/_styles-quartodoc.css
@@ -44,7 +44,7 @@ quartodoc:
       contents:
         # - redmail_to_intermediate_email
         - mjml_to_intermediate_email
-        # - yagmail_to_intermediate_email,
+        # - yagmail_to_intermediate_email
         - quarto_json_to_intermediate_email
         
 
@@ -54,10 +54,10 @@ quartodoc:
       contents:
         - send_quarto_email_with_gmail
         - send_intermediate_email_with_gmail
-        # - send_intermediate_email_with_redmail,
-        # - send_intermediate_email_with_yagmail,
-        # - send_intermediate_email_with_mailgun,
-        # - send_intermediate_email_with_smtp,
+        - send_intermediate_email_with_redmail
+        - send_intermediate_email_with_yagmail
+        - send_intermediate_email_with_mailgun
+        - send_intermediate_email_with_smtp
 
     - title: Utilities
       desc: >
@@ -71,7 +71,8 @@ format:
     theme:
       - cosmo
       - brand
-    # css:
-    #   - reference/_styles-quartodoc.css
+    css:
+      - reference/_styles-quartodoc.css
+      - reference/styles.css
 
 

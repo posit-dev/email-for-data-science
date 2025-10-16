@@ -1,0 +1,23 @@
+# send_intermediate_email_with_mailgun { #emailer_lib.send_intermediate_email_with_mailgun }
+
+```python
+send_intermediate_email_with_mailgun(i_email)
+```
+
+Send an email via Mailgun using the contents of an IntermediateEmail structure.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**i_email**]{.parameter-name} [:]{.parameter-annotation-sep} [IntermediateEmail]{.parameter-annotation}</code>
+
+:   IntermediateEmail object containing the email content and attachments
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [None]{.parameter-annotation}</code>
+
+:   
+
+## Notes {.doc-section .doc-section-notes}
+
+This function is a placeholder and has not been implemented yet.

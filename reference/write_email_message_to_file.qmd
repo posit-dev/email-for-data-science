@@ -1,4 +1,4 @@
-# write_email_message_to_file { #emailer-lib.write_email_message_to_file }
+# write_email_message_to_file { #emailer_lib.write_email_message_to_file }
 
 ```python
 write_email_message_to_file(msg, out_file='preview_email.html')
