@@ -152,7 +152,6 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
     )
 
 
-# Some Connect handling happens here: https://github.com/posit-dev/connect/blob/c84f845f9e75887f6450b32f1071e57e8777b8b1/src/connect/reports/output_metadata.go
 # Helper method to parse the quarto JSON
 def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     """
@@ -171,8 +170,7 @@ def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     email_subject = metadata.get("rsc_email_subject", "")
     email_text = metadata.get("rsc_email_body_text", "")
 
-    # Other metadata fields, as per https://github.com/posit-dev/connect/wiki/Rendering#output-metadata-fields-and-validation
-    # These might be rmd specific, not quarto
+
 
     # This is a list of paths that connect dumps attached files into.
     # Should be in same output directory
