@@ -4,7 +4,7 @@
 send_intermediate_email_with_yagmail(i_email)
 ```
 
-Send an email via Yagmail using the contents of an IntermediateEmail structure.
+Send an Intermediate Email object via Yagmail.
 
 ## Parameters {.doc-section .doc-section-parameters}
 

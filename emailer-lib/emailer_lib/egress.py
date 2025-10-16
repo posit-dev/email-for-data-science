@@ -80,7 +80,7 @@ def send_intermediate_email_with_gmail(
     username: str, password: str, i_email: IntermediateEmail
 ):
     """
-    Send an email via Gmail using the contents of an IntermediateEmail structure.
+    Send an Intermediate Email object via Gmail.
     
     Parameters
     ----------
@@ -158,7 +158,7 @@ def send_intermediate_email_with_gmail(
 
 def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
     """
-    Send an email via Redmail using the contents of an IntermediateEmail structure.
+    Send an Intermediate Email object via Redmail.
     
     Parameters
     ----------
@@ -173,12 +173,12 @@ def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
     -----
     This function is a placeholder and has not been implemented yet.
     """
-    pass
+    raise NotImplementedError
 
 
 def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
     """
-    Send an email via Yagmail using the contents of an IntermediateEmail structure.
+    Send an Intermediate Email object via Yagmail.
     
     Parameters
     ----------
@@ -193,12 +193,11 @@ def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
     -----
     This function is a placeholder and has not been implemented yet.
     """
-    pass
-
+    raise NotImplementedError
 
 def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
     """
-    Send an email via Mailgun using the contents of an IntermediateEmail structure.
+    Send an Intermediate Email object via Mailgun.
     
     Parameters
     ----------
@@ -213,12 +212,11 @@ def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
     -----
     This function is a placeholder and has not been implemented yet.
     """
-    pass
-
+    raise NotImplementedError
 
 def send_intermediate_email_with_smtp(i_email: IntermediateEmail):
     """
-    Send an email via generic SMTP using the contents of an IntermediateEmail structure.
+    Send an Intermediate Email object via SMTP.
     
     Parameters
     ----------
@@ -233,4 +231,4 @@ def send_intermediate_email_with_smtp(i_email: IntermediateEmail):
     -----
     This function is a placeholder and has not been implemented yet.
     """
-    pass
+    raise NotImplementedError

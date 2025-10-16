@@ -1,0 +1,14 @@
+# redmail_to_intermediate_email { #emailer_lib.redmail_to_intermediate_email }
+
+```python
+redmail_to_intermediate_email(msg)
+```
+
+Convert a Redmail EmailMessage object to an IntermediateEmail
+
+## Params {.doc-section .doc-section-params}
+
+msg
+    The Redmail-generated EmailMessage object
+
+Converts the input EmailMessage to the intermediate email structure

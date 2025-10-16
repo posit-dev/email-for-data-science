@@ -1,0 +1,28 @@
+# IntermediateEmail.preview_send_email { #emailer_lib.IntermediateEmail.preview_send_email }
+
+```python
+IntermediateEmail.preview_send_email()
+```
+
+Send a preview of the email to a test recipient.
+
+This method is intended for sending the email to a designated preview recipient
+for testing purposes before sending to the full recipient list.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**None**]{.parameter-name} [:]{.parameter-annotation-sep} []{.parameter-annotation}</code>
+
+:   
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [None]{.parameter-annotation}</code>
+
+:   
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+email.preview_send_email()
+```

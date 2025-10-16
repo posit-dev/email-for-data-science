@@ -4,7 +4,7 @@
 send_intermediate_email_with_redmail(i_email)
 ```
 
-Send an email via Redmail using the contents of an IntermediateEmail structure.
+Send an Intermediate Email object via Redmail.
 
 ## Parameters {.doc-section .doc-section-parameters}
 

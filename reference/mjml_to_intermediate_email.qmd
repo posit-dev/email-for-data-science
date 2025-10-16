@@ -6,9 +6,14 @@ mjml_to_intermediate_email(mjml_content)
 
 Convert MJML markup to an IntermediateEmail
 
-## Params {.doc-section .doc-section-params}
+## Parameters {.doc-section .doc-section-parameters}
 
-mjml_content
-    MJML markup string
+<code>[**mjml_content**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
 
-Converts MJML markup to the intermediate email structure
+:   MJML markup string
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [An Intermediate Email object]{.parameter-annotation}</code>
+
+:   

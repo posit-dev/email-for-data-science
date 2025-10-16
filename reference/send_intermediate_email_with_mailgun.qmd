@@ -4,7 +4,7 @@
 send_intermediate_email_with_mailgun(i_email)
 ```
 
-Send an email via Mailgun using the contents of an IntermediateEmail structure.
+Send an Intermediate Email object via Mailgun.
 
 ## Parameters {.doc-section .doc-section-parameters}
 

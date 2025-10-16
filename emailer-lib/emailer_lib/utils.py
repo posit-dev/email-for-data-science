@@ -41,8 +41,10 @@ def write_email_message_to_file(
     and writes the resulting HTML to the specified output file.
 
     Params:
-        msg (EmailMessage): The email message object containing the HTML body and attachments.
-        out_file (str, optional): The path to the output HTML file. Defaults to "preview_email.html".
+        msg
+            The email message object containing the HTML body and attachments.
+        out_file
+            The path to the output HTML file.
 
     Returns:
         None

@@ -47,12 +47,15 @@ def mjml_to_intermediate_email(mjml_content: str) -> IntermediateEmail:
     """
     Convert MJML markup to an IntermediateEmail
 
-    Params
+    Parameters
     ------
     mjml_content
         MJML markup string
 
-    Converts MJML markup to the intermediate email structure
+    Returns
+    ------
+    An Intermediate Email object
+
     """
     email_content = mjml2html(mjml_content)
 
@@ -82,12 +85,11 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
     """
     Convert a Python EmailMessage object to an IntermediateEmail
 
-    Params
+    Parameters
     ------
     msg
         The email message to convert
 
-    Converts the input EmailMessage to the intermediate email structure
     """
     # It feels wrong to deconstruct a mime multipart email message.
     # Why not just send the original payload?
@@ -156,12 +158,11 @@ def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     """
     Convert a Quarto output metadata JSON file to an IntermediateEmail
 
-    Params
+    Parameters
     ------
     path
         Path to the Quarto output metadata JSON file
 
-    Converts the Quarto output metadata to the intermediate email structure
     """
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
