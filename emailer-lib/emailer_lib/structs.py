@@ -58,8 +58,8 @@ class IntermediateEmail:
 
     html: str
     subject: str
-    rsc_email_supress_report_attachment: bool
-    rsc_email_supress_scheduled: bool
+    rsc_email_supress_report_attachment: bool | None = None
+    rsc_email_supress_scheduled: bool | None = None
 
     # is a list of files in path from current directory
     external_attachments: list[str] | None = None
