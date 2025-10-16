@@ -115,10 +115,6 @@ class IntermediateEmail:
         This method creates a standard library EmailMessage object from the
         IntermediateEmail, including HTML, plain text, recipients, and attachments.
 
-        Parameters
-        ----------
-        None
-
         Returns
         -------
         EmailMessage
@@ -138,10 +134,6 @@ class IntermediateEmail:
 
         This method is intended for sending the email to a designated preview recipient
         for testing purposes before sending to the full recipient list.
-
-        Parameters
-        ----------
-        None
 
         Returns
         -------
