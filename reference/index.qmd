@@ -9,7 +9,7 @@ An email object that in a serializable, previewable format, optimized for emails
 | --- | --- |
 | [IntermediateEmail](IntermediateEmail.qmd#emailer_lib.IntermediateEmail) | A serializable, previewable, sendable email object for data science workflows. |
 | [IntermediateEmail.write_preview_email](IntermediateEmail.write_preview_email.qmd#emailer_lib.IntermediateEmail.write_preview_email) | Write a preview HTML file with inline attachments embedded. |
-| [IntermediateEmail.write_email_message](IntermediateEmail.write_email_message.qmd#emailer_lib.IntermediateEmail.write_email_message) | Convert the IntermediateEmail to a Python EmailMessage object. |
+| [IntermediateEmail.write_email_message](IntermediateEmail.write_email_message.qmd#emailer_lib.IntermediateEmail.write_email_message) | Convert the IntermediateEmail to a Python EmailMessage. |
 | [IntermediateEmail.preview_send_email](IntermediateEmail.preview_send_email.qmd#emailer_lib.IntermediateEmail.preview_send_email) | Send a preview of the email to a test recipient. |
 
 ## Uploading emails

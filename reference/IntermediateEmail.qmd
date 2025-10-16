@@ -69,5 +69,5 @@ email.write_preview_email("preview.html")
 | Name | Description |
 | --- | --- |
 | [](`~emailer_lib.IntermediateEmail.preview_send_email`) | Send a preview of the email to a test recipient. |
-| [](`~emailer_lib.IntermediateEmail.write_email_message`) | Convert the IntermediateEmail to a Python EmailMessage object. |
+| [](`~emailer_lib.IntermediateEmail.write_email_message`) | Convert the IntermediateEmail to a Python EmailMessage. |
 | [](`~emailer_lib.IntermediateEmail.write_preview_email`) | Write a preview HTML file with inline attachments embedded. |
