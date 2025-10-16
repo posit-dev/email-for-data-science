@@ -28,14 +28,7 @@
     "href": "reference/IntermediateEmail.write_email_message.html",
     "title": "IntermediateEmail.write_email_message",
     "section": "",
-    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage object.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\nNone : \n\n\n\n\n\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
-  },
-  {
-    "objectID": "reference/IntermediateEmail.write_email_message.html#parameters",
-    "href": "reference/IntermediateEmail.write_email_message.html#parameters",
-    "title": "IntermediateEmail.write_email_message",
-    "section": "",
-    "text": "None :"
+    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
   },
   {
     "objectID": "reference/IntermediateEmail.write_email_message.html#returns",
