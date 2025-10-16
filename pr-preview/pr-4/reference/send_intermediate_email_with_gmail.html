@@ -105,6 +105,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../reference/_styles-quartodoc.css">
+<link rel="stylesheet" href="../reference/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -152,12 +154,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="emailer-lib.send_intermediate_email_with_gmail" class="level1">
+<section id="emailer_lib.send_intermediate_email_with_gmail" class="level1">
 <h1>send_intermediate_email_with_gmail</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>send_intermediate_email_with_gmail(username, password, i_email)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Send the email struct content via gmail with smptlib</p>
+<p>Send an email via Gmail using the contents of an IntermediateEmail structure.</p>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+<dl>
+<dt><code><span class="parameter-name"><strong>username</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Gmail account username for sending the email</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>password</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Gmail app password</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>i_email</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">IntermediateEmail</span></code></dt>
+<dd>
+<p>IntermediateEmail object containing the email content and attachments</p>
+</dd>
+</dl>
+</section>
+<section id="returns" class="level2 doc-section doc-section-returns">
+<h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
+<dd>
+<p>The function sends an email but doesn’t return a value</p>
+</dd>
+</dl>
+</section>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> IntermediateEmail(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    html<span class="op">=</span><span class="st">"&lt;p&gt;Hello world&lt;/p&gt;"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    subject<span class="op">=</span><span class="st">"Test Email"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    recipients<span class="op">=</span>[<span class="st">"user@example.com"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>send_intermediate_email_with_gmail(<span class="st">"user@gmail.com"</span>, <span class="st">"password123"</span>, email)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

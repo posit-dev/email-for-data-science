@@ -105,6 +105,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../reference/_styles-quartodoc.css">
+<link rel="stylesheet" href="../reference/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -152,12 +154,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="emailer-lib.send_quarto_email_with_gmail" class="level1">
+<section id="emailer_lib.send_quarto_email_with_gmail" class="level1">
 <h1>send_quarto_email_with_gmail</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>send_quarto_email_with_gmail(username, password, json_path, recipients)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>End to end sending of quarto meta data (test text!!)</p>
+<p>Send an email using Gmail with content from a Quarto metadata JSON file.</p>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+<dl>
+<dt><code><span class="parameter-name"><strong>username</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Gmail account username for sending the email</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>password</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Gmail app password</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>json_path</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Path to the Quarto-generated .output_metadata.json file</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>recipients</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">list[str]</span></code></dt>
+<dd>
+<p>List of email addresses to send the email to</p>
+</dd>
+</dl>
+</section>
+<section id="returns" class="level2 doc-section doc-section-returns">
+<h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
+<dd>
+<p>The function sends an email but doesn’t return a value</p>
+</dd>
+</dl>
+</section>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>send_quarto_email_with_gmail(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"user@gmail.com"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"password123"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"path/to/output_metadata.json"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"recipient1@example.com"</span>, <span class="st">"recipient2@example.com"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
