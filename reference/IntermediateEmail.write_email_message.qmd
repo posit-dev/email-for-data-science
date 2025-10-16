@@ -4,16 +4,10 @@
 IntermediateEmail.write_email_message()
 ```
 
-Convert the IntermediateEmail to a Python EmailMessage object.
+Convert the IntermediateEmail to a Python EmailMessage.
 
 This method creates a standard library EmailMessage object from the
 IntermediateEmail, including HTML, plain text, recipients, and attachments.
-
-## Parameters {.doc-section .doc-section-parameters}
-
-<code>[**None**]{.parameter-name} [:]{.parameter-annotation-sep} []{.parameter-annotation}</code>
-
-:   
 
 ## Returns {.doc-section .doc-section-returns}
 
