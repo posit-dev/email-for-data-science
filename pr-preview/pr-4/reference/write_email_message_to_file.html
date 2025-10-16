@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>write_email_message_to_file(msg, out_file<span class="op">=</span><span class="st">'preview_email.html'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Writes the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).</p>
 <p>This function extracts all attachments referenced by Content-ID from the given EmailMessage, replaces any <code>src="cid:..."</code> references in the HTML body with base64-encoded image data, and writes the resulting HTML to the specified output file.</p>
-<p>Params: msg (EmailMessage): The email message object containing the HTML body and attachments. out_file (str, optional): The path to the output HTML file. Defaults to “preview_email.html”.</p>
+<p>Params: msg The email message object containing the HTML body and attachments. out_file The path to the output HTML file.</p>
 <p>Returns: None</p>
 
 
