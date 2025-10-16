@@ -102,6 +102,19 @@ class IntermediateEmail:
             self.html,
         )
 
+        # Insert subject as <h2> after the opening <body> tag, if present
+        if "<body" in html_with_inline:
+            html_with_inline = re.sub(
+                r"(<body[^>]*>)",
+                r'\1\n<h2 style="padding-left:16px;">Subject: {}</h2>'.format(self.subject),
+                html_with_inline,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        else:
+            # Fallback: prepend if no <body> tag found
+            html_with_inline = f'<h2 style="padding-left:16px;">Subject: {self.subject}</h2>\n' + html_with_inline
+
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(html_with_inline)
 
