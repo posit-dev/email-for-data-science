@@ -73,7 +73,7 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
 
-      - name: Install emailer-lib with dev dependencies
+      - name: Install emailer-lib
         run: uv pip install -e "./emailer-lib"
       
       - name: Test emailer-lib
