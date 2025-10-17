@@ -9,7 +9,6 @@ dependencies = [
     "jupyter",
     "ipykernel>=6.29.5",
     "dotenv",
-    "PyYAML",
     "nbformat",
     "nbclient",
     "great-tables>=0.18.0",
@@ -24,11 +23,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ipykernel>=6.29.5",
-    "dotenv",
-    "PyYAML",
-    "nbformat",
-    "nbclient",
     "quartodoc",
-
+    "pytest>=3",
+    "pytest-cov",
 ]
