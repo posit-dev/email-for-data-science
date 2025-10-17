@@ -141,7 +141,7 @@ class IntermediateEmail:
         """
         raise NotImplementedError
 
-    def preview_send_email():
+    def preview_send_email(self):
         """
         Send a preview of the email to a test recipient.
 

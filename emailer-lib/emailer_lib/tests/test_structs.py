@@ -1,4 +1,6 @@
 import re
+
+import pytest
 from emailer_lib.structs import IntermediateEmail
 
 
@@ -78,3 +80,18 @@ def test_raises_on_external_attachments(tmp_path):
         assert "external attachments" in str(e)
     else:
         assert False, "Expected ValueError for external attachments"
+
+
+@pytest.mark.parametrize(
+    "method_name",
+    ["write_email_message", "preview_send_email"],
+)
+def test_not_implemented_methods(method_name):
+    """Test that unimplemented methods raise NotImplementedError."""
+    email = IntermediateEmail(
+        html="<p>Hi</p>",
+        subject="Test",
+    )
+    method = getattr(email, method_name)
+    with pytest.raises(NotImplementedError):
+        method()
