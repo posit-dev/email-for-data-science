@@ -99,7 +99,8 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
     subject = msg.get("Subject", "")
 
     # Extract recipients (To, Cc, Bcc)
-    # Recipients get flattened to one list. Maybe in the future we keep these 3 separate?
+    # Recipients get flattened to one list.
+    # TODO: Maybe in the future we keep these 3 separate?
     recipients = []
     for header in ["To", "Cc", "Bcc"]:
         value = msg.get(header)
