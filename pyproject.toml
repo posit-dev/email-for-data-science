@@ -26,4 +26,5 @@ dev = [
     "quartodoc",
     "pytest>=3",
     "pytest-cov",
+    "griffe",
 ]
