@@ -1,0 +1,13 @@
+# yagmail_to_intermediate_email { #emailer_lib.yagmail_to_intermediate_email }
+
+```python
+yagmail_to_intermediate_email()
+```
+
+Convert a Yagmail email object to an IntermediateEmail
+
+## Params {.doc-section .doc-section-params}
+
+(none)
+
+Not yet implemented

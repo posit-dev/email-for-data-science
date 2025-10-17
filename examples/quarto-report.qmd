@@ -7,7 +7,7 @@ format: email
 :::{.email}
 
 :::{.subject}
-Report on cars
+Stock Market Report
 :::
 
 

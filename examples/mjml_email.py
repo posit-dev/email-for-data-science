@@ -7,8 +7,8 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import smtplib
 
-import sys
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/..'))
+# import sys
+# sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/..'))
 
 from data_polars import sp500
 import polars as pl

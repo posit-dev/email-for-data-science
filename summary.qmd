@@ -155,9 +155,6 @@ gmail_app_password = os.environ["GMAIL_APP_PASSWORD"]
 
 Check out the email content we will send.
 
-<!-- {{< embed email-examples/summary-example.qmd#abc >}} -->
-
-
 ```{python}
 from data_polars import sp500
 
@@ -185,5 +182,3 @@ redmail.gmail.send(
 <!-- 
 Explain why email_plaintext is there?
 -->
-
-{{< embed email-examples/summary-example.qmd#email-output >}}
