@@ -4,8 +4,8 @@
 IntermediateEmail(
     html,
     subject,
-    rsc_email_supress_report_attachment,
-    rsc_email_supress_scheduled,
+    rsc_email_supress_report_attachment=None,
+    rsc_email_supress_scheduled=None,
     external_attachments=None,
     inline_attachments=None,
     text=None,
@@ -45,11 +45,11 @@ It is designed to be generated from a variety of authoring tools and sent via mu
 
 :   Optional list of recipient email addresses.
 
-<code>[**rsc_email_supress_report_attachment**]{.parameter-name} [:]{.parameter-annotation-sep} [bool]{.parameter-annotation}</code>
+<code>[**rsc_email_supress_report_attachment**]{.parameter-name} [:]{.parameter-annotation-sep} [bool \| None]{.parameter-annotation} [ = ]{.parameter-default-sep} [None]{.parameter-default}</code>
 
 :   Whether to suppress report attachments (used in some workflows).
 
-<code>[**rsc_email_supress_scheduled**]{.parameter-name} [:]{.parameter-annotation-sep} [bool]{.parameter-annotation}</code>
+<code>[**rsc_email_supress_scheduled**]{.parameter-name} [:]{.parameter-annotation-sep} [bool \| None]{.parameter-annotation} [ = ]{.parameter-default-sep} [None]{.parameter-default}</code>
 
 :   Whether to suppress scheduled sending (used in some workflows).
 

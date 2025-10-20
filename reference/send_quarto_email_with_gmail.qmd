@@ -34,8 +34,8 @@ Send an email using Gmail with content from a Quarto metadata JSON file.
 
 ```python
 send_quarto_email_with_gmail(
-    "user@gmail.com", 
-    "password123", 
+    "user@gmail.com",
+    "password123",
     "path/to/output_metadata.json",
     ["recipient1@example.com", "recipient2@example.com"]
 )
