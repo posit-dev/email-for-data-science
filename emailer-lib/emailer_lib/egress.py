@@ -34,32 +34,32 @@ def send_quarto_email_with_gmail(
 ):
     """
     Send an email using Gmail with content from a Quarto metadata JSON file.
-    
+
     Parameters
     ----------
     username
         Gmail account username for sending the email
-    
+
     password
         Gmail app password
-    
+
     json_path
         Path to the Quarto-generated .output_metadata.json file
-    
+
     recipients
         List of email addresses to send the email to
-    
+
     Returns
     -------
     None
         The function sends an email but doesn't return a value
-    
+
     Examples
     --------
     ```python
     send_quarto_email_with_gmail(
-        "user@gmail.com", 
-        "password123", 
+        "user@gmail.com",
+        "password123",
         "path/to/output_metadata.json",
         ["recipient1@example.com", "recipient2@example.com"]
     )
@@ -81,23 +81,23 @@ def send_intermediate_email_with_gmail(
 ):
     """
     Send an Intermediate Email object via Gmail.
-    
+
     Parameters
     ----------
     username
         Gmail account username for sending the email
-    
+
     password
         Gmail app password
-    
+
     i_email
         IntermediateEmail object containing the email content and attachments
-    
+
     Returns
     -------
     None
         The function sends an email but doesn't return a value
-    
+
     Examples
     --------
     ```python
@@ -106,11 +106,106 @@ def send_intermediate_email_with_gmail(
         subject="Test Email",
         recipients=["user@example.com"],
     )
-    
+
     send_intermediate_email_with_gmail("user@gmail.com", "password123", email)
     ```
     """
     # Compose the email
+    return send_intermediate_email_with_smtp(
+        smtp_host="smtp.gmail.com",
+        smtp_port=587,
+        username=username,
+        password=password,
+        i_email=i_email,
+        use_tls=True
+    )
+
+
+def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
+    """
+    Send an Intermediate Email object via Redmail.
+
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
+    raise NotImplementedError
+
+
+def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
+    """
+    Send an Intermediate Email object via Yagmail.
+
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
+
+    raise NotImplementedError
+
+
+def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
+    """
+    Send an Intermediate Email object via Mailgun.
+
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
+    raise NotImplementedError
+
+
+def send_intermediate_email_with_smtp(
+    smtp_host: str,
+    smtp_port: int,
+    username: str,
+    password: str,
+    i_email: IntermediateEmail,
+    use_tls: bool = True,
+):
+    """
+    Send an Intermediate Email object via SMTP.
+
+    Parameters
+    ----------
+    i_email
+        IntermediateEmail object containing the email content and attachments
+
+    Returns
+    -------
+    None
+
+    Notes
+    -----
+    This function is a placeholder and has not been implemented yet.
+    """
     msg = MIMEMultipart("related")
     msg["Subject"] = i_email.subject
     msg["From"] = username
@@ -151,84 +246,14 @@ def send_intermediate_email_with_gmail(
         part.add_header("Content-Disposition", "attachment", filename=filename)
         msg.attach(part)
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(username, password)
-        server.sendmail(msg["From"], i_email.recipients, msg.as_string())
-
-
-def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
-    """
-    Send an Intermediate Email object via Redmail.
-    
-    Parameters
-    ----------
-    i_email
-        IntermediateEmail object containing the email content and attachments
-    
-    Returns
-    -------
-    None
-    
-    Notes
-    -----
-    This function is a placeholder and has not been implemented yet.
-    """
-    raise NotImplementedError
-
-
-def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
-    """
-    Send an Intermediate Email object via Yagmail.
-    
-    Parameters
-    ----------
-    i_email
-        IntermediateEmail object containing the email content and attachments
-    
-    Returns
-    -------
-    None
-    
-    Notes
-    -----
-    This function is a placeholder and has not been implemented yet.
-    """
-    raise NotImplementedError
-
-def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
-    """
-    Send an Intermediate Email object via Mailgun.
-    
-    Parameters
-    ----------
-    i_email
-        IntermediateEmail object containing the email content and attachments
-    
-    Returns
-    -------
-    None
-    
-    Notes
-    -----
-    This function is a placeholder and has not been implemented yet.
-    """
-    raise NotImplementedError
-
-def send_intermediate_email_with_smtp(i_email: IntermediateEmail):
-    """
-    Send an Intermediate Email object via SMTP.
-    
-    Parameters
-    ----------
-    i_email
-        IntermediateEmail object containing the email content and attachments
-    
-    Returns
-    -------
-    None
-    
-    Notes
-    -----
-    This function is a placeholder and has not been implemented yet.
-    """
-    raise NotImplementedError
+    if use_tls:
+        # Use STARTTLS (typically port 587)
+        with smtplib.SMTP(smtp_host, smtp_port) as server:
+            server.starttls()
+            server.login(username, password)
+            server.sendmail(msg["From"], i_email.recipients, msg.as_string())
+    else:
+        # Use SSL (typically port 465)
+        with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+            server.login(username, password)
+            server.sendmail(msg["From"], i_email.recipients, msg.as_string())

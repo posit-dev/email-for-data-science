@@ -24,95 +24,139 @@ def make_basic_email():
     )
 
 
-def test_send_intermediate_email_with_gmail_mocks_smtp(monkeypatch):
-    email = make_basic_email()
+def setup_smtp_mocks(monkeypatch):
     mock_server = MagicMock()
-
-    # This ensures the smtplib.SMTP_SSL call in send_intermediate_email_with_gmail
-    # uses our mock server
+    mock_smtp = MagicMock(return_value=mock_server)
     mock_smtp_ssl = MagicMock(return_value=mock_server)
 
-    # This retrieves the mock object that will be used as 'server' inside
-    # the 'with ... as server:' block
-    context = mock_smtp_ssl.return_value.__enter__.return_value
-    monkeypatch.setattr("smtplib.SMTP_SSL", mock_smtp_ssl)
+    context = mock_smtp.return_value.__enter__.return_value
 
-    send_intermediate_email_with_gmail("user", "pass", email)
+    # Patch in the emailer_lib.egress module where they're used
+    monkeypatch.setattr("emailer_lib.egress.smtplib.SMTP", mock_smtp)
+    monkeypatch.setattr("emailer_lib.egress.smtplib.SMTP_SSL", mock_smtp_ssl)
+
+    return mock_smtp, mock_smtp_ssl, context
+
+
+def test_send_intermediate_email_with_gmail_calls_smtp(monkeypatch):
+    email = make_basic_email()
+
+    mock_smtp_send = MagicMock()
+    monkeypatch.setattr(
+        "emailer_lib.egress.send_intermediate_email_with_smtp", mock_smtp_send
+    )
+
+    send_intermediate_email_with_gmail("user@gmail.com", "pass", email)
+
+    mock_smtp_send.assert_called_once_with(
+        smtp_host="smtp.gmail.com",
+        smtp_port=587,
+        username="user@gmail.com",
+        password="pass",
+        i_email=email,
+        use_tls=True,
+    )
+
+
+def test_send_intermediate_email_with_smtp_tls(monkeypatch):
+    email = make_basic_email()
+    mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
+
+    send_intermediate_email_with_smtp(
+        smtp_host="smtp.example.com",
+        smtp_port=587,
+        username="user",
+        password="pass",
+        i_email=email,
+        use_tls=True,
+    )
+
+    mock_smtp.assert_called_once_with("smtp.example.com", 587)
+    context.starttls.assert_called_once()
     context.login.assert_called_once_with("user", "pass")
     context.sendmail.assert_called_once()
 
-    args, kwargs = context.sendmail.call_args
-    email_message = args[2]  # The raw email message as a string
-    assert "Content-ID: <img.png>" in email_message
 
-
-def test_send_intermediate_email_with_gmail_with_attachment(monkeypatch):
+def test_send_intermediate_email_with_smtp_ssl(monkeypatch):
     email = make_basic_email()
+    mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    # Add a fake external attachment
+    send_intermediate_email_with_smtp(
+        smtp_host="smtp.example.com",
+        smtp_port=465,
+        username="user",
+        password="pass",
+        i_email=email,
+        use_tls=False,
+    )
+
+    mock_smtp_ssl.assert_called_once_with("smtp.example.com", 465)
+    context.login.assert_called_once_with("user", "pass")
+    context.sendmail.assert_called_once()
+
+
+def test_send_intermediate_email_with_smtp_with_attachment(monkeypatch):
+    email = make_basic_email()
     email.external_attachments = ["file.txt"]
-    mock_server = MagicMock()
-    mock_smtp_ssl = MagicMock(return_value=mock_server)
 
-    context = mock_smtp_ssl.return_value.__enter__.return_value
-    monkeypatch.setattr("smtplib.SMTP_SSL", mock_smtp_ssl)
+    mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    # This mocks the built-in open function so that when the functoin opens "file.txt"
-    # to read its contents (for attaching to the email), it gets the fake data (b"data")
-    # instead of actually reading a file from disk
     with patch("builtins.open", mock_open(read_data=b"data")):
-        send_intermediate_email_with_gmail("user", "pass", email)
-    context.login.assert_called_once_with("user", "pass")
-    context.sendmail.assert_called_once()
+        send_intermediate_email_with_smtp(
+            smtp_host="smtp.example.com",
+            smtp_port=587,
+            username="user",
+            password="pass",
+            i_email=email,
+            use_tls=True,
+        )
 
+    context.sendmail.assert_called_once()
     args, kwargs = context.sendmail.call_args
     email_message = args[2]
     assert 'Content-Disposition: attachment; filename="file.txt"' in email_message
 
-def test_send_intermediate_email_with_gmail_unknown_mime_type(monkeypatch):
+
+def test_send_intermediate_email_with_smtp_unknown_mime_type(monkeypatch):
     email = make_basic_email()
-    
-    # Add an attachment with no extension (unknown MIME type)
     email.external_attachments = ["file_without_extension"]
-    mock_server = MagicMock()
-    mock_smtp_ssl = MagicMock(return_value=mock_server)
-    context = mock_smtp_ssl.return_value.__enter__.return_value
-    monkeypatch.setattr("smtplib.SMTP_SSL", mock_smtp_ssl)
-    
+
+    mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
+
     with patch("builtins.open", mock_open(read_data=b"data")):
-        send_intermediate_email_with_gmail("user", "pass", email)
-    
+        send_intermediate_email_with_smtp(
+            smtp_host="smtp.example.com",
+            smtp_port=587,
+            username="user",
+            password="pass",
+            i_email=email,
+            use_tls=True,
+        )
+
     context.sendmail.assert_called_once()
-    
     args, kwargs = context.sendmail.call_args
     email_message = args[2]
-    
+
     assert "Content-Type: application/octet-stream" in email_message
-    assert 'Content-Disposition: attachment; filename="file_without_extension"' in email_message
-
-def test_send_intermediate_email_with_gmail_uses_correct_server(monkeypatch):
-    email = make_basic_email()
-    mock_server = MagicMock()
-    mock_smtp_ssl = MagicMock(return_value=mock_server)
-    context = mock_smtp_ssl.return_value.__enter__.return_value
-    monkeypatch.setattr("smtplib.SMTP_SSL", mock_smtp_ssl)
-
-    send_intermediate_email_with_gmail("user@gmail.com", "pass", email)
-
-    # Verify SMTP_SSL was called with Gmail's server and port
-    mock_smtp_ssl.assert_called_once_with("smtp.gmail.com", 465)
-    context.login.assert_called_once_with("user@gmail.com", "pass")
+    assert (
+        'Content-Disposition: attachment; filename="file_without_extension"'
+        in email_message
+    )
 
 
-def test_send_intermediate_email_with_gmail_sendmail_args(monkeypatch):
+def test_send_intermediate_email_with_smtp_sendmail_args(monkeypatch):
     """Test that sendmail is called with correct sender, recipients, and message format."""
     email = make_basic_email()
-    mock_server = MagicMock()
-    mock_smtp_ssl = MagicMock(return_value=mock_server)
-    context = mock_smtp_ssl.return_value.__enter__.return_value
-    monkeypatch.setattr("smtplib.SMTP_SSL", mock_smtp_ssl)
+    mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    send_intermediate_email_with_gmail("user@gmail.com", "pass", email)
+    send_intermediate_email_with_smtp(
+        smtp_host="mock_host",
+        smtp_port=465,
+        username="user@gmail.com",
+        password="pass",
+        i_email=email,
+        use_tls=False,  # Port 465 uses SSL
+    )
 
     context.sendmail.assert_called_once()
 
@@ -166,7 +210,6 @@ def test_send_quarto_email_with_gmail(monkeypatch):
         send_intermediate_email_with_redmail,
         send_intermediate_email_with_yagmail,
         send_intermediate_email_with_mailgun,
-        send_intermediate_email_with_smtp,
     ],
 )
 def test_not_implemented_functions(send_func):
