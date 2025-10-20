@@ -23,6 +23,13 @@ dependencies = [
     "mjml-python>=1.3.6",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "aiosmtpd",
+    "pytest",
+    "pytest-cov",
+]
+
 [tool.coverage.report]
 exclude_also = [
     "if TYPE_CHECKING:"

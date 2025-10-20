@@ -54,7 +54,7 @@ def test_send_intermediate_email_with_gmail_calls_smtp(monkeypatch):
         username="user@gmail.com",
         password="pass",
         i_email=email,
-        use_tls=True,
+        security="tls",
     )
 
 
@@ -68,7 +68,7 @@ def test_send_intermediate_email_with_smtp_tls(monkeypatch):
         username="user",
         password="pass",
         i_email=email,
-        use_tls=True,
+        security="tls",
     )
 
     mock_smtp.assert_called_once_with("smtp.example.com", 587)
@@ -87,7 +87,7 @@ def test_send_intermediate_email_with_smtp_ssl(monkeypatch):
         username="user",
         password="pass",
         i_email=email,
-        use_tls=False,
+        security="ssl",
     )
 
     mock_smtp_ssl.assert_called_once_with("smtp.example.com", 465)
@@ -108,7 +108,7 @@ def test_send_intermediate_email_with_smtp_with_attachment(monkeypatch):
             username="user",
             password="pass",
             i_email=email,
-            use_tls=True,
+            security="tls"
         )
 
     context.sendmail.assert_called_once()
@@ -130,7 +130,7 @@ def test_send_intermediate_email_with_smtp_unknown_mime_type(monkeypatch):
             username="user",
             password="pass",
             i_email=email,
-            use_tls=True,
+            security="tls",
         )
 
     context.sendmail.assert_called_once()
@@ -155,7 +155,7 @@ def test_send_intermediate_email_with_smtp_sendmail_args(monkeypatch):
         username="user@gmail.com",
         password="pass",
         i_email=email,
-        use_tls=False,  # Port 465 uses SSL
+        security="ssl",  # Port 465 uses SSL
     )
 
     context.sendmail.assert_called_once()

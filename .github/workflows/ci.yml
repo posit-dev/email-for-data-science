@@ -75,6 +75,9 @@ jobs:
 
       - name: Install emailer-lib
         run: uv pip install -e "./emailer-lib"
+
+      - name: Install the project deps
+        run: uv pip install -e "./emailer-lib[dev]"
       
       - name: Test emailer-lib
         run: |

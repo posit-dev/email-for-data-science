@@ -9,10 +9,12 @@ import smtplib
 import mimetypes
 from email.mime.base import MIMEBase
 from email import encoders
+from typing import Literal
 
 from .ingress import quarto_json_to_intermediate_email
 
 from .structs import IntermediateEmail
+import warnings
 
 __all__ = [
     "send_quarto_email_with_gmail",
@@ -117,7 +119,7 @@ def send_intermediate_email_with_gmail(
         username=username,
         password=password,
         i_email=i_email,
-        use_tls=True
+        security="tls",
     )
 
 
@@ -188,24 +190,86 @@ def send_intermediate_email_with_smtp(
     username: str,
     password: str,
     i_email: IntermediateEmail,
-    use_tls: bool = True,
+    security: str = Literal["tls", "ssl", "smtp"]
 ):
     """
     Send an Intermediate Email object via SMTP.
 
     Parameters
     ----------
+    smtp_host
+        SMTP server hostname (e.g., "smtp.example.com")
+
+    smtp_port
+        SMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)
+
+    username
+        SMTP account username for authentication
+
+    password
+        SMTP account password
+
     i_email
         IntermediateEmail object containing the email content and attachments
+
+    security
+        Security protocol to use: "tls" (STARTTLS), "ssl" (SSL/TLS), or "smtp" (plain SMTP).
+        Default is "tls".
 
     Returns
     -------
     None
+        The function sends an email but doesn't return a value
 
-    Notes
-    -----
-    This function is a placeholder and has not been implemented yet.
+    Raises
+    ------
+    ValueError
+        If security parameter is not one of "tls", "ssl", or "smtp"
+
+    Examples
+    --------
+    ```python
+    email = IntermediateEmail(
+        html="<p>Hello world</p>",
+        subject="Test Email",
+        recipients=["user@example.com"],
+    )
+
+    # TLS connection (port 587) - recommended
+    send_intermediate_email_with_smtp(
+        "smtp.example.com",
+        587,
+        "user@example.com",
+        "password123",
+        email,
+        security="tls"
+    )
+
+    # SSL connection (port 465)
+    send_intermediate_email_with_smtp(
+        "smtp.example.com",
+        465,
+        "user@example.com",
+        "password123",
+        email,
+        security="ssl"
+    )
+
+    # Plain SMTP (port 25) - insecure, for testing only
+    send_intermediate_email_with_smtp(
+        "127.0.0.1",
+        8025,
+        "test@example.com",
+        "password",
+        email,
+        security="smtp"
+    )
+    ```
     """
+    if security not in ("tls", "ssl", "smtp"):
+        raise ValueError(f"security must be 'tls', 'ssl', or 'smtp', got '{security}'")
+
+    # Compose the email
     msg = MIMEMultipart("related")
     msg["Subject"] = i_email.subject
     msg["From"] = username
@@ -246,14 +310,28 @@ def send_intermediate_email_with_smtp(
         part.add_header("Content-Disposition", "attachment", filename=filename)
         msg.attach(part)
 
-    if use_tls:
-        # Use STARTTLS (typically port 587)
+    # Send via SMTP with appropriate security protocol
+    if security == "ssl":
+        # Use SSL/TLS from the start (typically port 465)
+        with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+            server.login(username, password)
+            server.sendmail(msg["From"], i_email.recipients, msg.as_string())
+    elif security == "tls":
+        # Use STARTTLS - start unencrypted then upgrade (typically port 587)
         with smtplib.SMTP(smtp_host, smtp_port) as server:
             server.starttls()
             server.login(username, password)
             server.sendmail(msg["From"], i_email.recipients, msg.as_string())
-    else:
-        # Use SSL (typically port 465)
-        with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
-            server.login(username, password)
+    else:  # security == "smtp"
+        warnings.warn(
+            "You are sending email without encryption (plain SMTP). This is insecure and not recommended for production use.",
+            UserWarning,
+        )
+        # Plain SMTP without encryption (insecure - for testing only)
+        with smtplib.SMTP(smtp_host, smtp_port) as server:
+            # Try to login, but don't fail if server doesn't require it
+            try:
+                server.login(username, password)
+            except smtplib.SMTPException:
+                pass  # Test servers may not require authentication
             server.sendmail(msg["From"], i_email.recipients, msg.as_string())
