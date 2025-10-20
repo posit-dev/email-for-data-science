@@ -1,90 +1,118 @@
 [
   {
-    "objectID": "configuring-subject.html",
-    "href": "configuring-subject.html",
-    "title": "Subject and something else",
+    "objectID": "orchestrating-tests.html",
+    "href": "orchestrating-tests.html",
+    "title": "Testing emails",
     "section": "",
-    "text": "Subject and something else",
-    "crumbs": [
-      "User Guide",
-      "Configuring",
-      "Subject and something else"
-    ]
-  },
-  {
-    "objectID": "orchestrating-auth.html",
-    "href": "orchestrating-auth.html",
-    "title": "Authentication",
-    "section": "",
-    "text": "Authentication",
+    "text": "Testing emails",
     "crumbs": [
       "User Guide",
       "Orchestrating",
-      "Authentication"
+      "Testing emails"
     ]
   },
   {
-    "objectID": "reference/IntermediateEmail.write_email_message.html",
-    "href": "reference/IntermediateEmail.write_email_message.html",
-    "title": "IntermediateEmail.write_email_message",
+    "objectID": "content-layout.html",
+    "href": "content-layout.html",
+    "title": "Layout main components",
     "section": "",
-    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
+    "text": "Layout main components",
+    "crumbs": [
+      "User Guide",
+      "Content",
+      "Layout main components"
+    ]
   },
   {
-    "objectID": "reference/IntermediateEmail.write_email_message.html#returns",
-    "href": "reference/IntermediateEmail.write_email_message.html#returns",
-    "title": "IntermediateEmail.write_email_message",
+    "objectID": "reference/send_intermediate_email_with_yagmail.html",
+    "href": "reference/send_intermediate_email_with_yagmail.html",
+    "title": "send_intermediate_email_with_yagmail",
     "section": "",
-    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+    "text": "send_intermediate_email_with_yagmail(i_email)\nSend an Intermediate Email object via Yagmail.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
   },
   {
-    "objectID": "reference/IntermediateEmail.write_email_message.html#examples",
-    "href": "reference/IntermediateEmail.write_email_message.html#examples",
-    "title": "IntermediateEmail.write_email_message",
+    "objectID": "reference/send_intermediate_email_with_yagmail.html#parameters",
+    "href": "reference/send_intermediate_email_with_yagmail.html#parameters",
+    "title": "send_intermediate_email_with_yagmail",
     "section": "",
-    "text": "msg = email.write_email_message()"
+    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
   },
   {
-    "objectID": "reference/redmail_to_intermediate_email.html",
-    "href": "reference/redmail_to_intermediate_email.html",
-    "title": "redmail_to_intermediate_email",
+    "objectID": "reference/send_intermediate_email_with_yagmail.html#returns",
+    "href": "reference/send_intermediate_email_with_yagmail.html#returns",
+    "title": "send_intermediate_email_with_yagmail",
     "section": "",
-    "text": "redmail_to_intermediate_email(msg)\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nmsg The Redmail-generated EmailMessage object\nConverts the input EmailMessage to the intermediate email structure"
+    "text": ": None"
   },
   {
-    "objectID": "reference/redmail_to_intermediate_email.html#params",
-    "href": "reference/redmail_to_intermediate_email.html#params",
-    "title": "redmail_to_intermediate_email",
+    "objectID": "reference/send_intermediate_email_with_yagmail.html#notes",
+    "href": "reference/send_intermediate_email_with_yagmail.html#notes",
+    "title": "send_intermediate_email_with_yagmail",
     "section": "",
-    "text": "msg The Redmail-generated EmailMessage object\nConverts the input EmailMessage to the intermediate email structure"
+    "text": "This function is a placeholder and has not been implemented yet."
   },
   {
-    "objectID": "reference/mjml_to_intermediate_email.html",
-    "href": "reference/mjml_to_intermediate_email.html",
-    "title": "mjml_to_intermediate_email",
+    "objectID": "reference/IntermediateEmail.write_preview_email.html",
+    "href": "reference/IntermediateEmail.write_preview_email.html",
+    "title": "IntermediateEmail.write_preview_email",
     "section": "",
-    "text": "mjml_to_intermediate_email(mjml_content)\nConvert MJML markup to an IntermediateEmail\n\n\n\nmjml_content : str\n\nMJML markup string\n\n\n\n\n\n\n : An Intermediate Email object"
+    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
   },
   {
-    "objectID": "reference/mjml_to_intermediate_email.html#parameters",
-    "href": "reference/mjml_to_intermediate_email.html#parameters",
-    "title": "mjml_to_intermediate_email",
+    "objectID": "reference/IntermediateEmail.write_preview_email.html#parameters",
+    "href": "reference/IntermediateEmail.write_preview_email.html#parameters",
+    "title": "IntermediateEmail.write_preview_email",
     "section": "",
-    "text": "mjml_content : str\n\nMJML markup string"
+    "text": "out_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”."
   },
   {
-    "objectID": "reference/mjml_to_intermediate_email.html#returns",
-    "href": "reference/mjml_to_intermediate_email.html#returns",
-    "title": "mjml_to_intermediate_email",
+    "objectID": "reference/IntermediateEmail.write_preview_email.html#returns",
+    "href": "reference/IntermediateEmail.write_preview_email.html#returns",
+    "title": "IntermediateEmail.write_preview_email",
     "section": "",
-    "text": ": An Intermediate Email object"
+    "text": ": None"
   },
   {
-    "objectID": "reference/write_email_message_to_file.html",
-    "href": "reference/write_email_message_to_file.html",
-    "title": "write_email_message_to_file",
+    "objectID": "reference/IntermediateEmail.write_preview_email.html#examples",
+    "href": "reference/IntermediateEmail.write_preview_email.html#examples",
+    "title": "IntermediateEmail.write_preview_email",
     "section": "",
-    "text": "write_email_message_to_file\nwrite_email_message_to_file(msg, out_file='preview_email.html')\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\nThis function extracts all attachments referenced by Content-ID from the given EmailMessage, replaces any src=\"cid:...\" references in the HTML body with base64-encoded image data, and writes the resulting HTML to the specified output file.\nParams: msg The email message object containing the HTML body and attachments. out_file The path to the output HTML file.\nReturns: None"
+    "text": "email.write_preview_email(\"preview.html\")"
+  },
+  {
+    "objectID": "reference/IntermediateEmail.write_preview_email.html#notes",
+    "href": "reference/IntermediateEmail.write_preview_email.html#notes",
+    "title": "IntermediateEmail.write_preview_email",
+    "section": "",
+    "text": "Raises ValueError if external attachments are present, as preview does not support them."
+  },
+  {
+    "objectID": "reference/yagmail_to_intermediate_email.html",
+    "href": "reference/yagmail_to_intermediate_email.html",
+    "title": "yagmail_to_intermediate_email",
+    "section": "",
+    "text": "yagmail_to_intermediate_email()\nConvert a Yagmail email object to an IntermediateEmail\n\n\n(none)\nNot yet implemented"
+  },
+  {
+    "objectID": "reference/yagmail_to_intermediate_email.html#params",
+    "href": "reference/yagmail_to_intermediate_email.html#params",
+    "title": "yagmail_to_intermediate_email",
+    "section": "",
+    "text": "(none)\nNot yet implemented"
+  },
+  {
+    "objectID": "reference/quarto_json_to_intermediate_email.html",
+    "href": "reference/quarto_json_to_intermediate_email.html",
+    "title": "quarto_json_to_intermediate_email",
+    "section": "",
+    "text": "quarto_json_to_intermediate_email(path)\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\n\npath : str\n\nPath to the Quarto output metadata JSON file"
+  },
+  {
+    "objectID": "reference/quarto_json_to_intermediate_email.html#parameters",
+    "href": "reference/quarto_json_to_intermediate_email.html#parameters",
+    "title": "quarto_json_to_intermediate_email",
+    "section": "",
+    "text": "path : str\n\nPath to the Quarto output metadata JSON file"
   },
   {
     "objectID": "reference/IntermediateEmail.html",
@@ -113,6 +141,34 @@
     "title": "IntermediateEmail",
     "section": "",
     "text": "Name\nDescription\n\n\n\n\npreview_send_email\nSend a preview of the email to a test recipient.\n\n\nwrite_email_message\nConvert the IntermediateEmail to a Python EmailMessage.\n\n\nwrite_preview_email\nWrite a preview HTML file with inline attachments embedded."
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_redmail.html",
+    "href": "reference/send_intermediate_email_with_redmail.html",
+    "title": "send_intermediate_email_with_redmail",
+    "section": "",
+    "text": "send_intermediate_email_with_redmail(i_email)\nSend an Intermediate Email object via Redmail.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_redmail.html#parameters",
+    "href": "reference/send_intermediate_email_with_redmail.html#parameters",
+    "title": "send_intermediate_email_with_redmail",
+    "section": "",
+    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_redmail.html#returns",
+    "href": "reference/send_intermediate_email_with_redmail.html#returns",
+    "title": "send_intermediate_email_with_redmail",
+    "section": "",
+    "text": ": None"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_redmail.html#notes",
+    "href": "reference/send_intermediate_email_with_redmail.html#notes",
+    "title": "send_intermediate_email_with_redmail",
+    "section": "",
+    "text": "This function is a placeholder and has not been implemented yet."
   },
   {
     "objectID": "reference/emailer_lib.IntermediateEmail.write_preview_email.html",
@@ -150,110 +206,123 @@
     "text": "Raises ValueError if external attachments are present, as preview does not support them."
   },
   {
-    "objectID": "reference/IntermediateEmail.preview_send_email.html",
-    "href": "reference/IntermediateEmail.preview_send_email.html",
-    "title": "IntermediateEmail.preview_send_email",
+    "objectID": "reference/mjml_to_intermediate_email.html",
+    "href": "reference/mjml_to_intermediate_email.html",
+    "title": "mjml_to_intermediate_email",
     "section": "",
-    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
+    "text": "mjml_to_intermediate_email(mjml_content)\nConvert MJML markup to an IntermediateEmail\n\n\n\nmjml_content : str\n\nMJML markup string\n\n\n\n\n\n\n : An Intermediate Email object"
   },
   {
-    "objectID": "reference/IntermediateEmail.preview_send_email.html#returns",
-    "href": "reference/IntermediateEmail.preview_send_email.html#returns",
-    "title": "IntermediateEmail.preview_send_email",
+    "objectID": "reference/mjml_to_intermediate_email.html#parameters",
+    "href": "reference/mjml_to_intermediate_email.html#parameters",
+    "title": "mjml_to_intermediate_email",
     "section": "",
-    "text": ": None"
+    "text": "mjml_content : str\n\nMJML markup string"
   },
   {
-    "objectID": "reference/IntermediateEmail.preview_send_email.html#examples",
-    "href": "reference/IntermediateEmail.preview_send_email.html#examples",
-    "title": "IntermediateEmail.preview_send_email",
+    "objectID": "reference/mjml_to_intermediate_email.html#returns",
+    "href": "reference/mjml_to_intermediate_email.html#returns",
+    "title": "mjml_to_intermediate_email",
     "section": "",
-    "text": "email.preview_send_email()"
+    "text": ": An Intermediate Email object"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
-    "title": "write_email_message",
+    "objectID": "reference/send_intermediate_email_with_smtp.html",
+    "href": "reference/send_intermediate_email_with_smtp.html",
+    "title": "send_intermediate_email_with_smtp",
     "section": "",
-    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
+    "text": "send_intermediate_email_with_smtp(\n    smtp_host,\n    smtp_port,\n    username,\n    password,\n    i_email,\n    security=Literal['tls', 'ssl', 'smtp'],\n)\nSend an Intermediate Email object via SMTP.\n\n\n\nsmtp_host : str\n\nSMTP server hostname (e.g., “smtp.example.com”)\n\nsmtp_port : int\n\nSMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)\n\nusername : str\n\nSMTP account username for authentication\n\npassword : str\n\nSMTP account password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\nsecurity : str = Literal['tls', 'ssl', 'smtp']\n\nSecurity protocol to use: “tls” (STARTTLS), “ssl” (SSL/TLS), or “smtp” (plain SMTP). Default is “tls”.\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\n\n: ValueError\n\nIf security parameter is not one of “tls”, “ssl”, or “smtp”\n\n\n\n\n\nemail = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\n# TLS connection (port 587) - recommended\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    587,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"tls\"\n)\n\n# SSL connection (port 465)\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    465,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"ssl\"\n)\n\n# Plain SMTP (port 25) - insecure, for testing only\nsend_intermediate_email_with_smtp(\n    \"127.0.0.1\",\n    8025,\n    \"test@example.com\",\n    \"password\",\n    email,\n    security=\"smtp\"\n)"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
-    "title": "write_email_message",
+    "objectID": "reference/send_intermediate_email_with_smtp.html#parameters",
+    "href": "reference/send_intermediate_email_with_smtp.html#parameters",
+    "title": "send_intermediate_email_with_smtp",
     "section": "",
-    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+    "text": "smtp_host : str\n\nSMTP server hostname (e.g., “smtp.example.com”)\n\nsmtp_port : int\n\nSMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)\n\nusername : str\n\nSMTP account username for authentication\n\npassword : str\n\nSMTP account password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\nsecurity : str = Literal['tls', 'ssl', 'smtp']\n\nSecurity protocol to use: “tls” (STARTTLS), “ssl” (SSL/TLS), or “smtp” (plain SMTP). Default is “tls”."
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
-    "title": "write_email_message",
+    "objectID": "reference/send_intermediate_email_with_smtp.html#returns",
+    "href": "reference/send_intermediate_email_with_smtp.html#returns",
+    "title": "send_intermediate_email_with_smtp",
     "section": "",
-    "text": "msg = email.write_email_message()"
+    "text": ": None\n\nThe function sends an email but doesn’t return a value"
   },
   {
-    "objectID": "reference/yagmail_to_intermediate_email.html",
-    "href": "reference/yagmail_to_intermediate_email.html",
-    "title": "yagmail_to_intermediate_email",
+    "objectID": "reference/send_intermediate_email_with_smtp.html#raises",
+    "href": "reference/send_intermediate_email_with_smtp.html#raises",
+    "title": "send_intermediate_email_with_smtp",
     "section": "",
-    "text": "yagmail_to_intermediate_email()\nConvert a Yagmail email object to an IntermediateEmail\n\n\n(none)\nNot yet implemented"
+    "text": ": ValueError\n\nIf security parameter is not one of “tls”, “ssl”, or “smtp”"
   },
   {
-    "objectID": "reference/yagmail_to_intermediate_email.html#params",
-    "href": "reference/yagmail_to_intermediate_email.html#params",
-    "title": "yagmail_to_intermediate_email",
+    "objectID": "reference/send_intermediate_email_with_smtp.html#examples",
+    "href": "reference/send_intermediate_email_with_smtp.html#examples",
+    "title": "send_intermediate_email_with_smtp",
     "section": "",
-    "text": "(none)\nNot yet implemented"
+    "text": "email = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\n# TLS connection (port 587) - recommended\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    587,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"tls\"\n)\n\n# SSL connection (port 465)\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    465,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"ssl\"\n)\n\n# Plain SMTP (port 25) - insecure, for testing only\nsend_intermediate_email_with_smtp(\n    \"127.0.0.1\",\n    8025,\n    \"test@example.com\",\n    \"password\",\n    email,\n    security=\"smtp\"\n)"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_yagmail.html",
-    "href": "reference/send_intermediate_email_with_yagmail.html",
-    "title": "send_intermediate_email_with_yagmail",
+    "objectID": "reference/send_quarto_email_with_gmail.html",
+    "href": "reference/send_quarto_email_with_gmail.html",
+    "title": "send_quarto_email_with_gmail",
     "section": "",
-    "text": "send_intermediate_email_with_yagmail(i_email)\nSend an Intermediate Email object via Yagmail.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
+    "text": "send_quarto_email_with_gmail(username, password, json_path, recipients)\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nsend_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_yagmail.html#parameters",
-    "href": "reference/send_intermediate_email_with_yagmail.html#parameters",
-    "title": "send_intermediate_email_with_yagmail",
+    "objectID": "reference/send_quarto_email_with_gmail.html#parameters",
+    "href": "reference/send_quarto_email_with_gmail.html#parameters",
+    "title": "send_quarto_email_with_gmail",
     "section": "",
-    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
+    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_yagmail.html#returns",
-    "href": "reference/send_intermediate_email_with_yagmail.html#returns",
-    "title": "send_intermediate_email_with_yagmail",
+    "objectID": "reference/send_quarto_email_with_gmail.html#returns",
+    "href": "reference/send_quarto_email_with_gmail.html#returns",
+    "title": "send_quarto_email_with_gmail",
     "section": "",
-    "text": ": None"
+    "text": ": None\n\nThe function sends an email but doesn’t return a value"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_yagmail.html#notes",
-    "href": "reference/send_intermediate_email_with_yagmail.html#notes",
-    "title": "send_intermediate_email_with_yagmail",
+    "objectID": "reference/send_quarto_email_with_gmail.html#examples",
+    "href": "reference/send_quarto_email_with_gmail.html#examples",
+    "title": "send_quarto_email_with_gmail",
     "section": "",
-    "text": "This function is a placeholder and has not been implemented yet."
+    "text": "send_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
+    "objectID": "configuring-attachments.html",
+    "href": "configuring-attachments.html",
+    "title": "Attachments",
     "section": "",
-    "text": "Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
+    "text": "Attachments",
     "crumbs": [
       "User Guide",
-      "Introduction"
+      "Configuring",
+      "Attachments"
     ]
   },
   {
-    "objectID": "content-embedding.html",
-    "href": "content-embedding.html",
-    "title": "Embedding images and tables",
+    "objectID": "configuring-subject.html",
+    "href": "configuring-subject.html",
+    "title": "Subject and something else",
     "section": "",
-    "text": "Embedding images and tables",
+    "text": "Subject and something else",
     "crumbs": [
       "User Guide",
-      "Content",
-      "Embedding images and tables"
+      "Configuring",
+      "Subject and something else"
+    ]
+  },
+  {
+    "objectID": "orchestrating-auth.html",
+    "href": "orchestrating-auth.html",
+    "title": "Authentication",
+    "section": "",
+    "text": "Authentication",
+    "crumbs": [
+      "User Guide",
+      "Orchestrating",
+      "Authentication"
     ]
   },
   {
@@ -334,72 +403,120 @@
     ]
   },
   {
-    "objectID": "content-layout.html",
-    "href": "content-layout.html",
-    "title": "Layout main components",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
     "section": "",
-    "text": "Layout main components",
+    "text": "Introduction\n\nWhy email?\nWho are you?\nWhy is email hard?\nPreview of joy",
     "crumbs": [
       "User Guide",
-      "Content",
-      "Layout main components"
+      "Introduction"
     ]
   },
   {
-    "objectID": "reference/send_intermediate_email_with_smtp.html",
-    "href": "reference/send_intermediate_email_with_smtp.html",
-    "title": "send_intermediate_email_with_smtp",
+    "objectID": "reference/write_email_message_to_file.html",
+    "href": "reference/write_email_message_to_file.html",
+    "title": "write_email_message_to_file",
     "section": "",
-    "text": "send_intermediate_email_with_smtp(\n    smtp_host,\n    smtp_port,\n    username,\n    password,\n    i_email,\n    security=Literal['tls', 'ssl', 'smtp'],\n)\nSend an Intermediate Email object via SMTP.\n\n\n\nsmtp_host : str\n\nSMTP server hostname (e.g., “smtp.example.com”)\n\nsmtp_port : int\n\nSMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)\n\nusername : str\n\nSMTP account username for authentication\n\npassword : str\n\nSMTP account password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\nsecurity : str = Literal['tls', 'ssl', 'smtp']\n\nSecurity protocol to use: “tls” (STARTTLS), “ssl” (SSL/TLS), or “smtp” (plain SMTP). Default is “tls”.\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\n\n: ValueError\n\nIf security parameter is not one of “tls”, “ssl”, or “smtp”\n\n\n\n\n\nemail = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\n# TLS connection (port 587) - recommended\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    587,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"tls\"\n)\n\n# SSL connection (port 465)\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    465,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"ssl\"\n)\n\n# Plain SMTP (port 25) - insecure, for testing only\nsend_intermediate_email_with_smtp(\n    \"127.0.0.1\",\n    8025,\n    \"test@example.com\",\n    \"password\",\n    email,\n    security=\"smtp\"\n)"
+    "text": "write_email_message_to_file\nwrite_email_message_to_file(msg, out_file='preview_email.html')\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\nThis function extracts all attachments referenced by Content-ID from the given EmailMessage, replaces any src=\"cid:...\" references in the HTML body with base64-encoded image data, and writes the resulting HTML to the specified output file.\nParams: msg The email message object containing the HTML body and attachments. out_file The path to the output HTML file.\nReturns: None"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_smtp.html#parameters",
-    "href": "reference/send_intermediate_email_with_smtp.html#parameters",
-    "title": "send_intermediate_email_with_smtp",
+    "objectID": "reference/send_intermediate_email_with_mailgun.html",
+    "href": "reference/send_intermediate_email_with_mailgun.html",
+    "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": "smtp_host : str\n\nSMTP server hostname (e.g., “smtp.example.com”)\n\nsmtp_port : int\n\nSMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)\n\nusername : str\n\nSMTP account username for authentication\n\npassword : str\n\nSMTP account password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\nsecurity : str = Literal['tls', 'ssl', 'smtp']\n\nSecurity protocol to use: “tls” (STARTTLS), “ssl” (SSL/TLS), or “smtp” (plain SMTP). Default is “tls”."
+    "text": "send_intermediate_email_with_mailgun(i_email)\nSend an Intermediate Email object via Mailgun.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
   },
   {
-    "objectID": "reference/send_intermediate_email_with_smtp.html#returns",
-    "href": "reference/send_intermediate_email_with_smtp.html#returns",
-    "title": "send_intermediate_email_with_smtp",
+    "objectID": "reference/send_intermediate_email_with_mailgun.html#parameters",
+    "href": "reference/send_intermediate_email_with_mailgun.html#parameters",
+    "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": ": None\n\nThe function sends an email but doesn’t return a value"
+    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_smtp.html#raises",
-    "href": "reference/send_intermediate_email_with_smtp.html#raises",
-    "title": "send_intermediate_email_with_smtp",
-    "section": "",
-    "text": ": ValueError\n\nIf security parameter is not one of “tls”, “ssl”, or “smtp”"
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_smtp.html#examples",
-    "href": "reference/send_intermediate_email_with_smtp.html#examples",
-    "title": "send_intermediate_email_with_smtp",
-    "section": "",
-    "text": "email = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\n# TLS connection (port 587) - recommended\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    587,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"tls\"\n)\n\n# SSL connection (port 465)\nsend_intermediate_email_with_smtp(\n    \"smtp.example.com\",\n    465,\n    \"user@example.com\",\n    \"password123\",\n    email,\n    security=\"ssl\"\n)\n\n# Plain SMTP (port 25) - insecure, for testing only\nsend_intermediate_email_with_smtp(\n    \"127.0.0.1\",\n    8025,\n    \"test@example.com\",\n    \"password\",\n    email,\n    security=\"smtp\"\n)"
-  },
-  {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
-    "title": "preview_send_email",
-    "section": "",
-    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
-  },
-  {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
-    "title": "preview_send_email",
+    "objectID": "reference/send_intermediate_email_with_mailgun.html#returns",
+    "href": "reference/send_intermediate_email_with_mailgun.html#returns",
+    "title": "send_intermediate_email_with_mailgun",
     "section": "",
     "text": ": None"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
-    "title": "preview_send_email",
+    "objectID": "reference/send_intermediate_email_with_mailgun.html#notes",
+    "href": "reference/send_intermediate_email_with_mailgun.html#notes",
+    "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": "email.preview_send_email()"
+    "text": "This function is a placeholder and has not been implemented yet."
+  },
+  {
+    "objectID": "reference/IntermediateEmail.write_email_message.html",
+    "href": "reference/IntermediateEmail.write_email_message.html",
+    "title": "IntermediateEmail.write_email_message",
+    "section": "",
+    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
+  },
+  {
+    "objectID": "reference/IntermediateEmail.write_email_message.html#returns",
+    "href": "reference/IntermediateEmail.write_email_message.html#returns",
+    "title": "IntermediateEmail.write_email_message",
+    "section": "",
+    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+  },
+  {
+    "objectID": "reference/IntermediateEmail.write_email_message.html#examples",
+    "href": "reference/IntermediateEmail.write_email_message.html#examples",
+    "title": "IntermediateEmail.write_email_message",
+    "section": "",
+    "text": "msg = email.write_email_message()"
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
+    "title": "write_email_message",
+    "section": "",
+    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
+    "title": "write_email_message",
+    "section": "",
+    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
+    "title": "write_email_message",
+    "section": "",
+    "text": "msg = email.write_email_message()"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_gmail.html",
+    "href": "reference/send_intermediate_email_with_gmail.html",
+    "title": "send_intermediate_email_with_gmail",
+    "section": "",
+    "text": "send_intermediate_email_with_gmail(username, password, i_email)\nSend an Intermediate Email object via Gmail.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nemail = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nsend_intermediate_email_with_gmail(\"user@gmail.com\", \"password123\", email)"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_gmail.html#parameters",
+    "href": "reference/send_intermediate_email_with_gmail.html#parameters",
+    "title": "send_intermediate_email_with_gmail",
+    "section": "",
+    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_gmail.html#returns",
+    "href": "reference/send_intermediate_email_with_gmail.html#returns",
+    "title": "send_intermediate_email_with_gmail",
+    "section": "",
+    "text": ": None\n\nThe function sends an email but doesn’t return a value"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_gmail.html#examples",
+    "href": "reference/send_intermediate_email_with_gmail.html#examples",
+    "title": "send_intermediate_email_with_gmail",
+    "section": "",
+    "text": "email = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nsend_intermediate_email_with_gmail(\"user@gmail.com\", \"password123\", email)"
   },
   {
     "objectID": "reference/index.html",
@@ -437,188 +554,71 @@
     "text": "Previews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid)."
   },
   {
-    "objectID": "reference/send_intermediate_email_with_gmail.html",
-    "href": "reference/send_intermediate_email_with_gmail.html",
-    "title": "send_intermediate_email_with_gmail",
+    "objectID": "reference/IntermediateEmail.preview_send_email.html",
+    "href": "reference/IntermediateEmail.preview_send_email.html",
+    "title": "IntermediateEmail.preview_send_email",
     "section": "",
-    "text": "send_intermediate_email_with_gmail(username, password, i_email)\nSend an Intermediate Email object via Gmail.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nemail = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nsend_intermediate_email_with_gmail(\"user@gmail.com\", \"password123\", email)"
+    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_gmail.html#parameters",
-    "href": "reference/send_intermediate_email_with_gmail.html#parameters",
-    "title": "send_intermediate_email_with_gmail",
-    "section": "",
-    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_gmail.html#returns",
-    "href": "reference/send_intermediate_email_with_gmail.html#returns",
-    "title": "send_intermediate_email_with_gmail",
-    "section": "",
-    "text": ": None\n\nThe function sends an email but doesn’t return a value"
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_gmail.html#examples",
-    "href": "reference/send_intermediate_email_with_gmail.html#examples",
-    "title": "send_intermediate_email_with_gmail",
-    "section": "",
-    "text": "email = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nsend_intermediate_email_with_gmail(\"user@gmail.com\", \"password123\", email)"
-  },
-  {
-    "objectID": "reference/send_quarto_email_with_gmail.html",
-    "href": "reference/send_quarto_email_with_gmail.html",
-    "title": "send_quarto_email_with_gmail",
-    "section": "",
-    "text": "send_quarto_email_with_gmail(username, password, json_path, recipients)\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nsend_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
-  },
-  {
-    "objectID": "reference/send_quarto_email_with_gmail.html#parameters",
-    "href": "reference/send_quarto_email_with_gmail.html#parameters",
-    "title": "send_quarto_email_with_gmail",
-    "section": "",
-    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to"
-  },
-  {
-    "objectID": "reference/send_quarto_email_with_gmail.html#returns",
-    "href": "reference/send_quarto_email_with_gmail.html#returns",
-    "title": "send_quarto_email_with_gmail",
-    "section": "",
-    "text": ": None\n\nThe function sends an email but doesn’t return a value"
-  },
-  {
-    "objectID": "reference/send_quarto_email_with_gmail.html#examples",
-    "href": "reference/send_quarto_email_with_gmail.html#examples",
-    "title": "send_quarto_email_with_gmail",
-    "section": "",
-    "text": "send_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
-  },
-  {
-    "objectID": "reference/quarto_json_to_intermediate_email.html",
-    "href": "reference/quarto_json_to_intermediate_email.html",
-    "title": "quarto_json_to_intermediate_email",
-    "section": "",
-    "text": "quarto_json_to_intermediate_email(path)\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\n\npath : str\n\nPath to the Quarto output metadata JSON file"
-  },
-  {
-    "objectID": "reference/quarto_json_to_intermediate_email.html#parameters",
-    "href": "reference/quarto_json_to_intermediate_email.html#parameters",
-    "title": "quarto_json_to_intermediate_email",
-    "section": "",
-    "text": "path : str\n\nPath to the Quarto output metadata JSON file"
-  },
-  {
-    "objectID": "reference/IntermediateEmail.write_preview_email.html",
-    "href": "reference/IntermediateEmail.write_preview_email.html",
-    "title": "IntermediateEmail.write_preview_email",
-    "section": "",
-    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
-  },
-  {
-    "objectID": "reference/IntermediateEmail.write_preview_email.html#parameters",
-    "href": "reference/IntermediateEmail.write_preview_email.html#parameters",
-    "title": "IntermediateEmail.write_preview_email",
-    "section": "",
-    "text": "out_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”."
-  },
-  {
-    "objectID": "reference/IntermediateEmail.write_preview_email.html#returns",
-    "href": "reference/IntermediateEmail.write_preview_email.html#returns",
-    "title": "IntermediateEmail.write_preview_email",
+    "objectID": "reference/IntermediateEmail.preview_send_email.html#returns",
+    "href": "reference/IntermediateEmail.preview_send_email.html#returns",
+    "title": "IntermediateEmail.preview_send_email",
     "section": "",
     "text": ": None"
   },
   {
-    "objectID": "reference/IntermediateEmail.write_preview_email.html#examples",
-    "href": "reference/IntermediateEmail.write_preview_email.html#examples",
-    "title": "IntermediateEmail.write_preview_email",
+    "objectID": "reference/IntermediateEmail.preview_send_email.html#examples",
+    "href": "reference/IntermediateEmail.preview_send_email.html#examples",
+    "title": "IntermediateEmail.preview_send_email",
     "section": "",
-    "text": "email.write_preview_email(\"preview.html\")"
+    "text": "email.preview_send_email()"
   },
   {
-    "objectID": "reference/IntermediateEmail.write_preview_email.html#notes",
-    "href": "reference/IntermediateEmail.write_preview_email.html#notes",
-    "title": "IntermediateEmail.write_preview_email",
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
+    "title": "preview_send_email",
     "section": "",
-    "text": "Raises ValueError if external attachments are present, as preview does not support them."
+    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_mailgun.html",
-    "href": "reference/send_intermediate_email_with_mailgun.html",
-    "title": "send_intermediate_email_with_mailgun",
-    "section": "",
-    "text": "send_intermediate_email_with_mailgun(i_email)\nSend an Intermediate Email object via Mailgun.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_mailgun.html#parameters",
-    "href": "reference/send_intermediate_email_with_mailgun.html#parameters",
-    "title": "send_intermediate_email_with_mailgun",
-    "section": "",
-    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_mailgun.html#returns",
-    "href": "reference/send_intermediate_email_with_mailgun.html#returns",
-    "title": "send_intermediate_email_with_mailgun",
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
+    "title": "preview_send_email",
     "section": "",
     "text": ": None"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_mailgun.html#notes",
-    "href": "reference/send_intermediate_email_with_mailgun.html#notes",
-    "title": "send_intermediate_email_with_mailgun",
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
+    "title": "preview_send_email",
     "section": "",
-    "text": "This function is a placeholder and has not been implemented yet."
+    "text": "email.preview_send_email()"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_redmail.html",
-    "href": "reference/send_intermediate_email_with_redmail.html",
-    "title": "send_intermediate_email_with_redmail",
+    "objectID": "reference/redmail_to_intermediate_email.html",
+    "href": "reference/redmail_to_intermediate_email.html",
+    "title": "redmail_to_intermediate_email",
     "section": "",
-    "text": "send_intermediate_email_with_redmail(i_email)\nSend an Intermediate Email object via Redmail.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
+    "text": "redmail_to_intermediate_email(msg)\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nmsg The Redmail-generated EmailMessage object\nConverts the input EmailMessage to the intermediate email structure"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_redmail.html#parameters",
-    "href": "reference/send_intermediate_email_with_redmail.html#parameters",
-    "title": "send_intermediate_email_with_redmail",
+    "objectID": "reference/redmail_to_intermediate_email.html#params",
+    "href": "reference/redmail_to_intermediate_email.html#params",
+    "title": "redmail_to_intermediate_email",
     "section": "",
-    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
+    "text": "msg The Redmail-generated EmailMessage object\nConverts the input EmailMessage to the intermediate email structure"
   },
   {
-    "objectID": "reference/send_intermediate_email_with_redmail.html#returns",
-    "href": "reference/send_intermediate_email_with_redmail.html#returns",
-    "title": "send_intermediate_email_with_redmail",
+    "objectID": "content-embedding.html",
+    "href": "content-embedding.html",
+    "title": "Embedding images and tables",
     "section": "",
-    "text": ": None"
-  },
-  {
-    "objectID": "reference/send_intermediate_email_with_redmail.html#notes",
-    "href": "reference/send_intermediate_email_with_redmail.html#notes",
-    "title": "send_intermediate_email_with_redmail",
-    "section": "",
-    "text": "This function is a placeholder and has not been implemented yet."
-  },
-  {
-    "objectID": "configuring-attachments.html",
-    "href": "configuring-attachments.html",
-    "title": "Attachments",
-    "section": "",
-    "text": "Attachments",
+    "text": "Embedding images and tables",
     "crumbs": [
       "User Guide",
-      "Configuring",
-      "Attachments"
-    ]
-  },
-  {
-    "objectID": "orchestrating-tests.html",
-    "href": "orchestrating-tests.html",
-    "title": "Testing emails",
-    "section": "",
-    "text": "Testing emails",
-    "crumbs": [
-      "User Guide",
-      "Orchestrating",
-      "Testing emails"
+      "Content",
+      "Embedding images and tables"
     ]
   }
 ]
