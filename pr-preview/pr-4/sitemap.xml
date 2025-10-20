@@ -2,114 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/configuring-subject.html</loc>
-    <lastmod>2025-10-20T20:32:58.162Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.770Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/orchestrating-auth.html</loc>
-    <lastmod>2025-10-20T20:32:58.165Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.773Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.write_email_message.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/redmail_to_intermediate_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml_to_intermediate_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/write_email_message_to_file.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.775Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:44.193Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.write_preview_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.preview_send_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.773Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.write_email_message.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/yagmail_to_intermediate_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.775Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_yagmail.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/index.html</loc>
-    <lastmod>2025-10-20T20:32:58.165Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.773Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/content-embedding.html</loc>
-    <lastmod>2025-10-20T20:32:58.162Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.770Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/examples/quarto-report.html</loc>
-    <lastmod>2025-10-20T20:32:58.165Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.773Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/summary.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.775Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/content-layout.html</loc>
-    <lastmod>2025-10-20T20:32:58.162Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.770Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_smtp.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:44.200Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.preview_send_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/index.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:44.177Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_gmail.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_quarto_email_with_gmail.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:44.203Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/quarto_json_to_intermediate_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.write_preview_email.html</loc>
-    <lastmod>2025-10-20T20:32:58.166Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_mailgun.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_redmail.html</loc>
-    <lastmod>2025-10-20T20:32:58.167Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.774Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/configuring-attachments.html</loc>
-    <lastmod>2025-10-20T20:32:58.162Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.770Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/orchestrating-tests.html</loc>
-    <lastmod>2025-10-20T20:32:58.165Z</lastmod>
+    <lastmod>2025-10-20T20:45:01.773Z</lastmod>
   </url>
 </urlset>
