@@ -26,6 +26,9 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
 
+      - name: Install emailer-lib
+        run: uv pip install -e "./emailer-lib"
+
       # quarto docs build ----
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
