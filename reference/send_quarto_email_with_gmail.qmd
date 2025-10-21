@@ -1,0 +1,42 @@
+# send_quarto_email_with_gmail { #emailer_lib.send_quarto_email_with_gmail }
+
+```python
+send_quarto_email_with_gmail(username, password, json_path, recipients)
+```
+
+Send an email using Gmail with content from a Quarto metadata JSON file.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**username**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Gmail account username for sending the email
+
+<code>[**password**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Gmail app password
+
+<code>[**json_path**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Path to the Quarto-generated .output_metadata.json file
+
+<code>[**recipients**]{.parameter-name} [:]{.parameter-annotation-sep} [list\[str\]]{.parameter-annotation}</code>
+
+:   List of email addresses to send the email to
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [None]{.parameter-annotation}</code>
+
+:   The function sends an email but doesn't return a value
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+send_quarto_email_with_gmail(
+    "user@gmail.com",
+    "password123",
+    "path/to/output_metadata.json",
+    ["recipient1@example.com", "recipient2@example.com"]
+)
+```

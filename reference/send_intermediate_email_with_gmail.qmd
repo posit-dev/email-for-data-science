@@ -1,0 +1,39 @@
+# send_intermediate_email_with_gmail { #emailer_lib.send_intermediate_email_with_gmail }
+
+```python
+send_intermediate_email_with_gmail(username, password, i_email)
+```
+
+Send an Intermediate Email object via Gmail.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**username**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Gmail account username for sending the email
+
+<code>[**password**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Gmail app password
+
+<code>[**i_email**]{.parameter-name} [:]{.parameter-annotation-sep} [IntermediateEmail]{.parameter-annotation}</code>
+
+:   IntermediateEmail object containing the email content and attachments
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [None]{.parameter-annotation}</code>
+
+:   The function sends an email but doesn't return a value
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+email = IntermediateEmail(
+    html="<p>Hello world</p>",
+    subject="Test Email",
+    recipients=["user@example.com"],
+)
+
+send_intermediate_email_with_gmail("user@gmail.com", "password123", email)
+```

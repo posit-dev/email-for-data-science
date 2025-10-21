@@ -1,1 +1,6 @@
 # Authentication
+
+<!-- 
+Great resource for .env understanding from Isabella V.
+https://ivelasq.rbind.io/til-python/python-env/
+ -->

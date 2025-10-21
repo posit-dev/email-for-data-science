@@ -1,0 +1,20 @@
+# write_email_message_to_file { #emailer_lib.write_email_message_to_file }
+
+```python
+write_email_message_to_file(msg, out_file='preview_email.html')
+```
+
+Writes the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).
+
+This function extracts all attachments referenced by Content-ID from the given EmailMessage,
+replaces any `src="cid:..."` references in the HTML body with base64-encoded image data,
+and writes the resulting HTML to the specified output file.
+
+Params:
+    msg
+        The email message object containing the HTML body and attachments.
+    out_file
+        The path to the output HTML file.
+
+Returns:
+    None

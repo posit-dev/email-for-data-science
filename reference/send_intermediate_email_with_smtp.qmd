@@ -1,0 +1,92 @@
+# send_intermediate_email_with_smtp { #emailer_lib.send_intermediate_email_with_smtp }
+
+```python
+send_intermediate_email_with_smtp(
+    smtp_host,
+    smtp_port,
+    username,
+    password,
+    i_email,
+    security=Literal['tls', 'ssl', 'smtp'],
+)
+```
+
+Send an Intermediate Email object via SMTP.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**smtp_host**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   SMTP server hostname (e.g., "smtp.example.com")
+
+<code>[**smtp_port**]{.parameter-name} [:]{.parameter-annotation-sep} [int]{.parameter-annotation}</code>
+
+:   SMTP server port (typically 587 for TLS, 465 for SSL, 25 for plain SMTP)
+
+<code>[**username**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   SMTP account username for authentication
+
+<code>[**password**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   SMTP account password
+
+<code>[**i_email**]{.parameter-name} [:]{.parameter-annotation-sep} [IntermediateEmail]{.parameter-annotation}</code>
+
+:   IntermediateEmail object containing the email content and attachments
+
+<code>[**security**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation} [ = ]{.parameter-default-sep} [Literal\[\'tls\', \'ssl\', \'smtp\'\]]{.parameter-default}</code>
+
+:   Security protocol to use: "tls" (STARTTLS), "ssl" (SSL/TLS), or "smtp" (plain SMTP). Default is "tls".
+
+## Returns {.doc-section .doc-section-returns}
+
+<code>[]{.parameter-name} [:]{.parameter-annotation-sep} [None]{.parameter-annotation}</code>
+
+:   The function sends an email but doesn't return a value
+
+## Raises {.doc-section .doc-section-raises}
+
+<code>[:]{.parameter-annotation-sep} [ValueError]{.parameter-annotation}</code>
+
+:   If security parameter is not one of "tls", "ssl", or "smtp"
+
+## Examples {.doc-section .doc-section-examples}
+
+```python
+email = IntermediateEmail(
+    html="<p>Hello world</p>",
+    subject="Test Email",
+    recipients=["user@example.com"],
+)
+
+# TLS connection (port 587) - recommended
+send_intermediate_email_with_smtp(
+    "smtp.example.com",
+    587,
+    "user@example.com",
+    "password123",
+    email,
+    security="tls"
+)
+
+# SSL connection (port 465)
+send_intermediate_email_with_smtp(
+    "smtp.example.com",
+    465,
+    "user@example.com",
+    "password123",
+    email,
+    security="ssl"
+)
+
+# Plain SMTP (port 25) - insecure, for testing only
+send_intermediate_email_with_smtp(
+    "127.0.0.1",
+    8025,
+    "test@example.com",
+    "password",
+    email,
+    security="smtp"
+)
+```

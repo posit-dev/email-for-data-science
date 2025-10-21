@@ -1,0 +1,13 @@
+# quarto_json_to_intermediate_email { #emailer_lib.quarto_json_to_intermediate_email }
+
+```python
+quarto_json_to_intermediate_email(path)
+```
+
+Convert a Quarto output metadata JSON file to an IntermediateEmail
+
+## Parameters {.doc-section .doc-section-parameters}
+
+<code>[**path**]{.parameter-name} [:]{.parameter-annotation-sep} [str]{.parameter-annotation}</code>
+
+:   Path to the Quarto output metadata JSON file
