@@ -20,12 +20,16 @@ def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
     """
     Convert a Redmail EmailMessage object to an IntermediateEmail
 
-    Params
+    Parameters
     ------
     msg
         The Redmail-generated EmailMessage object
 
     Converts the input EmailMessage to the intermediate email structure
+
+    Returns
+    ------
+    An Intermediate Email object
     """
     return _email_message_to_intermediate_email(msg)
 
@@ -34,7 +38,7 @@ def yagmail_to_intermediate_email():
     """
     Convert a Yagmail email object to an IntermediateEmail
 
-    Params
+    Parameters
     ------
     (none)
 
@@ -89,6 +93,10 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
     ------
     msg
         The email message to convert
+
+    Returns
+    ------
+    An Intermediate Email object
 
     """
     # It feels wrong to deconstruct a mime multipart email message.
@@ -162,6 +170,10 @@ def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     ------
     path
         Path to the Quarto output metadata JSON file
+
+    Returns
+    ------
+    An Intermediate Email object
 
     """
     with open(path, "r", encoding="utf-8") as f:
