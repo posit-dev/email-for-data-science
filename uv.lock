@@ -10,6 +10,19 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "aiosmtpd"
+version = "1.4.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "atpublic" },
+    { name = "attrs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c4/ca/b2b7cc880403ef24be77383edaadfcf0098f5d7b9ddbf3e2c17ef0a6af0d/aiosmtpd-1.4.6.tar.gz", hash = "sha256:5a811826e1a5a06c25ebc3e6c4a704613eb9a1bcf6b78428fbe865f4f6c9a4b8", size = 152775, upload-time = "2024-05-18T11:37:50.029Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ec/39/d401756df60a8344848477d54fdf4ce0f50531f6149f3b8eaae9c06ae3dc/aiosmtpd-1.4.6-py3-none-any.whl", hash = "sha256:72c99179ba5aa9ae0abbda6994668239b64a5ce054471955fe75f581d2592475", size = 154263, upload-time = "2024-05-18T11:37:47.877Z" },
+]
+
+[[package]]
 name = "annotated-types"
 version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -122,6 +135,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b2/4d/71ec4d3939dc755264f680f6c2b4906423a304c3d18e96853f0a595dfe97/async_lru-2.0.5.tar.gz", hash = "sha256:481d52ccdd27275f42c43a928b4a50c3bfb2d67af4e78b170e3e0bb39c66e5bb", size = 10380, upload-time = "2025-03-16T17:25:36.919Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/03/49/d10027df9fce941cb8184e78a02857af36360d33e1721df81c5ed2179a1a/async_lru-2.0.5-py3-none-any.whl", hash = "sha256:ab95404d8d2605310d345932697371a5f40def0487c03d6d0ad9138de52c9943", size = 6069, upload-time = "2025-03-16T17:25:35.422Z" },
+]
+
+[[package]]
+name = "atpublic"
+version = "6.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/78/a7c9b6d6581353204a7a099567783dd3352405b1662988892b9e67039c6c/atpublic-6.0.2.tar.gz", hash = "sha256:f90dcd17627ac21d5ce69e070d6ab89fb21736eb3277e8b693cc8484e1c7088c", size = 17708, upload-time = "2025-09-24T18:30:13.8Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/72/da/8916af0a074d24354d685fe4178a52d3fafd07b62e6f81124fdeac15594d/atpublic-6.0.2-py3-none-any.whl", hash = "sha256:156cfd3854e580ebfa596094a018fe15e4f3fa5bade74b39c3dabb54f12d6565", size = 6423, upload-time = "2025-09-24T18:30:15.214Z" },
 ]
 
 [[package]]
@@ -1020,16 +1042,27 @@ wheels = [
 ]
 
 [[package]]
-name = "email-for-data-science"
-version = "0.1.0"
-source = { virtual = "." }
+name = "emailer-lib"
+version = "0.0.1"
+source = { editable = "." }
 dependencies = [
-    { name = "css-inline" },
     { name = "dotenv" },
+    { name = "mjml-python" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "aiosmtpd" },
+    { name = "griffe" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "quartodoc" },
+]
+docs = [
+    { name = "css-inline" },
     { name = "great-tables" },
     { name = "ipykernel" },
     { name = "jupyter" },
-    { name = "mjml-python" },
     { name = "nbclient" },
     { name = "nbformat" },
     { name = "pandas" },
@@ -1037,43 +1070,31 @@ dependencies = [
     { name = "plotnine", version = "0.15.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "polars" },
     { name = "pyarrow" },
-    { name = "quartodoc" },
     { name = "redmail" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "griffe" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "quartodoc" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "css-inline", specifier = ">=0.17.0" },
+    { name = "aiosmtpd", marker = "extra == 'dev'" },
+    { name = "css-inline", marker = "extra == 'docs'", specifier = ">=0.17.0" },
     { name = "dotenv" },
-    { name = "great-tables", specifier = ">=0.18.0" },
-    { name = "ipykernel", specifier = ">=6.29.5" },
-    { name = "jupyter" },
+    { name = "great-tables", marker = "extra == 'docs'", specifier = ">=0.18.0" },
+    { name = "griffe", marker = "extra == 'dev'" },
+    { name = "ipykernel", marker = "extra == 'docs'", specifier = ">=6.29.5" },
+    { name = "jupyter", marker = "extra == 'docs'" },
     { name = "mjml-python", specifier = ">=1.3.6" },
-    { name = "nbclient" },
-    { name = "nbformat" },
-    { name = "pandas", specifier = ">=2.3.3" },
-    { name = "plotnine", specifier = ">=0.13.6" },
-    { name = "polars", specifier = ">=1.34.0" },
-    { name = "pyarrow", specifier = ">=21.0.0" },
-    { name = "quartodoc", specifier = ">=0.11.1" },
-    { name = "redmail", specifier = ">=0.6.0" },
+    { name = "nbclient", marker = "extra == 'docs'" },
+    { name = "nbformat", marker = "extra == 'docs'" },
+    { name = "pandas", marker = "extra == 'docs'", specifier = ">=2.3.3" },
+    { name = "plotnine", marker = "extra == 'docs'", specifier = ">=0.13.6" },
+    { name = "polars", marker = "extra == 'docs'", specifier = ">=1.34.0" },
+    { name = "pyarrow", marker = "extra == 'docs'", specifier = ">=21.0.0" },
+    { name = "pytest", marker = "extra == 'dev'" },
+    { name = "pytest-cov", marker = "extra == 'dev'" },
+    { name = "quartodoc", marker = "extra == 'dev'" },
+    { name = "redmail", marker = "extra == 'docs'", specifier = ">=0.6.0" },
 ]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "griffe" },
-    { name = "pytest", specifier = ">=3" },
-    { name = "pytest-cov" },
-    { name = "quartodoc" },
-]
+provides-extras = ["dev", "docs"]
 
 [[package]]
 name = "exceptiongroup"
