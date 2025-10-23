@@ -70,13 +70,50 @@ quartodoc:
         - send_intermediate_email_with_mailgun
         - send_quarto_email_with_gmail
 
-
     - title: Utilities
       desc: >
         Previews and more 
       contents:
         - write_email_message_to_file
 
+    - title: MJML Authoring
+      desc: >
+        Write responsive emails with MJML
+      package: emailer_lib
+      contents:
+        - mjml.mjml
+        - mjml.head
+        - mjml.body
+        - mjml.include
+        - mjml.attributes
+        - mjml.breakpoint
+        - mjml.font
+        - mjml.html_attributes
+        - mjml.preview
+        - mjml.style
+        - mjml.title
+        - mjml.accordion
+        - mjml.accordion_element
+        - mjml.accordion_text
+        - mjml.accordion_title
+        - mjml.button
+        - mjml.carousel
+        - mjml.carousel_image
+        - mjml.column
+        - mjml.divider
+        - mjml.group
+        - mjml.hero
+        - mjml.image
+        - mjml.navbar
+        - mjml.navbar_link
+        - mjml.raw
+        - mjml.section
+        - mjml.social
+        - mjml.social_element
+        - mjml.spacer
+        - mjml.table
+        - mjml.text
+        - mjml.wrapper
 
 format:
   html:

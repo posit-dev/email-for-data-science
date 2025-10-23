@@ -46,3 +46,44 @@ Previews and more
 | | |
 | --- | --- |
 | [write_email_message_to_file](write_email_message_to_file.qmd#emailer_lib.write_email_message_to_file) | Writes the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid). |
+
+## MJML Authoring
+
+Write responsive emails with MJML
+
+
+| | |
+| --- | --- |
+| [mjml.mjml](mjml.mjml.qmd#emailer_lib.mjml.mjml) | Create an MJML `<mjml>` tag. |
+| [mjml.head](mjml.head.qmd#emailer_lib.mjml.head) | Create an MJML `<mj-head>` tag. |
+| [mjml.body](mjml.body.qmd#emailer_lib.mjml.body) | Create an MJML `<mj-body>` tag. |
+| [mjml.include](mjml.include.qmd#emailer_lib.mjml.include) | Create an MJML `<mj-include>` tag. |
+| [mjml.attributes](mjml.attributes.qmd#emailer_lib.mjml.attributes) | Create an MJML `<mj-attributes>` tag. |
+| [mjml.breakpoint](mjml.breakpoint.qmd#emailer_lib.mjml.breakpoint) | Create an MJML `<mj-breakpoint>` tag. |
+| [mjml.font](mjml.font.qmd#emailer_lib.mjml.font) | Create an MJML `<mj-font>` tag. |
+| [mjml.html_attributes](mjml.html_attributes.qmd#emailer_lib.mjml.html_attributes) | Create an MJML `<mj-html-attributes>` tag. |
+| [mjml.preview](mjml.preview.qmd#emailer_lib.mjml.preview) | Create an MJML `<mj-preview>` tag. |
+| [mjml.style](mjml.style.qmd#emailer_lib.mjml.style) | Create an MJML `<mj-style>` tag. |
+| [mjml.title](mjml.title.qmd#emailer_lib.mjml.title) | Create an MJML `<mj-title>` tag. |
+| [mjml.accordion](mjml.accordion.qmd#emailer_lib.mjml.accordion) | Create an MJML `<mj-accordion>` tag. |
+| [mjml.accordion_element](mjml.accordion_element.qmd#emailer_lib.mjml.accordion_element) | Create an MJML `<mj-accordion-element>` tag. |
+| [mjml.accordion_text](mjml.accordion_text.qmd#emailer_lib.mjml.accordion_text) | Create an MJML `<mj-accordion-text>` tag. |
+| [mjml.accordion_title](mjml.accordion_title.qmd#emailer_lib.mjml.accordion_title) | Create an MJML `<mj-accordion-title>` tag. |
+| [mjml.button](mjml.button.qmd#emailer_lib.mjml.button) | Create an MJML `<mj-button>` tag. |
+| [mjml.carousel](mjml.carousel.qmd#emailer_lib.mjml.carousel) | Create an MJML `<mj-carousel>` tag. |
+| [mjml.carousel_image](mjml.carousel_image.qmd#emailer_lib.mjml.carousel_image) | Create an MJML `<mj-carousel-image>` tag. |
+| [mjml.column](mjml.column.qmd#emailer_lib.mjml.column) | Create an MJML `<mj-column>` tag. |
+| [mjml.divider](mjml.divider.qmd#emailer_lib.mjml.divider) | Create an MJML `<mj-divider>` tag. |
+| [mjml.group](mjml.group.qmd#emailer_lib.mjml.group) | Create an MJML `<mj-group>` tag. |
+| [mjml.hero](mjml.hero.qmd#emailer_lib.mjml.hero) | Create an MJML `<mj-hero>` tag. |
+| [mjml.image](mjml.image.qmd#emailer_lib.mjml.image) | Create an MJML `<mj-image>` tag. |
+| [mjml.navbar](mjml.navbar.qmd#emailer_lib.mjml.navbar) | Create an MJML `<mj-navbar>` tag. |
+| [mjml.navbar_link](mjml.navbar_link.qmd#emailer_lib.mjml.navbar_link) | Create an MJML `<mj-navbar-link>` tag. |
+| [mjml.raw](mjml.raw.qmd#emailer_lib.mjml.raw) | Create an MJML `<mj-raw>` tag. |
+| [mjml.section](mjml.section.qmd#emailer_lib.mjml.section) | Create an MJML `<mj-section>` tag. |
+| [mjml.social](mjml.social.qmd#emailer_lib.mjml.social) | Create an MJML `<mj-social>` tag. |
+| [mjml.social_element](mjml.social_element.qmd#emailer_lib.mjml.social_element) | Create an MJML `<mj-social-element>` tag. |
+| [mjml.spacer](mjml.spacer.qmd#emailer_lib.mjml.spacer) | Create an MJML `<mj-spacer>` tag. |
+| [mjml.table](mjml.table.qmd#emailer_lib.mjml.table) | Create an MJML `<mj-table>` tag. |
+| [mjml.text](mjml.text.qmd#emailer_lib.mjml.text) | Create an MJML `<mj-text>` tag. |
+| [mjml.wrapper](mjml.wrapper.qmd#emailer_lib.mjml.wrapper) | Create an MJML `<mj-wrapper>` tag. |
