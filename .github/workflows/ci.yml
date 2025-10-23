@@ -47,7 +47,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           force: false
-          folder: _site
+          folder: docs/_site
           clean-exclude: pr-preview
 
       - name: Deploy (preview)
