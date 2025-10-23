@@ -40,7 +40,7 @@ jobs:
 
       - name: Build docs
         run: |
-          uv run quartodoc build --verbose && uv run quarto render
+          cd docs && uv run quartodoc build --verbose && uv run quarto render
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
