@@ -55,7 +55,7 @@ jobs:
         # if in a PR
         if: ${{ github.event_name == 'pull_request' }}
         with:
-          source-dir: _site
+          source-dir: docs/_site
 
   test-emailer-lib:
     runs-on: ubuntu-latest
