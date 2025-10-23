@@ -17,7 +17,7 @@ This module provides Python functions for creating MJML markup, the responsive e
 This module is part of the `emailer_lib` package:
 
 ```python
-from emailer_lib import mjml
+from emailer_lib import mjml as mj
 ```
 
 ## Quick Start
