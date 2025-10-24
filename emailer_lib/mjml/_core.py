@@ -4,6 +4,7 @@
 # https://documentation.mjml.io/#ending-tags 
 
 from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, TypeVar, Union
+import warnings
 from mjml import mjml2html
 
 
@@ -79,7 +80,7 @@ class MJMLTag:
         if self.content is not None:
             self.children = []
 
-    def render(self, indent: int = 0, eol: str = "\n") -> str:
+    def render_mjml(self, indent: int = 0, eol: str = "\n") -> str:
         """
         Render MJMLTag and its children to MJML markup.
         Ported from htmltools Tag rendering logic.
@@ -109,7 +110,7 @@ class MJMLTag:
             child_strs = []
             for child in _flatten(self.children):
                 if isinstance(child, MJMLTag):
-                    child_strs.append(child.render(indent + 2, eol))
+                    child_strs.append(child.render_mjml(indent + 2, eol))
                 else:
                     child_strs.append(str(child))
             if child_strs:
@@ -123,17 +124,53 @@ class MJMLTag:
             return f"{pad}<{self.tagName}{attr_str}></{self.tagName}>"
 
     def _repr_html_(self):
-        return self.render()
+        return self.render_mjml()
 
     def __repr__(self) -> str:
         return f"MJMLTag({self.tagName!r}, attrs={dict(self.attrs)!r}, children={self.children!r}, content={self.content!r})"
 
     def to_html(self, **mjml2html_kwargs):
         """
-        Render MJMLTag to HTML using mjml2html, only if this is the top-level <mjml> tag.
+        Render MJMLTag to HTML using mjml2html.
+        
+        If this is not a top-level <mjml> tag, it will be automatically wrapped
+        in <mjml><mj-body>...</mj-body></mjml> with a warning.
+        
+        Parameters
+        ----------
+        **mjml2html_kwargs
+            Additional keyword arguments to pass to mjml2html
+            
+        Returns
+        -------
+        str
+            Result from mjml2html containing html content
         """
-        if self.tagName != "mjml":
-            raise TypeError("to_html() is only available on the top-level <mjml> tag.")
-
-        mjml_markup = self.render()
+        if self.tagName == "mjml":
+            # Already a complete MJML document
+            mjml_markup = self.render_mjml()
+        elif self.tagName == "mj-body":
+            # Wrap only in mjml tag
+            warnings.warn(
+                "to_html() called on <mj-body> tag. "
+                "Automatically wrapping in <mjml>...</mjml>. "
+                "For full control, create a complete MJML document with the mjml() tag.",
+                UserWarning,
+                stacklevel=2
+            )
+            wrapped = MJMLTag("mjml", self)
+            mjml_markup = wrapped.render_mjml()
+        else:
+            # Warn and wrap in mjml/mj-body
+            warnings.warn(
+                f"to_html() called on <{self.tagName}> tag. "
+                "Automatically wrapping in <mjml><mj-body>...</mj-body></mjml>. "
+                "For full control, create a complete MJML document with the mjml() tag.",
+                UserWarning,
+                stacklevel=2
+            )
+            # Wrap in mjml and mj-body
+            wrapped = MJMLTag("mjml", MJMLTag("mj-body", self))
+            mjml_markup = wrapped.render_mjml()
+        
         return mjml2html(mjml_markup, **mjml2html_kwargs)
