@@ -135,7 +135,7 @@ def {py_name}(
 
     # Write to file - navigate from scripts/ to emailer_lib/mjml/tags.py
     script_dir = Path(__file__).parent
-    tags_file = script_dir.parent / "emailer_lib" / "mjml" / "tags.py"
+    tags_file = script_dir.parent / "tags.py"
 
     with open(tags_file, "w") as f:
         f.write(output)

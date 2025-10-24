@@ -11,4 +11,4 @@ test-update:
 	pytest --snapshot-update
 
 generate-mjml-tags:
-	python3 scripts/generate-tags.py
+	python3 emailer_lib/mjml/scripts/generate-tags.py
