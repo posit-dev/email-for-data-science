@@ -62,6 +62,7 @@ class IntermediateEmail:
     rsc_email_supress_scheduled: bool | None = None
 
     # is a list of files in path from current directory
+    # TODO: never accept none type, only empty list
     external_attachments: list[str] | None = None
 
     # has structure {filename: base64_string}

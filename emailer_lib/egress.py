@@ -1,5 +1,6 @@
 from __future__ import annotations
 import base64
+import os
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -164,24 +165,100 @@ def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
     raise NotImplementedError
 
 
-def send_intermediate_email_with_mailgun(i_email: IntermediateEmail):
+def send_intermediate_email_with_mailgun(
+    api_key: str,
+    domain: str,
+    sender: str,
+    i_email: IntermediateEmail,
+):
     """
     Send an Intermediate Email object via Mailgun.
 
     Parameters
     ----------
+    api_key
+        Mailgun API key (found in account settings)
+    domain
+        Your verified Mailgun domain (e.g., "mg.yourdomain.com")
+    sender
+        Email address to send from (must be authorized in your domain)
     i_email
         IntermediateEmail object containing the email content and attachments
 
     Returns
     -------
-    None
+    Response
+        Response from Mailgun API
 
+    Raises
+    ------
+    Exception
+        If the Mailgun API returns an error
+
+    Examples
+    --------
+    ```python
+    email = IntermediateEmail(
+        html="<p>Hello world</p>",
+        subject="Test Email",
+        recipients=["user@example.com"],
+    )
+
+    response = send_intermediate_email_with_mailgun(
+        api_key="your-api-key",
+        domain="mg.yourdomain.com",
+        sender="noreply@yourdomain.com",
+        i_email=email
+    )
+    ```
+    
     Notes
     -----
-    This function is a placeholder and has not been implemented yet.
+    Requires the `mailgun` package: `pip install mailgun`
     """
-    raise NotImplementedError
+    from mailgun.client import Client
+    
+    # Create Mailgun client
+    client = Client(auth=("api", api_key))
+    
+    # Prepare the basic email data
+    data = {
+        "from": sender,
+        "to": i_email.recipients,
+        "subject": i_email.subject,
+        "html": i_email.html,
+    }
+    
+    # Add text content if available
+    if i_email.text:
+        data["text"] = i_email.text
+    
+    # Prepare files for attachments
+    files = []
+    
+    # Handle inline images (embedded in HTML with cid:)
+    for image_name, image_base64 in i_email.inline_attachments.items():
+        img_bytes = base64.b64decode(image_base64)
+        # Use 'inline' for images referenced in HTML with cid:
+        files.append(("inline", (image_name, img_bytes)))
+    
+    # Handle external attachments
+    for filename in i_email.external_attachments:
+        with open(filename, "rb") as f:
+            file_data = f.read()
+        
+        # Extract just the filename (not full path) for the attachment name
+        basename = os.path.basename(filename)
+        files.append(("attachment", (basename, file_data)))
+    
+    # Send the message using Mailgun client
+    response = client.messages.create(
+        data=data, 
+        files=files if files else None, 
+        domain=domain
+    )
+    
+    return response
 
 
 def send_intermediate_email_with_smtp(
