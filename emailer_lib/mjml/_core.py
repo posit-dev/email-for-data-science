@@ -51,31 +51,47 @@ class MJMLTag:
         self.tagName = tagName
         self.attrs = TagAttrDict()
         self.children = []
-        self.content = content
         self._is_leaf = _is_leaf
-        
-        # Validate attributes parameter type
-        if attributes is not None and not isinstance(attributes, (dict, TagAttrDict)):
-            raise TypeError(
-                f"attributes must be a dict or TagAttrDict, got {type(attributes).__name__}. "
-                f"If you meant to pass children, use positional arguments for container tags."
-            )
         
         # Runtime validation for leaf tags
         if self._is_leaf:
-            # Leaf tags should not accept positional arguments (children)
+            # For leaf tags, treat the first positional argument as content if provided
             if args:
-                raise TypeError(
-                    f"<{tagName}> is a leaf tag and does not accept children. "
-                    f"Use the content parameter instead: {tagName}(content='...')"
-                )
-            # Leaf tags content should be string-like
-            if content is not None and not isinstance(content, (str, int, float)):
+                if len(args) > 1:
+                    raise TypeError(
+                        f"<{tagName}> is a leaf tag and accepts only one positional argument for content."
+                    )
+                self.content = args[0]
+            else:
+                self.content = content
+            
+            # Validate content type
+            if self.content is not None and not isinstance(self.content, (str, int, float)):
                 raise TypeError(
                     f"<{tagName}> content must be a string, int, or float, "
-                    f"got {type(content).__name__}"
+                    f"got {type(self.content).__name__}"
                 )
+            
+            # Validate attributes parameter type
+            if attributes is not None and not isinstance(attributes, (dict, TagAttrDict)):
+                raise TypeError(
+                    f"attributes must be a dict or TagAttrDict, got {type(attributes).__name__}."
+                )
+            
+            # Process attributes
+            if attributes is not None:
+                self.attrs.update(attributes)
         else:
+            # For container tags
+            self.content = content
+            
+            # Validate attributes parameter type
+            if attributes is not None and not isinstance(attributes, (dict, TagAttrDict)):
+                raise TypeError(
+                    f"attributes must be a dict or TagAttrDict, got {type(attributes).__name__}. "
+                    f"If you meant to pass children, use positional arguments for container tags."
+                )
+            
             # Collect children (for non-leaf tags only)
             for arg in args:
                 if (
@@ -84,10 +100,10 @@ class MJMLTag:
                     self.children.append(arg)
                 elif isinstance(arg, Sequence) and not isinstance(arg, str):
                     self.children.extend(arg)
-        
-        # Process attributes
-        if attributes is not None:
-            self.attrs.update(attributes)
+            
+            # Process attributes
+            if attributes is not None:
+                self.attrs.update(attributes)
         
         # TODO: confirm if this is the case... I don't think it is
         # # If content is provided, children should be empty

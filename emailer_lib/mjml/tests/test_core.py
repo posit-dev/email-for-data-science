@@ -136,8 +136,8 @@ def test_to_html_passes_kwargs_to_mjml2html():
 
 
 def test_leaf_tag_raises_on_children():
-    with pytest.raises(TypeError, match="is a leaf tag and does not accept children"):
-        MJMLTag("mj-text", MJMLTag("mj-column"), _is_leaf=True)
+    with pytest.raises(TypeError, match="is a leaf tag and accepts only one positional argument"):
+        MJMLTag("mj-text", "content", MJMLTag("mj-column"), _is_leaf=True)
 
 
 def test_leaf_tag_content_type_validation():

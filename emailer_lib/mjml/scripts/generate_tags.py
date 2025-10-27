@@ -110,18 +110,27 @@ def {py_name}(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <{tag_name}>
+        MJMLTag object representing `<{tag_name}>`
         
     Examples
     --------
     With children:
-        {py_name}(child1, child2)
+    ```{{python}}
+    from emailer_lib.mjml import {py_name}, text
+    child = text("Hello World")
+
+    result = {py_name}(child)
+    ```
     
     With attributes:
-        {py_name}(attributes={{"attr": "value"}})
+    ```{{python}}
+    result = {py_name}(attributes={{"attr": "value"}})
+    ```
     
     With both:
-        {py_name}(child1, child2, attributes={{"attr": "value"}})
+    ```{{python}}
+    result = {py_name}(child, attributes={{"background-color": "yellow"}})
+    ```
     """
     return MJMLTag("{tag_name}", *args, attributes=attributes, content=content)
 '''
@@ -133,8 +142,8 @@ def {py_name}(
 
         function_code = f'''
 def {py_name}(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<{tag_name}>` tag.
@@ -143,25 +152,31 @@ def {py_name}(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <{tag_name}>
+        MJMLTag object representing `<{tag_name}>`
         
     Examples
     --------
     With content:
-        {py_name}(content="Hello")
-    
+    ```{{python}}
+    from emailer_lib.mjml import {py_name}
+
+    result = {py_name}("Hello")
+    ```
+
     With attributes and content:
-        {py_name}(attributes={{"color": "red"}}, content="Hello")
+    ```{{python}}
+    result = {py_name}("Hello", attributes={{"background-color": "red"}})
+    ```
     """
-    return MJMLTag("{tag_name}", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("{tag_name}", content, attributes=attributes, _is_leaf=True)
 '''
         functions.append(function_code)
 
