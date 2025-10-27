@@ -126,7 +126,7 @@ def {py_name}(
     MJMLTag
         MJMLTag object representing <{tag_name}>
     """
-    return MJMLTag("{tag_name}", content=content, **kwargs)
+    return MJMLTag("{tag_name}", content=content, _is_leaf=True, **kwargs)
 '''
         functions.append(function_code)
 

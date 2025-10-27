@@ -630,7 +630,7 @@ def accordion_text(
     MJMLTag
         MJMLTag object representing <mj-accordion-text>
     """
-    return MJMLTag("mj-accordion-text", content=content, **kwargs)
+    return MJMLTag("mj-accordion-text", content=content, _is_leaf=True, **kwargs)
 
 
 def accordion_title(
@@ -654,7 +654,7 @@ def accordion_title(
     MJMLTag
         MJMLTag object representing <mj-accordion-title>
     """
-    return MJMLTag("mj-accordion-title", content=content, **kwargs)
+    return MJMLTag("mj-accordion-title", content=content, _is_leaf=True, **kwargs)
 
 
 def button(
@@ -678,7 +678,7 @@ def button(
     MJMLTag
         MJMLTag object representing <mj-button>
     """
-    return MJMLTag("mj-button", content=content, **kwargs)
+    return MJMLTag("mj-button", content=content, _is_leaf=True, **kwargs)
 
 
 def carousel_image(
@@ -702,7 +702,7 @@ def carousel_image(
     MJMLTag
         MJMLTag object representing <mj-carousel-image>
     """
-    return MJMLTag("mj-carousel-image", content=content, **kwargs)
+    return MJMLTag("mj-carousel-image", content=content, _is_leaf=True, **kwargs)
 
 
 def navbar_link(
@@ -726,7 +726,7 @@ def navbar_link(
     MJMLTag
         MJMLTag object representing <mj-navbar-link>
     """
-    return MJMLTag("mj-navbar-link", content=content, **kwargs)
+    return MJMLTag("mj-navbar-link", content=content, _is_leaf=True, **kwargs)
 
 
 def raw(
@@ -750,7 +750,7 @@ def raw(
     MJMLTag
         MJMLTag object representing <mj-raw>
     """
-    return MJMLTag("mj-raw", content=content, **kwargs)
+    return MJMLTag("mj-raw", content=content, _is_leaf=True, **kwargs)
 
 
 def social_element(
@@ -774,7 +774,7 @@ def social_element(
     MJMLTag
         MJMLTag object representing <mj-social-element>
     """
-    return MJMLTag("mj-social-element", content=content, **kwargs)
+    return MJMLTag("mj-social-element", content=content, _is_leaf=True, **kwargs)
 
 
 def table(
@@ -798,7 +798,7 @@ def table(
     MJMLTag
         MJMLTag object representing <mj-table>
     """
-    return MJMLTag("mj-table", content=content, **kwargs)
+    return MJMLTag("mj-table", content=content, _is_leaf=True, **kwargs)
 
 
 def text(
@@ -822,4 +822,4 @@ def text(
     MJMLTag
         MJMLTag object representing <mj-text>
     """
-    return MJMLTag("mj-text", content=content, **kwargs)
+    return MJMLTag("mj-text", content=content, _is_leaf=True, **kwargs)
