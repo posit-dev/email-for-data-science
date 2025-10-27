@@ -13,12 +13,14 @@ MJML_TAGS = [
     "mjml",
     "mj-head",
     "mj-body",
-    "mj-include",
     # Head components
     "mj-attributes",
+    "mj-all",  # sub-attribute for mj-attributes
+    "mj-class",  # sub-attribute for mj-attributes
     "mj-breakpoint",
     "mj-font",
     "mj-html-attributes",
+    "mj-html-attribute",  # sub-attribute for mj-html-attributes
     "mj-preview",
     "mj-style",
     "mj-title",
@@ -49,7 +51,21 @@ LEAF_TAGS = [
     "mj-social-element",
     "mj-table",
     "mj-text",
+    "mj-title"
 ]
+
+# Tags that should keep the mj- prefix in the function name
+KEEP_MJ_PREFIX = ["mj-all", "mj-class"]
+
+
+def get_python_name(tag_name: str) -> str:
+    """Convert MJML tag name to Python function name."""
+    if tag_name in KEEP_MJ_PREFIX:
+        # Keep mj- prefix, just replace hyphens
+        return tag_name.replace("-", "_")
+    else:
+        # Remove mj- prefix and replace hyphens
+        return tag_name.replace("-", "_").replace("mj_", "", 1)
 
 
 def generate_tags_file():
@@ -71,7 +87,7 @@ from ._core import MJMLTag, TagAttrs, TagAttrValue, TagChild
 
     # Generate regular MJML tags (accept children and optional content)
     for tag_name in MJML_TAGS:
-        py_name = tag_name.replace("-", "_").replace("mj_", "")
+        py_name = get_python_name(tag_name)
 
         function_code = f'''
 def {py_name}(
@@ -102,7 +118,7 @@ def {py_name}(
 
     # Generate leaf tags (accept content but not MJML children)
     for tag_name in LEAF_TAGS:
-        py_name = tag_name.replace("-", "_").replace("mj_", "")
+        py_name = get_python_name(tag_name)
 
         function_code = f'''
 def {py_name}(

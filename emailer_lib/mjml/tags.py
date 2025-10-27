@@ -84,31 +84,6 @@ def body(
     return MJMLTag("mj-body", *args, content=content, **kwargs)
 
 
-def include(
-    *args: Union[TagChild, TagAttrs],
-    content: Optional[str] = None,
-    **kwargs: TagAttrValue,
-):
-    """
-    Create an MJML `<mj-include>` tag.
-    
-    Parameters
-    ----------
-    *args
-        Children or attribute dicts
-    content
-        Optional text content for the tag
-    **kwargs
-        Tag attributes
-    
-    Returns
-    -------
-    MJMLTag
-        MJMLTag object representing <mj-include>
-    """
-    return MJMLTag("mj-include", *args, content=content, **kwargs)
-
-
 def attributes(
     *args: Union[TagChild, TagAttrs],
     content: Optional[str] = None,
@@ -132,6 +107,56 @@ def attributes(
         MJMLTag object representing <mj-attributes>
     """
     return MJMLTag("mj-attributes", *args, content=content, **kwargs)
+
+
+def mj_all(
+    *args: Union[TagChild, TagAttrs],
+    content: Optional[str] = None,
+    **kwargs: TagAttrValue,
+):
+    """
+    Create an MJML `<mj-all>` tag.
+    
+    Parameters
+    ----------
+    *args
+        Children or attribute dicts
+    content
+        Optional text content for the tag
+    **kwargs
+        Tag attributes
+    
+    Returns
+    -------
+    MJMLTag
+        MJMLTag object representing <mj-all>
+    """
+    return MJMLTag("mj-all", *args, content=content, **kwargs)
+
+
+def mj_class(
+    *args: Union[TagChild, TagAttrs],
+    content: Optional[str] = None,
+    **kwargs: TagAttrValue,
+):
+    """
+    Create an MJML `<mj-class>` tag.
+    
+    Parameters
+    ----------
+    *args
+        Children or attribute dicts
+    content
+        Optional text content for the tag
+    **kwargs
+        Tag attributes
+    
+    Returns
+    -------
+    MJMLTag
+        MJMLTag object representing <mj-class>
+    """
+    return MJMLTag("mj-class", *args, content=content, **kwargs)
 
 
 def breakpoint(
@@ -207,6 +232,31 @@ def html_attributes(
         MJMLTag object representing <mj-html-attributes>
     """
     return MJMLTag("mj-html-attributes", *args, content=content, **kwargs)
+
+
+def html_attribute(
+    *args: Union[TagChild, TagAttrs],
+    content: Optional[str] = None,
+    **kwargs: TagAttrValue,
+):
+    """
+    Create an MJML `<mj-html-attribute>` tag.
+    
+    Parameters
+    ----------
+    *args
+        Children or attribute dicts
+    content
+        Optional text content for the tag
+    **kwargs
+        Tag attributes
+    
+    Returns
+    -------
+    MJMLTag
+        MJMLTag object representing <mj-html-attribute>
+    """
+    return MJMLTag("mj-html-attribute", *args, content=content, **kwargs)
 
 
 def preview(
@@ -823,3 +873,27 @@ def text(
         MJMLTag object representing <mj-text>
     """
     return MJMLTag("mj-text", content=content, _is_leaf=True, **kwargs)
+
+
+def title(
+    content: Optional[str] = None,
+    **kwargs: TagAttrValue,
+):
+    """
+    Create an MJML `<mj-title>` tag.
+    
+    This is an ending tag that accepts text/HTML content but not MJML children.
+    
+    Parameters
+    ----------
+    content
+        Text or HTML content for the tag
+    **kwargs
+        Tag attributes
+    
+    Returns
+    -------
+    MJMLTag
+        MJMLTag object representing <mj-title>
+    """
+    return MJMLTag("mj-title", content=content, _is_leaf=True, **kwargs)

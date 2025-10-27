@@ -84,11 +84,13 @@ quartodoc:
         - mjml.mjml
         - mjml.head
         - mjml.body
-        - mjml.include
         - mjml.attributes
+        - mjml.mj_all
+        - mjml.mj_class
         - mjml.breakpoint
         - mjml.font
         - mjml.html_attributes
+        - mjml.html_attribute
         - mjml.preview
         - mjml.style
         - mjml.title
