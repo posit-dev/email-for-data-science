@@ -7,7 +7,7 @@ import random
 # import sys
 
 # sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
-from data_polars import sp500
+from docs.data_polars import sp500
 
 
 load_dotenv()

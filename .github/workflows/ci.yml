@@ -31,23 +31,23 @@ jobs:
         run: uv sync --all-extras --dev
 
       - name: Install emailer-lib
-        run: uv pip install -e "./emailer-lib"
+        run: uv pip install -e .
 
       # quarto docs build ----
       - uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
+        # with:
+        #   tinytex: true
 
       - name: Build docs
         run: |
-          uv run quartodoc build --verbose && uv run quarto render
+          cd docs && uv run quartodoc build --verbose && uv run quarto render
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           force: false
-          folder: _site
+          folder: docs/_site
           clean-exclude: pr-preview
 
       - name: Deploy (preview)
@@ -55,7 +55,7 @@ jobs:
         # if in a PR
         if: ${{ github.event_name == 'pull_request' }}
         with:
-          source-dir: _site
+          source-dir: docs/_site
 
   test-emailer-lib:
     runs-on: ubuntu-latest
@@ -81,14 +81,14 @@ jobs:
         run: uv sync --all-extras --dev
 
       - name: Install emailer-lib
-        run: uv pip install -e "./emailer-lib"
+        run: uv pip install -e .
 
       - name: Install the project deps
-        run: uv pip install -e "./emailer-lib[dev]"
+        run: uv pip install -e .[dev]
       
       - name: Test emailer-lib
         run: |
-          uv run pytest emailer-lib/emailer_lib/tests/ --cov=emailer_lib --cov-report=xml --cov-report=term-missing
+          uv run pytest emailer_lib/tests/ --cov=emailer_lib --cov-report=xml --cov-report=term-missing
       
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4

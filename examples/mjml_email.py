@@ -10,7 +10,7 @@ import smtplib
 # import sys
 # sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/..'))
 
-from data_polars import sp500
+from docs.data_polars import sp500
 import polars as pl
 from plotnine import (
     ggplot,
