@@ -123,10 +123,7 @@ def {py_name}(
     With both:
         {py_name}(child1, child2, attributes={{"attr": "value"}})
     """
-    if attributes is None:
-        return MJMLTag("{tag_name}", *args, content=content)
-    else:
-        return MJMLTag("{tag_name}", *args, attributes, content=content)
+    return MJMLTag("{tag_name}", *args, attributes=attributes, content=content)
 '''
         functions.append(function_code)
 
@@ -164,10 +161,7 @@ def {py_name}(
     With attributes and content:
         {py_name}(attributes={{"color": "red"}}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("{tag_name}", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("{tag_name}", attributes, content=content, _is_leaf=True)
+    return MJMLTag("{tag_name}", attributes=attributes, content=content, _is_leaf=True)
 '''
         functions.append(function_code)
 

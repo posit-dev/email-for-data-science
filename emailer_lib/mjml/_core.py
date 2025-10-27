@@ -38,15 +38,13 @@ class TagAttrDict(Dict[str, str]):
 class MJMLTag:
     """
     MJML tag class.
-    Differences from htmltools Tag:
-    - 'name' renamed to 'tagName' for MJML
-    - 'content' field for leaf tags (optional)
     """
 
     def __init__(
         self,
         tagName: str,
-        *args: Union[TagChild, TagAttrs],
+        *args: TagChild,
+        attributes: Optional[TagAttrs] = None,
         content: Optional[str] = None,
         _is_leaf: bool = False,
     ) -> None:
@@ -56,36 +54,40 @@ class MJMLTag:
         self.content = content
         self._is_leaf = _is_leaf
         
+        # Validate attributes parameter type
+        if attributes is not None and not isinstance(attributes, (dict, TagAttrDict)):
+            raise TypeError(
+                f"attributes must be a dict or TagAttrDict, got {type(attributes).__name__}. "
+                f"If you meant to pass children, use positional arguments for container tags."
+            )
+        
         # Runtime validation for leaf tags
         if self._is_leaf:
             # Leaf tags should not accept positional arguments (children)
             if args:
-                # Check if it's just an attributes dict
-                if len(args) == 1 and isinstance(args[0], (dict, TagAttrDict)):
-                    self.attrs.update(args[0])
-                else:
-                    raise TypeError(
-                        f"<{tagName}> is a leaf tag and does not accept children. "
-                        f"Use the content parameter instead: {tagName}(content='...')"
-                    )
+                raise TypeError(
+                    f"<{tagName}> is a leaf tag and does not accept children. "
+                    f"Use the content parameter instead: {tagName}(content='...')"
+                )
             # Leaf tags content should be string-like
             if content is not None and not isinstance(content, (str, int, float)):
                 raise TypeError(
                     f"<{tagName}> content must be a string, int, or float, "
                     f"got {type(content).__name__}"
                 )
-        
-        # Collect attributes and children (for non-leaf tags)
-        if not self._is_leaf:
+        else:
+            # Collect children (for non-leaf tags only)
             for arg in args:
-                if isinstance(arg, dict) or isinstance(arg, TagAttrDict):
-                    self.attrs.update(arg)
-                elif (
+                if (
                     isinstance(arg, (str, float)) or arg is None or isinstance(arg, MJMLTag)
                 ):
                     self.children.append(arg)
                 elif isinstance(arg, Sequence) and not isinstance(arg, str):
                     self.children.extend(arg)
+        
+        # Process attributes
+        if attributes is not None:
+            self.attrs.update(attributes)
         
         # If content is provided, children should be empty
         if self.content is not None:

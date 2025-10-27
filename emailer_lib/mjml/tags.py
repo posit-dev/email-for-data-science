@@ -42,10 +42,7 @@ def mjml(
     With both:
         mjml(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mjml", *args, content=content)
-    else:
-        return MJMLTag("mjml", *args, attributes, content=content)
+    return MJMLTag("mjml", *args, attributes=attributes, content=content)
 
 
 def head(
@@ -81,10 +78,7 @@ def head(
     With both:
         head(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-head", *args, content=content)
-    else:
-        return MJMLTag("mj-head", *args, attributes, content=content)
+    return MJMLTag("mj-head", *args, attributes=attributes, content=content)
 
 
 def body(
@@ -120,10 +114,7 @@ def body(
     With both:
         body(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-body", *args, content=content)
-    else:
-        return MJMLTag("mj-body", *args, attributes, content=content)
+    return MJMLTag("mj-body", *args, attributes=attributes, content=content)
 
 
 def mj_attributes(
@@ -159,10 +150,7 @@ def mj_attributes(
     With both:
         mj_attributes(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-attributes", *args, content=content)
-    else:
-        return MJMLTag("mj-attributes", *args, attributes, content=content)
+    return MJMLTag("mj-attributes", *args, attributes=attributes, content=content)
 
 
 def mj_all(
@@ -198,10 +186,7 @@ def mj_all(
     With both:
         mj_all(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-all", *args, content=content)
-    else:
-        return MJMLTag("mj-all", *args, attributes, content=content)
+    return MJMLTag("mj-all", *args, attributes=attributes, content=content)
 
 
 def mj_class(
@@ -237,10 +222,7 @@ def mj_class(
     With both:
         mj_class(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-class", *args, content=content)
-    else:
-        return MJMLTag("mj-class", *args, attributes, content=content)
+    return MJMLTag("mj-class", *args, attributes=attributes, content=content)
 
 
 def breakpoint(
@@ -276,10 +258,7 @@ def breakpoint(
     With both:
         breakpoint(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-breakpoint", *args, content=content)
-    else:
-        return MJMLTag("mj-breakpoint", *args, attributes, content=content)
+    return MJMLTag("mj-breakpoint", *args, attributes=attributes, content=content)
 
 
 def font(
@@ -315,10 +294,7 @@ def font(
     With both:
         font(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-font", *args, content=content)
-    else:
-        return MJMLTag("mj-font", *args, attributes, content=content)
+    return MJMLTag("mj-font", *args, attributes=attributes, content=content)
 
 
 def html_attributes(
@@ -354,10 +330,7 @@ def html_attributes(
     With both:
         html_attributes(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-html-attributes", *args, content=content)
-    else:
-        return MJMLTag("mj-html-attributes", *args, attributes, content=content)
+    return MJMLTag("mj-html-attributes", *args, attributes=attributes, content=content)
 
 
 def html_attribute(
@@ -393,10 +366,7 @@ def html_attribute(
     With both:
         html_attribute(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-html-attribute", *args, content=content)
-    else:
-        return MJMLTag("mj-html-attribute", *args, attributes, content=content)
+    return MJMLTag("mj-html-attribute", *args, attributes=attributes, content=content)
 
 
 def preview(
@@ -432,10 +402,7 @@ def preview(
     With both:
         preview(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-preview", *args, content=content)
-    else:
-        return MJMLTag("mj-preview", *args, attributes, content=content)
+    return MJMLTag("mj-preview", *args, attributes=attributes, content=content)
 
 
 def style(
@@ -471,10 +438,7 @@ def style(
     With both:
         style(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-style", *args, content=content)
-    else:
-        return MJMLTag("mj-style", *args, attributes, content=content)
+    return MJMLTag("mj-style", *args, attributes=attributes, content=content)
 
 
 def title(
@@ -510,10 +474,7 @@ def title(
     With both:
         title(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-title", *args, content=content)
-    else:
-        return MJMLTag("mj-title", *args, attributes, content=content)
+    return MJMLTag("mj-title", *args, attributes=attributes, content=content)
 
 
 def accordion(
@@ -549,10 +510,7 @@ def accordion(
     With both:
         accordion(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-accordion", *args, content=content)
-    else:
-        return MJMLTag("mj-accordion", *args, attributes, content=content)
+    return MJMLTag("mj-accordion", *args, attributes=attributes, content=content)
 
 
 def accordion_element(
@@ -588,10 +546,7 @@ def accordion_element(
     With both:
         accordion_element(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-accordion-element", *args, content=content)
-    else:
-        return MJMLTag("mj-accordion-element", *args, attributes, content=content)
+    return MJMLTag("mj-accordion-element", *args, attributes=attributes, content=content)
 
 
 def carousel(
@@ -627,10 +582,7 @@ def carousel(
     With both:
         carousel(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-carousel", *args, content=content)
-    else:
-        return MJMLTag("mj-carousel", *args, attributes, content=content)
+    return MJMLTag("mj-carousel", *args, attributes=attributes, content=content)
 
 
 def column(
@@ -666,10 +618,7 @@ def column(
     With both:
         column(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-column", *args, content=content)
-    else:
-        return MJMLTag("mj-column", *args, attributes, content=content)
+    return MJMLTag("mj-column", *args, attributes=attributes, content=content)
 
 
 def divider(
@@ -705,10 +654,7 @@ def divider(
     With both:
         divider(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-divider", *args, content=content)
-    else:
-        return MJMLTag("mj-divider", *args, attributes, content=content)
+    return MJMLTag("mj-divider", *args, attributes=attributes, content=content)
 
 
 def group(
@@ -744,10 +690,7 @@ def group(
     With both:
         group(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-group", *args, content=content)
-    else:
-        return MJMLTag("mj-group", *args, attributes, content=content)
+    return MJMLTag("mj-group", *args, attributes=attributes, content=content)
 
 
 def hero(
@@ -783,10 +726,7 @@ def hero(
     With both:
         hero(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-hero", *args, content=content)
-    else:
-        return MJMLTag("mj-hero", *args, attributes, content=content)
+    return MJMLTag("mj-hero", *args, attributes=attributes, content=content)
 
 
 def image(
@@ -822,10 +762,7 @@ def image(
     With both:
         image(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-image", *args, content=content)
-    else:
-        return MJMLTag("mj-image", *args, attributes, content=content)
+    return MJMLTag("mj-image", *args, attributes=attributes, content=content)
 
 
 def navbar(
@@ -861,10 +798,7 @@ def navbar(
     With both:
         navbar(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-navbar", *args, content=content)
-    else:
-        return MJMLTag("mj-navbar", *args, attributes, content=content)
+    return MJMLTag("mj-navbar", *args, attributes=attributes, content=content)
 
 
 def section(
@@ -900,10 +834,7 @@ def section(
     With both:
         section(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-section", *args, content=content)
-    else:
-        return MJMLTag("mj-section", *args, attributes, content=content)
+    return MJMLTag("mj-section", *args, attributes=attributes, content=content)
 
 
 def social(
@@ -939,10 +870,7 @@ def social(
     With both:
         social(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-social", *args, content=content)
-    else:
-        return MJMLTag("mj-social", *args, attributes, content=content)
+    return MJMLTag("mj-social", *args, attributes=attributes, content=content)
 
 
 def spacer(
@@ -978,10 +906,7 @@ def spacer(
     With both:
         spacer(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-spacer", *args, content=content)
-    else:
-        return MJMLTag("mj-spacer", *args, attributes, content=content)
+    return MJMLTag("mj-spacer", *args, attributes=attributes, content=content)
 
 
 def wrapper(
@@ -1017,10 +942,7 @@ def wrapper(
     With both:
         wrapper(child1, child2, attributes={"attr": "value"})
     """
-    if attributes is None:
-        return MJMLTag("mj-wrapper", *args, content=content)
-    else:
-        return MJMLTag("mj-wrapper", *args, attributes, content=content)
+    return MJMLTag("mj-wrapper", *args, attributes=attributes, content=content)
 
 
 def accordion_text(
@@ -1052,10 +974,7 @@ def accordion_text(
     With attributes and content:
         accordion_text(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-accordion-text", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-accordion-text", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-accordion-text", attributes=attributes, content=content, _is_leaf=True)
 
 
 def accordion_title(
@@ -1087,10 +1006,7 @@ def accordion_title(
     With attributes and content:
         accordion_title(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-accordion-title", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-accordion-title", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-accordion-title", attributes=attributes, content=content, _is_leaf=True)
 
 
 def button(
@@ -1122,10 +1038,7 @@ def button(
     With attributes and content:
         button(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-button", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-button", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-button", attributes=attributes, content=content, _is_leaf=True)
 
 
 def carousel_image(
@@ -1157,10 +1070,7 @@ def carousel_image(
     With attributes and content:
         carousel_image(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-carousel-image", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-carousel-image", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-carousel-image", attributes=attributes, content=content, _is_leaf=True)
 
 
 def navbar_link(
@@ -1192,10 +1102,7 @@ def navbar_link(
     With attributes and content:
         navbar_link(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-navbar-link", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-navbar-link", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-navbar-link", attributes=attributes, content=content, _is_leaf=True)
 
 
 def raw(
@@ -1227,10 +1134,7 @@ def raw(
     With attributes and content:
         raw(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-raw", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-raw", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-raw", attributes=attributes, content=content, _is_leaf=True)
 
 
 def social_element(
@@ -1262,10 +1166,7 @@ def social_element(
     With attributes and content:
         social_element(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-social-element", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-social-element", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-social-element", attributes=attributes, content=content, _is_leaf=True)
 
 
 def table(
@@ -1297,10 +1198,7 @@ def table(
     With attributes and content:
         table(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-table", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-table", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-table", attributes=attributes, content=content, _is_leaf=True)
 
 
 def text(
@@ -1332,10 +1230,7 @@ def text(
     With attributes and content:
         text(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-text", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-text", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-text", attributes=attributes, content=content, _is_leaf=True)
 
 
 def title(
@@ -1367,7 +1262,4 @@ def title(
     With attributes and content:
         title(attributes={"color": "red"}, content="Hello")
     """
-    if attributes is None:
-        return MJMLTag("mj-title", content=content, _is_leaf=True)
-    else:
-        return MJMLTag("mj-title", attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-title", attributes=attributes, content=content, _is_leaf=True)
