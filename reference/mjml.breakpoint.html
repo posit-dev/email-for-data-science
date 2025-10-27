@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>yagmail_to_intermediate_email – Email for Data Science</title>
+<title>mjml.breakpoint – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,22 +149,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mjml.breakpoint</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="emailer_lib.yagmail_to_intermediate_email" class="level1">
-<h1>yagmail_to_intermediate_email</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>yagmail_to_intermediate_email()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Convert a Yagmail email object to an IntermediateEmail</p>
-<section id="params" class="level2 doc-section doc-section-params">
-<h2 class="doc-section doc-section-params anchored" data-anchor-id="params">Params</h2>
-<p>(none)</p>
-<p>Not yet implemented</p>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.<span class="bu">breakpoint</span>(<span class="op">*</span>args, attributes<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create an MJML <code>&lt;mj-breakpoint&gt;</code> tag.</p>
+<section id="parameters" class="level2 doc-section doc-section-parameters">
+<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+<dl>
+<dt><code><span class="parameter-name">*<strong>args</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">TagChild</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">()</span></code></dt>
+<dd>
+<p>Children (MJMLTag objects)</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Optional dict of tag attributes</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Optional text content for the tag</p>
+</dd>
+</dl>
 </section>
+<section id="returns" class="level2 doc-section doc-section-returns">
+<h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">MJMLTag</span></code></dt>
+<dd>
+<p>MJMLTag object representing <code>&lt;mj-breakpoint&gt;</code></p>
+</dd>
+</dl>
+</section>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<p>With children:</p>
+<div id="2f132991" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> emailer_lib.mjml <span class="im">import</span> <span class="bu">breakpoint</span>, text</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>child <span class="op">=</span> text(<span class="st">"Hello World"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">breakpoint</span>(child)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With attributes:</p>
+<div id="944aec1c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">breakpoint</span>(attributes<span class="op">=</span>{<span class="st">"attr"</span>: <span class="st">"value"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With both:</p>
+<div id="c5ed06e0" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">breakpoint</span>(child, attributes<span class="op">=</span>{<span class="st">"background-color"</span>: <span class="st">"yellow"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
