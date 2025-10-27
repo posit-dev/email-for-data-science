@@ -29,18 +29,27 @@ def mjml(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mjml>
+        MJMLTag object representing `<mjml>`
         
     Examples
     --------
     With children:
-        mjml(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import mjml, text
+    child = text("Hello World")
+
+    result = mjml(child)
+    ```
     
     With attributes:
-        mjml(attributes={"attr": "value"})
+    ```{python}
+    result = mjml(attributes={"attr": "value"})
+    ```
     
     With both:
-        mjml(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = mjml(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mjml", *args, attributes=attributes, content=content)
 
@@ -65,18 +74,27 @@ def head(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-head>
+        MJMLTag object representing `<mj-head>`
         
     Examples
     --------
     With children:
-        head(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import head, text
+    child = text("Hello World")
+
+    result = head(child)
+    ```
     
     With attributes:
-        head(attributes={"attr": "value"})
+    ```{python}
+    result = head(attributes={"attr": "value"})
+    ```
     
     With both:
-        head(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = head(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-head", *args, attributes=attributes, content=content)
 
@@ -101,18 +119,27 @@ def body(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-body>
+        MJMLTag object representing `<mj-body>`
         
     Examples
     --------
     With children:
-        body(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import body, text
+    child = text("Hello World")
+
+    result = body(child)
+    ```
     
     With attributes:
-        body(attributes={"attr": "value"})
+    ```{python}
+    result = body(attributes={"attr": "value"})
+    ```
     
     With both:
-        body(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = body(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-body", *args, attributes=attributes, content=content)
 
@@ -137,18 +164,27 @@ def mj_attributes(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-attributes>
+        MJMLTag object representing `<mj-attributes>`
         
     Examples
     --------
     With children:
-        mj_attributes(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import mj_attributes, text
+    child = text("Hello World")
+
+    result = mj_attributes(child)
+    ```
     
     With attributes:
-        mj_attributes(attributes={"attr": "value"})
+    ```{python}
+    result = mj_attributes(attributes={"attr": "value"})
+    ```
     
     With both:
-        mj_attributes(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = mj_attributes(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-attributes", *args, attributes=attributes, content=content)
 
@@ -173,18 +209,27 @@ def mj_all(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-all>
+        MJMLTag object representing `<mj-all>`
         
     Examples
     --------
     With children:
-        mj_all(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import mj_all, text
+    child = text("Hello World")
+
+    result = mj_all(child)
+    ```
     
     With attributes:
-        mj_all(attributes={"attr": "value"})
+    ```{python}
+    result = mj_all(attributes={"attr": "value"})
+    ```
     
     With both:
-        mj_all(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = mj_all(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-all", *args, attributes=attributes, content=content)
 
@@ -209,18 +254,27 @@ def mj_class(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-class>
+        MJMLTag object representing `<mj-class>`
         
     Examples
     --------
     With children:
-        mj_class(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import mj_class, text
+    child = text("Hello World")
+
+    result = mj_class(child)
+    ```
     
     With attributes:
-        mj_class(attributes={"attr": "value"})
+    ```{python}
+    result = mj_class(attributes={"attr": "value"})
+    ```
     
     With both:
-        mj_class(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = mj_class(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-class", *args, attributes=attributes, content=content)
 
@@ -245,18 +299,27 @@ def breakpoint(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-breakpoint>
+        MJMLTag object representing `<mj-breakpoint>`
         
     Examples
     --------
     With children:
-        breakpoint(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import breakpoint, text
+    child = text("Hello World")
+
+    result = breakpoint(child)
+    ```
     
     With attributes:
-        breakpoint(attributes={"attr": "value"})
+    ```{python}
+    result = breakpoint(attributes={"attr": "value"})
+    ```
     
     With both:
-        breakpoint(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = breakpoint(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-breakpoint", *args, attributes=attributes, content=content)
 
@@ -281,18 +344,27 @@ def font(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-font>
+        MJMLTag object representing `<mj-font>`
         
     Examples
     --------
     With children:
-        font(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import font, text
+    child = text("Hello World")
+
+    result = font(child)
+    ```
     
     With attributes:
-        font(attributes={"attr": "value"})
+    ```{python}
+    result = font(attributes={"attr": "value"})
+    ```
     
     With both:
-        font(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = font(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-font", *args, attributes=attributes, content=content)
 
@@ -317,18 +389,27 @@ def html_attributes(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-html-attributes>
+        MJMLTag object representing `<mj-html-attributes>`
         
     Examples
     --------
     With children:
-        html_attributes(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import html_attributes, text
+    child = text("Hello World")
+
+    result = html_attributes(child)
+    ```
     
     With attributes:
-        html_attributes(attributes={"attr": "value"})
+    ```{python}
+    result = html_attributes(attributes={"attr": "value"})
+    ```
     
     With both:
-        html_attributes(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = html_attributes(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-html-attributes", *args, attributes=attributes, content=content)
 
@@ -353,18 +434,27 @@ def html_attribute(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-html-attribute>
+        MJMLTag object representing `<mj-html-attribute>`
         
     Examples
     --------
     With children:
-        html_attribute(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import html_attribute, text
+    child = text("Hello World")
+
+    result = html_attribute(child)
+    ```
     
     With attributes:
-        html_attribute(attributes={"attr": "value"})
+    ```{python}
+    result = html_attribute(attributes={"attr": "value"})
+    ```
     
     With both:
-        html_attribute(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = html_attribute(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-html-attribute", *args, attributes=attributes, content=content)
 
@@ -389,18 +479,27 @@ def preview(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-preview>
+        MJMLTag object representing `<mj-preview>`
         
     Examples
     --------
     With children:
-        preview(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import preview, text
+    child = text("Hello World")
+
+    result = preview(child)
+    ```
     
     With attributes:
-        preview(attributes={"attr": "value"})
+    ```{python}
+    result = preview(attributes={"attr": "value"})
+    ```
     
     With both:
-        preview(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = preview(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-preview", *args, attributes=attributes, content=content)
 
@@ -425,18 +524,27 @@ def style(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-style>
+        MJMLTag object representing `<mj-style>`
         
     Examples
     --------
     With children:
-        style(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import style, text
+    child = text("Hello World")
+
+    result = style(child)
+    ```
     
     With attributes:
-        style(attributes={"attr": "value"})
+    ```{python}
+    result = style(attributes={"attr": "value"})
+    ```
     
     With both:
-        style(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = style(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-style", *args, attributes=attributes, content=content)
 
@@ -461,18 +569,27 @@ def title(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-title>
+        MJMLTag object representing `<mj-title>`
         
     Examples
     --------
     With children:
-        title(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import title, text
+    child = text("Hello World")
+
+    result = title(child)
+    ```
     
     With attributes:
-        title(attributes={"attr": "value"})
+    ```{python}
+    result = title(attributes={"attr": "value"})
+    ```
     
     With both:
-        title(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = title(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-title", *args, attributes=attributes, content=content)
 
@@ -497,18 +614,27 @@ def accordion(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-accordion>
+        MJMLTag object representing `<mj-accordion>`
         
     Examples
     --------
     With children:
-        accordion(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import accordion, text
+    child = text("Hello World")
+
+    result = accordion(child)
+    ```
     
     With attributes:
-        accordion(attributes={"attr": "value"})
+    ```{python}
+    result = accordion(attributes={"attr": "value"})
+    ```
     
     With both:
-        accordion(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = accordion(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-accordion", *args, attributes=attributes, content=content)
 
@@ -533,18 +659,27 @@ def accordion_element(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-accordion-element>
+        MJMLTag object representing `<mj-accordion-element>`
         
     Examples
     --------
     With children:
-        accordion_element(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import accordion_element, text
+    child = text("Hello World")
+
+    result = accordion_element(child)
+    ```
     
     With attributes:
-        accordion_element(attributes={"attr": "value"})
+    ```{python}
+    result = accordion_element(attributes={"attr": "value"})
+    ```
     
     With both:
-        accordion_element(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = accordion_element(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-accordion-element", *args, attributes=attributes, content=content)
 
@@ -569,18 +704,27 @@ def carousel(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-carousel>
+        MJMLTag object representing `<mj-carousel>`
         
     Examples
     --------
     With children:
-        carousel(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import carousel, text
+    child = text("Hello World")
+
+    result = carousel(child)
+    ```
     
     With attributes:
-        carousel(attributes={"attr": "value"})
+    ```{python}
+    result = carousel(attributes={"attr": "value"})
+    ```
     
     With both:
-        carousel(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = carousel(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-carousel", *args, attributes=attributes, content=content)
 
@@ -605,18 +749,27 @@ def column(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-column>
+        MJMLTag object representing `<mj-column>`
         
     Examples
     --------
     With children:
-        column(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import column, text
+    child = text("Hello World")
+
+    result = column(child)
+    ```
     
     With attributes:
-        column(attributes={"attr": "value"})
+    ```{python}
+    result = column(attributes={"attr": "value"})
+    ```
     
     With both:
-        column(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = column(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-column", *args, attributes=attributes, content=content)
 
@@ -641,18 +794,27 @@ def divider(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-divider>
+        MJMLTag object representing `<mj-divider>`
         
     Examples
     --------
     With children:
-        divider(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import divider, text
+    child = text("Hello World")
+
+    result = divider(child)
+    ```
     
     With attributes:
-        divider(attributes={"attr": "value"})
+    ```{python}
+    result = divider(attributes={"attr": "value"})
+    ```
     
     With both:
-        divider(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = divider(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-divider", *args, attributes=attributes, content=content)
 
@@ -677,18 +839,27 @@ def group(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-group>
+        MJMLTag object representing `<mj-group>`
         
     Examples
     --------
     With children:
-        group(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import group, text
+    child = text("Hello World")
+
+    result = group(child)
+    ```
     
     With attributes:
-        group(attributes={"attr": "value"})
+    ```{python}
+    result = group(attributes={"attr": "value"})
+    ```
     
     With both:
-        group(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = group(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-group", *args, attributes=attributes, content=content)
 
@@ -713,18 +884,27 @@ def hero(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-hero>
+        MJMLTag object representing `<mj-hero>`
         
     Examples
     --------
     With children:
-        hero(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import hero, text
+    child = text("Hello World")
+
+    result = hero(child)
+    ```
     
     With attributes:
-        hero(attributes={"attr": "value"})
+    ```{python}
+    result = hero(attributes={"attr": "value"})
+    ```
     
     With both:
-        hero(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = hero(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-hero", *args, attributes=attributes, content=content)
 
@@ -749,18 +929,27 @@ def image(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-image>
+        MJMLTag object representing `<mj-image>`
         
     Examples
     --------
     With children:
-        image(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import image, text
+    child = text("Hello World")
+
+    result = image(child)
+    ```
     
     With attributes:
-        image(attributes={"attr": "value"})
+    ```{python}
+    result = image(attributes={"attr": "value"})
+    ```
     
     With both:
-        image(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = image(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-image", *args, attributes=attributes, content=content)
 
@@ -785,18 +974,27 @@ def navbar(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-navbar>
+        MJMLTag object representing `<mj-navbar>`
         
     Examples
     --------
     With children:
-        navbar(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import navbar, text
+    child = text("Hello World")
+
+    result = navbar(child)
+    ```
     
     With attributes:
-        navbar(attributes={"attr": "value"})
+    ```{python}
+    result = navbar(attributes={"attr": "value"})
+    ```
     
     With both:
-        navbar(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = navbar(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-navbar", *args, attributes=attributes, content=content)
 
@@ -821,18 +1019,27 @@ def section(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-section>
+        MJMLTag object representing `<mj-section>`
         
     Examples
     --------
     With children:
-        section(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import section, text
+    child = text("Hello World")
+
+    result = section(child)
+    ```
     
     With attributes:
-        section(attributes={"attr": "value"})
+    ```{python}
+    result = section(attributes={"attr": "value"})
+    ```
     
     With both:
-        section(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = section(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-section", *args, attributes=attributes, content=content)
 
@@ -857,18 +1064,27 @@ def social(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-social>
+        MJMLTag object representing `<mj-social>`
         
     Examples
     --------
     With children:
-        social(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import social, text
+    child = text("Hello World")
+
+    result = social(child)
+    ```
     
     With attributes:
-        social(attributes={"attr": "value"})
+    ```{python}
+    result = social(attributes={"attr": "value"})
+    ```
     
     With both:
-        social(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = social(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-social", *args, attributes=attributes, content=content)
 
@@ -893,18 +1109,27 @@ def spacer(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-spacer>
+        MJMLTag object representing `<mj-spacer>`
         
     Examples
     --------
     With children:
-        spacer(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import spacer, text
+    child = text("Hello World")
+
+    result = spacer(child)
+    ```
     
     With attributes:
-        spacer(attributes={"attr": "value"})
+    ```{python}
+    result = spacer(attributes={"attr": "value"})
+    ```
     
     With both:
-        spacer(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = spacer(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-spacer", *args, attributes=attributes, content=content)
 
@@ -929,25 +1154,34 @@ def wrapper(
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-wrapper>
+        MJMLTag object representing `<mj-wrapper>`
         
     Examples
     --------
     With children:
-        wrapper(child1, child2)
+    ```{python}
+    from emailer_lib.mjml import wrapper, text
+    child = text("Hello World")
+
+    result = wrapper(child)
+    ```
     
     With attributes:
-        wrapper(attributes={"attr": "value"})
+    ```{python}
+    result = wrapper(attributes={"attr": "value"})
+    ```
     
     With both:
-        wrapper(child1, child2, attributes={"attr": "value"})
+    ```{python}
+    result = wrapper(child, attributes={"background-color": "yellow"})
+    ```
     """
     return MJMLTag("mj-wrapper", *args, attributes=attributes, content=content)
 
 
 def accordion_text(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-accordion-text>` tag.
@@ -956,30 +1190,36 @@ def accordion_text(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-accordion-text>
+        MJMLTag object representing `<mj-accordion-text>`
         
     Examples
     --------
     With content:
-        accordion_text(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import accordion_text
+
+    result = accordion_text("Hello")
+    ```
+
     With attributes and content:
-        accordion_text(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = accordion_text("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-accordion-text", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-accordion-text", content, attributes=attributes, _is_leaf=True)
 
 
 def accordion_title(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-accordion-title>` tag.
@@ -988,30 +1228,36 @@ def accordion_title(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-accordion-title>
+        MJMLTag object representing `<mj-accordion-title>`
         
     Examples
     --------
     With content:
-        accordion_title(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import accordion_title
+
+    result = accordion_title("Hello")
+    ```
+
     With attributes and content:
-        accordion_title(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = accordion_title("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-accordion-title", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-accordion-title", content, attributes=attributes, _is_leaf=True)
 
 
 def button(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-button>` tag.
@@ -1020,30 +1266,36 @@ def button(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-button>
+        MJMLTag object representing `<mj-button>`
         
     Examples
     --------
     With content:
-        button(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import button
+
+    result = button("Hello")
+    ```
+
     With attributes and content:
-        button(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = button("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-button", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-button", content, attributes=attributes, _is_leaf=True)
 
 
 def carousel_image(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-carousel-image>` tag.
@@ -1052,30 +1304,36 @@ def carousel_image(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-carousel-image>
+        MJMLTag object representing `<mj-carousel-image>`
         
     Examples
     --------
     With content:
-        carousel_image(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import carousel_image
+
+    result = carousel_image("Hello")
+    ```
+
     With attributes and content:
-        carousel_image(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = carousel_image("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-carousel-image", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-carousel-image", content, attributes=attributes, _is_leaf=True)
 
 
 def navbar_link(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-navbar-link>` tag.
@@ -1084,30 +1342,36 @@ def navbar_link(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-navbar-link>
+        MJMLTag object representing `<mj-navbar-link>`
         
     Examples
     --------
     With content:
-        navbar_link(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import navbar_link
+
+    result = navbar_link("Hello")
+    ```
+
     With attributes and content:
-        navbar_link(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = navbar_link("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-navbar-link", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-navbar-link", content, attributes=attributes, _is_leaf=True)
 
 
 def raw(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-raw>` tag.
@@ -1116,30 +1380,36 @@ def raw(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-raw>
+        MJMLTag object representing `<mj-raw>`
         
     Examples
     --------
     With content:
-        raw(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import raw
+
+    result = raw("Hello")
+    ```
+
     With attributes and content:
-        raw(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = raw("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-raw", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-raw", content, attributes=attributes, _is_leaf=True)
 
 
 def social_element(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-social-element>` tag.
@@ -1148,30 +1418,36 @@ def social_element(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-social-element>
+        MJMLTag object representing `<mj-social-element>`
         
     Examples
     --------
     With content:
-        social_element(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import social_element
+
+    result = social_element("Hello")
+    ```
+
     With attributes and content:
-        social_element(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = social_element("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-social-element", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-social-element", content, attributes=attributes, _is_leaf=True)
 
 
 def table(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-table>` tag.
@@ -1180,30 +1456,36 @@ def table(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-table>
+        MJMLTag object representing `<mj-table>`
         
     Examples
     --------
     With content:
-        table(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import table
+
+    result = table("Hello")
+    ```
+
     With attributes and content:
-        table(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = table("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-table", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-table", content, attributes=attributes, _is_leaf=True)
 
 
 def text(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-text>` tag.
@@ -1212,30 +1494,36 @@ def text(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-text>
+        MJMLTag object representing `<mj-text>`
         
     Examples
     --------
     With content:
-        text(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import text
+
+    result = text("Hello")
+    ```
+
     With attributes and content:
-        text(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = text("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-text", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-text", content, attributes=attributes, _is_leaf=True)
 
 
 def title(
-    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
+    attributes: Optional[TagAttrs] = None,
 ):
     """
     Create an MJML `<mj-title>` tag.
@@ -1244,22 +1532,28 @@ def title(
     
     Parameters
     ----------
-    attributes
-        Optional dict of tag attributes
     content
         Text or HTML content for the tag
+    attributes
+        Optional dict of tag attributes
     
     Returns
     -------
     MJMLTag
-        MJMLTag object representing <mj-title>
+        MJMLTag object representing `<mj-title>`
         
     Examples
     --------
     With content:
-        title(content="Hello")
-    
+    ```{python}
+    from emailer_lib.mjml import title
+
+    result = title("Hello")
+    ```
+
     With attributes and content:
-        title(attributes={"color": "red"}, content="Hello")
+    ```{python}
+    result = title("Hello", attributes={"background-color": "red"})
+    ```
     """
-    return MJMLTag("mj-title", attributes=attributes, content=content, _is_leaf=True)
+    return MJMLTag("mj-title", content, attributes=attributes, _is_leaf=True)
