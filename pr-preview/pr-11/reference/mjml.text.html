@@ -156,19 +156,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="emailer_lib.mjml.text" class="level1">
 <h1>mjml.text</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.text(content<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.text(attributes<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create an MJML <code>&lt;mj-text&gt;</code> tag.</p>
 <p>This is an ending tag that accepts text/HTML content but not MJML children.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
+<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Optional dict of tag attributes</p>
+</dd>
 <dt><code><span class="parameter-name"><strong>content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
 <dd>
 <p>Text or HTML content for the tag</p>
-</dd>
-<dt><code><span class="parameter-name">****kwargs**</span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">TagAttrValue</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">{}</span></code></dt>
-<dd>
-<p>Tag attributes</p>
 </dd>
 </dl>
 </section>
@@ -180,6 +180,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>MJMLTag object representing <mj-text></mj-text></p>
 </dd>
 </dl>
+</section>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<p>With content: text(content=“Hello”)</p>
+<p>With attributes and content: text(attributes={“color”: “red”}, content=“Hello”)</p>
 
 
 </section>

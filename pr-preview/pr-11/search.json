@@ -63,14 +63,14 @@
     "href": "reference/mjml.social.html",
     "title": "mjml.social",
     "section": "",
-    "text": "mjml.social(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-social&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.social(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-social&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: social(child1, child2)\nWith attributes: social(attributes={“attr”: “value”})\nWith both: social(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.social.html#parameters",
     "href": "reference/mjml.social.html#parameters",
     "title": "mjml.social",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.social.html#returns",
@@ -80,18 +80,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.social.html#examples",
+    "href": "reference/mjml.social.html#examples",
+    "title": "mjml.social",
+    "section": "",
+    "text": "With children: social(child1, child2)\nWith attributes: social(attributes={“attr”: “value”})\nWith both: social(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.raw.html",
     "href": "reference/mjml.raw.html",
     "title": "mjml.raw",
     "section": "",
-    "text": "mjml.raw(content=None, **kwargs)\nCreate an MJML &lt;mj-raw&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.raw(attributes=None, content=None)\nCreate an MJML &lt;mj-raw&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: raw(content=“Hello”)\nWith attributes and content: raw(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.raw.html#parameters",
     "href": "reference/mjml.raw.html#parameters",
     "title": "mjml.raw",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.raw.html#returns",
@@ -101,18 +108,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.raw.html#examples",
+    "href": "reference/mjml.raw.html#examples",
+    "title": "mjml.raw",
+    "section": "",
+    "text": "With content: raw(content=“Hello”)\nWith attributes and content: raw(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
     "objectID": "reference/mjml.head.html",
     "href": "reference/mjml.head.html",
     "title": "mjml.head",
     "section": "",
-    "text": "mjml.head(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-head&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.head(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-head&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: head(child1, child2)\nWith attributes: head(attributes={“attr”: “value”})\nWith both: head(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.head.html#parameters",
     "href": "reference/mjml.head.html#parameters",
     "title": "mjml.head",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.head.html#returns",
@@ -122,18 +136,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.head.html#examples",
+    "href": "reference/mjml.head.html#examples",
+    "title": "mjml.head",
+    "section": "",
+    "text": "With children: head(child1, child2)\nWith attributes: head(attributes={“attr”: “value”})\nWith both: head(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.accordion.html",
     "href": "reference/mjml.accordion.html",
     "title": "mjml.accordion",
     "section": "",
-    "text": "mjml.accordion(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.accordion(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: accordion(child1, child2)\nWith attributes: accordion(attributes={“attr”: “value”})\nWith both: accordion(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.accordion.html#parameters",
     "href": "reference/mjml.accordion.html#parameters",
     "title": "mjml.accordion",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.accordion.html#returns",
@@ -143,18 +164,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.accordion.html#examples",
+    "href": "reference/mjml.accordion.html#examples",
+    "title": "mjml.accordion",
+    "section": "",
+    "text": "With children: accordion(child1, child2)\nWith attributes: accordion(attributes={“attr”: “value”})\nWith both: accordion(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.body.html",
     "href": "reference/mjml.body.html",
     "title": "mjml.body",
     "section": "",
-    "text": "mjml.body(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-body&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.body(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-body&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: body(child1, child2)\nWith attributes: body(attributes={“attr”: “value”})\nWith both: body(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.body.html#parameters",
     "href": "reference/mjml.body.html#parameters",
     "title": "mjml.body",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.body.html#returns",
@@ -162,6 +190,13 @@
     "title": "mjml.body",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.body.html#examples",
+    "href": "reference/mjml.body.html#examples",
+    "title": "mjml.body",
+    "section": "",
+    "text": "With children: body(child1, child2)\nWith attributes: body(attributes={“attr”: “value”})\nWith both: body(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml_to_intermediate_email.html",
@@ -217,14 +252,14 @@
     "href": "reference/mjml.html_attributes.html",
     "title": "mjml.html_attributes",
     "section": "",
-    "text": "mjml.html_attributes(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.html_attributes(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: html_attributes(child1, child2)\nWith attributes: html_attributes(attributes={“attr”: “value”})\nWith both: html_attributes(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.html_attributes.html#parameters",
     "href": "reference/mjml.html_attributes.html#parameters",
     "title": "mjml.html_attributes",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.html_attributes.html#returns",
@@ -232,6 +267,13 @@
     "title": "mjml.html_attributes",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.html_attributes.html#examples",
+    "href": "reference/mjml.html_attributes.html#examples",
+    "title": "mjml.html_attributes",
+    "section": "",
+    "text": "With children: html_attributes(child1, child2)\nWith attributes: html_attributes(attributes={“attr”: “value”})\nWith both: html_attributes(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/quarto_json_to_intermediate_email.html",
@@ -248,46 +290,74 @@
     "text": "path : str\n\nPath to the Quarto output metadata JSON file"
   },
   {
-    "objectID": "reference/send_quarto_email_with_gmail.html",
-    "href": "reference/send_quarto_email_with_gmail.html",
-    "title": "send_quarto_email_with_gmail",
+    "objectID": "reference/mjml.mj_class.html",
+    "href": "reference/mjml.mj_class.html",
+    "title": "mjml.mj_class",
     "section": "",
-    "text": "send_quarto_email_with_gmail(username, password, json_path, recipients)\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nsend_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
+    "text": "mjml.mj_class(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-class&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: mj_class(child1, child2)\nWith attributes: mj_class(attributes={“attr”: “value”})\nWith both: mj_class(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/send_quarto_email_with_gmail.html#parameters",
-    "href": "reference/send_quarto_email_with_gmail.html#parameters",
-    "title": "send_quarto_email_with_gmail",
+    "objectID": "reference/mjml.mj_class.html#parameters",
+    "href": "reference/mjml.mj_class.html#parameters",
+    "title": "mjml.mj_class",
     "section": "",
-    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/send_quarto_email_with_gmail.html#returns",
-    "href": "reference/send_quarto_email_with_gmail.html#returns",
-    "title": "send_quarto_email_with_gmail",
+    "objectID": "reference/mjml.mj_class.html#returns",
+    "href": "reference/mjml.mj_class.html#returns",
+    "title": "mjml.mj_class",
     "section": "",
-    "text": ": None\n\nThe function sends an email but doesn’t return a value"
+    "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/send_quarto_email_with_gmail.html#examples",
-    "href": "reference/send_quarto_email_with_gmail.html#examples",
-    "title": "send_quarto_email_with_gmail",
+    "objectID": "reference/mjml.mj_class.html#examples",
+    "href": "reference/mjml.mj_class.html#examples",
+    "title": "mjml.mj_class",
     "section": "",
-    "text": "send_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
+    "text": "With children: mj_class(child1, child2)\nWith attributes: mj_class(attributes={“attr”: “value”})\nWith both: mj_class(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/mjml.mj_all.html",
+    "href": "reference/mjml.mj_all.html",
+    "title": "mjml.mj_all",
+    "section": "",
+    "text": "mjml.mj_all(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-all&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: mj_all(child1, child2)\nWith attributes: mj_all(attributes={“attr”: “value”})\nWith both: mj_all(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/mjml.mj_all.html#parameters",
+    "href": "reference/mjml.mj_all.html#parameters",
+    "title": "mjml.mj_all",
+    "section": "",
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.mj_all.html#returns",
+    "href": "reference/mjml.mj_all.html#returns",
+    "title": "mjml.mj_all",
+    "section": "",
+    "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.mj_all.html#examples",
+    "href": "reference/mjml.mj_all.html#examples",
+    "title": "mjml.mj_all",
+    "section": "",
+    "text": "With children: mj_all(child1, child2)\nWith attributes: mj_all(attributes={“attr”: “value”})\nWith both: mj_all(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.accordion_title.html",
     "href": "reference/mjml.accordion_title.html",
     "title": "mjml.accordion_title",
     "section": "",
-    "text": "mjml.accordion_title(content=None, **kwargs)\nCreate an MJML &lt;mj-accordion-title&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.accordion_title(attributes=None, content=None)\nCreate an MJML &lt;mj-accordion-title&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: accordion_title(content=“Hello”)\nWith attributes and content: accordion_title(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.accordion_title.html#parameters",
     "href": "reference/mjml.accordion_title.html#parameters",
     "title": "mjml.accordion_title",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.accordion_title.html#returns",
@@ -297,18 +367,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.accordion_title.html#examples",
+    "href": "reference/mjml.accordion_title.html#examples",
+    "title": "mjml.accordion_title",
+    "section": "",
+    "text": "With content: accordion_title(content=“Hello”)\nWith attributes and content: accordion_title(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
     "objectID": "reference/mjml.accordion_text.html",
     "href": "reference/mjml.accordion_text.html",
     "title": "mjml.accordion_text",
     "section": "",
-    "text": "mjml.accordion_text(content=None, **kwargs)\nCreate an MJML &lt;mj-accordion-text&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.accordion_text(attributes=None, content=None)\nCreate an MJML &lt;mj-accordion-text&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: accordion_text(content=“Hello”)\nWith attributes and content: accordion_text(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.accordion_text.html#parameters",
     "href": "reference/mjml.accordion_text.html#parameters",
     "title": "mjml.accordion_text",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.accordion_text.html#returns",
@@ -318,18 +395,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.accordion_text.html#examples",
+    "href": "reference/mjml.accordion_text.html#examples",
+    "title": "mjml.accordion_text",
+    "section": "",
+    "text": "With content: accordion_text(content=“Hello”)\nWith attributes and content: accordion_text(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
     "objectID": "reference/mjml.hero.html",
     "href": "reference/mjml.hero.html",
     "title": "mjml.hero",
     "section": "",
-    "text": "mjml.hero(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.hero(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: hero(child1, child2)\nWith attributes: hero(attributes={“attr”: “value”})\nWith both: hero(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.hero.html#parameters",
     "href": "reference/mjml.hero.html#parameters",
     "title": "mjml.hero",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.hero.html#returns",
@@ -337,6 +421,13 @@
     "title": "mjml.hero",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.hero.html#examples",
+    "href": "reference/mjml.hero.html#examples",
+    "title": "mjml.hero",
+    "section": "",
+    "text": "With children: hero(child1, child2)\nWith attributes: hero(attributes={“attr”: “value”})\nWith both: hero(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/IntermediateEmail.preview_send_email.html",
@@ -364,14 +455,14 @@
     "href": "reference/mjml.button.html",
     "title": "mjml.button",
     "section": "",
-    "text": "mjml.button(content=None, **kwargs)\nCreate an MJML &lt;mj-button&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.button(attributes=None, content=None)\nCreate an MJML &lt;mj-button&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: button(content=“Hello”)\nWith attributes and content: button(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.button.html#parameters",
     "href": "reference/mjml.button.html#parameters",
     "title": "mjml.button",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.button.html#returns",
@@ -381,123 +472,158 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/index.html",
-    "href": "reference/index.html",
-    "title": "API Reference",
+    "objectID": "reference/mjml.button.html#examples",
+    "href": "reference/mjml.button.html#examples",
+    "title": "mjml.button",
     "section": "",
-    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nIntermediateEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nIntermediateEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nIntermediateEmail.write_email_message\nConvert the IntermediateEmail to a Python EmailMessage.\n\n\nIntermediateEmail.preview_send_email\nSend a preview of the email to a test recipient.\n\n\n\n\n\n\nConverting emails to IntermediateEmails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_intermediate_email\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\nmjml_to_intermediate_email\nConvert MJML markup to an IntermediateEmail\n\n\nredmail_to_intermediate_email\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nyagmail_to_intermediate_email\nConvert a Yagmail email object to an IntermediateEmail\n\n\n\n\n\n\nFunctions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_intermediate_email_with_gmail\nSend an Intermediate Email object via Gmail.\n\n\nsend_intermediate_email_with_smtp\nSend an Intermediate Email object via SMTP.\n\n\nsend_intermediate_email_with_redmail\nSend an Intermediate Email object via Redmail.\n\n\nsend_intermediate_email_with_yagmail\nSend an Intermediate Email object via Yagmail.\n\n\nsend_intermediate_email_with_mailgun\nSend an Intermediate Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\n\n\n\nPreviews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\n\n\n\n\n\n\nWrite responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.include\nCreate an MJML &lt;mj-include&gt; tag.\n\n\nmjml.attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
+    "text": "With content: button(content=“Hello”)\nWith attributes and content: button(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
-    "objectID": "reference/index.html#the-email-object",
-    "href": "reference/index.html#the-email-object",
-    "title": "API Reference",
+    "objectID": "reference/mjml.carousel.html",
+    "href": "reference/mjml.carousel.html",
+    "title": "mjml.carousel",
     "section": "",
-    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nIntermediateEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nIntermediateEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nIntermediateEmail.write_email_message\nConvert the IntermediateEmail to a Python EmailMessage.\n\n\nIntermediateEmail.preview_send_email\nSend a preview of the email to a test recipient."
+    "text": "mjml.carousel(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: carousel(child1, child2)\nWith attributes: carousel(attributes={“attr”: “value”})\nWith both: carousel(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/index.html#uploading-emails",
-    "href": "reference/index.html#uploading-emails",
-    "title": "API Reference",
+    "objectID": "reference/mjml.carousel.html#parameters",
+    "href": "reference/mjml.carousel.html#parameters",
+    "title": "mjml.carousel",
     "section": "",
-    "text": "Converting emails to IntermediateEmails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_intermediate_email\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\nmjml_to_intermediate_email\nConvert MJML markup to an IntermediateEmail\n\n\nredmail_to_intermediate_email\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nyagmail_to_intermediate_email\nConvert a Yagmail email object to an IntermediateEmail"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/index.html#sending",
-    "href": "reference/index.html#sending",
-    "title": "API Reference",
-    "section": "",
-    "text": "Functions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_intermediate_email_with_gmail\nSend an Intermediate Email object via Gmail.\n\n\nsend_intermediate_email_with_smtp\nSend an Intermediate Email object via SMTP.\n\n\nsend_intermediate_email_with_redmail\nSend an Intermediate Email object via Redmail.\n\n\nsend_intermediate_email_with_yagmail\nSend an Intermediate Email object via Yagmail.\n\n\nsend_intermediate_email_with_mailgun\nSend an Intermediate Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file."
-  },
-  {
-    "objectID": "reference/index.html#utilities",
-    "href": "reference/index.html#utilities",
-    "title": "API Reference",
-    "section": "",
-    "text": "Previews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid)."
-  },
-  {
-    "objectID": "reference/index.html#mjml-authoring",
-    "href": "reference/index.html#mjml-authoring",
-    "title": "API Reference",
-    "section": "",
-    "text": "Write responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.include\nCreate an MJML &lt;mj-include&gt; tag.\n\n\nmjml.attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
-  },
-  {
-    "objectID": "reference/mjml.group.html",
-    "href": "reference/mjml.group.html",
-    "title": "mjml.group",
-    "section": "",
-    "text": "mjml.group(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-group&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
-  },
-  {
-    "objectID": "reference/mjml.group.html#parameters",
-    "href": "reference/mjml.group.html#parameters",
-    "title": "mjml.group",
-    "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
-  },
-  {
-    "objectID": "reference/mjml.group.html#returns",
-    "href": "reference/mjml.group.html#returns",
-    "title": "mjml.group",
+    "objectID": "reference/mjml.carousel.html#returns",
+    "href": "reference/mjml.carousel.html#returns",
+    "title": "mjml.carousel",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/mjml.preview.html",
-    "href": "reference/mjml.preview.html",
-    "title": "mjml.preview",
+    "objectID": "reference/mjml.carousel.html#examples",
+    "href": "reference/mjml.carousel.html#examples",
+    "title": "mjml.carousel",
     "section": "",
-    "text": "mjml.preview(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "With children: carousel(child1, child2)\nWith attributes: carousel(attributes={“attr”: “value”})\nWith both: carousel(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.preview.html#parameters",
-    "href": "reference/mjml.preview.html#parameters",
-    "title": "mjml.preview",
+    "objectID": "reference/mjml.style.html",
+    "href": "reference/mjml.style.html",
+    "title": "mjml.style",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "mjml.style(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-style&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: style(child1, child2)\nWith attributes: style(attributes={“attr”: “value”})\nWith both: style(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.preview.html#returns",
-    "href": "reference/mjml.preview.html#returns",
-    "title": "mjml.preview",
+    "objectID": "reference/mjml.style.html#parameters",
+    "href": "reference/mjml.style.html#parameters",
+    "title": "mjml.style",
+    "section": "",
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.style.html#returns",
+    "href": "reference/mjml.style.html#returns",
+    "title": "mjml.style",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
-    "title": "write_email_message",
+    "objectID": "reference/mjml.style.html#examples",
+    "href": "reference/mjml.style.html#examples",
+    "title": "mjml.style",
     "section": "",
-    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
+    "text": "With children: style(child1, child2)\nWith attributes: style(attributes={“attr”: “value”})\nWith both: style(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
-    "title": "write_email_message",
+    "objectID": "reference/mjml.breakpoint.html",
+    "href": "reference/mjml.breakpoint.html",
+    "title": "mjml.breakpoint",
     "section": "",
-    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+    "text": "mjml.breakpoint(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: breakpoint(child1, child2)\nWith attributes: breakpoint(attributes={“attr”: “value”})\nWith both: breakpoint(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
-    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
-    "title": "write_email_message",
+    "objectID": "reference/mjml.breakpoint.html#parameters",
+    "href": "reference/mjml.breakpoint.html#parameters",
+    "title": "mjml.breakpoint",
     "section": "",
-    "text": "msg = email.write_email_message()"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.breakpoint.html#returns",
+    "href": "reference/mjml.breakpoint.html#returns",
+    "title": "mjml.breakpoint",
+    "section": "",
+    "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.breakpoint.html#examples",
+    "href": "reference/mjml.breakpoint.html#examples",
+    "title": "mjml.breakpoint",
+    "section": "",
+    "text": "With children: breakpoint(child1, child2)\nWith attributes: breakpoint(attributes={“attr”: “value”})\nWith both: breakpoint(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/mjml.table.html",
+    "href": "reference/mjml.table.html",
+    "title": "mjml.table",
+    "section": "",
+    "text": "mjml.table(attributes=None, content=None)\nCreate an MJML &lt;mj-table&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: table(content=“Hello”)\nWith attributes and content: table(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
+    "objectID": "reference/mjml.table.html#parameters",
+    "href": "reference/mjml.table.html#parameters",
+    "title": "mjml.table",
+    "section": "",
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.table.html#returns",
+    "href": "reference/mjml.table.html#returns",
+    "title": "mjml.table",
+    "section": "",
+    "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.table.html#examples",
+    "href": "reference/mjml.table.html#examples",
+    "title": "mjml.table",
+    "section": "",
+    "text": "With content: table(content=“Hello”)\nWith attributes and content: table(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
+    "title": "preview_send_email",
+    "section": "",
+    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
+    "title": "preview_send_email",
+    "section": "",
+    "text": ": None"
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
+    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
+    "title": "preview_send_email",
+    "section": "",
+    "text": "email.preview_send_email()"
   },
   {
     "objectID": "reference/mjml.wrapper.html",
     "href": "reference/mjml.wrapper.html",
     "title": "mjml.wrapper",
     "section": "",
-    "text": "mjml.wrapper(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-wrapper&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.wrapper(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-wrapper&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: wrapper(child1, child2)\nWith attributes: wrapper(attributes={“attr”: “value”})\nWith both: wrapper(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.wrapper.html#parameters",
     "href": "reference/mjml.wrapper.html#parameters",
     "title": "mjml.wrapper",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.wrapper.html#returns",
@@ -505,6 +631,13 @@
     "title": "mjml.wrapper",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.wrapper.html#examples",
+    "href": "reference/mjml.wrapper.html#examples",
+    "title": "mjml.wrapper",
+    "section": "",
+    "text": "With children: wrapper(child1, child2)\nWith attributes: wrapper(attributes={“attr”: “value”})\nWith both: wrapper(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/send_intermediate_email_with_smtp.html",
@@ -546,14 +679,14 @@
     "href": "reference/mjml.text.html",
     "title": "mjml.text",
     "section": "",
-    "text": "mjml.text(content=None, **kwargs)\nCreate an MJML &lt;mj-text&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.text(attributes=None, content=None)\nCreate an MJML &lt;mj-text&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: text(content=“Hello”)\nWith attributes and content: text(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.text.html#parameters",
     "href": "reference/mjml.text.html#parameters",
     "title": "mjml.text",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.text.html#returns",
@@ -563,18 +696,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.text.html#examples",
+    "href": "reference/mjml.text.html#examples",
+    "title": "mjml.text",
+    "section": "",
+    "text": "With content: text(content=“Hello”)\nWith attributes and content: text(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
     "objectID": "reference/mjml.social_element.html",
     "href": "reference/mjml.social_element.html",
     "title": "mjml.social_element",
     "section": "",
-    "text": "mjml.social_element(content=None, **kwargs)\nCreate an MJML &lt;mj-social-element&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.social_element(attributes=None, content=None)\nCreate an MJML &lt;mj-social-element&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: social_element(content=“Hello”)\nWith attributes and content: social_element(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.social_element.html#parameters",
     "href": "reference/mjml.social_element.html#parameters",
     "title": "mjml.social_element",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.social_element.html#returns",
@@ -582,6 +722,13 @@
     "title": "mjml.social_element",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.social_element.html#examples",
+    "href": "reference/mjml.social_element.html#examples",
+    "title": "mjml.social_element",
+    "section": "",
+    "text": "With content: social_element(content=“Hello”)\nWith attributes and content: social_element(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "content-layout.html",
@@ -700,14 +847,14 @@
     "href": "reference/mjml.carousel_image.html",
     "title": "mjml.carousel_image",
     "section": "",
-    "text": "mjml.carousel_image(content=None, **kwargs)\nCreate an MJML &lt;mj-carousel-image&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.carousel_image(attributes=None, content=None)\nCreate an MJML &lt;mj-carousel-image&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: carousel_image(content=“Hello”)\nWith attributes and content: carousel_image(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.carousel_image.html#parameters",
     "href": "reference/mjml.carousel_image.html#parameters",
     "title": "mjml.carousel_image",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.carousel_image.html#returns",
@@ -715,6 +862,13 @@
     "title": "mjml.carousel_image",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.carousel_image.html#examples",
+    "href": "reference/mjml.carousel_image.html#examples",
+    "title": "mjml.carousel_image",
+    "section": "",
+    "text": "With content: carousel_image(content=“Hello”)\nWith attributes and content: carousel_image(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.attributes.html",
@@ -780,123 +934,193 @@
     "text": "(none)\nNot yet implemented"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html",
-    "title": "preview_send_email",
+    "objectID": "reference/mjml.html_attribute.html",
+    "href": "reference/mjml.html_attribute.html",
+    "title": "mjml.html_attribute",
     "section": "",
-    "text": "IntermediateEmail.preview_send_email()\nSend a preview of the email to a test recipient.\nThis method is intended for sending the email to a designated preview recipient for testing purposes before sending to the full recipient list.\n\n\n\n : None\n\n\n\n\n\n\n\nemail.preview_send_email()"
+    "text": "mjml.html_attribute(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: html_attribute(child1, child2)\nWith attributes: html_attribute(attributes={“attr”: “value”})\nWith both: html_attribute(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#returns",
-    "title": "preview_send_email",
+    "objectID": "reference/mjml.html_attribute.html#parameters",
+    "href": "reference/mjml.html_attribute.html#parameters",
+    "title": "mjml.html_attribute",
     "section": "",
-    "text": ": None"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
-    "href": "reference/emailer_lib.IntermediateEmail.preview_send_email.html#examples",
-    "title": "preview_send_email",
-    "section": "",
-    "text": "email.preview_send_email()"
-  },
-  {
-    "objectID": "reference/mjml.table.html",
-    "href": "reference/mjml.table.html",
-    "title": "mjml.table",
-    "section": "",
-    "text": "mjml.table(content=None, **kwargs)\nCreate an MJML &lt;mj-table&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
-  },
-  {
-    "objectID": "reference/mjml.table.html#parameters",
-    "href": "reference/mjml.table.html#parameters",
-    "title": "mjml.table",
-    "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
-  },
-  {
-    "objectID": "reference/mjml.table.html#returns",
-    "href": "reference/mjml.table.html#returns",
-    "title": "mjml.table",
+    "objectID": "reference/mjml.html_attribute.html#returns",
+    "href": "reference/mjml.html_attribute.html#returns",
+    "title": "mjml.html_attribute",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/mjml.breakpoint.html",
-    "href": "reference/mjml.breakpoint.html",
-    "title": "mjml.breakpoint",
+    "objectID": "reference/mjml.html_attribute.html#examples",
+    "href": "reference/mjml.html_attribute.html#examples",
+    "title": "mjml.html_attribute",
     "section": "",
-    "text": "mjml.breakpoint(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "With children: html_attribute(child1, child2)\nWith attributes: html_attribute(attributes={“attr”: “value”})\nWith both: html_attribute(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.breakpoint.html#parameters",
-    "href": "reference/mjml.breakpoint.html#parameters",
-    "title": "mjml.breakpoint",
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html",
+    "title": "write_email_message",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "IntermediateEmail.write_email_message()\nConvert the IntermediateEmail to a Python EmailMessage.\nThis method creates a standard library EmailMessage object from the IntermediateEmail, including HTML, plain text, recipients, and attachments.\n\n\n\n : EmailMessage\n\nThe constructed EmailMessage object.\n\n\n\n\n\nmsg = email.write_email_message()"
   },
   {
-    "objectID": "reference/mjml.breakpoint.html#returns",
-    "href": "reference/mjml.breakpoint.html#returns",
-    "title": "mjml.breakpoint",
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#returns",
+    "title": "write_email_message",
+    "section": "",
+    "text": ": EmailMessage\n\nThe constructed EmailMessage object."
+  },
+  {
+    "objectID": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
+    "href": "reference/emailer_lib.IntermediateEmail.write_email_message.html#examples",
+    "title": "write_email_message",
+    "section": "",
+    "text": "msg = email.write_email_message()"
+  },
+  {
+    "objectID": "reference/mjml.preview.html",
+    "href": "reference/mjml.preview.html",
+    "title": "mjml.preview",
+    "section": "",
+    "text": "mjml.preview(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: preview(child1, child2)\nWith attributes: preview(attributes={“attr”: “value”})\nWith both: preview(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/mjml.preview.html#parameters",
+    "href": "reference/mjml.preview.html#parameters",
+    "title": "mjml.preview",
+    "section": "",
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.preview.html#returns",
+    "href": "reference/mjml.preview.html#returns",
+    "title": "mjml.preview",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/mjml.style.html",
-    "href": "reference/mjml.style.html",
-    "title": "mjml.style",
+    "objectID": "reference/mjml.preview.html#examples",
+    "href": "reference/mjml.preview.html#examples",
+    "title": "mjml.preview",
     "section": "",
-    "text": "mjml.style(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-style&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "With children: preview(child1, child2)\nWith attributes: preview(attributes={“attr”: “value”})\nWith both: preview(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.style.html#parameters",
-    "href": "reference/mjml.style.html#parameters",
-    "title": "mjml.style",
+    "objectID": "reference/mjml.group.html",
+    "href": "reference/mjml.group.html",
+    "title": "mjml.group",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "mjml.group(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-group&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: group(child1, child2)\nWith attributes: group(attributes={“attr”: “value”})\nWith both: group(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.style.html#returns",
-    "href": "reference/mjml.style.html#returns",
-    "title": "mjml.style",
+    "objectID": "reference/mjml.group.html#parameters",
+    "href": "reference/mjml.group.html#parameters",
+    "title": "mjml.group",
+    "section": "",
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.group.html#returns",
+    "href": "reference/mjml.group.html#returns",
+    "title": "mjml.group",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
-    "objectID": "reference/mjml.carousel.html",
-    "href": "reference/mjml.carousel.html",
-    "title": "mjml.carousel",
+    "objectID": "reference/mjml.group.html#examples",
+    "href": "reference/mjml.group.html#examples",
+    "title": "mjml.group",
     "section": "",
-    "text": "mjml.carousel(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "With children: group(child1, child2)\nWith attributes: group(attributes={“attr”: “value”})\nWith both: group(child1, child2, attributes={“attr”: “value”})"
   },
   {
-    "objectID": "reference/mjml.carousel.html#parameters",
-    "href": "reference/mjml.carousel.html#parameters",
-    "title": "mjml.carousel",
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "API Reference",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nIntermediateEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nIntermediateEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nIntermediateEmail.write_email_message\nConvert the IntermediateEmail to a Python EmailMessage.\n\n\nIntermediateEmail.preview_send_email\nSend a preview of the email to a test recipient.\n\n\n\n\n\n\nConverting emails to IntermediateEmails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_intermediate_email\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\nmjml_to_intermediate_email\nConvert MJML markup to an IntermediateEmail\n\n\nredmail_to_intermediate_email\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nyagmail_to_intermediate_email\nConvert a Yagmail email object to an IntermediateEmail\n\n\n\n\n\n\nFunctions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_intermediate_email_with_gmail\nSend an Intermediate Email object via Gmail.\n\n\nsend_intermediate_email_with_smtp\nSend an Intermediate Email object via SMTP.\n\n\nsend_intermediate_email_with_redmail\nSend an Intermediate Email object via Redmail.\n\n\nsend_intermediate_email_with_yagmail\nSend an Intermediate Email object via Yagmail.\n\n\nsend_intermediate_email_with_mailgun\nSend an Intermediate Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\n\n\n\nPreviews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\n\n\n\n\n\n\nWrite responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
   },
   {
-    "objectID": "reference/mjml.carousel.html#returns",
-    "href": "reference/mjml.carousel.html#returns",
-    "title": "mjml.carousel",
+    "objectID": "reference/index.html#the-email-object",
+    "href": "reference/index.html#the-email-object",
+    "title": "API Reference",
+    "section": "",
+    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nIntermediateEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nIntermediateEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nIntermediateEmail.write_email_message\nConvert the IntermediateEmail to a Python EmailMessage.\n\n\nIntermediateEmail.preview_send_email\nSend a preview of the email to a test recipient."
+  },
+  {
+    "objectID": "reference/index.html#uploading-emails",
+    "href": "reference/index.html#uploading-emails",
+    "title": "API Reference",
+    "section": "",
+    "text": "Converting emails to IntermediateEmails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_intermediate_email\nConvert a Quarto output metadata JSON file to an IntermediateEmail\n\n\nmjml_to_intermediate_email\nConvert MJML markup to an IntermediateEmail\n\n\nredmail_to_intermediate_email\nConvert a Redmail EmailMessage object to an IntermediateEmail\n\n\nyagmail_to_intermediate_email\nConvert a Yagmail email object to an IntermediateEmail"
+  },
+  {
+    "objectID": "reference/index.html#sending",
+    "href": "reference/index.html#sending",
+    "title": "API Reference",
+    "section": "",
+    "text": "Functions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_intermediate_email_with_gmail\nSend an Intermediate Email object via Gmail.\n\n\nsend_intermediate_email_with_smtp\nSend an Intermediate Email object via SMTP.\n\n\nsend_intermediate_email_with_redmail\nSend an Intermediate Email object via Redmail.\n\n\nsend_intermediate_email_with_yagmail\nSend an Intermediate Email object via Yagmail.\n\n\nsend_intermediate_email_with_mailgun\nSend an Intermediate Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file."
+  },
+  {
+    "objectID": "reference/index.html#utilities",
+    "href": "reference/index.html#utilities",
+    "title": "API Reference",
+    "section": "",
+    "text": "Previews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid)."
+  },
+  {
+    "objectID": "reference/index.html#mjml-authoring",
+    "href": "reference/index.html#mjml-authoring",
+    "title": "API Reference",
+    "section": "",
+    "text": "Write responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html",
+    "href": "reference/mjml.mj_attributes.html",
+    "title": "mjml.mj_attributes",
+    "section": "",
+    "text": "mjml.mj_attributes(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: mj_attributes(child1, child2)\nWith attributes: mj_attributes(attributes={“attr”: “value”})\nWith both: mj_attributes(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html#parameters",
+    "href": "reference/mjml.mj_attributes.html#parameters",
+    "title": "mjml.mj_attributes",
+    "section": "",
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html#returns",
+    "href": "reference/mjml.mj_attributes.html#returns",
+    "title": "mjml.mj_attributes",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html#examples",
+    "href": "reference/mjml.mj_attributes.html#examples",
+    "title": "mjml.mj_attributes",
+    "section": "",
+    "text": "With children: mj_attributes(child1, child2)\nWith attributes: mj_attributes(attributes={“attr”: “value”})\nWith both: mj_attributes(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.divider.html",
     "href": "reference/mjml.divider.html",
     "title": "mjml.divider",
     "section": "",
-    "text": "mjml.divider(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.divider(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: divider(child1, child2)\nWith attributes: divider(attributes={“attr”: “value”})\nWith both: divider(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.divider.html#parameters",
     "href": "reference/mjml.divider.html#parameters",
     "title": "mjml.divider",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.divider.html#returns",
@@ -904,6 +1128,13 @@
     "title": "mjml.divider",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.divider.html#examples",
+    "href": "reference/mjml.divider.html#examples",
+    "title": "mjml.divider",
+    "section": "",
+    "text": "With children: divider(child1, child2)\nWith attributes: divider(attributes={“attr”: “value”})\nWith both: divider(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/send_intermediate_email_with_gmail.html",
@@ -938,14 +1169,14 @@
     "href": "reference/mjml.font.html",
     "title": "mjml.font",
     "section": "",
-    "text": "mjml.font(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-font&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.font(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-font&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: font(child1, child2)\nWith attributes: font(attributes={“attr”: “value”})\nWith both: font(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.font.html#parameters",
     "href": "reference/mjml.font.html#parameters",
     "title": "mjml.font",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.font.html#returns",
@@ -953,6 +1184,13 @@
     "title": "mjml.font",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.font.html#examples",
+    "href": "reference/mjml.font.html#examples",
+    "title": "mjml.font",
+    "section": "",
+    "text": "With children: font(child1, child2)\nWith attributes: font(attributes={“attr”: “value”})\nWith both: font(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/emailer_lib.IntermediateEmail.write_preview_email.html",
@@ -994,14 +1232,14 @@
     "href": "reference/mjml.image.html",
     "title": "mjml.image",
     "section": "",
-    "text": "mjml.image(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-image&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.image(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-image&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: image(child1, child2)\nWith attributes: image(attributes={“attr”: “value”})\nWith both: image(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.image.html#parameters",
     "href": "reference/mjml.image.html#parameters",
     "title": "mjml.image",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.image.html#returns",
@@ -1009,6 +1247,41 @@
     "title": "mjml.image",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.image.html#examples",
+    "href": "reference/mjml.image.html#examples",
+    "title": "mjml.image",
+    "section": "",
+    "text": "With children: image(child1, child2)\nWith attributes: image(attributes={“attr”: “value”})\nWith both: image(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
+    "objectID": "reference/send_quarto_email_with_gmail.html",
+    "href": "reference/send_quarto_email_with_gmail.html",
+    "title": "send_quarto_email_with_gmail",
+    "section": "",
+    "text": "send_quarto_email_with_gmail(username, password, json_path, recipients)\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\nusername : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to\n\n\n\n\n\n\n : None\n\nThe function sends an email but doesn’t return a value\n\n\n\n\n\nsend_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
+  },
+  {
+    "objectID": "reference/send_quarto_email_with_gmail.html#parameters",
+    "href": "reference/send_quarto_email_with_gmail.html#parameters",
+    "title": "send_quarto_email_with_gmail",
+    "section": "",
+    "text": "username : str\n\nGmail account username for sending the email\n\npassword : str\n\nGmail app password\n\njson_path : str\n\nPath to the Quarto-generated .output_metadata.json file\n\nrecipients : list[str]\n\nList of email addresses to send the email to"
+  },
+  {
+    "objectID": "reference/send_quarto_email_with_gmail.html#returns",
+    "href": "reference/send_quarto_email_with_gmail.html#returns",
+    "title": "send_quarto_email_with_gmail",
+    "section": "",
+    "text": ": None\n\nThe function sends an email but doesn’t return a value"
+  },
+  {
+    "objectID": "reference/send_quarto_email_with_gmail.html#examples",
+    "href": "reference/send_quarto_email_with_gmail.html#examples",
+    "title": "send_quarto_email_with_gmail",
+    "section": "",
+    "text": "send_quarto_email_with_gmail(\n    \"user@gmail.com\",\n    \"password123\",\n    \"path/to/output_metadata.json\",\n    [\"recipient1@example.com\", \"recipient2@example.com\"]\n)"
   },
   {
     "objectID": "reference/IntermediateEmail.html",
@@ -1043,14 +1316,14 @@
     "href": "reference/mjml.navbar_link.html",
     "title": "mjml.navbar_link",
     "section": "",
-    "text": "mjml.navbar_link(content=None, **kwargs)\nCreate an MJML &lt;mj-navbar-link&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.navbar_link(attributes=None, content=None)\nCreate an MJML &lt;mj-navbar-link&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: navbar_link(content=“Hello”)\nWith attributes and content: navbar_link(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.navbar_link.html#parameters",
     "href": "reference/mjml.navbar_link.html#parameters",
     "title": "mjml.navbar_link",
     "section": "",
-    "text": "content : Optional[str] = None\n\nText or HTML content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.navbar_link.html#returns",
@@ -1060,18 +1333,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.navbar_link.html#examples",
+    "href": "reference/mjml.navbar_link.html#examples",
+    "title": "mjml.navbar_link",
+    "section": "",
+    "text": "With content: navbar_link(content=“Hello”)\nWith attributes and content: navbar_link(attributes={“color”: “red”}, content=“Hello”)"
+  },
+  {
     "objectID": "reference/mjml.title.html",
     "href": "reference/mjml.title.html",
     "title": "mjml.title",
     "section": "",
-    "text": "mjml.title(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-title&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.title(attributes=None, content=None)\nCreate an MJML &lt;mj-title&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children.\n\n\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith content: title(content=“Hello”)\nWith attributes and content: title(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/mjml.title.html#parameters",
     "href": "reference/mjml.title.html#parameters",
     "title": "mjml.title",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "attributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag"
   },
   {
     "objectID": "reference/mjml.title.html#returns",
@@ -1079,6 +1359,13 @@
     "title": "mjml.title",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.title.html#examples",
+    "href": "reference/mjml.title.html#examples",
+    "title": "mjml.title",
+    "section": "",
+    "text": "With content: title(content=“Hello”)\nWith attributes and content: title(attributes={“color”: “red”}, content=“Hello”)"
   },
   {
     "objectID": "reference/IntermediateEmail.write_preview_email.html",
@@ -1120,14 +1407,14 @@
     "href": "reference/mjml.navbar.html",
     "title": "mjml.navbar",
     "section": "",
-    "text": "mjml.navbar(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.navbar(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: navbar(child1, child2)\nWith attributes: navbar(attributes={“attr”: “value”})\nWith both: navbar(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.navbar.html#parameters",
     "href": "reference/mjml.navbar.html#parameters",
     "title": "mjml.navbar",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.navbar.html#returns",
@@ -1137,18 +1424,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.navbar.html#examples",
+    "href": "reference/mjml.navbar.html#examples",
+    "title": "mjml.navbar",
+    "section": "",
+    "text": "With children: navbar(child1, child2)\nWith attributes: navbar(attributes={“attr”: “value”})\nWith both: navbar(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.spacer.html",
     "href": "reference/mjml.spacer.html",
     "title": "mjml.spacer",
     "section": "",
-    "text": "mjml.spacer(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.spacer(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: spacer(child1, child2)\nWith attributes: spacer(attributes={“attr”: “value”})\nWith both: spacer(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.spacer.html#parameters",
     "href": "reference/mjml.spacer.html#parameters",
     "title": "mjml.spacer",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.spacer.html#returns",
@@ -1158,18 +1452,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.spacer.html#examples",
+    "href": "reference/mjml.spacer.html#examples",
+    "title": "mjml.spacer",
+    "section": "",
+    "text": "With children: spacer(child1, child2)\nWith attributes: spacer(attributes={“attr”: “value”})\nWith both: spacer(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.column.html",
     "href": "reference/mjml.column.html",
     "title": "mjml.column",
     "section": "",
-    "text": "mjml.column(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-column&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.column(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-column&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: column(child1, child2)\nWith attributes: column(attributes={“attr”: “value”})\nWith both: column(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.column.html#parameters",
     "href": "reference/mjml.column.html#parameters",
     "title": "mjml.column",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.column.html#returns",
@@ -1179,18 +1480,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.column.html#examples",
+    "href": "reference/mjml.column.html#examples",
+    "title": "mjml.column",
+    "section": "",
+    "text": "With children: column(child1, child2)\nWith attributes: column(attributes={“attr”: “value”})\nWith both: column(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.mjml.html",
     "href": "reference/mjml.mjml.html",
     "title": "mjml.mjml",
     "section": "",
-    "text": "mjml.mjml(*args, content=None, **kwargs)\nCreate an MJML &lt;mjml&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.mjml(*args, attributes=None, content=None)\nCreate an MJML &lt;mjml&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: mjml(child1, child2)\nWith attributes: mjml(attributes={“attr”: “value”})\nWith both: mjml(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.mjml.html#parameters",
     "href": "reference/mjml.mjml.html#parameters",
     "title": "mjml.mjml",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.mjml.html#returns",
@@ -1200,18 +1508,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.mjml.html#examples",
+    "href": "reference/mjml.mjml.html#examples",
+    "title": "mjml.mjml",
+    "section": "",
+    "text": "With children: mjml(child1, child2)\nWith attributes: mjml(attributes={“attr”: “value”})\nWith both: mjml(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.accordion_element.html",
     "href": "reference/mjml.accordion_element.html",
     "title": "mjml.accordion_element",
     "section": "",
-    "text": "mjml.accordion_element(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.accordion_element(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: accordion_element(child1, child2)\nWith attributes: accordion_element(attributes={“attr”: “value”})\nWith both: accordion_element(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.accordion_element.html#parameters",
     "href": "reference/mjml.accordion_element.html#parameters",
     "title": "mjml.accordion_element",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.accordion_element.html#returns",
@@ -1221,18 +1536,25 @@
     "text": ": MJMLTag\n\nMJMLTag object representing"
   },
   {
+    "objectID": "reference/mjml.accordion_element.html#examples",
+    "href": "reference/mjml.accordion_element.html#examples",
+    "title": "mjml.accordion_element",
+    "section": "",
+    "text": "With children: accordion_element(child1, child2)\nWith attributes: accordion_element(attributes={“attr”: “value”})\nWith both: accordion_element(child1, child2, attributes={“attr”: “value”})"
+  },
+  {
     "objectID": "reference/mjml.section.html",
     "href": "reference/mjml.section.html",
     "title": "mjml.section",
     "section": "",
-    "text": "mjml.section(*args, content=None, **kwargs)\nCreate an MJML &lt;mj-section&gt; tag.\n\n\n\n*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing"
+    "text": "mjml.section(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-section&gt; tag.\n\n\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n\n\n\n\n\n : MJMLTag\n\nMJMLTag object representing \n\n\n\n\n\nWith children: section(child1, child2)\nWith attributes: section(attributes={“attr”: “value”})\nWith both: section(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/mjml.section.html#parameters",
     "href": "reference/mjml.section.html#parameters",
     "title": "mjml.section",
     "section": "",
-    "text": "*args : Union[TagChild, TagAttrs] = ()\n\nChildren or attribute dicts\n\ncontent : Optional[str] = None\n\nOptional text content for the tag\n\n****kwargs** : TagAttrValue = {}\n\nTag attributes"
+    "text": "*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
     "objectID": "reference/mjml.section.html#returns",
@@ -1240,6 +1562,13 @@
     "title": "mjml.section",
     "section": "",
     "text": ": MJMLTag\n\nMJMLTag object representing"
+  },
+  {
+    "objectID": "reference/mjml.section.html#examples",
+    "href": "reference/mjml.section.html#examples",
+    "title": "mjml.section",
+    "section": "",
+    "text": "With children: section(child1, child2)\nWith attributes: section(attributes={“attr”: “value”})\nWith both: section(child1, child2, attributes={“attr”: “value”})"
   },
   {
     "objectID": "reference/send_intermediate_email_with_mailgun.html",

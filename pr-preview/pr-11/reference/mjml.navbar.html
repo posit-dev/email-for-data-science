@@ -156,22 +156,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="emailer_lib.mjml.navbar" class="level1">
 <h1>mjml.navbar</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.navbar(<span class="op">*</span>args, content<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.navbar(<span class="op">*</span>args, attributes<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create an MJML <code>&lt;mj-navbar&gt;</code> tag.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name">*<strong>args</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Union[TagChild, TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">()</span></code></dt>
+<dt><code><span class="parameter-name">*<strong>args</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">TagChild</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">()</span></code></dt>
 <dd>
-<p>Children or attribute dicts</p>
+<p>Children (MJMLTag objects)</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Optional dict of tag attributes</p>
 </dd>
 <dt><code><span class="parameter-name"><strong>content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
 <dd>
 <p>Optional text content for the tag</p>
-</dd>
-<dt><code><span class="parameter-name">****kwargs**</span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">TagAttrValue</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">{}</span></code></dt>
-<dd>
-<p>Tag attributes</p>
 </dd>
 </dl>
 </section>
@@ -183,6 +183,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>MJMLTag object representing <mj-navbar></mj-navbar></p>
 </dd>
 </dl>
+</section>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<p>With children: navbar(child1, child2)</p>
+<p>With attributes: navbar(attributes={“attr”: “value”})</p>
+<p>With both: navbar(child1, child2, attributes={“attr”: “value”})</p>
 
 
 </section>
