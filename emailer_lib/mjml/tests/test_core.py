@@ -145,6 +145,14 @@ def test_leaf_tag_content_type_validation():
         MJMLTag("mj-text", content=["invalid", "list"], _is_leaf=True)
 
 
+def test_leaf_tag_attributes_type_validation():
+    with pytest.raises(TypeError, match="attributes must be a dict or TagAttrDict"):
+        MJMLTag("mj-text", "content", attributes="invalid", _is_leaf=True)
+
+def test_container_tag_attributes_type_validation():
+    with pytest.raises(TypeError, match="attributes must be a dict or TagAttrDict.*use positional arguments for container tags"):
+        MJMLTag("mj-section", attributes="invalid")
+
 def test_children_sequence_flattening():
     child1 = MJMLTag("mj-text", content="Text 1")
     child2 = MJMLTag("mj-text", content="Text 2")
