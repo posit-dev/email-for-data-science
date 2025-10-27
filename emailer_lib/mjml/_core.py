@@ -89,9 +89,10 @@ class MJMLTag:
         if attributes is not None:
             self.attrs.update(attributes)
         
-        # If content is provided, children should be empty
-        if self.content is not None:
-            self.children = []
+        # TODO: confirm if this is the case... I don't think it is
+        # # If content is provided, children should be empty
+        # if self.content is not None:
+        #     self.children = []
 
     def render_mjml(self, indent: int = 0, eol: str = "\n") -> str:
         """
@@ -107,8 +108,6 @@ class MJMLTag:
                     yield c
                 elif isinstance(c, (str, float)):
                     yield c
-                elif isinstance(c, Sequence) and not isinstance(c, str):
-                    yield from _flatten(c)
 
         # Build attribute string
         attr_str = ""

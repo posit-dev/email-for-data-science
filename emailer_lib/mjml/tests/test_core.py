@@ -29,7 +29,6 @@ def test_update_method():
 def test_tag_with_dict_attributes():
     attrs_dict = {"background-color": "#fff", "padding": "20px"}
     tag = MJMLTag("mj-section", attributes=attrs_dict)
-    print(tag)
 
     assert tag.attrs["background-color"] == "#fff"
     assert tag.attrs["padding"] == "20px"
@@ -41,6 +40,7 @@ def test_tag_filters_none_children():
 
     # None should not appear in output
     assert mjml_content.count("<mj-text>") == 1
+
 
 def test_render_empty_tag():
     tag = MJMLTag("mj-spacer")
@@ -133,3 +133,33 @@ def test_to_html_passes_kwargs_to_mjml2html():
     result = tag.to_html(social_icon_origin="https://www.example.com")
 
     assert "html" in result
+
+
+def test_leaf_tag_raises_on_children():
+    with pytest.raises(TypeError, match="is a leaf tag and does not accept children"):
+        MJMLTag("mj-text", MJMLTag("mj-column"), _is_leaf=True)
+
+
+def test_leaf_tag_content_type_validation():
+    with pytest.raises(TypeError, match="content must be a string, int, or float"):
+        MJMLTag("mj-text", content=["invalid", "list"], _is_leaf=True)
+
+
+def test_children_sequence_flattening():
+    child1 = MJMLTag("mj-text", content="Text 1")
+    child2 = MJMLTag("mj-text", content="Text 2")
+    child3 = MJMLTag("mj-text", content="Text 3")
+
+    tag = MJMLTag("mj-column", [child1, child2], child3)
+
+    assert len(tag.children) == 3
+    assert tag.children[0] == child1
+    assert tag.children[1] == child2
+    assert tag.children[2] == child3
+
+    mjml_content = tag.render_mjml()
+    
+    assert mjml_content.count("<mj-text>") == 3
+    assert "Text 1" in mjml_content
+    assert "Text 2" in mjml_content
+    assert "Text 3" in mjml_content
