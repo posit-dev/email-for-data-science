@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra --cov=emailer_lib --cov-report=term-missing"
-testpaths = ["emailer_lib/tests", "emailer_lib/mjml/tests"]
+testpaths = ["emailer_lib/**/tests"]
 
 [project]
 name = "emailer-lib"
