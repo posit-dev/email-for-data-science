@@ -23,7 +23,6 @@ MJML_TAGS = [
     "mj-html-attribute",  # sub-attribute for mj-html-attributes
     "mj-preview",
     "mj-style",
-    "mj-title",
     # Body components
     "mj-accordion",
     "mj-accordion-element",

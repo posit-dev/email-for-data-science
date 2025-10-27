@@ -549,51 +549,6 @@ def style(
     return MJMLTag("mj-style", *args, attributes=attributes, content=content)
 
 
-def title(
-    *args: TagChild,
-    attributes: Optional[TagAttrs] = None,
-    content: Optional[str] = None,
-):
-    """
-    Create an MJML `<mj-title>` tag.
-    
-    Parameters
-    ----------
-    *args
-        Children (MJMLTag objects)
-    attributes
-        Optional dict of tag attributes
-    content
-        Optional text content for the tag
-    
-    Returns
-    -------
-    MJMLTag
-        MJMLTag object representing `<mj-title>`
-        
-    Examples
-    --------
-    With children:
-    ```{python}
-    from emailer_lib.mjml import title, text
-    child = text("Hello World")
-
-    result = title(child)
-    ```
-    
-    With attributes:
-    ```{python}
-    result = title(attributes={"attr": "value"})
-    ```
-    
-    With both:
-    ```{python}
-    result = title(child, attributes={"background-color": "yellow"})
-    ```
-    """
-    return MJMLTag("mj-title", *args, attributes=attributes, content=content)
-
-
 def accordion(
     *args: TagChild,
     attributes: Optional[TagAttrs] = None,
