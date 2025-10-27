@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../reference/_styles-quartodoc.css">
-<link rel="stylesheet" href="../reference/styles.css">
+<link rel="stylesheet" href="reference/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -149,26 +149,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">mjml.title</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="emailer_lib.mjml.title" class="level1">
-<h1>mjml.title</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.title(attributes<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.title(content<span class="op">=</span><span class="va">None</span>, attributes<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create an MJML <code>&lt;mj-title&gt;</code> tag.</p>
 <p>This is an ending tag that accepts text/HTML content but not MJML children.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Optional dict of tag attributes</p>
-</dd>
 <dt><code><span class="parameter-name"><strong>content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
 <dd>
 <p>Text or HTML content for the tag</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Optional dict of tag attributes</p>
 </dd>
 </dl>
 </section>
@@ -177,17 +191,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl>
 <dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">MJMLTag</span></code></dt>
 <dd>
-<p>MJMLTag object representing <mj-title></mj-title></p>
+<p>MJMLTag object representing <code>&lt;mj-title&gt;</code></p>
 </dd>
 </dl>
 </section>
 <section id="examples" class="level2 doc-section doc-section-examples">
 <h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<p>With content: title(content=“Hello”)</p>
-<p>With attributes and content: title(attributes={“color”: “red”}, content=“Hello”)</p>
+<p>With content:</p>
+<div id="f969e58c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> emailer_lib.mjml <span class="im">import</span> title</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> title(<span class="st">"Hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With attributes and content:</p>
+<div id="790bbc66" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> title(<span class="st">"Hello"</span>, attributes<span class="op">=</span>{<span class="st">"background-color"</span>: <span class="st">"red"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
