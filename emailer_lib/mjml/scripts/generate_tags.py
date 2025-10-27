@@ -55,7 +55,7 @@ LEAF_TAGS = [
 ]
 
 # Tags that should keep the mj- prefix in the function name
-KEEP_MJ_PREFIX = ["mj-all", "mj-class"]
+KEEP_MJ_PREFIX = ["mj-attributes", "mj-all", "mj-class"]
 
 
 def get_python_name(tag_name: str) -> str:
@@ -91,9 +91,9 @@ from ._core import MJMLTag, TagAttrs, TagAttrValue, TagChild
 
         function_code = f'''
 def {py_name}(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<{tag_name}>` tag.
@@ -101,18 +101,32 @@ def {py_name}(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <{tag_name}>
+        
+    Examples
+    --------
+    With children:
+        {py_name}(child1, child2)
+    
+    With attributes:
+        {py_name}(attributes={{"attr": "value"}})
+    
+    With both:
+        {py_name}(child1, child2, attributes={{"attr": "value"}})
     """
-    return MJMLTag("{tag_name}", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("{tag_name}", *args, content=content)
+    else:
+        return MJMLTag("{tag_name}", *args, attributes, content=content)
 '''
         functions.append(function_code)
 
@@ -122,8 +136,8 @@ def {py_name}(
 
         function_code = f'''
 def {py_name}(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<{tag_name}>` tag.
@@ -132,17 +146,28 @@ def {py_name}(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <{tag_name}>
+        
+    Examples
+    --------
+    With content:
+        {py_name}(content="Hello")
+    
+    With attributes and content:
+        {py_name}(attributes={{"color": "red"}}, content="Hello")
     """
-    return MJMLTag("{tag_name}", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("{tag_name}", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("{tag_name}", attributes, content=content, _is_leaf=True)
 '''
         functions.append(function_code)
 

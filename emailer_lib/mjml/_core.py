@@ -3,7 +3,7 @@
 ## TODO: make sure Ending tags are rendered as needed
 # https://documentation.mjml.io/#ending-tags 
 
-from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, TypeVar, Union
+from typing import Dict, Mapping, Optional, Sequence, Union
 import warnings
 from mjml import mjml2html
 
@@ -20,29 +20,19 @@ class TagAttrDict(Dict[str, str]):
     """
 
     def __init__(
-        self, *args: Mapping[str, TagAttrValue], **kwargs: TagAttrValue
+        self, *args: Mapping[str, TagAttrValue]
     ) -> None:
         super().__init__()
         for mapping in args:
             for k, v in mapping.items():
                 if v is not None:
-                    self[self._to_kebab_case(k)] = str(v)
-        for k, v in kwargs.items():
-            if v is not None:
-                self[self._to_kebab_case(k)] = str(v)
+                    self[k] = str(v)
 
-    @staticmethod
-    def _to_kebab_case(s: str) -> str:
-        return s.replace('_', '-')
-
-    def update(self, *args: Mapping[str, TagAttrValue], **kwargs: TagAttrValue) -> None:
+    def update(self, *args: Mapping[str, TagAttrValue]) -> None:
         for mapping in args:
             for k, v in mapping.items():
                 if v is not None:
-                    self[self._to_kebab_case(k)] = str(v)
-        for k, v in kwargs.items():
-            if v is not None:
-                self[self._to_kebab_case(k)] = str(v)
+                    self[k] = str(v)
 
 
 class MJMLTag:
@@ -58,24 +48,45 @@ class MJMLTag:
         tagName: str,
         *args: Union[TagChild, TagAttrs],
         content: Optional[str] = None,
-        **kwargs: TagAttrValue,
+        _is_leaf: bool = False,
     ) -> None:
         self.tagName = tagName
         self.attrs = TagAttrDict()
         self.children = []
         self.content = content
-        # Collect attributes and children
-        for arg in args:
-            if isinstance(arg, dict) or isinstance(arg, TagAttrDict):
-                self.attrs.update(arg)
-            elif (
-                isinstance(arg, (str, float)) or arg is None or isinstance(arg, MJMLTag)
-            ):
-                self.children.append(arg)
-            elif isinstance(arg, Sequence) and not isinstance(arg, str):
-                self.children.extend(arg)
-        # Keyword attributes
-        self.attrs.update(**kwargs)
+        self._is_leaf = _is_leaf
+        
+        # Runtime validation for leaf tags
+        if self._is_leaf:
+            # Leaf tags should not accept positional arguments (children)
+            if args:
+                # Check if it's just an attributes dict
+                if len(args) == 1 and isinstance(args[0], (dict, TagAttrDict)):
+                    self.attrs.update(args[0])
+                else:
+                    raise TypeError(
+                        f"<{tagName}> is a leaf tag and does not accept children. "
+                        f"Use the content parameter instead: {tagName}(content='...')"
+                    )
+            # Leaf tags content should be string-like
+            if content is not None and not isinstance(content, (str, int, float)):
+                raise TypeError(
+                    f"<{tagName}> content must be a string, int, or float, "
+                    f"got {type(content).__name__}"
+                )
+        
+        # Collect attributes and children (for non-leaf tags)
+        if not self._is_leaf:
+            for arg in args:
+                if isinstance(arg, dict) or isinstance(arg, TagAttrDict):
+                    self.attrs.update(arg)
+                elif (
+                    isinstance(arg, (str, float)) or arg is None or isinstance(arg, MJMLTag)
+                ):
+                    self.children.append(arg)
+                elif isinstance(arg, Sequence) and not isinstance(arg, str):
+                    self.children.extend(arg)
+        
         # If content is provided, children should be empty
         if self.content is not None:
             self.children = []
@@ -124,10 +135,10 @@ class MJMLTag:
             return f"{pad}<{self.tagName}{attr_str}></{self.tagName}>"
 
     def _repr_html_(self):
-        return self.render_mjml()
+        return self.to_html()
 
     def __repr__(self) -> str:
-        return f"MJMLTag({self.tagName!r}, attrs={dict(self.attrs)!r}, children={self.children!r}, content={self.content!r})"
+        return self.render_mjml()
 
     def to_html(self, **mjml2html_kwargs):
         """

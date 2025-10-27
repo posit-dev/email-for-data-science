@@ -10,9 +10,9 @@ from ._core import MJMLTag, TagAttrs, TagAttrValue, TagChild
 
 
 def mjml(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mjml>` tag.
@@ -20,24 +20,38 @@ def mjml(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mjml>
+        
+    Examples
+    --------
+    With children:
+        mjml(child1, child2)
+    
+    With attributes:
+        mjml(attributes={"attr": "value"})
+    
+    With both:
+        mjml(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mjml", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mjml", *args, content=content)
+    else:
+        return MJMLTag("mjml", *args, attributes, content=content)
 
 
 def head(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-head>` tag.
@@ -45,24 +59,38 @@ def head(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-head>
+        
+    Examples
+    --------
+    With children:
+        head(child1, child2)
+    
+    With attributes:
+        head(attributes={"attr": "value"})
+    
+    With both:
+        head(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-head", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-head", *args, content=content)
+    else:
+        return MJMLTag("mj-head", *args, attributes, content=content)
 
 
 def body(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-body>` tag.
@@ -70,24 +98,38 @@ def body(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-body>
+        
+    Examples
+    --------
+    With children:
+        body(child1, child2)
+    
+    With attributes:
+        body(attributes={"attr": "value"})
+    
+    With both:
+        body(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-body", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-body", *args, content=content)
+    else:
+        return MJMLTag("mj-body", *args, attributes, content=content)
 
 
-def attributes(
-    *args: Union[TagChild, TagAttrs],
+def mj_attributes(
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-attributes>` tag.
@@ -95,24 +137,38 @@ def attributes(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-attributes>
+        
+    Examples
+    --------
+    With children:
+        mj_attributes(child1, child2)
+    
+    With attributes:
+        mj_attributes(attributes={"attr": "value"})
+    
+    With both:
+        mj_attributes(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-attributes", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-attributes", *args, content=content)
+    else:
+        return MJMLTag("mj-attributes", *args, attributes, content=content)
 
 
 def mj_all(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-all>` tag.
@@ -120,24 +176,38 @@ def mj_all(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-all>
+        
+    Examples
+    --------
+    With children:
+        mj_all(child1, child2)
+    
+    With attributes:
+        mj_all(attributes={"attr": "value"})
+    
+    With both:
+        mj_all(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-all", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-all", *args, content=content)
+    else:
+        return MJMLTag("mj-all", *args, attributes, content=content)
 
 
 def mj_class(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-class>` tag.
@@ -145,24 +215,38 @@ def mj_class(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-class>
+        
+    Examples
+    --------
+    With children:
+        mj_class(child1, child2)
+    
+    With attributes:
+        mj_class(attributes={"attr": "value"})
+    
+    With both:
+        mj_class(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-class", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-class", *args, content=content)
+    else:
+        return MJMLTag("mj-class", *args, attributes, content=content)
 
 
 def breakpoint(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-breakpoint>` tag.
@@ -170,24 +254,38 @@ def breakpoint(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-breakpoint>
+        
+    Examples
+    --------
+    With children:
+        breakpoint(child1, child2)
+    
+    With attributes:
+        breakpoint(attributes={"attr": "value"})
+    
+    With both:
+        breakpoint(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-breakpoint", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-breakpoint", *args, content=content)
+    else:
+        return MJMLTag("mj-breakpoint", *args, attributes, content=content)
 
 
 def font(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-font>` tag.
@@ -195,24 +293,38 @@ def font(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-font>
+        
+    Examples
+    --------
+    With children:
+        font(child1, child2)
+    
+    With attributes:
+        font(attributes={"attr": "value"})
+    
+    With both:
+        font(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-font", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-font", *args, content=content)
+    else:
+        return MJMLTag("mj-font", *args, attributes, content=content)
 
 
 def html_attributes(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-html-attributes>` tag.
@@ -220,24 +332,38 @@ def html_attributes(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-html-attributes>
+        
+    Examples
+    --------
+    With children:
+        html_attributes(child1, child2)
+    
+    With attributes:
+        html_attributes(attributes={"attr": "value"})
+    
+    With both:
+        html_attributes(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-html-attributes", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-html-attributes", *args, content=content)
+    else:
+        return MJMLTag("mj-html-attributes", *args, attributes, content=content)
 
 
 def html_attribute(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-html-attribute>` tag.
@@ -245,24 +371,38 @@ def html_attribute(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-html-attribute>
+        
+    Examples
+    --------
+    With children:
+        html_attribute(child1, child2)
+    
+    With attributes:
+        html_attribute(attributes={"attr": "value"})
+    
+    With both:
+        html_attribute(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-html-attribute", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-html-attribute", *args, content=content)
+    else:
+        return MJMLTag("mj-html-attribute", *args, attributes, content=content)
 
 
 def preview(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-preview>` tag.
@@ -270,24 +410,38 @@ def preview(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-preview>
+        
+    Examples
+    --------
+    With children:
+        preview(child1, child2)
+    
+    With attributes:
+        preview(attributes={"attr": "value"})
+    
+    With both:
+        preview(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-preview", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-preview", *args, content=content)
+    else:
+        return MJMLTag("mj-preview", *args, attributes, content=content)
 
 
 def style(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-style>` tag.
@@ -295,24 +449,38 @@ def style(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-style>
+        
+    Examples
+    --------
+    With children:
+        style(child1, child2)
+    
+    With attributes:
+        style(attributes={"attr": "value"})
+    
+    With both:
+        style(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-style", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-style", *args, content=content)
+    else:
+        return MJMLTag("mj-style", *args, attributes, content=content)
 
 
 def title(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-title>` tag.
@@ -320,24 +488,38 @@ def title(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-title>
+        
+    Examples
+    --------
+    With children:
+        title(child1, child2)
+    
+    With attributes:
+        title(attributes={"attr": "value"})
+    
+    With both:
+        title(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-title", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-title", *args, content=content)
+    else:
+        return MJMLTag("mj-title", *args, attributes, content=content)
 
 
 def accordion(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-accordion>` tag.
@@ -345,24 +527,38 @@ def accordion(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-accordion>
+        
+    Examples
+    --------
+    With children:
+        accordion(child1, child2)
+    
+    With attributes:
+        accordion(attributes={"attr": "value"})
+    
+    With both:
+        accordion(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-accordion", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-accordion", *args, content=content)
+    else:
+        return MJMLTag("mj-accordion", *args, attributes, content=content)
 
 
 def accordion_element(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-accordion-element>` tag.
@@ -370,24 +566,38 @@ def accordion_element(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-accordion-element>
+        
+    Examples
+    --------
+    With children:
+        accordion_element(child1, child2)
+    
+    With attributes:
+        accordion_element(attributes={"attr": "value"})
+    
+    With both:
+        accordion_element(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-accordion-element", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-accordion-element", *args, content=content)
+    else:
+        return MJMLTag("mj-accordion-element", *args, attributes, content=content)
 
 
 def carousel(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-carousel>` tag.
@@ -395,24 +605,38 @@ def carousel(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-carousel>
+        
+    Examples
+    --------
+    With children:
+        carousel(child1, child2)
+    
+    With attributes:
+        carousel(attributes={"attr": "value"})
+    
+    With both:
+        carousel(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-carousel", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-carousel", *args, content=content)
+    else:
+        return MJMLTag("mj-carousel", *args, attributes, content=content)
 
 
 def column(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-column>` tag.
@@ -420,24 +644,38 @@ def column(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-column>
+        
+    Examples
+    --------
+    With children:
+        column(child1, child2)
+    
+    With attributes:
+        column(attributes={"attr": "value"})
+    
+    With both:
+        column(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-column", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-column", *args, content=content)
+    else:
+        return MJMLTag("mj-column", *args, attributes, content=content)
 
 
 def divider(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-divider>` tag.
@@ -445,24 +683,38 @@ def divider(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-divider>
+        
+    Examples
+    --------
+    With children:
+        divider(child1, child2)
+    
+    With attributes:
+        divider(attributes={"attr": "value"})
+    
+    With both:
+        divider(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-divider", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-divider", *args, content=content)
+    else:
+        return MJMLTag("mj-divider", *args, attributes, content=content)
 
 
 def group(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-group>` tag.
@@ -470,24 +722,38 @@ def group(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-group>
+        
+    Examples
+    --------
+    With children:
+        group(child1, child2)
+    
+    With attributes:
+        group(attributes={"attr": "value"})
+    
+    With both:
+        group(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-group", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-group", *args, content=content)
+    else:
+        return MJMLTag("mj-group", *args, attributes, content=content)
 
 
 def hero(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-hero>` tag.
@@ -495,24 +761,38 @@ def hero(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-hero>
+        
+    Examples
+    --------
+    With children:
+        hero(child1, child2)
+    
+    With attributes:
+        hero(attributes={"attr": "value"})
+    
+    With both:
+        hero(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-hero", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-hero", *args, content=content)
+    else:
+        return MJMLTag("mj-hero", *args, attributes, content=content)
 
 
 def image(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-image>` tag.
@@ -520,24 +800,38 @@ def image(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-image>
+        
+    Examples
+    --------
+    With children:
+        image(child1, child2)
+    
+    With attributes:
+        image(attributes={"attr": "value"})
+    
+    With both:
+        image(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-image", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-image", *args, content=content)
+    else:
+        return MJMLTag("mj-image", *args, attributes, content=content)
 
 
 def navbar(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-navbar>` tag.
@@ -545,24 +839,38 @@ def navbar(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-navbar>
+        
+    Examples
+    --------
+    With children:
+        navbar(child1, child2)
+    
+    With attributes:
+        navbar(attributes={"attr": "value"})
+    
+    With both:
+        navbar(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-navbar", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-navbar", *args, content=content)
+    else:
+        return MJMLTag("mj-navbar", *args, attributes, content=content)
 
 
 def section(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-section>` tag.
@@ -570,24 +878,38 @@ def section(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-section>
+        
+    Examples
+    --------
+    With children:
+        section(child1, child2)
+    
+    With attributes:
+        section(attributes={"attr": "value"})
+    
+    With both:
+        section(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-section", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-section", *args, content=content)
+    else:
+        return MJMLTag("mj-section", *args, attributes, content=content)
 
 
 def social(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-social>` tag.
@@ -595,24 +917,38 @@ def social(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-social>
+        
+    Examples
+    --------
+    With children:
+        social(child1, child2)
+    
+    With attributes:
+        social(attributes={"attr": "value"})
+    
+    With both:
+        social(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-social", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-social", *args, content=content)
+    else:
+        return MJMLTag("mj-social", *args, attributes, content=content)
 
 
 def spacer(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-spacer>` tag.
@@ -620,24 +956,38 @@ def spacer(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-spacer>
+        
+    Examples
+    --------
+    With children:
+        spacer(child1, child2)
+    
+    With attributes:
+        spacer(attributes={"attr": "value"})
+    
+    With both:
+        spacer(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-spacer", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-spacer", *args, content=content)
+    else:
+        return MJMLTag("mj-spacer", *args, attributes, content=content)
 
 
 def wrapper(
-    *args: Union[TagChild, TagAttrs],
+    *args: TagChild,
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-wrapper>` tag.
@@ -645,23 +995,37 @@ def wrapper(
     Parameters
     ----------
     *args
-        Children or attribute dicts
+        Children (MJMLTag objects)
+    attributes
+        Optional dict of tag attributes
     content
         Optional text content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-wrapper>
+        
+    Examples
+    --------
+    With children:
+        wrapper(child1, child2)
+    
+    With attributes:
+        wrapper(attributes={"attr": "value"})
+    
+    With both:
+        wrapper(child1, child2, attributes={"attr": "value"})
     """
-    return MJMLTag("mj-wrapper", *args, content=content, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-wrapper", *args, content=content)
+    else:
+        return MJMLTag("mj-wrapper", *args, attributes, content=content)
 
 
 def accordion_text(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-accordion-text>` tag.
@@ -670,22 +1034,33 @@ def accordion_text(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-accordion-text>
+        
+    Examples
+    --------
+    With content:
+        accordion_text(content="Hello")
+    
+    With attributes and content:
+        accordion_text(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-accordion-text", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-accordion-text", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-accordion-text", attributes, content=content, _is_leaf=True)
 
 
 def accordion_title(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-accordion-title>` tag.
@@ -694,22 +1069,33 @@ def accordion_title(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-accordion-title>
+        
+    Examples
+    --------
+    With content:
+        accordion_title(content="Hello")
+    
+    With attributes and content:
+        accordion_title(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-accordion-title", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-accordion-title", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-accordion-title", attributes, content=content, _is_leaf=True)
 
 
 def button(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-button>` tag.
@@ -718,22 +1104,33 @@ def button(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-button>
+        
+    Examples
+    --------
+    With content:
+        button(content="Hello")
+    
+    With attributes and content:
+        button(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-button", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-button", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-button", attributes, content=content, _is_leaf=True)
 
 
 def carousel_image(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-carousel-image>` tag.
@@ -742,22 +1139,33 @@ def carousel_image(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-carousel-image>
+        
+    Examples
+    --------
+    With content:
+        carousel_image(content="Hello")
+    
+    With attributes and content:
+        carousel_image(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-carousel-image", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-carousel-image", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-carousel-image", attributes, content=content, _is_leaf=True)
 
 
 def navbar_link(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-navbar-link>` tag.
@@ -766,22 +1174,33 @@ def navbar_link(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-navbar-link>
+        
+    Examples
+    --------
+    With content:
+        navbar_link(content="Hello")
+    
+    With attributes and content:
+        navbar_link(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-navbar-link", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-navbar-link", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-navbar-link", attributes, content=content, _is_leaf=True)
 
 
 def raw(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-raw>` tag.
@@ -790,22 +1209,33 @@ def raw(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-raw>
+        
+    Examples
+    --------
+    With content:
+        raw(content="Hello")
+    
+    With attributes and content:
+        raw(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-raw", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-raw", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-raw", attributes, content=content, _is_leaf=True)
 
 
 def social_element(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-social-element>` tag.
@@ -814,22 +1244,33 @@ def social_element(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-social-element>
+        
+    Examples
+    --------
+    With content:
+        social_element(content="Hello")
+    
+    With attributes and content:
+        social_element(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-social-element", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-social-element", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-social-element", attributes, content=content, _is_leaf=True)
 
 
 def table(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-table>` tag.
@@ -838,22 +1279,33 @@ def table(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-table>
+        
+    Examples
+    --------
+    With content:
+        table(content="Hello")
+    
+    With attributes and content:
+        table(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-table", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-table", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-table", attributes, content=content, _is_leaf=True)
 
 
 def text(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-text>` tag.
@@ -862,22 +1314,33 @@ def text(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-text>
+        
+    Examples
+    --------
+    With content:
+        text(content="Hello")
+    
+    With attributes and content:
+        text(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-text", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-text", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-text", attributes, content=content, _is_leaf=True)
 
 
 def title(
+    attributes: Optional[TagAttrs] = None,
     content: Optional[str] = None,
-    **kwargs: TagAttrValue,
 ):
     """
     Create an MJML `<mj-title>` tag.
@@ -886,14 +1349,25 @@ def title(
     
     Parameters
     ----------
+    attributes
+        Optional dict of tag attributes
     content
         Text or HTML content for the tag
-    **kwargs
-        Tag attributes
     
     Returns
     -------
     MJMLTag
         MJMLTag object representing <mj-title>
+        
+    Examples
+    --------
+    With content:
+        title(content="Hello")
+    
+    With attributes and content:
+        title(attributes={"color": "red"}, content="Hello")
     """
-    return MJMLTag("mj-title", content=content, _is_leaf=True, **kwargs)
+    if attributes is None:
+        return MJMLTag("mj-title", content=content, _is_leaf=True)
+    else:
+        return MJMLTag("mj-title", attributes, content=content, _is_leaf=True)
