@@ -84,7 +84,7 @@ quartodoc:
         - mjml.mjml
         - mjml.head
         - mjml.body
-        - mjml.attributes
+        - mjml.mj_attributes
         - mjml.mj_all
         - mjml.mj_class
         - mjml.breakpoint
