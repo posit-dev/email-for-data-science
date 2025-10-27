@@ -1,4 +1,4 @@
-build-docs:
+build-docs: generate-mjml-tags
 	cd docs && uv run quartodoc build --verbose && quarto render
 
 preview:
