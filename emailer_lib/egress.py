@@ -261,6 +261,7 @@ def send_intermediate_email_with_mailgun(
         data=data, files=files if files else None, domain=domain
     )
 
+    # The response object has a .json() method that returns the actual data
     return response
 
 
