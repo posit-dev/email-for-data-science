@@ -161,8 +161,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    subject,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    rsc_email_supress_report_attachment<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    rsc_email_supress_scheduled<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    external_attachments<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    inline_attachments<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    external_attachments<span class="op">=</span><span class="bu">list</span>(),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    inline_attachments<span class="op">=</span><span class="bu">dict</span>(),</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    recipients<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -179,11 +179,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>The subject line of the email.</p>
 </dd>
-<dt><code><span class="parameter-name"><strong>external_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">list[str] | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dt><code><span class="parameter-name"><strong>external_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">list[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">list()</span></code></dt>
 <dd>
 <p>List of file paths for external attachments to include.</p>
 </dd>
-<dt><code><span class="parameter-name"><strong>inline_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">dict[str, str] | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dt><code><span class="parameter-name"><strong>inline_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">dict[str, str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">dict()</span></code></dt>
 <dd>
 <p>Dictionary mapping filenames to base64-encoded strings for inline attachments.</p>
 </dd>
