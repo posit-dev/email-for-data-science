@@ -27,8 +27,8 @@ def test_creation_without_text_and_attachments():
     )
     assert email.text is None
     assert email.recipients is None
-    assert email.external_attachments is None
-    assert email.inline_attachments is None
+    assert email.external_attachments == []
+    assert email.inline_attachments == {}
     assert email.subject == "No Text or Attachments"
 
 
