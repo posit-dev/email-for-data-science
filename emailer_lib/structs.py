@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import re
 
 from email.message import EmailMessage
@@ -62,10 +62,10 @@ class IntermediateEmail:
     rsc_email_supress_scheduled: bool | None = None
 
     # is a list of files in path from current directory
-    external_attachments: list[str] | None = None
+    external_attachments: list[str] = field(default_factory=list)
 
     # has structure {filename: base64_string}
-    inline_attachments: dict[str, str] | None = None
+    inline_attachments: dict[str, str] = field(default_factory=dict)
 
     text: str | None = None  # sometimes present in quarto
     recipients: list[str] | None = None  # not present in quarto
