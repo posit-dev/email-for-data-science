@@ -211,16 +211,21 @@ def send_intermediate_email_with_mailgun(
         i_email=email
     )
     ```
-    
+
     Notes
     -----
     Requires the `mailgun` package: `pip install mailgun`
     """
     from mailgun.client import Client
-    
+
     # Create Mailgun client
     client = Client(auth=("api", api_key))
-    
+
+    if i_email.recipients is None:
+        raise TypeError(
+            "i_email must have a populated recipients attribute. Currently, i_email.recipients is None."
+        )
+
     # Prepare the basic email data
     data = {
         "from": sender,
@@ -228,36 +233,34 @@ def send_intermediate_email_with_mailgun(
         "subject": i_email.subject,
         "html": i_email.html,
     }
-    
+
     # Add text content if available
     if i_email.text:
         data["text"] = i_email.text
-    
+
     # Prepare files for attachments
     files = []
-    
+
     # Handle inline images (embedded in HTML with cid:)
     for image_name, image_base64 in i_email.inline_attachments.items():
         img_bytes = base64.b64decode(image_base64)
         # Use 'inline' for images referenced in HTML with cid:
         files.append(("inline", (image_name, img_bytes)))
-    
+
     # Handle external attachments
     for filename in i_email.external_attachments:
         with open(filename, "rb") as f:
             file_data = f.read()
-        
+
         # Extract just the filename (not full path) for the attachment name
         basename = os.path.basename(filename)
         files.append(("attachment", (basename, file_data)))
-    
+
     # Send the message using Mailgun client
     response = client.messages.create(
-        data=data, 
-        files=files if files else None, 
-        domain=domain
+        data=data, files=files if files else None, domain=domain
     )
-    
+
     return response
 
 
@@ -267,7 +270,7 @@ def send_intermediate_email_with_smtp(
     username: str,
     password: str,
     i_email: IntermediateEmail,
-    security: str = Literal["tls", "ssl", "smtp"]
+    security: str = Literal["tls", "ssl", "smtp"],
 ):
     """
     Send an Intermediate Email object via SMTP.
