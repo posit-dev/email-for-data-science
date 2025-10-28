@@ -145,7 +145,6 @@ def test_send_intermediate_email_with_smtp_unknown_mime_type(monkeypatch):
 
 
 def test_send_intermediate_email_with_smtp_sendmail_args(monkeypatch):
-    """Test that sendmail is called with correct sender, recipients, and message format."""
     email = make_basic_email()
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
@@ -204,16 +203,86 @@ def test_send_quarto_email_with_gmail(monkeypatch):
     assert i_email.recipients == ["recipient@example.com"]
 
 
+def test_send_intermediate_email_with_mailgun(monkeypatch):
+    email = make_basic_email()
+    email.external_attachments = ["file.txt"]
+    
+    # Mock the response object with .json() method
+    mock_response = MagicMock()
+    mock_response.json.return_value = {
+        "id": "<20251028141836.beb7f6b3fd2be2b7@sandboxedc0eedbb2da49f39cbc02665f66556c.mailgun.org>",
+        "message": "Queued. Thank you."
+    }
+    mock_response.__repr__ = lambda self: "<Response [200]>"
+    
+    # Mock the Mailgun Client
+    mock_client_instance = MagicMock()
+    mock_messages = MagicMock()
+    mock_client_instance.messages = mock_messages
+    mock_messages.create = MagicMock(return_value=mock_response)
+    
+    mock_client_class = MagicMock(return_value=mock_client_instance)
+    
+    with patch("mailgun.client.Client", mock_client_class):
+        with patch("builtins.open", mock_open(read_data=b"file content")):
+            response = send_intermediate_email_with_mailgun(
+                api_key="test-api-key",
+                domain="mg.example.com",
+                sender="sender@example.com",
+                i_email=email,
+            )
+    
+    # Verify Client was initialized with correct auth
+    mock_client_class.assert_called_once_with(auth=("api", "test-api-key"))
+    
+    mock_messages.create.assert_called_once()
+    call_args = mock_messages.create.call_args
+    
+    data = call_args.kwargs["data"]
+    assert data["from"] == "sender@example.com"
+    assert data["to"] == ["a@example.com"]
+    assert data["subject"] == "Test"
+    assert data["html"] == "<p>Hi</p>"
+    assert data["text"] == "Plain text"
+    
+    # Check files were passed
+    files = call_args.kwargs["files"]
+    assert files is not None
+    assert len(files) == 2  # 1 inline, 1 external
+    
+    assert call_args.kwargs["domain"] == "mg.example.com"
+    
+    assert response == mock_response
+    assert response.json() == {
+        "id": "<20251028141836.beb7f6b3fd2be2b7@sandboxedc0eedbb2da49f39cbc02665f66556c.mailgun.org>",
+        "message": "Queued. Thank you."
+    }
+
+
+def test_send_intermediate_email_with_mailgun_no_recipients():
+    email = IntermediateEmail(
+        html="<p>Hi</p>",
+        subject="Test",
+        recipients=None,
+    )
+    
+    with pytest.raises(TypeError, match="i_email must have a populated recipients attribute"):
+        send_intermediate_email_with_mailgun(
+            api_key="test-api-key",
+            domain="mg.example.com",
+            sender="sender@example.com",
+            i_email=email,
+        )
+
+
 @pytest.mark.parametrize(
     "send_func",
     [
         send_intermediate_email_with_redmail,
         send_intermediate_email_with_yagmail,
-        send_intermediate_email_with_mailgun,
     ],
 )
 def test_not_implemented_functions(send_func):
-    """Test that unimplemented send functions raise NotImplementedError."""
     email = make_basic_email()
     with pytest.raises(NotImplementedError):
         send_func(email)
