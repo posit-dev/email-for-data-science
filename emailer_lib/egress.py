@@ -284,31 +284,33 @@ def send_intermediate_email_with_smtp(
         msg_alt.attach(MIMEText(i_email.text, "plain"))
 
     # Attach inline images
-    for image_name, image_base64 in i_email.inline_attachments.items():
-        img_bytes = base64.b64decode(image_base64)
-        img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
+    if i_email.inline_attachments:
+        for image_name, image_base64 in i_email.inline_attachments.items():
+            img_bytes = base64.b64decode(image_base64)
+            img = MIMEImage(img_bytes, _subtype="png", name=f"{image_name}")
 
-        img.add_header("Content-ID", f"<{image_name}>")
-        img.add_header("Content-Disposition", "inline", filename=f"{image_name}")
+            img.add_header("Content-ID", f"<{image_name}>")
+            img.add_header("Content-Disposition", "inline", filename=f"{image_name}")
 
-        msg.attach(img)
+            msg.attach(img)
 
     # Attach external files (any type)
-    for filename in i_email.external_attachments:
-        with open(filename, "rb") as f:
-            file_data = f.read()
+    if i_email.external_attachments:
+        for filename in i_email.external_attachments:
+            with open(filename, "rb") as f:
+                file_data = f.read()
 
-        # Guess MIME type based on file extension
-        mime_type, _ = mimetypes.guess_type(filename)
-        if mime_type is None:
-            mime_type = "application/octet-stream"
-        main_type, sub_type = mime_type.split("/", 1)
+            # Guess MIME type based on file extension
+            mime_type, _ = mimetypes.guess_type(filename)
+            if mime_type is None:
+                mime_type = "application/octet-stream"
+            main_type, sub_type = mime_type.split("/", 1)
 
-        part = MIMEBase(main_type, sub_type)
-        part.set_payload(file_data)
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition", "attachment", filename=filename)
-        msg.attach(part)
+            part = MIMEBase(main_type, sub_type)
+            part.set_payload(file_data)
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition", "attachment", filename=filename)
+            msg.attach(part)
 
     # Send via SMTP with appropriate security protocol
     if security == "ssl":
