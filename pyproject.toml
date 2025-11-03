@@ -30,6 +30,7 @@ dev = [
     "quartodoc",
     "pytest-cov",
     "griffe",
+    "syrupy",
 ]
 
 mailgun = [
