@@ -1,12 +1,12 @@
 from __future__ import annotations
 from base64 import b64encode
 import json
-import re
 
 from email.message import EmailMessage
 from mjml import mjml2html
 
 from .structs import IntermediateEmail
+from .mjml import MJMLTag, process_mjml_images
 
 __all__ = [
     "redmail_to_intermediate_email",
@@ -43,38 +43,39 @@ def yagmail_to_intermediate_email():
     pass
 
 
-def mjml_to_intermediate_email(mjml_content: str) -> IntermediateEmail:
+def mjml_to_intermediate_email(
+    mjml_content: str | MJMLTag,
+) -> IntermediateEmail:
     """
     Convert MJML markup to an IntermediateEmail
 
     Parameters
-    ------
+    ----------
     mjml_content
-        MJML markup string
+        MJML markup string or MJMLTag object
 
     Returns
     ------
     An Intermediate Email object
 
     """
-    email_content = mjml2html(mjml_content)
+    # Handle MJMLTag objects by preprocessing images
+    if isinstance(mjml_content, MJMLTag):
+        processed_mjml, inline_attachments = process_mjml_images(mjml_content)
+        mjml_markup = processed_mjml.render_mjml()
+    else:
+        # String-based MJML, no preprocessing needed
+        mjml_markup = mjml_content
+        inline_attachments = {}
 
-    # Find all <img> tags and extract their src attributes
-    pattern = r'<img[^>]+src="([^"\s]+)"[^>]*>'
-    matches = re.findall(pattern, email_content)
-    inline_attachments = {}
-    for src in matches:
-        # in theory, retrieve the externally hosted images and save to bytes
-        # the user would need to pass CID-referenced images directly somehow,
-        # as mjml doesn't handle them
-        raise NotImplementedError("mj-image tags are not yet supported")
+    email_content = mjml2html(mjml_markup)
 
     i_email = IntermediateEmail(
         html=email_content,
         subject="",
         rsc_email_supress_report_attachment=False,
         rsc_email_supress_scheduled=False,
-        inline_attachments=inline_attachments,
+        inline_attachments=inline_attachments if inline_attachments else None,
     )
 
     return i_email

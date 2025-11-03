@@ -125,10 +125,11 @@ class MJMLTag:
                 elif isinstance(c, (str, float)):
                     yield c
 
-        # Build attribute string
+        # Build attribute string (filter out internal attributes starting with _)
         attr_str = ""
         if self.attrs:
-            attr_str = " " + " ".join(f'{k}="{v}"' for k, v in self.attrs.items())
+            public_attrs = {k: v for k, v in self.attrs.items() if not k.startswith("_")}
+            attr_str = " " + " ".join(f'{k}="{v}"' for k, v in public_attrs.items())
 
         # Render children/content
         inner = ""
