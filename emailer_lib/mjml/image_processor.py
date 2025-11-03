@@ -104,34 +104,6 @@ def _convert_to_bytes(obj: Any) -> bytes:
     )
 
 
-def _extract_base64_from_uri(uri: str) -> str:
-    """
-    Extract base64 data from a data URI.
-    
-    Parameters
-    ----------
-    uri
-        A data URI in format: data:image/png;base64,<base64_data>
-        
-    Returns
-    -------
-    str
-        The base64 string
-        
-    Raises
-    ------
-    ValueError
-        If URI format is invalid
-    """
-    if not uri.startswith("data:image/"):
-        raise ValueError(f"Invalid data URI: {uri}")
-    
-    if ";base64," not in uri:
-        raise ValueError(f"Data URI must be base64-encoded: {uri}")
-    
-    return uri.split(";base64,", 1)[1]
-
-
 def process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
     """
     Extract inline attachments from MJML tree.
