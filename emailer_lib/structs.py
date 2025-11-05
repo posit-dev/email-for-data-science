@@ -70,12 +70,91 @@ class IntermediateEmail:
     text: str | None = None  # sometimes present in quarto
     recipients: list[str] | None = None  # not present in quarto
 
+    def _generate_preview_html(self) -> str:
+        """
+        Generate preview HTML with inline attachments embedded as base64 data URIs.
+
+        This internal method converts `cid:` references in the HTML to base64 data URIs,
+        making the HTML self-contained for preview purposes. This is distinct from the
+        HTML used in egress.py where cid references are kept and images are attached
+        as separate MIME parts.
+
+        Returns
+        -------
+        str
+            HTML content with inline attachments embedded as base64 data URIs.
+        """
+        html_with_inline = re.sub(
+            r'src="cid:([^"\s]+)"',
+            _add_base_64_to_inline_attachments(self.inline_attachments),
+            self.html,
+        )
+        return html_with_inline
+
+    def _add_subject_header(self, html: str) -> str:
+        """
+        Add subject line as a header in the HTML.
+
+        Parameters
+        ----------
+        html
+            The HTML content to add the subject to
+
+        Returns
+        -------
+        str
+            HTML with subject header added
+        """
+        if "<body" in html:
+            html = re.sub(
+                r"(<body[^>]*>)",
+                r'\1\n<h2 style="padding-left:16px;">Subject: {}</h2>'.format(self.subject),
+                html,
+                count=1,
+                flags=re.IGNORECASE,
+            )
+        else:
+            # Fallback: prepend if no <body> tag found
+            html = f'<h2 style="padding-left:16px;">Subject: {self.subject}</h2>\n' + html
+        
+        return html
+
+    def _repr_html_(self) -> str:
+        """
+        Return HTML representation with inline attachments for rich display.
+
+        This method enables rich display of the IntermediateEmail in Jupyter notebooks
+        and other IPython-compatible environments. It converts cid: references to
+        base64 data URIs so the email can be previewed directly in the notebook.
+
+        Returns
+        -------
+        str
+            HTML content with inline attachments embedded as base64 data URIs.
+
+        Examples
+        --------
+        ```python
+        # In a Jupyter notebook, simply display the email object:
+        email = IntermediateEmail(
+            html='<p>Hello <img src="cid:img1.png"/></p>',
+            subject="Test Email",
+            inline_attachments={"img1.png": "iVBORw0KGgo..."}
+        )
+        email  # This will automatically call _repr_html_() for rich display
+        ```
+        """
+        html_with_inline = self._generate_preview_html()
+        return self._add_subject_header(html_with_inline)
+
     def write_preview_email(self, out_file: str = "preview_email.html") -> None:
         """
         Write a preview HTML file with inline attachments embedded.
 
         This method replaces image sources in the HTML with base64-encoded data from
         inline attachments, allowing you to preview the email as it would appear to recipients.
+        The generated HTML is self-contained with base64 data URIs, distinct from the email
+        sent via egress.py which uses cid references with MIME attachments.
 
         Parameters
         ----------
@@ -96,24 +175,10 @@ class IntermediateEmail:
         ------
         Raises ValueError if external attachments are present, as preview does not support them.
         """
-        html_with_inline = re.sub(
-            r'src="cid:([^"\s]+)"',
-            _add_base_64_to_inline_attachments(self.inline_attachments),
-            self.html,
-        )
-
-        # Insert subject as <h2> after the opening <body> tag, if present
-        if "<body" in html_with_inline:
-            html_with_inline = re.sub(
-                r"(<body[^>]*>)",
-                r'\1\n<h2 style="padding-left:16px;">Subject: {}</h2>'.format(self.subject),
-                html_with_inline,
-                count=1,
-                flags=re.IGNORECASE,
-            )
-        else:
-            # Fallback: prepend if no <body> tag found
-            html_with_inline = f'<h2 style="padding-left:16px;">Subject: {self.subject}</h2>\n' + html_with_inline
+        # Generate the preview HTML with inline base64 images
+        html_with_inline = self._generate_preview_html()
+        # Add subject header
+        html_with_inline = self._add_subject_header(html_with_inline)
 
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(html_with_inline)

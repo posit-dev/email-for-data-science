@@ -135,7 +135,7 @@ def test_mjml_to_intermediate_email_no_images():
     assert result.inline_attachments == {}
 
 
-def test_mjml_to_intermediate_email_with_image_raises():
+def test_mjml_to_intermediate_email_with_string_url():
     mjml_content = """
     <mjml>
       <mj-body>
@@ -148,8 +148,73 @@ def test_mjml_to_intermediate_email_with_image_raises():
     </mjml>
     """
 
-    with pytest.raises(NotImplementedError, match="mj-image tags are not yet supported"):
-        mjml_to_intermediate_email(mjml_content)
+    result = mjml_to_intermediate_email(mjml_content)
+    
+    assert isinstance(result, IntermediateEmail)
+    assert result.inline_attachments == {}
+    assert "https://example.com/image.jpg" in result.html
+
+
+def test_mjml_to_intermediate_email_with_bytesio():
+    from io import BytesIO
+    from emailer_lib.mjml import mjml, body, section, column, image
+    
+    buf = BytesIO(b'\x89PNG\r\n\x1a\n')
+    
+    mjml_tag = mjml(
+        body(
+            section(
+                column(
+                    image(attributes={
+                        "src": buf,
+                        "alt": "Test Plot",
+                        "width": "600px"
+                    })
+                )
+            )
+        )
+    )
+    
+    result = mjml_to_intermediate_email(mjml_tag)
+    
+    assert isinstance(result, IntermediateEmail)
+    assert len(result.inline_attachments) == 1
+
+    cid_filename = list(result.inline_attachments.keys())[0]
+    assert cid_filename.endswith(".png")
+    assert f"cid:{cid_filename}" in result.html
+    assert result.inline_attachments[cid_filename] != ""
+
+
+def test_mjml_render_mjml_with_bytesio_raises_error():
+    from io import BytesIO
+    from emailer_lib.mjml import mjml, body, section, column, image
+    
+    # Create a simple BytesIO object with fake image data
+    buf = BytesIO(b'\x89PNG\r\n\x1a\n')
+    
+    mjml_tag = mjml(
+        body(
+            section(
+                column(
+                    image(attributes={
+                        "src": buf,
+                        "alt": "Test Plot",
+                        "width": "600px"
+                    })
+                )
+            )
+        )
+    )
+    
+    # Calling render_mjml() should raise an error with a helpful message
+    with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
+        mjml_tag.render_mjml()
+    
+    # But passing the tag directly to mjml_to_intermediate_email should work
+    result = mjml_to_intermediate_email(mjml_tag)
+    assert isinstance(result, IntermediateEmail)
+    assert len(result.inline_attachments) == 1
 
 
 def test_quarto_json_to_intermediate_email_basic(tmp_path):

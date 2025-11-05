@@ -75,7 +75,7 @@ def mjml_to_intermediate_email(
         subject="",
         rsc_email_supress_report_attachment=False,
         rsc_email_supress_scheduled=False,
-        inline_attachments=inline_attachments if inline_attachments else None,
+        inline_attachments=inline_attachments,
     )
 
     return i_email

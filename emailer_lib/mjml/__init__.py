@@ -39,14 +39,13 @@ from .tags import (
     navbar_link,
     social_element,
 )
-# Import image_bytes for BytesIO/bytes pre-processing
-from .image_processor import process_mjml_images, image_bytes
+# Import process_mjml_images for BytesIO/bytes processing at conversion time
+from .image_processor import process_mjml_images
 
 __all__ = (
     "MJMLTag",
     "TagAttrDict",
     "process_mjml_images",
-    "image_bytes",
     "mjml",
     "head",
     "body",
