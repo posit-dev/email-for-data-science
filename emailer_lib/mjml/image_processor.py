@@ -58,9 +58,6 @@ def _process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
     with BytesIO or bytes in their src attribute. It converts these to CID references
     and extracts the base64 data for the inline_attachments dictionary.
     
-    Note: This function should be called before render_mjml(). If render_mjml() is called
-    on a tag with BytesIO/bytes, it will raise an error directing you to use this approach.
-    
     Parameters
     ----------
     mjml_tag

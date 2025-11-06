@@ -126,12 +126,12 @@ class MJMLTag:
         # if self.content is not None:
         #     self.children = []
 
-    def render_mjml(self, indent: int = 0, eol: str = "\n") -> str:
+    def _render_mjml(self, indent: int = 0, eol: str = "\n") -> str:
         """
         Render MJMLTag and its children to MJML markup.
         Ported from htmltools Tag rendering logic.
         
-        Note: BytesIO/bytes in image src attributes are not supported by render_mjml().
+        Note: BytesIO/bytes in image src attributes are not supported by _render_mjml().
         Pass the MJMLTag directly to mjml_to_intermediate_email() instead.
         """
 
@@ -150,7 +150,7 @@ class MJMLTag:
             if isinstance(src_value, (bytes, BytesIO)):
                 raise ValueError(
                     "Cannot render MJML with BytesIO/bytes in image src attribute. "
-                    "Pass the MJMLTag object directly to mjml_to_intermediate_email() instead of calling render_mjml() first. "
+                    "Pass the MJMLTag object directly to mjml_to_intermediate_email() instead of calling _render_mjml() first. "
                     "Example: i_email = mjml_to_intermediate_email(doc)"
                 )
 
@@ -167,7 +167,7 @@ class MJMLTag:
             child_strs = []
             for child in _flatten(self.children):
                 if isinstance(child, MJMLTag):
-                    child_strs.append(child.render_mjml(indent + 2, eol))
+                    child_strs.append(child._render_mjml(indent + 2, eol))
                 else:
                     child_strs.append(str(child))
             if child_strs:
@@ -181,12 +181,20 @@ class MJMLTag:
             return f"{pad}<{self.tagName}{attr_str}></{self.tagName}>"
 
     def _repr_html_(self):
-        return self.to_html()
+        from ..ingress import mjml_to_intermediate_email
+        return mjml_to_intermediate_email(self)._repr_html_()
 
+    # TODO: make something deliberate
     def __repr__(self) -> str:
-        return self.render_mjml()
+        warnings.warn(
+            f"__repr__ not yet fully implemented for MJMLTag({self.tagName})",
+            UserWarning,
+            stacklevel=2,
+        )
+        return f"<MJMLTag({self.tagName})>"
 
-    def to_html(self, **mjml2html_kwargs):
+    # warning explain that they are not to pass this to intermediate email
+    def to_html(self, **mjml2html_kwargs) -> str:
         """
         Render MJMLTag to HTML using mjml2html.
 
@@ -201,11 +209,11 @@ class MJMLTag:
         Returns
         -------
         str
-            Result from mjml2html containing html content
+            Result from `mjml-python.mjml2html()` containing html content
         """
         if self.tagName == "mjml":
             # Already a complete MJML document
-            mjml_markup = self.render_mjml()
+            mjml_markup = self._render_mjml()
         elif self.tagName == "mj-body":
             # Wrap only in mjml tag
             warnings.warn(
@@ -216,7 +224,7 @@ class MJMLTag:
                 stacklevel=2,
             )
             wrapped = MJMLTag("mjml", self)
-            mjml_markup = wrapped.render_mjml()
+            mjml_markup = wrapped._render_mjml()
         else:
             # Warn and wrap in mjml/mj-body
             warnings.warn(
@@ -228,6 +236,6 @@ class MJMLTag:
             )
             # Wrap in mjml and mj-body
             wrapped = MJMLTag("mjml", MJMLTag("mj-body", self))
-            mjml_markup = wrapped.render_mjml()
+            mjml_markup = wrapped._render_mjml()
 
         return mjml2html(mjml_markup, **mjml2html_kwargs)

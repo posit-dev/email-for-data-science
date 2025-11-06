@@ -8,6 +8,7 @@ from mjml import mjml2html
 from .structs import IntermediateEmail
 from .mjml import MJMLTag
 from .mjml.image_processor import _process_mjml_images
+import warnings
 
 __all__ = [
     "redmail_to_intermediate_email",
@@ -63,9 +64,10 @@ def mjml_to_intermediate_email(
     # Handle MJMLTag objects by preprocessing images
     if isinstance(mjml_content, MJMLTag):
         processed_mjml, inline_attachments = _process_mjml_images(mjml_content)
-        mjml_markup = processed_mjml.render_mjml()
+        mjml_markup = processed_mjml._render_mjml()
     else:
         # String-based MJML, no preprocessing needed
+        warnings.warn("MJMLTag not detected; treating input as plaintext MJML markup", UserWarning)
         mjml_markup = mjml_content
         inline_attachments = {}
 

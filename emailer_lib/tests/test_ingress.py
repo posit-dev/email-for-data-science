@@ -207,9 +207,9 @@ def test_mjml_render_mjml_with_bytesio_raises_error():
         )
     )
     
-    # Calling render_mjml() should raise an error with a helpful message
+    # Calling _render_mjml() should raise an error with a helpful message
     with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
-        mjml_tag.render_mjml()
+        mjml_tag._render_mjml()
     
     # But passing the tag directly to mjml_to_intermediate_email should work
     result = mjml_to_intermediate_email(mjml_tag)
