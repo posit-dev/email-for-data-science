@@ -1,4 +1,5 @@
 import pytest
+from io import BytesIO
 from emailer_lib.mjml._core import MJMLTag, TagAttrDict
 
 
@@ -171,3 +172,45 @@ def test_children_sequence_flattening():
     assert "Text 1" in mjml_content
     assert "Text 2" in mjml_content
     assert "Text 3" in mjml_content
+
+
+def test_render_mjml_raises_on_bytesio_in_image_src():
+    image_data = BytesIO(b"fake image data")
+    image_tag = MJMLTag(
+        "mj-image",
+        attributes={"src": image_data, "alt": "Test"}
+    )
+    
+    with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
+        image_tag.render_mjml()
+
+
+def test_render_mjml_raises_on_bytes_in_image_src():
+    image_data = b"fake image data"
+    image_tag = MJMLTag(
+        "mj-image",
+        attributes={"src": image_data, "alt": "Test"}
+    )
+    
+    with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
+        image_tag.render_mjml()
+
+
+def test_tagattr_dict_stores_bytesio():
+    """Test that TagAttrDict can store BytesIO values."""
+    image_data = BytesIO(b"test data")
+    attrs = TagAttrDict({"src": image_data, "alt": "Test"})
+    
+    # Verify BytesIO is stored as-is
+    assert isinstance(attrs["src"], BytesIO)
+    assert attrs["alt"] == "Test"
+
+
+def test_tagattr_dict_stores_bytes():
+    """Test that TagAttrDict can store bytes values."""
+    image_data = b"test data"
+    attrs = TagAttrDict({"src": image_data, "alt": "Test"})
+    
+    # Verify bytes are stored as-is
+    assert isinstance(attrs["src"], bytes)
+    assert attrs["alt"] == "Test"

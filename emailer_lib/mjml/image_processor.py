@@ -8,14 +8,12 @@ attachments for email embedding without using globals.
 from __future__ import annotations
 from typing import Any, Dict, Tuple
 import base64
+import uuid
 from io import BytesIO
 
 from ._core import MJMLTag
 
 __all__ = ["process_mjml_images"]
-
-# Counter for generating sequential CID filenames
-_cid_counter = [0]
 
 
 def _convert_to_bytes(obj: Any) -> bytes:
@@ -118,9 +116,9 @@ def process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
                 image_bytes_data = _convert_to_bytes(src_value)
                 b64_string = base64.b64encode(image_bytes_data).decode("utf-8")
                 
-                # Generate CID filename
-                _cid_counter[0] += 1
-                cid_filename = f"plot_{_cid_counter[0]}.png"
+                # Generate CID filename using UUID
+                cid_id = uuid.uuid4().hex[:8]
+                cid_filename = f"plot_{cid_id}.png"
                 
                 # Store in attachments
                 inline_attachments[cid_filename] = b64_string
