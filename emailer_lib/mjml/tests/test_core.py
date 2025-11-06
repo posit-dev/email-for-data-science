@@ -1,5 +1,6 @@
 import pytest
 from io import BytesIO
+from emailer_lib.ingress import mjml_to_intermediate_email
 from emailer_lib.mjml._core import MJMLTag, TagAttrDict
 
 
@@ -89,10 +90,10 @@ def test_render_with_string_and_tag_children():
     assert "More text" in mjml_content
 
 
-def test_repr_returns_mjml():
+def test_repr_returns_simple_string():
     tag = MJMLTag("mj-text", content="Hello")
 
-    assert repr(tag) == tag._render_mjml()
+    assert repr(tag) == "<MJMLTag(mj-text)>"
 
 
 def test_to_html_with_complete_mjml_document():
@@ -121,12 +122,14 @@ def test_to_html_warns_and_wraps_other_tags():
     assert "html" in html_result
 
 
-def test_repr_html_calls_to_html():
+def test_repr_html_returns_intermediate_email_repr_html():
     tag = MJMLTag("mjml", MJMLTag("mj-body"))
     html_from_repr = tag._repr_html_()
-    html_from_method = tag.to_html()
 
-    assert html_from_repr == html_from_method
+    # _repr_html_() should return the HTML representation from mjml_to_intermediate_email
+    assert "<!doctype html" in html_from_repr.lower() or "<html" in html_from_repr
+    assert isinstance(html_from_repr, str)
+    assert html_from_repr == mjml_to_intermediate_email(tag)._repr_html_()
 
 
 def test_to_html_passes_kwargs_to_mjml2html():
