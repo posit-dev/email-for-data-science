@@ -201,6 +201,9 @@ class MJMLTag:
         If this is not a top-level <mjml> tag, it will be automatically wrapped
         in <mjml><mj-body>...</mj-body></mjml> with a warning.
 
+        Note: This method embeds all images as inline data URIs in the HTML.
+        For email sending with separate attachments, use mjml_to_intermediate_email() instead.
+
         Parameters
         ----------
         **mjml2html_kwargs
