@@ -2,250 +2,250 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/configuring-subject.html</loc>
-    <lastmod>2025-11-05T23:38:29.297Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/orchestrating-auth.html</loc>
-    <lastmod>2025-11-05T23:38:29.298Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.write_email_message.html</loc>
-    <lastmod>2025-11-05T23:38:47.796Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.839Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/redmail_to_intermediate_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.799Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.842Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.social.html</loc>
-    <lastmod>2025-11-05T23:38:47.838Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.883Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.raw.html</loc>
-    <lastmod>2025-11-05T23:38:47.836Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.880Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.head.html</loc>
-    <lastmod>2025-11-05T23:38:47.808Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.851Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.accordion.html</loc>
-    <lastmod>2025-11-05T23:38:47.821Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.865Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.body.html</loc>
-    <lastmod>2025-11-05T23:38:47.809Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.853Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml_to_intermediate_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.798Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.841Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.write_preview_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.796Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.839Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.title.html</loc>
-    <lastmod>2025-11-05T23:38:47.820Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.863Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.navbar_link.html</loc>
-    <lastmod>2025-11-05T23:38:47.835Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.879Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.html</loc>
-    <lastmod>2025-11-05T23:38:47.795Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.838Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_quarto_email_with_gmail.html</loc>
-    <lastmod>2025-11-05T23:38:47.806Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.849Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.image.html</loc>
-    <lastmod>2025-11-05T23:38:47.833Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.877Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.write_preview_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.792Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.835Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.font.html</loc>
-    <lastmod>2025-11-05T23:38:47.815Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.858Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_gmail.html</loc>
-    <lastmod>2025-11-05T23:38:47.800Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.844Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.divider.html</loc>
-    <lastmod>2025-11-05T23:38:47.830Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.873Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.mj_attributes.html</loc>
-    <lastmod>2025-11-05T23:38:47.810Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.854Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/index.html</loc>
-    <lastmod>2025-11-05T23:38:47.779Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.822Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.group.html</loc>
-    <lastmod>2025-11-05T23:38:47.831Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.874Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.preview.html</loc>
-    <lastmod>2025-11-05T23:38:47.818Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.861Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.write_email_message.html</loc>
-    <lastmod>2025-11-05T23:38:47.789Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.832Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.html_attribute.html</loc>
-    <lastmod>2025-11-05T23:38:47.817Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.860Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/yagmail_to_intermediate_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.800Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.843Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_yagmail.html</loc>
-    <lastmod>2025-11-05T23:38:47.804Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.847Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.social_element.html</loc>
-    <lastmod>2025-11-05T23:38:47.839Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.884Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/content-layout.html</loc>
-    <lastmod>2025-11-05T23:38:29.297Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/summary.html</loc>
-    <lastmod>2025-11-05T23:38:29.298Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/content-embedding.html</loc>
-    <lastmod>2025-11-05T23:38:29.297Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/index.html</loc>
-    <lastmod>2025-11-05T23:38:29.298Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.carousel_image.html</loc>
-    <lastmod>2025-11-05T23:38:47.827Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.871Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.text.html</loc>
-    <lastmod>2025-11-05T23:38:47.842Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.887Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_smtp.html</loc>
-    <lastmod>2025-11-05T23:38:47.802Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.846Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.wrapper.html</loc>
-    <lastmod>2025-11-05T23:38:47.843Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.888Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/emailer_lib.IntermediateEmail.preview_send_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.788Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.831Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.table.html</loc>
-    <lastmod>2025-11-05T23:38:47.841Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.886Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.breakpoint.html</loc>
-    <lastmod>2025-11-05T23:38:47.814Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.857Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.style.html</loc>
-    <lastmod>2025-11-05T23:38:47.819Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.862Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.carousel.html</loc>
-    <lastmod>2025-11-05T23:38:47.826Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.870Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.button.html</loc>
-    <lastmod>2025-11-05T23:38:47.825Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.869Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/IntermediateEmail.preview_send_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.797Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.840Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.hero.html</loc>
-    <lastmod>2025-11-05T23:38:47.832Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.876Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.accordion_text.html</loc>
-    <lastmod>2025-11-05T23:38:47.823Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.867Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.accordion_title.html</loc>
-    <lastmod>2025-11-05T23:38:47.824Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.868Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.mj_all.html</loc>
-    <lastmod>2025-11-05T23:38:47.811Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.855Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.mj_class.html</loc>
-    <lastmod>2025-11-05T23:38:47.813Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.856Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/quarto_json_to_intermediate_email.html</loc>
-    <lastmod>2025-11-05T23:38:47.798Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.841Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.html_attributes.html</loc>
-    <lastmod>2025-11-05T23:38:47.816Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.859Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/write_email_message_to_file.html</loc>
-    <lastmod>2025-11-05T23:38:47.806Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.849Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.navbar.html</loc>
-    <lastmod>2025-11-05T23:38:47.834Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.878Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.spacer.html</loc>
-    <lastmod>2025-11-05T23:38:47.840Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.885Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.column.html</loc>
-    <lastmod>2025-11-05T23:38:47.829Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.872Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.mjml.html</loc>
-    <lastmod>2025-11-05T23:38:47.807Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.850Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.accordion_element.html</loc>
-    <lastmod>2025-11-05T23:38:47.822Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.866Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/mjml.section.html</loc>
-    <lastmod>2025-11-05T23:38:47.837Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.881Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_mailgun.html</loc>
-    <lastmod>2025-11-05T23:38:47.805Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.848Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/reference/send_intermediate_email_with_redmail.html</loc>
-    <lastmod>2025-11-05T23:38:47.803Z</lastmod>
+    <lastmod>2025-11-06T20:30:13.846Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/configuring-attachments.html</loc>
-    <lastmod>2025-11-05T23:38:29.297Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
   <url>
     <loc>https://posit-dev.github.io/email-for-data-science/orchestrating-tests.html</loc>
-    <lastmod>2025-11-05T23:38:29.298Z</lastmod>
+    <lastmod>2025-11-06T20:29:49.538Z</lastmod>
   </url>
 </urlset>
