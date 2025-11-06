@@ -39,13 +39,11 @@ from .tags import (
     navbar_link,
     social_element,
 )
-# Import process_mjml_images for BytesIO/bytes processing at conversion time
-from .image_processor import process_mjml_images
+# _process_mjml_images is called internally by mjml_to_intermediate_email
 
 __all__ = (
     "MJMLTag",
     "TagAttrDict",
-    "process_mjml_images",
     "mjml",
     "head",
     "body",

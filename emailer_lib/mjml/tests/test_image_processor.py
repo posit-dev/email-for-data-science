@@ -1,7 +1,7 @@
 import pytest
 from io import BytesIO
 
-from emailer_lib.mjml.image_processor import _convert_to_bytes, process_mjml_images
+from emailer_lib.mjml.image_processor import _convert_to_bytes, _process_mjml_images
 from emailer_lib.mjml._core import MJMLTag
 
 
@@ -45,7 +45,7 @@ def test_process_mjml_images_with_bytesio():
         attributes={"src": bytesio_obj, "alt": "Test"}
     )
     
-    processed_tag, inline_attachments = process_mjml_images(image_tag)
+    processed_tag, inline_attachments = _process_mjml_images(image_tag)
     
     assert len(inline_attachments) == 1
     
@@ -65,7 +65,7 @@ def test_process_mjml_images_with_bytes():
         attributes={"src": image_data, "alt": "Test"}
     )
     
-    processed_tag, inline_attachments = process_mjml_images(image_tag)
+    processed_tag, inline_attachments = _process_mjml_images(image_tag)
     
     assert len(inline_attachments) == 1
     
@@ -87,7 +87,7 @@ def test_process_mjml_images_multiple_images():
         MJMLTag("mj-image", attributes={"src": BytesIO(image_data_2), "alt": "Img2"}),
     )
     
-    processed_tag, inline_attachments = process_mjml_images(col)
+    processed_tag, inline_attachments = _process_mjml_images(col)
     
     assert len(inline_attachments) == 2
     
@@ -113,7 +113,7 @@ def test_process_mjml_images_preserves_other_attributes():
         }
     )
     
-    processed_tag, _ = process_mjml_images(image_tag)
+    processed_tag, _ = _process_mjml_images(image_tag)
     
     assert processed_tag.attrs["alt"] == "Test Image"
     assert processed_tag.attrs["width"] == "600px"
@@ -131,7 +131,7 @@ def test_process_mjml_images_preserves_non_image_tags():
         )
     )
     
-    processed_tag, inline_attachments = process_mjml_images(section)
+    processed_tag, inline_attachments = _process_mjml_images(section)
     
     assert processed_tag.tagName == "mj-section"
     column = processed_tag.children[0]

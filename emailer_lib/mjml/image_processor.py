@@ -13,7 +13,7 @@ from io import BytesIO
 
 from ._core import MJMLTag
 
-__all__ = ["process_mjml_images"]
+__all__ = []
 
 
 def _convert_to_bytes(obj: Any) -> bytes:
@@ -47,9 +47,12 @@ def _convert_to_bytes(obj: Any) -> bytes:
     )
 
 
-def process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
+def _process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
     """
     Extract inline attachments from MJML tree and convert bytes/BytesIO to CID references.
+    
+    This is a private function. Users should not call it directly.
+    It is called automatically by mjml_to_intermediate_email().
     
     This function recursively walks through the MJML tag tree and finds mj-image tags
     with BytesIO or bytes in their src attribute. It converts these to CID references
@@ -95,7 +98,7 @@ def process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
         )
     )
     
-    # Pass directly to mjml_to_intermediate_email (calls process_mjml_images internally)
+    # Pass directly to mjml_to_intermediate_email (calls _process_mjml_images internally)
     i_email = mjml_to_intermediate_email(email)
     
     # Result: i_email.inline_attachments = {"plot_1.png": "iVBORw0KGgo..."}
