@@ -1533,28 +1533,42 @@
     "href": "reference/send_intermediate_email_with_mailgun.html",
     "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": "send_intermediate_email_with_mailgun(i_email)\nSend an Intermediate Email object via Mailgun.\n\n\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nThis function is a placeholder and has not been implemented yet."
+    "text": "send_intermediate_email_with_mailgun(api_key, domain, sender, i_email)\nSend an Intermediate Email object via Mailgun.\n\n\n\napi_key : str\n\nMailgun API key (found in account settings)\n\ndomain : str\n\nYour verified Mailgun domain (e.g., “mg.yourdomain.com”)\n\nsender : str\n\nEmail address to send from (must be authorized in your domain)\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments\n\n\n\n\n\n\n : Response\n\nResponse from Mailgun API\n\n\n\n\n\n\n: Exception\n\nIf the Mailgun API returns an error\n\n\n\n\n\nemail = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nresponse = send_intermediate_email_with_mailgun(\n    api_key=\"your-api-key\",\n    domain=\"mg.yourdomain.com\",\n    sender=\"noreply@yourdomain.com\",\n    i_email=email\n)\n\n\n\nRequires the mailgun package: pip install mailgun"
   },
   {
     "objectID": "reference/send_intermediate_email_with_mailgun.html#parameters",
     "href": "reference/send_intermediate_email_with_mailgun.html#parameters",
     "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": "i_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
+    "text": "api_key : str\n\nMailgun API key (found in account settings)\n\ndomain : str\n\nYour verified Mailgun domain (e.g., “mg.yourdomain.com”)\n\nsender : str\n\nEmail address to send from (must be authorized in your domain)\n\ni_email : IntermediateEmail\n\nIntermediateEmail object containing the email content and attachments"
   },
   {
     "objectID": "reference/send_intermediate_email_with_mailgun.html#returns",
     "href": "reference/send_intermediate_email_with_mailgun.html#returns",
     "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": ": None"
+    "text": ": Response\n\nResponse from Mailgun API"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_mailgun.html#raises",
+    "href": "reference/send_intermediate_email_with_mailgun.html#raises",
+    "title": "send_intermediate_email_with_mailgun",
+    "section": "",
+    "text": ": Exception\n\nIf the Mailgun API returns an error"
+  },
+  {
+    "objectID": "reference/send_intermediate_email_with_mailgun.html#examples",
+    "href": "reference/send_intermediate_email_with_mailgun.html#examples",
+    "title": "send_intermediate_email_with_mailgun",
+    "section": "",
+    "text": "email = IntermediateEmail(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\n\nresponse = send_intermediate_email_with_mailgun(\n    api_key=\"your-api-key\",\n    domain=\"mg.yourdomain.com\",\n    sender=\"noreply@yourdomain.com\",\n    i_email=email\n)"
   },
   {
     "objectID": "reference/send_intermediate_email_with_mailgun.html#notes",
     "href": "reference/send_intermediate_email_with_mailgun.html#notes",
     "title": "send_intermediate_email_with_mailgun",
     "section": "",
-    "text": "This function is a placeholder and has not been implemented yet."
+    "text": "Requires the mailgun package: pip install mailgun"
   },
   {
     "objectID": "reference/send_intermediate_email_with_redmail.html",
