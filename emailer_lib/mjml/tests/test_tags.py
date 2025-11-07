@@ -39,7 +39,7 @@ def test_container_tag_accepts_children():
     assert len(sec.children) == 1
     assert sec.children[0].tagName == "mj-column"
     
-    mjml_content = sec.render_mjml()
+    mjml_content = sec._to_mjml()
     assert "<mj-section>" in mjml_content
     assert "<mj-column>" in mjml_content
     assert "<mj-text>" in mjml_content
@@ -53,7 +53,7 @@ def test_container_tag_accepts_attributes():
     assert sec.attrs["background-color"] == "#fff"
     assert sec.attrs["padding"] == "20px"
     
-    mjml_content = sec.render_mjml()
+    mjml_content = sec._to_mjml()
     assert '<mj-section background-color="#fff" padding="20px">' in mjml_content
 
 
@@ -66,7 +66,7 @@ def test_container_tag_accepts_children_and_attrs():
     assert len(sec.children) == 2
     assert sec.attrs["background-color"] == "#f0f0f0"
     
-    mjml_content = sec.render_mjml()
+    mjml_content = sec._to_mjml()
     assert 'background-color="#f0f0f0"' in mjml_content
     assert "Col 1" in mjml_content
     assert "Col 2" in mjml_content
@@ -79,7 +79,7 @@ def test_leaf_tag_accepts_content():
     assert txt.tagName == "mj-text"
     assert txt.content == "Hello World"
     
-    mjml_content = txt.render_mjml()
+    mjml_content = txt._to_mjml()
     assert mjml_content == "<mj-text>\nHello World\n</mj-text>"
 
 
@@ -89,7 +89,7 @@ def test_leaf_tag_accepts_attributes():
     assert txt.attrs["color"] == "red"
     assert txt.attrs["font-size"] == "16px"
     
-    mjml_content = txt.render_mjml()
+    mjml_content = txt._to_mjml()
     assert 'color="red"' in mjml_content
     assert 'font-size="16px"' in mjml_content
     assert "Hello" in mjml_content
@@ -108,7 +108,7 @@ def test_button_is_leaf_tag():
     assert btn.content == "Click Me"
     assert btn.attrs["href"] == "https://example.com"
     
-    mjml_content = btn.render_mjml()
+    mjml_content = btn._to_mjml()
     assert 'href="https://example.com"' in mjml_content
     assert "Click Me" in mjml_content
     assert "<mj-button" in mjml_content
@@ -158,7 +158,7 @@ def test_raw_tag():
     assert r.tagName == "mj-raw"
     assert r.content == "<div>Custom HTML</div>"
     
-    mjml_content = r.render_mjml()
+    mjml_content = r._to_mjml()
     assert mjml_content == "<mj-raw>\n<div>Custom HTML</div>\n</mj-raw>"
 
 
@@ -167,7 +167,7 @@ def test_table_tag():
     assert tbl.tagName == "mj-table"
     assert "<table>" in tbl.content
     
-    mjml_content = tbl.render_mjml()
+    mjml_content = tbl._to_mjml()
     assert "<mj-table>" in mjml_content
     assert "<table><tr><td>Cell</td></tr></table>" in mjml_content
 
@@ -195,7 +195,7 @@ def test_image_tag():
     assert img.attrs["src"] == "https://example.com/image.jpg"
     assert img.attrs["alt"] == "Test Image"
     
-    mjml_content = img.render_mjml()
+    mjml_content = img._to_mjml()
     assert 'src="https://example.com/image.jpg"' in mjml_content
     assert 'alt="Test Image"' in mjml_content
     assert "<mj-image" in mjml_content
@@ -214,7 +214,7 @@ def test_attributes_container_with_mj_all_and_classes():
     assert attrs.children[1].tagName == "mj-class"
     assert attrs.children[2].tagName == "mj-class"
     
-    mjml_content = attrs.render_mjml()
+    mjml_content = attrs._to_mjml()
     assert "<mj-attributes>" in mjml_content
     assert "<mj-all" in mjml_content
     assert 'font-family="Arial"' in mjml_content
@@ -226,7 +226,7 @@ def test_component_with_mj_class_attribute():
     txt = text(attributes={"mj-class": "blue big"}, content="Hello World!")
     assert txt.attrs["mj-class"] == "blue big"
     
-    mjml_content = txt.render_mjml()
+    mjml_content = txt._to_mjml()
     assert 'mj-class="blue big"' in mjml_content
     assert "Hello World!" in mjml_content
 
@@ -258,7 +258,7 @@ def test_full_document_with_attributes():
     assert attrs_tag.tagName == "mj-attributes"
     assert len(attrs_tag.children) == 4
     
-    mjml_content = doc.render_mjml()
+    mjml_content = doc._to_mjml()
     assert "<mj-attributes>" in mjml_content
     assert '<mj-text padding="0"' in mjml_content
     assert 'name="blue"' in mjml_content

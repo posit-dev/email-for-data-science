@@ -39,6 +39,7 @@ from .tags import (
     navbar_link,
     social_element,
 )
+# _process_mjml_images is called internally by mjml_to_intermediate_email
 
 __all__ = (
     "MJMLTag",

@@ -1,4 +1,6 @@
 import pytest
+from io import BytesIO
+from emailer_lib.ingress import mjml_to_intermediate_email
 from emailer_lib.mjml._core import MJMLTag, TagAttrDict
 
 
@@ -36,7 +38,7 @@ def test_tag_with_dict_attributes():
 
 def test_tag_filters_none_children():
     tag = MJMLTag("mj-column", MJMLTag("mj-text", content="Text"), None)
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
 
     # None should not appear in output
     assert mjml_content.count("<mj-text>") == 1
@@ -44,25 +46,25 @@ def test_tag_filters_none_children():
 
 def test_render_empty_tag():
     tag = MJMLTag("mj-spacer")
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
     assert mjml_content == "<mj-spacer></mj-spacer>"
 
 
 def test_render_with_attributes():
     tag = MJMLTag("mj-spacer", attributes={"height": "20px"})
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
     assert mjml_content == '<mj-spacer height="20px"></mj-spacer>'
 
 
 def test_render_with_custom_indent():
     tag = MJMLTag("mj-text", content="Hello")
-    mjml_content = tag.render_mjml(indent=4)
+    mjml_content = tag._to_mjml(indent=4)
     assert mjml_content.startswith("    <mj-text>")
 
 
 def test_render_with_custom_eol():
     tag = MJMLTag("mj-text", content="Hello")
-    mjml_content = tag.render_mjml(eol="\r\n")
+    mjml_content = tag._to_mjml(eol="\r\n")
     assert "\r\n" in mjml_content
 
 
@@ -70,7 +72,7 @@ def test_render_nested_tags():
     tag = MJMLTag(
         "mj-section", MJMLTag("mj-column", MJMLTag("mj-text", content="Nested"))
     )
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
 
     assert "<mj-section>" in mjml_content
     assert "<mj-column>" in mjml_content
@@ -81,17 +83,17 @@ def test_render_nested_tags():
 def test_render_with_string_and_tag_children():
     child_tag = MJMLTag("mj-text", content="Tagged")
     tag = MJMLTag("mj-column", "Plain text", child_tag, "More text")
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
 
     assert "Plain text" in mjml_content
     assert "<mj-text>" in mjml_content
     assert "More text" in mjml_content
 
 
-def test_repr_returns_mjml():
+def test_repr_returns_simple_string():
     tag = MJMLTag("mj-text", content="Hello")
 
-    assert repr(tag) == tag.render_mjml()
+    assert repr(tag) == "<MJMLTag(mj-text)>"
 
 
 def test_to_html_with_complete_mjml_document():
@@ -120,12 +122,14 @@ def test_to_html_warns_and_wraps_other_tags():
     assert "html" in html_result
 
 
-def test_repr_html_calls_to_html():
+def test_repr_html_returns_intermediate_email_repr_html():
     tag = MJMLTag("mjml", MJMLTag("mj-body"))
     html_from_repr = tag._repr_html_()
-    html_from_method = tag.to_html()
 
-    assert html_from_repr == html_from_method
+    # _repr_html_() should return the HTML representation from mjml_to_intermediate_email
+    assert "<!doctype html" in html_from_repr.lower() or "<html" in html_from_repr
+    assert isinstance(html_from_repr, str)
+    assert html_from_repr == mjml_to_intermediate_email(tag)._repr_html_()
 
 
 def test_to_html_passes_kwargs_to_mjml2html():
@@ -165,9 +169,51 @@ def test_children_sequence_flattening():
     assert tag.children[1] == child2
     assert tag.children[2] == child3
 
-    mjml_content = tag.render_mjml()
+    mjml_content = tag._to_mjml()
     
     assert mjml_content.count("<mj-text>") == 3
     assert "Text 1" in mjml_content
     assert "Text 2" in mjml_content
     assert "Text 3" in mjml_content
+
+
+def test_to_mjml_raises_on_bytesio_in_image_src():
+    image_data = BytesIO(b"fake image data")
+    image_tag = MJMLTag(
+        "mj-image",
+        attributes={"src": image_data, "alt": "Test"}
+    )
+    
+    with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
+        image_tag._to_mjml()
+
+
+def test_to_mjml_raises_on_bytes_in_image_src():
+    image_data = b"fake image data"
+    image_tag = MJMLTag(
+        "mj-image",
+        attributes={"src": image_data, "alt": "Test"}
+    )
+    
+    with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
+        image_tag._to_mjml()
+
+
+def test_tagattr_dict_stores_bytesio():
+    """Test that TagAttrDict can store BytesIO values."""
+    image_data = BytesIO(b"test data")
+    attrs = TagAttrDict({"src": image_data, "alt": "Test"})
+    
+    # Verify BytesIO is stored as-is
+    assert isinstance(attrs["src"], BytesIO)
+    assert attrs["alt"] == "Test"
+
+
+def test_tagattr_dict_stores_bytes():
+    """Test that TagAttrDict can store bytes values."""
+    image_data = b"test data"
+    attrs = TagAttrDict({"src": image_data, "alt": "Test"})
+    
+    # Verify bytes are stored as-is
+    assert isinstance(attrs["src"], bytes)
+    assert attrs["alt"] == "Test"
