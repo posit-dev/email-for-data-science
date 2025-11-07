@@ -69,7 +69,9 @@ def mjml_to_email(
         mjml_markup = processed_mjml._to_mjml()
     else:
         # String-based MJML, no preprocessing needed
-        warnings.warn("MJMLTag not detected; treating input as plaintext MJML markup", UserWarning)
+        warnings.warn(
+            "MJMLTag not detected; treating input as plaintext MJML markup", UserWarning
+        )
         mjml_markup = mjml_content
         inline_attachments = {}
 
@@ -78,8 +80,8 @@ def mjml_to_email(
     i_email = Email(
         html=email_content,
         subject="",
-        rsc_email_supress_report_attachment=False,
-        rsc_email_supress_scheduled=False,
+        email_supress_report_attachment=False,
+        email_supress_scheduled=False,
         inline_attachments=inline_attachments,
     )
 
@@ -173,24 +175,36 @@ def quarto_json_to_email(path: str) -> Email:
     with open(path, "r", encoding="utf-8") as f:
         metadata = json.load(f)
 
-    email_html = metadata.get("rsc_email_body_html", "")
-    email_subject = metadata.get("rsc_email_subject", "")
-    email_text = metadata.get("rsc_email_body_text", "")
-
-
+    # Support both rsc_-prefixed (Quarto standard) and non-prefixed formats
+    email_html = metadata.get("rsc_email_body_html", metadata.get("email_body_html", ""))
+    email_subject = metadata.get("rsc_email_subject", metadata.get("email_subject", ""))
+    email_text = metadata.get("rsc_email_body_text", metadata.get("email_body_text", ""))
 
     # This is a list of paths that connect dumps attached files into.
     # Should be in same output directory
     output_files = metadata.get("rsc_output_files", [])
-    output_files += metadata.get("rsc_email_attachments", [])
+    output_files += metadata.get("rsc_email_attachments", metadata.get("email_attachments", []))
 
     # Get email images (dictionary: {filename: base64_string})
-    email_images = metadata.get("rsc_email_images", {})
+    email_images = metadata.get("rsc_email_images", metadata.get("email_images", {}))
 
+    # Support both old (supress) and new (suppress) spellings, with both prefixes
     supress_report_attachment = metadata.get(
-        "rsc_email_supress_report_attachment", False
+        "rsc_email_suppress_report_attachment",
+        metadata.get(
+            "rsc_email_supress_report_attachment",
+            metadata.get("email_suppress_report_attachment", 
+                        metadata.get("email_supress_report_attachment", False))
+        )
     )
-    supress_scheduled = metadata.get("rsc_email_supress_scheduled", False)
+    supress_scheduled = metadata.get(
+        "rsc_email_suppress_scheduled",
+        metadata.get(
+            "rsc_email_supress_scheduled",
+            metadata.get("email_suppress_scheduled",
+                        metadata.get("email_supress_scheduled", False))
+        )
+    )
 
     i_email = Email(
         html=email_html,
@@ -198,8 +212,8 @@ def quarto_json_to_email(path: str) -> Email:
         inline_attachments=email_images,
         external_attachments=output_files,
         subject=email_subject,
-        rsc_email_supress_report_attachment=supress_report_attachment,
-        rsc_email_supress_scheduled=supress_scheduled,
+        email_supress_report_attachment=supress_report_attachment,
+        email_supress_scheduled=supress_scheduled,
     )
 
     return i_email

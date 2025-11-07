@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 import re
+import json
 
 from email.message import EmailMessage
 
@@ -38,10 +39,10 @@ class Email:
     recipients
         Optional list of recipient email addresses.
 
-    rsc_email_supress_report_attachment
+    email_supress_report_attachment
         Whether to suppress report attachments (used in some workflows).
 
-    rsc_email_supress_scheduled
+    email_supress_scheduled
         Whether to suppress scheduled sending (used in some workflows).
 
     Examples
@@ -58,8 +59,8 @@ class Email:
 
     html: str
     subject: str
-    rsc_email_supress_report_attachment: bool | None = None
-    rsc_email_supress_scheduled: bool | None = None
+    email_supress_report_attachment: bool | None = None
+    email_supress_scheduled: bool | None = None
 
     # is a list of files in path from current directory
     external_attachments: list[str] = field(default_factory=list)
@@ -224,3 +225,69 @@ class Email:
         ```
         """
         raise NotImplementedError
+
+    def write_quarto_json(self, out_file: str = ".output_metadata.json") -> None:
+        """
+        Write the Email to Quarto's output metadata JSON format.
+
+        This method serializes the Email object to JSON in the format expected by Quarto,
+        making it compatible with Quarto's email integration workflows. This is the inverse
+        of the `quarto_json_to_email()` ingress function.
+
+        Parameters
+        ----------
+        out_file
+            The file path to write the Quarto metadata JSON. Defaults to ".output_metadata.json".
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        ```python
+        email = Email(
+            html="<p>Hello world</p>",
+            subject="Test Email",
+        )
+        email.write_quarto_json("email_metadata.json")
+        ```
+
+        Notes
+        ------
+        The output JSON includes:
+        - email_subject: The subject line
+        - email_attachments: List of attachment file paths
+        - email_body_html: The HTML content of the email
+        - email_body_text: Plain text version (if present)
+        - email_images: Dictionary of base64-encoded inline images (only if not empty)
+        - email_suppress_report_attachment: Suppression flag for report attachments
+        - email_suppress_scheduled: Suppression flag for scheduled sending
+        """
+        metadata = {
+            "email_subject": self.subject,
+            "email_attachments": self.external_attachments or [],
+            "email_body_html": self.html,
+        }
+
+        # Add optional text field if present
+        if self.text:
+            metadata["email_body_text"] = self.text
+
+        # Add inline images only if not empty
+        if self.inline_attachments:
+            metadata["email_images"] = self.inline_attachments
+
+        # Add suppression flags if they are set (not None)
+        if self.email_supress_report_attachment is not None:
+            metadata["email_suppress_report_attachment"] = (
+                self.email_supress_report_attachment
+            )
+
+        if self.email_supress_scheduled is not None:
+            metadata["email_suppress_scheduled"] = self.email_supress_scheduled
+
+        with open(out_file, "w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=2)
+
+

@@ -2,6 +2,10 @@ from unittest.mock import patch, MagicMock, mock_open
 
 
 import pytest
+import json
+import tempfile
+import os
+
 from nbmail.egress import (
     send_email_with_redmail,
     send_email_with_yagmail,
@@ -11,6 +15,7 @@ from nbmail.egress import (
     send_quarto_email_with_gmail,
 )
 from nbmail.structs import Email
+from nbmail.ingress import quarto_json_to_email
 
 
 def make_basic_email():
@@ -286,3 +291,142 @@ def test_not_implemented_functions(send_func):
     email = make_basic_email()
     with pytest.raises(NotImplementedError):
         send_func(email)
+
+
+# Tests for Email.write_quarto_json() method
+def test_email_write_quarto_json_basic():
+    email = Email(
+        html="<html><body><p>Test email</p></body></html>",
+        subject="Test Subject",
+        text="Plain text version",
+        external_attachments=["file1.pdf", "file2.csv"],
+        inline_attachments={"img1": "base64data123"},
+        email_supress_report_attachment=True,
+        email_supress_scheduled=False,
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        json_path = os.path.join(tmpdir, "test.json")
+        email.write_quarto_json(json_path)
+
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        # Check that all expected fields are present (with  prefix for Quarto compatibility)
+        assert data["email_subject"] == "Test Subject"
+        assert data["email_body_html"] == "<html><body><p>Test email</p></body></html>"
+        assert data["email_body_text"] == "Plain text version"
+        assert data["email_attachments"] == ["file1.pdf", "file2.csv"]
+        assert data["email_images"] == {"img1": "base64data123"}
+        assert data["email_suppress_report_attachment"] is True
+        assert data["email_suppress_scheduled"] is False
+
+
+def test_email_write_quarto_json_minimal():
+    """Test writing a minimal email to Quarto JSON format."""
+    email = Email(
+        html="<html><body>Minimal</body></html>",
+        subject="Minimal Subject",
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        json_path = os.path.join(tmpdir, "minimal.json")
+        email.write_quarto_json(json_path)
+
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        # Check minimal fields
+        assert data["email_subject"] == "Minimal Subject"
+        assert data["email_body_html"] == "<html><body>Minimal</body></html>"
+        assert data["email_attachments"] == []
+        
+        # Optional fields should not be present
+        assert "email_body_text" not in data
+        assert "email_images" not in data
+        assert "email_suppress_report_attachment" not in data
+        assert "email_suppress_scheduled" not in data
+
+
+def test_email_write_quarto_json_round_trip():
+    """Test writing and reading back a Quarto JSON email."""
+    original_email = Email(
+        html="<html><body><p>Quarto email</p></body></html>",
+        subject="Quarto Test",
+        text="Plain text version",
+        external_attachments=["output.pdf"],
+        inline_attachments={"img1": "base64encodedstring"},
+        email_supress_report_attachment=True,
+        email_supress_scheduled=False,
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        json_path = os.path.join(tmpdir, "roundtrip.json")
+        original_email.write_quarto_json(json_path)
+        
+        # Read it back
+        read_email = quarto_json_to_email(json_path)
+
+        # Verify all fields match
+        assert read_email.subject == original_email.subject
+        assert read_email.html == original_email.html
+        assert read_email.text == original_email.text
+        assert read_email.external_attachments == original_email.external_attachments
+        assert read_email.inline_attachments == original_email.inline_attachments
+        assert read_email.email_supress_report_attachment == original_email.email_supress_report_attachment
+        assert read_email.email_supress_scheduled == original_email.email_supress_scheduled
+
+
+def test_email_write_quarto_json_no_attachments():
+    """Test writing an email without attachments or images."""
+    email = Email(
+        html="<html><body>No attachments</body></html>",
+        subject="No Attachments",
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        json_path = os.path.join(tmpdir, "no_attachments.json")
+        email.write_quarto_json(json_path)
+
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        # Check that attachments and images are empty
+        assert data["email_attachments"] == []
+        assert "email_images" not in data
+
+
+def test_email_write_quarto_json_no_text():
+    """Test writing an email without plain text version."""
+    email = Email(
+        html="<html><body>HTML only</body></html>",
+        subject="HTML Only",
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        json_path = os.path.join(tmpdir, "html_only.json")
+        email.write_quarto_json(json_path)
+
+        with open(json_path, "r") as f:
+            data = json.load(f)
+
+        # Plain text should not be present
+        assert "email_body_text" not in data
+
+
+def test_email_write_quarto_json_custom_filename():
+    email = Email(
+        html="<html><body>Custom</body></html>",
+        subject="Custom Filename",
+    )
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        custom_path = os.path.join(tmpdir, "my_custom_file.json")
+        email.write_quarto_json(custom_path)
+
+        assert os.path.exists(custom_path)
+        
+        with open(custom_path, "r") as f:
+            data = json.load(f)
+        
+        assert data["email_subject"] == "Custom Filename"

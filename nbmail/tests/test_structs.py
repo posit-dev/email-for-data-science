@@ -37,8 +37,8 @@ def test_subject_inserts_after_body(tmp_path):
     email = Email(
         html=html,
         subject="Test Subject",
-        rsc_email_supress_report_attachment=False,
-        rsc_email_supress_scheduled=False,
+        email_supress_report_attachment=False,
+        email_supress_scheduled=False,
     )
     out_file = tmp_path / "preview.html"
 
