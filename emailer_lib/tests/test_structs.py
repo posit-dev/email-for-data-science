@@ -95,3 +95,84 @@ def test_not_implemented_methods(method_name):
     method = getattr(email, method_name)
     with pytest.raises(NotImplementedError):
         method()
+
+
+def test_preview_email_simple_html(tmp_path, snapshot):
+    html = "<html><body><p>Hello World!</p></body></html>"
+    email = IntermediateEmail(
+        html=html,
+        subject="Simple Test Email",
+    )
+    
+    out_file = tmp_path / "preview.html"
+    email.write_preview_email(str(out_file))
+    content = out_file.read_text(encoding="utf-8")
+    
+    assert content == snapshot
+
+
+def test_preview_email_with_inline_attachments(tmp_path, snapshot):
+    html = """<html>
+<body>
+<h1>Email with Images</h1>
+<img src="cid:logo.png" alt="Logo" />
+<p>Some text content</p>
+<img src="cid:banner.jpg" alt="Banner" />
+</body>
+</html>"""
+    email = IntermediateEmail(
+        html=html,
+        subject="Email with Inline Images",
+        inline_attachments={
+            "logo.png": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+            "banner.jpg": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAAA="
+        },
+    )
+
+    out_file = tmp_path / "preview.html"
+    email.write_preview_email(str(out_file))
+    content = out_file.read_text(encoding="utf-8")
+    
+    assert content == snapshot
+
+
+def test_preview_email_complex_html(tmp_path, snapshot):
+    html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Email</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { background-color: #f0f0f0; padding: 20px; }
+        .content { padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome!</h1>
+    </div>
+    <div class="content">
+        <p>This is a <strong>complex</strong> email with <em>formatting</em>.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+        <img src="cid:test.png" alt="Test Image" />
+    </div>
+</body>
+</html>"""
+    email = IntermediateEmail(
+        html=html,
+        subject="Complex Email Structure",
+        inline_attachments={
+            "test.png": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+        },
+    )
+    
+    out_file = tmp_path / "preview.html"
+    email.write_preview_email(str(out_file))
+    content = out_file.read_text(encoding="utf-8")
+    
+    assert content == snapshot

@@ -1,0 +1,51 @@
+# serializer version: 1
+# name: test_preview_email_complex_html
+  '''
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Test Email</title>
+      <style>
+          body { font-family: Arial, sans-serif; }
+          .header { background-color: #f0f0f0; padding: 20px; }
+          .content { padding: 20px; }
+      </style>
+  </head>
+  <body>
+  <h2 style="padding-left:16px;">Subject: Complex Email Structure</h2>
+      <div class="header">
+          <h1>Welcome!</h1>
+      </div>
+      <div class="content">
+          <p>This is a <strong>complex</strong> email with <em>formatting</em>.</p>
+          <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+          </ul>
+          <img src="data:image;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Test Image" />
+      </div>
+  </body>
+  </html>
+  '''
+# ---
+# name: test_preview_email_simple_html
+  '''
+  <html><body>
+  <h2 style="padding-left:16px;">Subject: Simple Test Email</h2><p>Hello World!</p></body></html>
+  '''
+# ---
+# name: test_preview_email_with_inline_attachments
+  '''
+  <html>
+  <body>
+  <h2 style="padding-left:16px;">Subject: Email with Inline Images</h2>
+  <h1>Email with Images</h1>
+  <img src="data:image;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Logo" />
+  <p>Some text content</p>
+  <img src="data:image;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAAA=" alt="Banner" />
+  </body>
+  </html>
+  '''
+# ---
