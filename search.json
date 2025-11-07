@@ -203,14 +203,14 @@
     "href": "reference/mjml_to_intermediate_email.html",
     "title": "mjml_to_intermediate_email",
     "section": "",
-    "text": "mjml_to_intermediate_email(mjml_content)\nConvert MJML markup to an IntermediateEmail\n\n\n\nmjml_content : str\n\nMJML markup string\n\n\n\n\n\n\n : An Intermediate Email object"
+    "text": "mjml_to_intermediate_email(mjml_content)\nConvert MJML markup to an IntermediateEmail\n\n\n\nmjml_content : str | MJMLTag\n\nMJML markup string or MJMLTag object\n\n\n\n\n\n\n : An Intermediate Email object"
   },
   {
     "objectID": "reference/mjml_to_intermediate_email.html#parameters",
     "href": "reference/mjml_to_intermediate_email.html#parameters",
     "title": "mjml_to_intermediate_email",
     "section": "",
-    "text": "mjml_content : str\n\nMJML markup string"
+    "text": "mjml_content : str | MJMLTag\n\nMJML markup string or MJMLTag object"
   },
   {
     "objectID": "reference/mjml_to_intermediate_email.html#returns",
@@ -224,7 +224,7 @@
     "href": "reference/IntermediateEmail.write_preview_email.html",
     "title": "IntermediateEmail.write_preview_email",
     "section": "",
-    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
+    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients. The generated HTML is self-contained with base64 data URIs, distinct from the email sent via egress.py which uses cid references with MIME attachments.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
   },
   {
     "objectID": "reference/IntermediateEmail.write_preview_email.html#parameters",
@@ -399,7 +399,7 @@
     "href": "reference/emailer_lib.IntermediateEmail.write_preview_email.html",
     "title": "write_preview_email",
     "section": "",
-    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
+    "text": "IntermediateEmail.write_preview_email(out_file='preview_email.html')\nWrite a preview HTML file with inline attachments embedded.\nThis method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients. The generated HTML is self-contained with base64 data URIs, distinct from the email sent via egress.py which uses cid references with MIME attachments.\n\n\n\nout_file : str = 'preview_email.html'\n\nThe file path to write the preview HTML. Defaults to “preview_email.html”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail.write_preview_email(\"preview.html\")\n\n\n\nRaises ValueError if external attachments are present, as preview does not support them."
   },
   {
     "objectID": "reference/emailer_lib.IntermediateEmail.write_preview_email.html#parameters",
