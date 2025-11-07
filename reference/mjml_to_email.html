@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>send_intermediate_email_with_yagmail – Email for Data Science</title>
+<title>mjml_to_email – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,31 +154,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="emailer_lib.send_intermediate_email_with_yagmail" class="level1">
-<h1>send_intermediate_email_with_yagmail</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>send_intermediate_email_with_yagmail(i_email)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Send an Intermediate Email object via Yagmail.</p>
+<section id="nbmail.mjml_to_email" class="level1">
+<h1>mjml_to_email</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml_to_email(mjml_content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert MJML markup to an Email</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name"><strong>i_email</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">IntermediateEmail</span></code></dt>
+<dt><code><span class="parameter-name"><strong>mjml_content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str | MJMLTag</span></code></dt>
 <dd>
-<p>IntermediateEmail object containing the email content and attachments</p>
+<p>MJML markup string or MJMLTag object</p>
 </dd>
 </dl>
 </section>
 <section id="returns" class="level2 doc-section doc-section-returns">
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <dl>
-<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">An Email object</span></code></dt>
 <dd>
 
 </dd>
 </dl>
-</section>
-<section id="notes" class="level2 doc-section doc-section-notes">
-<h2 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h2>
-<p>This function is a placeholder and has not been implemented yet.</p>
 
 
 </section>

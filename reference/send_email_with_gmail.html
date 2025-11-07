@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>intermediateemail.write_preview_email – Email for Data Science</title>
+<title>send_email_with_gmail – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,17 +154,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="emailer_lib.IntermediateEmail.write_preview_email" class="level1">
-<h1>IntermediateEmail.write_preview_email</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>IntermediateEmail.write_preview_email(out_file<span class="op">=</span><span class="st">'preview_email.html'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Write a preview HTML file with inline attachments embedded.</p>
-<p>This method replaces image sources in the HTML with base64-encoded data from inline attachments, allowing you to preview the email as it would appear to recipients. The generated HTML is self-contained with base64 data URIs, distinct from the email sent via egress.py which uses cid references with MIME attachments.</p>
+<section id="nbmail.send_email_with_gmail" class="level1">
+<h1>send_email_with_gmail</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>send_email_with_gmail(username, password, i_email)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Send an Email object via Gmail.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name"><strong>out_file</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'preview_email.html'</span></code></dt>
+<dt><code><span class="parameter-name"><strong>username</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
 <dd>
-<p>The file path to write the preview HTML. Defaults to “preview_email.html”.</p>
+<p>Gmail account username for sending the email</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>password</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
+<dd>
+<p>Gmail app password</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>i_email</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Email</span></code></dt>
+<dd>
+<p>Email object containing the email content and attachments</p>
 </dd>
 </dl>
 </section>
@@ -173,17 +180,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl>
 <dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
 <dd>
-
+<p>The function sends an email but doesn’t return a value</p>
 </dd>
 </dl>
 </section>
 <section id="examples" class="level2 doc-section doc-section-examples">
 <h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>email.write_preview_email(<span class="st">"preview.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="notes" class="level2 doc-section doc-section-notes">
-<h2 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h2>
-<p>Raises ValueError if external attachments are present, as preview does not support them.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> Email(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    html<span class="op">=</span><span class="st">"&lt;p&gt;Hello world&lt;/p&gt;"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    subject<span class="op">=</span><span class="st">"Test Email"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    recipients<span class="op">=</span>[<span class="st">"user@example.com"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>send_email_with_gmail(<span class="st">"user@gmail.com"</span>, <span class="st">"password123"</span>, email)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

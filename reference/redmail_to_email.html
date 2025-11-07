@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>intermediateemail – Email for Data Science</title>
+<title>redmail_to_email – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,90 +154,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="emailer_lib.IntermediateEmail" class="level1">
-<h1>IntermediateEmail</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>IntermediateEmail(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    html,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    subject,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    rsc_email_supress_report_attachment<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    rsc_email_supress_scheduled<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    external_attachments<span class="op">=</span><span class="bu">list</span>(),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    inline_attachments<span class="op">=</span><span class="bu">dict</span>(),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    recipients<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A serializable, previewable, sendable email object for data science workflows.</p>
-<p>The <code>IntermediateEmail</code> class provides a unified structure for representing email messages, including HTML and plain text content, subject, inline or external attachments, and recipients. It is designed to be generated from a variety of authoring tools and sent via multiple providers.</p>
-<section id="parameters" class="level2 doc-section doc-section-parameters">
-<h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
-<dl>
-<dt><code><span class="parameter-name"><strong>html</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
-<dd>
-<p>The HTML content of the email.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>subject</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
-<dd>
-<p>The subject line of the email.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>external_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">list[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">list()</span></code></dt>
-<dd>
-<p>List of file paths for external attachments to include.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>inline_attachments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">dict[str, str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">dict()</span></code></dt>
-<dd>
-<p>Dictionary mapping filenames to base64-encoded strings for inline attachments.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>text</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Optional plain text version of the email.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>recipients</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">list[str] | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Optional list of recipient email addresses.</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>rsc_email_supress_report_attachment</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">bool | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Whether to suppress report attachments (used in some workflows).</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>rsc_email_supress_scheduled</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">bool | None</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Whether to suppress scheduled sending (used in some workflows).</p>
-</dd>
-</dl>
-</section>
-<section id="examples" class="level2 doc-section doc-section-examples">
-<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> IntermediateEmail(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    html<span class="op">=</span><span class="st">"&lt;p&gt;Hello world&lt;/p&gt;"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    subject<span class="op">=</span><span class="st">"Test Email"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    recipients<span class="op">=</span>[<span class="st">"user@example.com"</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>email.write_preview_email(<span class="st">"preview.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../reference/emailer_lib.IntermediateEmail.preview_send_email.html#emailer_lib.IntermediateEmail.preview_send_email">preview_send_email</a></td>
-<td>Send a preview of the email to a test recipient.</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/emailer_lib.IntermediateEmail.write_email_message.html#emailer_lib.IntermediateEmail.write_email_message">write_email_message</a></td>
-<td>Convert the IntermediateEmail to a Python EmailMessage.</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/emailer_lib.IntermediateEmail.write_preview_email.html#emailer_lib.IntermediateEmail.write_preview_email">write_preview_email</a></td>
-<td>Write a preview HTML file with inline attachments embedded.</td>
-</tr>
-</tbody>
-</table>
+<section id="nbmail.redmail_to_email" class="level1">
+<h1>redmail_to_email</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>redmail_to_email(msg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert a Redmail EmailMessage object to an Email</p>
+<section id="params" class="level2 doc-section doc-section-params">
+<h2 class="doc-section doc-section-params anchored" data-anchor-id="params">Params</h2>
+<p>msg The Redmail-generated EmailMessage object</p>
+<p>Converts the input EmailMessage to the email structure</p>
 
 
 </section>
