@@ -27,7 +27,7 @@ def redmail_to_email(msg: EmailMessage) -> Email:
     msg
         The Redmail-generated EmailMessage object
 
-    Converts the input EmailMessage to the intermediate email structure
+    Converts the input EmailMessage to the email structure
     """
     return _email_message_to_email(msg)
 
