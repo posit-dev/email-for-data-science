@@ -193,6 +193,46 @@ class MJMLTag:
         )
         return f"<MJMLTag({self.tagName})>"
 
+    def _wrap_in_mjml_tag(self, emit_warning: bool = True) -> "MJMLTag":
+        """
+        Wrap this tag in proper MJML structure if needed.
+
+        If this is already a complete MJML document (<mjml> tag), return it as-is.
+        If this is an <mj-body> tag, wrap it in an <mjml> tag.
+        Otherwise, wrap it in <mjml><mj-body>...</mj-body></mjml>.
+
+        Parameters
+        ----------
+        emit_warning
+            Whether to emit a warning when wrapping is performed
+
+        Returns
+        -------
+        MJMLTag
+            A complete MJML document (with <mjml> root tag)
+        """
+        if self.tagName == "mjml":
+            # Already a complete MJML document
+            return self
+        elif self.tagName == "mj-body":
+            # Wrap only in mjml tag
+            if emit_warning:
+                warnings.warn(
+                    "Automatically wrapping in <mjml>...</mjml>. "
+                    "For full control, create a complete MJML document with the mjml() tag.",
+                    UserWarning,
+                )
+            return MJMLTag("mjml", self)
+        else:
+            # Wrap in mjml and mj-body
+            if emit_warning:
+                warnings.warn(
+                    "Automatically wrapping in <mjml><mj-body>...</mj-body></mjml>. "
+                    "For full control, create a complete MJML document with the mjml() tag.",
+                    UserWarning,
+                )
+            return MJMLTag("mjml", MJMLTag("mj-body", self))
+
     # warning explain that they are not to pass this to email
     def to_html(self, **mjml2html_kwargs) -> str:
         """
@@ -214,31 +254,6 @@ class MJMLTag:
         str
             Result from `mjml-python.mjml2html()` containing html content
         """
-        if self.tagName == "mjml":
-            # Already a complete MJML document
-            mjml_markup = self._to_mjml()
-        elif self.tagName == "mj-body":
-            # Wrap only in mjml tag
-            warnings.warn(
-                "to_html() called on <mj-body> tag. "
-                "Automatically wrapping in <mjml>...</mjml>. "
-                "For full control, create a complete MJML document with the mjml() tag.",
-                UserWarning,
-                stacklevel=2,
-            )
-            wrapped = MJMLTag("mjml", self)
-            mjml_markup = wrapped._to_mjml()
-        else:
-            # Warn and wrap in mjml/mj-body
-            warnings.warn(
-                f"to_html() called on <{self.tagName}> tag. "
-                "Automatically wrapping in <mjml><mj-body>...</mj-body></mjml>. "
-                "For full control, create a complete MJML document with the mjml() tag.",
-                UserWarning,
-                stacklevel=2,
-            )
-            # Wrap in mjml and mj-body
-            wrapped = MJMLTag("mjml", MJMLTag("mj-body", self))
-            mjml_markup = wrapped._to_mjml()
-
+        wrapped = self._wrap_in_mjml_tag(emit_warning=True)
+        mjml_markup = wrapped._to_mjml()
         return mjml2html(mjml_markup, **mjml2html_kwargs)

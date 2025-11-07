@@ -63,7 +63,9 @@ def mjml_to_email(
     """
     # Handle MJMLTag objects by preprocessing images
     if isinstance(mjml_content, MJMLTag):
-        processed_mjml, inline_attachments = _process_mjml_images(mjml_content)
+        # Wrap in proper MJML structure if needed
+        wrapped_mjml = mjml_content._wrap_in_mjml_tag(emit_warning=True)
+        processed_mjml, inline_attachments = _process_mjml_images(wrapped_mjml)
         mjml_markup = processed_mjml._to_mjml()
     else:
         # String-based MJML, no preprocessing needed
