@@ -126,12 +126,12 @@ class MJMLTag:
         # if self.content is not None:
         #     self.children = []
 
-    def _render_mjml(self, indent: int = 0, eol: str = "\n") -> str:
+    def _to_mjml(self, indent: int = 0, eol: str = "\n") -> str:
         """
         Render MJMLTag and its children to MJML markup.
         Ported from htmltools Tag rendering logic.
         
-        Note: BytesIO/bytes in image src attributes are not supported by _render_mjml().
+        Note: BytesIO/bytes in image src attributes are not supported by _to_mjml().
         Pass the MJMLTag directly to mjml_to_intermediate_email() instead.
         """
 
@@ -150,7 +150,7 @@ class MJMLTag:
             if isinstance(src_value, (bytes, BytesIO)):
                 raise ValueError(
                     "Cannot render MJML with BytesIO/bytes in image src attribute. "
-                    "Pass the MJMLTag object directly to mjml_to_intermediate_email() instead of calling _render_mjml() first. "
+                    "Pass the MJMLTag object directly to mjml_to_intermediate_email() instead of calling _to_mjml() first. "
                     "Example: i_email = mjml_to_intermediate_email(doc)"
                 )
 
@@ -167,7 +167,7 @@ class MJMLTag:
             child_strs = []
             for child in _flatten(self.children):
                 if isinstance(child, MJMLTag):
-                    child_strs.append(child._render_mjml(indent + 2, eol))
+                    child_strs.append(child._to_mjml(indent + 2, eol))
                 else:
                     child_strs.append(str(child))
             if child_strs:
@@ -202,7 +202,7 @@ class MJMLTag:
         in <mjml><mj-body>...</mj-body></mjml> with a warning.
 
         Note: This method embeds all images as inline data URIs in the HTML.
-        For email sending with separate attachments, use mjml_to_intermediate_email() instead.
+        For email composition with inline attachments, use mjml_to_intermediate_email() instead.
 
         Parameters
         ----------
@@ -216,7 +216,7 @@ class MJMLTag:
         """
         if self.tagName == "mjml":
             # Already a complete MJML document
-            mjml_markup = self._render_mjml()
+            mjml_markup = self._to_mjml()
         elif self.tagName == "mj-body":
             # Wrap only in mjml tag
             warnings.warn(
@@ -227,7 +227,7 @@ class MJMLTag:
                 stacklevel=2,
             )
             wrapped = MJMLTag("mjml", self)
-            mjml_markup = wrapped._render_mjml()
+            mjml_markup = wrapped._to_mjml()
         else:
             # Warn and wrap in mjml/mj-body
             warnings.warn(
@@ -239,6 +239,6 @@ class MJMLTag:
             )
             # Wrap in mjml and mj-body
             wrapped = MJMLTag("mjml", MJMLTag("mj-body", self))
-            mjml_markup = wrapped._render_mjml()
+            mjml_markup = wrapped._to_mjml()
 
         return mjml2html(mjml_markup, **mjml2html_kwargs)

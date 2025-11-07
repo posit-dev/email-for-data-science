@@ -186,7 +186,7 @@ def test_mjml_to_intermediate_email_with_bytesio():
     assert result.inline_attachments[cid_filename] != ""
 
 
-def test_mjml_render_mjml_with_bytesio_raises_error():
+def test_mjml_to_mjml_with_bytesio_raises_error():
     from io import BytesIO
     from emailer_lib.mjml import mjml, body, section, column, image
     
@@ -207,9 +207,9 @@ def test_mjml_render_mjml_with_bytesio_raises_error():
         )
     )
     
-    # Calling _render_mjml() should raise an error with a helpful message
+    # Calling _to_mjml() should raise an error with a helpful message
     with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
-        mjml_tag._render_mjml()
+        mjml_tag._to_mjml()
     
     # But passing the tag directly to mjml_to_intermediate_email should work
     result = mjml_to_intermediate_email(mjml_tag)

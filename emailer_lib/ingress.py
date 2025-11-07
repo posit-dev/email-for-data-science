@@ -64,7 +64,7 @@ def mjml_to_intermediate_email(
     # Handle MJMLTag objects by preprocessing images
     if isinstance(mjml_content, MJMLTag):
         processed_mjml, inline_attachments = _process_mjml_images(mjml_content)
-        mjml_markup = processed_mjml._render_mjml()
+        mjml_markup = processed_mjml._to_mjml()
     else:
         # String-based MJML, no preprocessing needed
         warnings.warn("MJMLTag not detected; treating input as plaintext MJML markup", UserWarning)

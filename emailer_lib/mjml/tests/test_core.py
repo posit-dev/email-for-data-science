@@ -38,7 +38,7 @@ def test_tag_with_dict_attributes():
 
 def test_tag_filters_none_children():
     tag = MJMLTag("mj-column", MJMLTag("mj-text", content="Text"), None)
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
 
     # None should not appear in output
     assert mjml_content.count("<mj-text>") == 1
@@ -46,25 +46,25 @@ def test_tag_filters_none_children():
 
 def test_render_empty_tag():
     tag = MJMLTag("mj-spacer")
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
     assert mjml_content == "<mj-spacer></mj-spacer>"
 
 
 def test_render_with_attributes():
     tag = MJMLTag("mj-spacer", attributes={"height": "20px"})
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
     assert mjml_content == '<mj-spacer height="20px"></mj-spacer>'
 
 
 def test_render_with_custom_indent():
     tag = MJMLTag("mj-text", content="Hello")
-    mjml_content = tag._render_mjml(indent=4)
+    mjml_content = tag._to_mjml(indent=4)
     assert mjml_content.startswith("    <mj-text>")
 
 
 def test_render_with_custom_eol():
     tag = MJMLTag("mj-text", content="Hello")
-    mjml_content = tag._render_mjml(eol="\r\n")
+    mjml_content = tag._to_mjml(eol="\r\n")
     assert "\r\n" in mjml_content
 
 
@@ -72,7 +72,7 @@ def test_render_nested_tags():
     tag = MJMLTag(
         "mj-section", MJMLTag("mj-column", MJMLTag("mj-text", content="Nested"))
     )
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
 
     assert "<mj-section>" in mjml_content
     assert "<mj-column>" in mjml_content
@@ -83,7 +83,7 @@ def test_render_nested_tags():
 def test_render_with_string_and_tag_children():
     child_tag = MJMLTag("mj-text", content="Tagged")
     tag = MJMLTag("mj-column", "Plain text", child_tag, "More text")
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
 
     assert "Plain text" in mjml_content
     assert "<mj-text>" in mjml_content
@@ -169,7 +169,7 @@ def test_children_sequence_flattening():
     assert tag.children[1] == child2
     assert tag.children[2] == child3
 
-    mjml_content = tag._render_mjml()
+    mjml_content = tag._to_mjml()
     
     assert mjml_content.count("<mj-text>") == 3
     assert "Text 1" in mjml_content
@@ -177,7 +177,7 @@ def test_children_sequence_flattening():
     assert "Text 3" in mjml_content
 
 
-def test_render_mjml_raises_on_bytesio_in_image_src():
+def test_to_mjml_raises_on_bytesio_in_image_src():
     image_data = BytesIO(b"fake image data")
     image_tag = MJMLTag(
         "mj-image",
@@ -185,10 +185,10 @@ def test_render_mjml_raises_on_bytesio_in_image_src():
     )
     
     with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
-        image_tag._render_mjml()
+        image_tag._to_mjml()
 
 
-def test_render_mjml_raises_on_bytes_in_image_src():
+def test_to_mjml_raises_on_bytes_in_image_src():
     image_data = b"fake image data"
     image_tag = MJMLTag(
         "mj-image",
@@ -196,7 +196,7 @@ def test_render_mjml_raises_on_bytes_in_image_src():
     )
     
     with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
-        image_tag._render_mjml()
+        image_tag._to_mjml()
 
 
 def test_tagattr_dict_stores_bytesio():
