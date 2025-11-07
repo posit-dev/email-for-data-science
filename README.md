@@ -1,4 +1,4 @@
-# emailer-lib
+# nbmail
 
 <!-- [![Python Versions](https://img.shields.io/pypi/pyversions/gt_extras.svg)](https://pypi.python.org/pypi/gt-extras) -->
 <!-- [![PyPI](https://img.shields.io/pypi/v/gt-extras?logo=python&logoColor=white&color=orange)](https://pypi.org/project/gt-extras/) -->
@@ -11,12 +11,12 @@
 <!-- [![Contributors](https://img.shields.io/github/contributors/posit-dev/gt-extras)](https://github.com/posit-dev/gt-extras/graphs/contributors) -->
 <!-- [![Codecov](https://codecov.io/gh/posit-dev/gt-extras/branch/main/graph/badge.svg)](https://codecov.io/gh/posit-dev/gt-extras) -->
 
-> ⚠️ **emailer-lib is currently in development, expect breaking changes.**
+> ⚠️ **nbmail is currently in development, expect breaking changes.**
 
 
-### What is [emailer-lib](https://posit-dev.github.io/email-for-data-science/reference/)?
+### What is [nbmail](https://posit-dev.github.io/email-for-data-science/reference/)?
 
-**emailer-lib** is a Python package for serializing, previewing, and sending email messages in a consistent, simple structure. It provides utilities to convert emails from different sources (Redmail, Yagmail, MJML, Quarto JSON) into a unified intermediate format, and send them via multiple backends (Gmail, SMTP, Mailgun, etc.).
+**nbmail** is a Python package for serializing, previewing, and sending email messages in a consistent, simple structure. It provides utilities to convert emails from different sources (Redmail, Yagmail, MJML, Quarto JSON) into a unified intermediate format, and send them via multiple backends (Gmail, SMTP, Mailgun, etc.).
 
 The package is designed for data science workflows and Quarto projects, making it easy to generate, preview, and deliver rich email content programmatically.
 
@@ -24,14 +24,14 @@ The package is designed for data science workflows and Quarto projects, making i
 Install the latest release from your local repo or PyPI:
 
 ```bash
-pip install -e ./emailer-lib
+pip install -e ./nbmail
 ```
 -->
 
 ## Example Usage
 
 ```python
-from emailer_lib import (
+from nbmail import (
     quarto_json_to_intermediate_email,
     IntermediateEmail,
     send_intermediate_email_with_gmail,

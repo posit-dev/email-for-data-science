@@ -1042,7 +1042,7 @@ wheels = [
 ]
 
 [[package]]
-name = "emailer-lib"
+name = "nbmail"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [

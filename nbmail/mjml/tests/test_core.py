@@ -1,7 +1,7 @@
 import pytest
 from io import BytesIO
-from emailer_lib.ingress import mjml_to_intermediate_email
-from emailer_lib.mjml._core import MJMLTag, TagAttrDict
+from nbmail.ingress import mjml_to_intermediate_email
+from nbmail.mjml._core import MJMLTag, TagAttrDict
 
 
 def test_accepts_dict_arguments():

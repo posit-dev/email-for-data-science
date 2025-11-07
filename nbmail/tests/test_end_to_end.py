@@ -2,8 +2,8 @@ import pytest
 import time
 from aiosmtpd.controller import Controller
 from email import message_from_bytes
-from emailer_lib.egress import send_intermediate_email_with_smtp
-from emailer_lib.structs import IntermediateEmail
+from nbmail.egress import send_intermediate_email_with_smtp
+from nbmail.structs import IntermediateEmail
 
 
 class EmailHandler:

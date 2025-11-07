@@ -2,7 +2,7 @@ from unittest.mock import patch, MagicMock, mock_open
 
 
 import pytest
-from emailer_lib.egress import (
+from nbmail.egress import (
     send_intermediate_email_with_redmail,
     send_intermediate_email_with_yagmail,
     send_intermediate_email_with_mailgun,
@@ -10,7 +10,7 @@ from emailer_lib.egress import (
     send_intermediate_email_with_gmail,
     send_quarto_email_with_gmail,
 )
-from emailer_lib.structs import IntermediateEmail
+from nbmail.structs import IntermediateEmail
 
 
 def make_basic_email():
@@ -31,9 +31,9 @@ def setup_smtp_mocks(monkeypatch):
 
     context = mock_smtp.return_value.__enter__.return_value
 
-    # Patch in the emailer_lib.egress module where they're used
-    monkeypatch.setattr("emailer_lib.egress.smtplib.SMTP", mock_smtp)
-    monkeypatch.setattr("emailer_lib.egress.smtplib.SMTP_SSL", mock_smtp_ssl)
+    # Patch in the nbmail.egress module where they're used
+    monkeypatch.setattr("nbmail.egress.smtplib.SMTP", mock_smtp)
+    monkeypatch.setattr("nbmail.egress.smtplib.SMTP_SSL", mock_smtp_ssl)
 
     return mock_smtp, mock_smtp_ssl, context
 
@@ -43,7 +43,7 @@ def test_send_intermediate_email_with_gmail_calls_smtp(monkeypatch):
 
     mock_smtp_send = MagicMock()
     monkeypatch.setattr(
-        "emailer_lib.egress.send_intermediate_email_with_smtp", mock_smtp_send
+        "nbmail.egress.send_intermediate_email_with_smtp", mock_smtp_send
     )
 
     send_intermediate_email_with_gmail("user@gmail.com", "pass", email)
@@ -178,13 +178,13 @@ def test_send_quarto_email_with_gmail(monkeypatch):
     # Mock the quarto_json_to_intermediate_email function
     mock_quarto_to_email = MagicMock(return_value=make_basic_email())
     monkeypatch.setattr(
-        "emailer_lib.egress.quarto_json_to_intermediate_email", mock_quarto_to_email
+        "nbmail.egress.quarto_json_to_intermediate_email", mock_quarto_to_email
     )
 
     # Mock the Gmail sending function
     mock_send_gmail = MagicMock()
     monkeypatch.setattr(
-        "emailer_lib.egress.send_intermediate_email_with_gmail", mock_send_gmail
+        "nbmail.egress.send_intermediate_email_with_gmail", mock_send_gmail
     )
 
     # Call the function

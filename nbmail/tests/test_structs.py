@@ -1,7 +1,7 @@
 import re
 
 import pytest
-from emailer_lib.structs import IntermediateEmail
+from nbmail.structs import IntermediateEmail
 
 
 def test_creation_with_text_and_attachments():

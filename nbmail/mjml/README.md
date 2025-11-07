@@ -14,16 +14,16 @@ This module provides Python functions for creating MJML markup, the responsive e
 
 ## Installation
 
-This module is part of the `emailer_lib` package:
+This module is part of the `nbmail` package:
 
 ```python
-from emailer_lib import mjml as mj
+from nbmail import mjml as mj
 ```
 
 ## Quick Start
 
 ```python
-from emailer_lib.mjml import mjml, body, section, column, text
+from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
 email = mjml(
@@ -99,7 +99,7 @@ button(
 The base class for all MJML elements. Can be instantiated directly or via helper functions.
 
 ```python
-from emailer_lib.mjml import MJMLTag
+from nbmail.mjml import MJMLTag
 
 tag = MJMLTag(
     "mj-text",
@@ -117,7 +117,7 @@ A dictionary type for tag attributes.
 ### Simple Email
 
 ```python
-from emailer_lib.mjml import mjml, head, body, section, column, text, title
+from nbmail.mjml import mjml, head, body, section, column, text, title
 
 email = mjml(
     head(
@@ -136,7 +136,7 @@ email = mjml(
 ### Multi-column Layout
 
 ```python
-from emailer_lib.mjml import body, section, column, text, image
+from nbmail.mjml import body, section, column, text, image
 
 layout = body(
     section(
@@ -157,7 +157,7 @@ layout = body(
 ### Using Attributes
 
 ```python
-from emailer_lib.mjml import section, column, text
+from nbmail.mjml import section, column, text
 
 # Attributes as kwargs
 section(

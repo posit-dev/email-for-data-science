@@ -29,7 +29,7 @@ website:
             - orchestrating-tests.qmd
 
 quartodoc:
-  package: emailer_lib
+  package: nbmail
   dir: reference
   title: API Reference
   css: reference/_styles-quartodoc.css
@@ -79,7 +79,7 @@ quartodoc:
     - title: MJML Authoring
       desc: >
         Write responsive emails with MJML
-      package: emailer_lib
+      package: nbmail
       contents:
         - mjml.mjml
         - mjml.head

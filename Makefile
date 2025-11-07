@@ -5,10 +5,10 @@ preview:
 	cd docs && quarto preview
 
 test:
-	pytest emailer_lib/tests emailer_lib/mjml/tests --cov-report=xml
+	pytest nbmail/tests nbmail/mjml/tests --cov-report=xml
 
 test-update:
-	pytest emailer_lib/tests emailer_lib/mjml/tests --snapshot-update
+	pytest nbmail/tests nbmail/mjml/tests --snapshot-update
 
 generate-mjml-tags:
-	python3 emailer_lib/mjml/scripts/generate_tags.py
+	python3 nbmail/mjml/scripts/generate_tags.py

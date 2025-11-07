@@ -115,7 +115,7 @@ def {py_name}(
     --------
     With children:
     ```{{python}}
-    from emailer_lib.mjml import {py_name}, text
+    from nbmail.mjml import {py_name}, text
     child = text("Hello World")
 
     result = {py_name}(child)
@@ -165,7 +165,7 @@ def {py_name}(
     --------
     With content:
     ```{{python}}
-    from emailer_lib.mjml import {py_name}
+    from nbmail.mjml import {py_name}
 
     result = {py_name}("Hello")
     ```
@@ -182,7 +182,7 @@ def {py_name}(
     # Combine all parts
     output = header + "\n".join(functions)
 
-    # Write to file - navigate from scripts/ to emailer_lib/mjml/tags.py
+    # Write to file - navigate from scripts/ to nbmail/mjml/tags.py
     script_dir = Path(__file__).parent
     tags_file = script_dir.parent / "tags.py"
 

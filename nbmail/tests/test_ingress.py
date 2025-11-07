@@ -3,14 +3,14 @@ import pytest
 from email.message import EmailMessage
 from base64 import b64encode
 
-from emailer_lib.ingress import (
+from nbmail.ingress import (
     redmail_to_intermediate_email,
     yagmail_to_intermediate_email,
     mjml_to_intermediate_email,
     quarto_json_to_intermediate_email,
     _email_message_to_intermediate_email,
 )
-from emailer_lib.structs import IntermediateEmail
+from nbmail.structs import IntermediateEmail
 
 
 def test_email_message_to_intermediate_email_simple():
@@ -157,7 +157,7 @@ def test_mjml_to_intermediate_email_with_string_url():
 
 def test_mjml_to_intermediate_email_with_bytesio():
     from io import BytesIO
-    from emailer_lib.mjml import mjml, body, section, column, image
+    from nbmail.mjml import mjml, body, section, column, image
     
     buf = BytesIO(b'\x89PNG\r\n\x1a\n')
     
@@ -188,7 +188,7 @@ def test_mjml_to_intermediate_email_with_bytesio():
 
 def test_mjml_to_mjml_with_bytesio_raises_error():
     from io import BytesIO
-    from emailer_lib.mjml import mjml, body, section, column, image
+    from nbmail.mjml import mjml, body, section, column, image
     
     # Create a simple BytesIO object with fake image data
     buf = BytesIO(b'\x89PNG\r\n\x1a\n')

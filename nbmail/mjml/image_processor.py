@@ -73,8 +73,8 @@ def _process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
     Examples
     --------
     ```python
-    from emailer_lib.mjml import mjml, body, section, column, image
-    from emailer_lib import mjml_to_intermediate_email
+    from nbmail.mjml import mjml, body, section, column, image
+    from nbmail import mjml_to_intermediate_email
     from io import BytesIO
     
     # Create BytesIO with image data
