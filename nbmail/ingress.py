@@ -5,22 +5,22 @@ import json
 from email.message import EmailMessage
 from mjml import mjml2html
 
-from .structs import IntermediateEmail
+from .structs import Email
 from .mjml import MJMLTag
 from .mjml.image_processor import _process_mjml_images
 import warnings
 
 __all__ = [
-    "redmail_to_intermediate_email",
-    "yagmail_to_intermediate_email",
-    "mjml_to_intermediate_email",
-    "quarto_json_to_intermediate_email",
+    "redmail_to_email",
+    "yagmail_to_email",
+    "mjml_to_email",
+    "quarto_json_to_email",
 ]
 
 
-def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
+def redmail_to_email(msg: EmailMessage) -> Email:
     """
-    Convert a Redmail EmailMessage object to an IntermediateEmail
+    Convert a Redmail EmailMessage object to an Email
 
     Params
     ------
@@ -29,12 +29,12 @@ def redmail_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
 
     Converts the input EmailMessage to the intermediate email structure
     """
-    return _email_message_to_intermediate_email(msg)
+    return _email_message_to_email(msg)
 
 
-def yagmail_to_intermediate_email():
+def yagmail_to_email():
     """
-    Convert a Yagmail email object to an IntermediateEmail
+    Convert a Yagmail email object to an Email
 
     Params
     ------
@@ -45,11 +45,11 @@ def yagmail_to_intermediate_email():
     pass
 
 
-def mjml_to_intermediate_email(
+def mjml_to_email(
     mjml_content: str | MJMLTag,
-) -> IntermediateEmail:
+) -> Email:
     """
-    Convert MJML markup to an IntermediateEmail
+    Convert MJML markup to an Email
 
     Parameters
     ----------
@@ -58,7 +58,7 @@ def mjml_to_intermediate_email(
 
     Returns
     ------
-    An Intermediate Email object
+    An Email object
 
     """
     # Handle MJMLTag objects by preprocessing images
@@ -73,7 +73,7 @@ def mjml_to_intermediate_email(
 
     email_content = mjml2html(mjml_markup)
 
-    i_email = IntermediateEmail(
+    i_email = Email(
         html=email_content,
         subject="",
         rsc_email_supress_report_attachment=False,
@@ -85,9 +85,9 @@ def mjml_to_intermediate_email(
 
 
 # useful because redmail bundles an email message... may help in other cases too
-def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail:
+def _email_message_to_email(msg: EmailMessage) -> Email:
     """
-    Convert a Python EmailMessage object to an IntermediateEmail
+    Convert a Python EmailMessage object to an Email
 
     Parameters
     ------
@@ -147,7 +147,7 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
             # Not certain that all attached files have associated filenames
             external_attachments.append(filename)
 
-    return IntermediateEmail(
+    return Email(
         html=html or "",
         subject=subject,
         external_attachments=external_attachments if external_attachments else None,
@@ -158,9 +158,9 @@ def _email_message_to_intermediate_email(msg: EmailMessage) -> IntermediateEmail
 
 
 # Helper method to parse the quarto JSON
-def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
+def quarto_json_to_email(path: str) -> Email:
     """
-    Convert a Quarto output metadata JSON file to an IntermediateEmail
+    Convert a Quarto output metadata JSON file to an Email
 
     Parameters
     ------
@@ -190,7 +190,7 @@ def quarto_json_to_intermediate_email(path: str) -> IntermediateEmail:
     )
     supress_scheduled = metadata.get("rsc_email_supress_scheduled", False)
 
-    i_email = IntermediateEmail(
+    i_email = Email(
         html=email_html,
         text=email_text,
         inline_attachments=email_images,

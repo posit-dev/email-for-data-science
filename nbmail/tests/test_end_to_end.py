@@ -2,8 +2,8 @@ import pytest
 import time
 from aiosmtpd.controller import Controller
 from email import message_from_bytes
-from nbmail.egress import send_intermediate_email_with_smtp
-from nbmail.structs import IntermediateEmail
+from nbmail.egress import send_email_with_smtp
+from nbmail.structs import Email
 
 
 class EmailHandler:
@@ -37,7 +37,7 @@ def smtp_server():
 def test_send_email_integration(smtp_server):
     controller, handler = smtp_server
     
-    email = IntermediateEmail(
+    email = Email(
         html="<html><body><h1>Test Email</h1><p>Hello World</p></body></html>",
         subject="Integration Test",
         recipients=["test@example.com"],
@@ -47,7 +47,7 @@ def test_send_email_integration(smtp_server):
     )
     
     # Send email to the test SMTP server
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         smtp_host="127.0.0.1",
         smtp_port=8025,
         username="test@example.com",

@@ -132,7 +132,7 @@ class MJMLTag:
         Ported from htmltools Tag rendering logic.
         
         Note: BytesIO/bytes in image src attributes are not supported by _to_mjml().
-        Pass the MJMLTag directly to mjml_to_intermediate_email() instead.
+        Pass the MJMLTag directly to mjml_to_email() instead.
         """
 
         def _flatten(children):
@@ -150,8 +150,8 @@ class MJMLTag:
             if isinstance(src_value, (bytes, BytesIO)):
                 raise ValueError(
                     "Cannot render MJML with BytesIO/bytes in image src attribute. "
-                    "Pass the MJMLTag object directly to mjml_to_intermediate_email() instead of calling _to_mjml() first. "
-                    "Example: i_email = mjml_to_intermediate_email(doc)"
+                    "Pass the MJMLTag object directly to mjml_to_email() instead of calling _to_mjml() first. "
+                    "Example: i_email = mjml_to_email(doc)"
                 )
 
         # Build attribute string
@@ -181,8 +181,8 @@ class MJMLTag:
             return f"{pad}<{self.tagName}{attr_str}></{self.tagName}>"
 
     def _repr_html_(self):
-        from ..ingress import mjml_to_intermediate_email
-        return mjml_to_intermediate_email(self)._repr_html_()
+        from ..ingress import mjml_to_email
+        return mjml_to_email(self)._repr_html_()
 
     # TODO: make something deliberate
     def __repr__(self) -> str:
@@ -193,7 +193,7 @@ class MJMLTag:
         )
         return f"<MJMLTag({self.tagName})>"
 
-    # warning explain that they are not to pass this to intermediate email
+    # warning explain that they are not to pass this to email
     def to_html(self, **mjml2html_kwargs) -> str:
         """
         Render MJMLTag to HTML using mjml2html.
@@ -202,7 +202,7 @@ class MJMLTag:
         in <mjml><mj-body>...</mj-body></mjml> with a warning.
 
         Note: This method embeds all images as inline data URIs in the HTML.
-        For email composition with inline attachments, use mjml_to_intermediate_email() instead.
+        For email composition with inline attachments, use mjml_to_email() instead.
 
         Parameters
         ----------

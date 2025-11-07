@@ -21,7 +21,7 @@
         "\n",
         "In this tutorial, we'll walk through the whole game of sending email. We'll start with this simple example:\n"
       ],
-      "id": "14101fd1"
+      "id": "a59ad40b"
     },
     {
       "cell_type": "code",
@@ -54,7 +54,7 @@
         "    html=email_body,\n",
         ")"
       ],
-      "id": "3e29c5ba",
+      "id": "1e722fc3",
       "execution_count": null,
       "outputs": []
     },
@@ -78,7 +78,7 @@
         "* Authenticate (may need to refer to its own authentication page in guide)\n",
         "* Send\n"
       ],
-      "id": "31ca0b47"
+      "id": "466f45ac"
     },
     {
       "cell_type": "code",
@@ -111,7 +111,7 @@
         "    html=email_body,\n",
         ")"
       ],
-      "id": "ecc38edf",
+      "id": "d7f3dc30",
       "execution_count": null,
       "outputs": []
     },
@@ -184,7 +184,7 @@
         "\n",
         "Check out the email content we will send.\n"
       ],
-      "id": "840912f2"
+      "id": "a0472e78"
     },
     {
       "cell_type": "code",
@@ -194,7 +194,7 @@
         "\n",
         "sp500.head(10).style"
       ],
-      "id": "0cda1fb2",
+      "id": "b0858409",
       "execution_count": null,
       "outputs": []
     },
@@ -204,7 +204,7 @@
       "source": [
         "And now we send the email!\n"
       ],
-      "id": "f44aff8c"
+      "id": "e696c7a5"
     },
     {
       "cell_type": "code",
@@ -223,7 +223,7 @@
         "    text=email_plaintext,\n",
         ")"
       ],
-      "id": "4ad22022",
+      "id": "9fbe68e8",
       "execution_count": null,
       "outputs": []
     },
@@ -235,7 +235,7 @@
         "Explain why email_plaintext is there?\n",
         "-->"
       ],
-      "id": "15ee0056"
+      "id": "39984027"
     }
   ],
   "metadata": {

@@ -4,23 +4,23 @@ from email.message import EmailMessage
 from base64 import b64encode
 
 from nbmail.ingress import (
-    redmail_to_intermediate_email,
-    yagmail_to_intermediate_email,
-    mjml_to_intermediate_email,
-    quarto_json_to_intermediate_email,
-    _email_message_to_intermediate_email,
+    redmail_to_email,
+    yagmail_to_email,
+    mjml_to_email,
+    quarto_json_to_email,
+    _email_message_to_email,
 )
-from nbmail.structs import IntermediateEmail
+from nbmail.structs import Email
 
 
-def test_email_message_to_intermediate_email_simple():
+def test_email_message_to_email_simple():
     msg = EmailMessage()
     msg["Subject"] = "Test Subject"
     msg["To"] = "recipient@example.com"
     msg.set_content("Plain text")
     msg.add_alternative("<html><body><p>HTML content</p></body></html>", subtype="html")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert result.subject == "Test Subject"
     assert result.recipients == ["recipient@example.com"]
@@ -30,7 +30,7 @@ def test_email_message_to_intermediate_email_simple():
     assert result.external_attachments is None
 
 
-def test_email_message_to_intermediate_email_multiple_recipients():
+def test_email_message_to_email_multiple_recipients():
     msg = EmailMessage()
     msg["Subject"] = "Multi-recipient"
     msg["To"] = "to1@example.com, to2@example.com"
@@ -38,7 +38,7 @@ def test_email_message_to_intermediate_email_multiple_recipients():
     msg["Bcc"] = "bcc@example.com"
     msg.add_alternative("<html><body>Test</body></html>", subtype="html")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert len(result.recipients) == 4
     assert "to1@example.com" in result.recipients
@@ -47,7 +47,7 @@ def test_email_message_to_intermediate_email_multiple_recipients():
     assert "bcc@example.com" in result.recipients
 
 
-def test_email_message_to_intermediate_email_with_inline_image():
+def test_email_message_to_email_with_inline_image():
     msg = EmailMessage()
     msg["Subject"] = "With Image"
     msg.add_alternative("<html><body><img src='cid:img1'></body></html>", subtype="html")
@@ -56,65 +56,65 @@ def test_email_message_to_intermediate_email_with_inline_image():
     img_data = b"\x89PNG\r\n\x1a\n"
     msg.add_attachment(img_data, maintype="image", subtype="png", cid="img1")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert result.inline_attachments is not None
     assert "img1" in result.inline_attachments
     assert result.inline_attachments["img1"] == b64encode(img_data).decode("utf-8")
 
 
-def test_email_message_to_intermediate_email_with_external_attachment():
+def test_email_message_to_email_with_external_attachment():
     msg = EmailMessage()
     msg["Subject"] = "With Attachment"
     msg.add_alternative("<html><body>Content</body></html>", subtype="html")
     msg.add_attachment(b"file content", maintype="application", subtype="pdf", filename="document.pdf")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert result.external_attachments is not None
     assert "document.pdf" in result.external_attachments
 
 
-def test_email_message_to_intermediate_email_plain_text_only():
+def test_email_message_to_email_plain_text_only():
     msg = EmailMessage()
     msg["Subject"] = "Plain Only"
     msg.set_content("Just plain text")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert result.text == "Just plain text\n"
     assert result.html == ""  # Empty string when no HTML
 
 
-def test_email_message_to_intermediate_email_html_only_not_multipart():
+def test_email_message_to_email_html_only_not_multipart():
     msg = EmailMessage()
     msg["Subject"] = "HTML Only"
     msg.set_content("<html><body>HTML</body></html>", subtype="html")
 
-    result = _email_message_to_intermediate_email(msg)
+    result = _email_message_to_email(msg)
 
     assert result.html == "<html><body>HTML</body></html>\n"
     assert result.text is None
 
 
-def test_redmail_to_intermediate_email():
+def test_redmail_to_email():
     msg = EmailMessage()
     msg["Subject"] = "Redmail Test"
     msg.add_alternative("<html><body>Redmail content</body></html>", subtype="html")
 
-    result = redmail_to_intermediate_email(msg)
+    result = redmail_to_email(msg)
 
-    assert isinstance(result, IntermediateEmail)
+    assert isinstance(result, Email)
     assert result.subject == "Redmail Test"
     assert "Redmail content" in result.html
 
 
-def test_yagmail_to_intermediate_email_not_implemented():
-    result = yagmail_to_intermediate_email()
+def test_yagmail_to_email_not_implemented():
+    result = yagmail_to_email()
     assert result is None
 
 
-def test_mjml_to_intermediate_email_no_images():
+def test_mjml_to_email_no_images():
     mjml_content = """
     <mjml>
       <mj-body>
@@ -127,15 +127,15 @@ def test_mjml_to_intermediate_email_no_images():
     </mjml>
     """
 
-    result = mjml_to_intermediate_email(mjml_content)
+    result = mjml_to_email(mjml_content)
 
-    assert isinstance(result, IntermediateEmail)
+    assert isinstance(result, Email)
     assert "Hello World" in result.html
     assert result.subject == ""
     assert result.inline_attachments == {}
 
 
-def test_mjml_to_intermediate_email_with_string_url():
+def test_mjml_to_email_with_string_url():
     mjml_content = """
     <mjml>
       <mj-body>
@@ -148,14 +148,14 @@ def test_mjml_to_intermediate_email_with_string_url():
     </mjml>
     """
 
-    result = mjml_to_intermediate_email(mjml_content)
+    result = mjml_to_email(mjml_content)
     
-    assert isinstance(result, IntermediateEmail)
+    assert isinstance(result, Email)
     assert result.inline_attachments == {}
     assert "https://example.com/image.jpg" in result.html
 
 
-def test_mjml_to_intermediate_email_with_bytesio():
+def test_mjml_to_email_with_bytesio():
     from io import BytesIO
     from nbmail.mjml import mjml, body, section, column, image
     
@@ -175,9 +175,9 @@ def test_mjml_to_intermediate_email_with_bytesio():
         )
     )
     
-    result = mjml_to_intermediate_email(mjml_tag)
+    result = mjml_to_email(mjml_tag)
     
-    assert isinstance(result, IntermediateEmail)
+    assert isinstance(result, Email)
     assert len(result.inline_attachments) == 1
 
     cid_filename = list(result.inline_attachments.keys())[0]
@@ -211,13 +211,13 @@ def test_mjml_to_mjml_with_bytesio_raises_error():
     with pytest.raises(ValueError, match="Cannot render MJML with BytesIO/bytes"):
         mjml_tag._to_mjml()
     
-    # But passing the tag directly to mjml_to_intermediate_email should work
-    result = mjml_to_intermediate_email(mjml_tag)
-    assert isinstance(result, IntermediateEmail)
+    # But passing the tag directly to mjml_to_email should work
+    result = mjml_to_email(mjml_tag)
+    assert isinstance(result, Email)
     assert len(result.inline_attachments) == 1
 
 
-def test_quarto_json_to_intermediate_email_basic(tmp_path):
+def test_quarto_json_to_email_basic(tmp_path):
     json_data = {
         "rsc_email_body_html": "<html><body><p>Quarto email</p></body></html>",
         "rsc_email_subject": "Quarto Test",
@@ -233,7 +233,7 @@ def test_quarto_json_to_intermediate_email_basic(tmp_path):
     with open(json_file, "w") as f:
         json.dump(json_data, f)
 
-    result = quarto_json_to_intermediate_email(str(json_file))
+    result = quarto_json_to_email(str(json_file))
 
     assert result.subject == "Quarto Test"
     assert "<p>Quarto email</p>" in result.html
@@ -244,7 +244,7 @@ def test_quarto_json_to_intermediate_email_basic(tmp_path):
     assert result.rsc_email_supress_scheduled is False
 
 
-def test_quarto_json_to_intermediate_email_minimal(tmp_path):
+def test_quarto_json_to_email_minimal(tmp_path):
     json_data = {
         "rsc_email_body_html": "<html><body>Minimal</body></html>",
         "rsc_email_subject": "Minimal Subject",
@@ -254,7 +254,7 @@ def test_quarto_json_to_intermediate_email_minimal(tmp_path):
     with open(json_file, "w") as f:
         json.dump(json_data, f)
 
-    result = quarto_json_to_intermediate_email(str(json_file))
+    result = quarto_json_to_email(str(json_file))
 
     assert result.subject == "Minimal Subject"
     assert result.html == "<html><body>Minimal</body></html>"
@@ -265,7 +265,7 @@ def test_quarto_json_to_intermediate_email_minimal(tmp_path):
     assert result.rsc_email_supress_scheduled is False
 
 
-def test_quarto_json_to_intermediate_email_empty_lists(tmp_path):
+def test_quarto_json_to_email_empty_lists(tmp_path):
     """Test handling empty lists for attachments and images."""
     json_data = {
         "rsc_email_body_html": "<html><body>Test</body></html>",
@@ -279,7 +279,7 @@ def test_quarto_json_to_intermediate_email_empty_lists(tmp_path):
     with open(json_file, "w") as f:
         json.dump(json_data, f)
 
-    result = quarto_json_to_intermediate_email(str(json_file))
+    result = quarto_json_to_email(str(json_file))
 
     assert result.external_attachments == []
     assert result.inline_attachments == {}

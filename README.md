@@ -32,19 +32,19 @@ pip install -e ./nbmail
 
 ```python
 from nbmail import (
-    quarto_json_to_intermediate_email,
-    IntermediateEmail,
-    send_intermediate_email_with_gmail,
+    quarto_json_to_email,
+    Email,
+    send_email_with_gmail,
 )
 
 # Read a Quarto email JSON file
-email_struct = quarto_json_to_intermediate_email("email.json")
+email_struct = quarto_json_to_email("email.json")
 
 # Preview the email as HTML
 email_struct.write_preview_email("preview.html")
 
 # Send the email via Gmail
-send_intermediate_email_with_gmail("your_email@gmail.com", "your_password", email_struct)
+send_email_with_gmail("your_email@gmail.com", "your_password", email_struct)
 ```
 
 ## Features

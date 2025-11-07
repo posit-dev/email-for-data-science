@@ -3,18 +3,18 @@ from unittest.mock import patch, MagicMock, mock_open
 
 import pytest
 from nbmail.egress import (
-    send_intermediate_email_with_redmail,
-    send_intermediate_email_with_yagmail,
-    send_intermediate_email_with_mailgun,
-    send_intermediate_email_with_smtp,
-    send_intermediate_email_with_gmail,
+    send_email_with_redmail,
+    send_email_with_yagmail,
+    send_email_with_mailgun,
+    send_email_with_smtp,
+    send_email_with_gmail,
     send_quarto_email_with_gmail,
 )
-from nbmail.structs import IntermediateEmail
+from nbmail.structs import Email
 
 
 def make_basic_email():
-    return IntermediateEmail(
+    return Email(
         html="<p>Hi</p>",
         subject="Test",
         recipients=["a@example.com"],
@@ -38,15 +38,15 @@ def setup_smtp_mocks(monkeypatch):
     return mock_smtp, mock_smtp_ssl, context
 
 
-def test_send_intermediate_email_with_gmail_calls_smtp(monkeypatch):
+def test_send_email_with_gmail_calls_smtp(monkeypatch):
     email = make_basic_email()
 
     mock_smtp_send = MagicMock()
     monkeypatch.setattr(
-        "nbmail.egress.send_intermediate_email_with_smtp", mock_smtp_send
+        "nbmail.egress.send_email_with_smtp", mock_smtp_send
     )
 
-    send_intermediate_email_with_gmail("user@gmail.com", "pass", email)
+    send_email_with_gmail("user@gmail.com", "pass", email)
 
     mock_smtp_send.assert_called_once_with(
         smtp_host="smtp.gmail.com",
@@ -58,11 +58,11 @@ def test_send_intermediate_email_with_gmail_calls_smtp(monkeypatch):
     )
 
 
-def test_send_intermediate_email_with_smtp_tls(monkeypatch):
+def test_send_email_with_smtp_tls(monkeypatch):
     email = make_basic_email()
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         smtp_host="smtp.example.com",
         smtp_port=587,
         username="user",
@@ -77,11 +77,11 @@ def test_send_intermediate_email_with_smtp_tls(monkeypatch):
     context.sendmail.assert_called_once()
 
 
-def test_send_intermediate_email_with_smtp_ssl(monkeypatch):
+def test_send_email_with_smtp_ssl(monkeypatch):
     email = make_basic_email()
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         smtp_host="smtp.example.com",
         smtp_port=465,
         username="user",
@@ -95,14 +95,14 @@ def test_send_intermediate_email_with_smtp_ssl(monkeypatch):
     context.sendmail.assert_called_once()
 
 
-def test_send_intermediate_email_with_smtp_with_attachment(monkeypatch):
+def test_send_email_with_smtp_with_attachment(monkeypatch):
     email = make_basic_email()
     email.external_attachments = ["file.txt"]
 
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
     with patch("builtins.open", mock_open(read_data=b"data")):
-        send_intermediate_email_with_smtp(
+        send_email_with_smtp(
             smtp_host="smtp.example.com",
             smtp_port=587,
             username="user",
@@ -117,14 +117,14 @@ def test_send_intermediate_email_with_smtp_with_attachment(monkeypatch):
     assert 'Content-Disposition: attachment; filename="file.txt"' in email_message
 
 
-def test_send_intermediate_email_with_smtp_unknown_mime_type(monkeypatch):
+def test_send_email_with_smtp_unknown_mime_type(monkeypatch):
     email = make_basic_email()
     email.external_attachments = ["file_without_extension"]
 
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
     with patch("builtins.open", mock_open(read_data=b"data")):
-        send_intermediate_email_with_smtp(
+        send_email_with_smtp(
             smtp_host="smtp.example.com",
             smtp_port=587,
             username="user",
@@ -144,11 +144,11 @@ def test_send_intermediate_email_with_smtp_unknown_mime_type(monkeypatch):
     )
 
 
-def test_send_intermediate_email_with_smtp_sendmail_args(monkeypatch):
+def test_send_email_with_smtp_sendmail_args(monkeypatch):
     email = make_basic_email()
     mock_smtp, mock_smtp_ssl, context = setup_smtp_mocks(monkeypatch)
 
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         smtp_host="mock_host",
         smtp_port=465,
         username="user@gmail.com",
@@ -175,16 +175,16 @@ def test_send_intermediate_email_with_smtp_sendmail_args(monkeypatch):
 # this is probably not the best way to test this,
 # for what it's worth I will test each part separately
 def test_send_quarto_email_with_gmail(monkeypatch):
-    # Mock the quarto_json_to_intermediate_email function
+    # Mock the quarto_json_to_email function
     mock_quarto_to_email = MagicMock(return_value=make_basic_email())
     monkeypatch.setattr(
-        "nbmail.egress.quarto_json_to_intermediate_email", mock_quarto_to_email
+        "nbmail.egress.quarto_json_to_email", mock_quarto_to_email
     )
 
     # Mock the Gmail sending function
     mock_send_gmail = MagicMock()
     monkeypatch.setattr(
-        "nbmail.egress.send_intermediate_email_with_gmail", mock_send_gmail
+        "nbmail.egress.send_email_with_gmail", mock_send_gmail
     )
 
     # Call the function
@@ -203,7 +203,7 @@ def test_send_quarto_email_with_gmail(monkeypatch):
     assert i_email.recipients == ["recipient@example.com"]
 
 
-def test_send_intermediate_email_with_mailgun(monkeypatch):
+def test_send_email_with_mailgun(monkeypatch):
     email = make_basic_email()
     email.external_attachments = ["file.txt"]
     
@@ -225,7 +225,7 @@ def test_send_intermediate_email_with_mailgun(monkeypatch):
     
     with patch("mailgun.client.Client", mock_client_class):
         with patch("builtins.open", mock_open(read_data=b"file content")):
-            response = send_intermediate_email_with_mailgun(
+            response = send_email_with_mailgun(
                 api_key="test-api-key",
                 domain="mg.example.com",
                 sender="sender@example.com",
@@ -259,15 +259,15 @@ def test_send_intermediate_email_with_mailgun(monkeypatch):
     }
 
 
-def test_send_intermediate_email_with_mailgun_no_recipients():
-    email = IntermediateEmail(
+def test_send_email_with_mailgun_no_recipients():
+    email = Email(
         html="<p>Hi</p>",
         subject="Test",
         recipients=None,
     )
     
     with pytest.raises(TypeError, match="i_email must have a populated recipients attribute"):
-        send_intermediate_email_with_mailgun(
+        send_email_with_mailgun(
             api_key="test-api-key",
             domain="mg.example.com",
             sender="sender@example.com",
@@ -278,8 +278,8 @@ def test_send_intermediate_email_with_mailgun_no_recipients():
 @pytest.mark.parametrize(
     "send_func",
     [
-        send_intermediate_email_with_redmail,
-        send_intermediate_email_with_yagmail,
+        send_email_with_redmail,
+        send_email_with_yagmail,
     ],
 )
 def test_not_implemented_functions(send_func):
