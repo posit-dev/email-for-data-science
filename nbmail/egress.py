@@ -12,18 +12,18 @@ from email.mime.base import MIMEBase
 from email import encoders
 from typing import Literal
 
-from .ingress import quarto_json_to_intermediate_email
+from .ingress import quarto_json_to_email
 
-from .structs import IntermediateEmail
+from .structs import Email
 import warnings
 
 __all__ = [
     "send_quarto_email_with_gmail",
-    "send_intermediate_email_with_gmail",
-    "send_intermediate_email_with_redmail",
-    "send_intermediate_email_with_yagmail",
-    "send_intermediate_email_with_mailgun",
-    "send_intermediate_email_with_smtp",
+    "send_email_with_gmail",
+    "send_email_with_redmail",
+    "send_email_with_yagmail",
+    "send_email_with_mailgun",
+    "send_email_with_smtp",
 ]
 
 
@@ -68,9 +68,9 @@ def send_quarto_email_with_gmail(
     )
     ```
     """
-    i_email: IntermediateEmail = quarto_json_to_intermediate_email(json_path)
+    i_email: Email = quarto_json_to_email(json_path)
     i_email.recipients = recipients
-    send_intermediate_email_with_gmail(
+    send_email_with_gmail(
         username=username, password=password, i_email=i_email
     )
 
@@ -79,11 +79,11 @@ def send_quarto_email_with_gmail(
 
 
 # Could also take creds object
-def send_intermediate_email_with_gmail(
-    username: str, password: str, i_email: IntermediateEmail
+def send_email_with_gmail(
+    username: str, password: str, i_email: Email
 ):
     """
-    Send an Intermediate Email object via Gmail.
+    Send an Email object via Gmail.
 
     Parameters
     ----------
@@ -94,7 +94,7 @@ def send_intermediate_email_with_gmail(
         Gmail app password
 
     i_email
-        IntermediateEmail object containing the email content and attachments
+        Email object containing the email content and attachments
 
     Returns
     -------
@@ -104,17 +104,17 @@ def send_intermediate_email_with_gmail(
     Examples
     --------
     ```python
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hello world</p>",
         subject="Test Email",
         recipients=["user@example.com"],
     )
 
-    send_intermediate_email_with_gmail("user@gmail.com", "password123", email)
+    send_email_with_gmail("user@gmail.com", "password123", email)
     ```
     """
     # Compose the email
-    return send_intermediate_email_with_smtp(
+    return send_email_with_smtp(
         smtp_host="smtp.gmail.com",
         smtp_port=587,
         username=username,
@@ -124,14 +124,14 @@ def send_intermediate_email_with_gmail(
     )
 
 
-def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
+def send_email_with_redmail(i_email: Email):
     """
-    Send an Intermediate Email object via Redmail.
+    Send an Email object via Redmail.
 
     Parameters
     ----------
     i_email
-        IntermediateEmail object containing the email content and attachments
+        Email object containing the email content and attachments
 
     Returns
     -------
@@ -144,14 +144,14 @@ def send_intermediate_email_with_redmail(i_email: IntermediateEmail):
     raise NotImplementedError
 
 
-def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
+def send_email_with_yagmail(i_email: Email):
     """
-    Send an Intermediate Email object via Yagmail.
+    Send an Email object via Yagmail.
 
     Parameters
     ----------
     i_email
-        IntermediateEmail object containing the email content and attachments
+        Email object containing the email content and attachments
 
     Returns
     -------
@@ -165,14 +165,14 @@ def send_intermediate_email_with_yagmail(i_email: IntermediateEmail):
     raise NotImplementedError
 
 
-def send_intermediate_email_with_mailgun(
+def send_email_with_mailgun(
     api_key: str,
     domain: str,
     sender: str,
-    i_email: IntermediateEmail,
+    i_email: Email,
 ):
     """
-    Send an Intermediate Email object via Mailgun.
+    Send an Email object via Mailgun.
 
     Parameters
     ----------
@@ -183,7 +183,7 @@ def send_intermediate_email_with_mailgun(
     sender
         Email address to send from (must be authorized in your domain)
     i_email
-        IntermediateEmail object containing the email content and attachments
+        Email object containing the email content and attachments
 
     Returns
     -------
@@ -198,13 +198,13 @@ def send_intermediate_email_with_mailgun(
     Examples
     --------
     ```python
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hello world</p>",
         subject="Test Email",
         recipients=["user@example.com"],
     )
 
-    response = send_intermediate_email_with_mailgun(
+    response = send_email_with_mailgun(
         api_key="your-api-key",
         domain="mg.yourdomain.com",
         sender="noreply@yourdomain.com",
@@ -265,16 +265,16 @@ def send_intermediate_email_with_mailgun(
     return response
 
 
-def send_intermediate_email_with_smtp(
+def send_email_with_smtp(
     smtp_host: str,
     smtp_port: int,
     username: str,
     password: str,
-    i_email: IntermediateEmail,
+    i_email: Email,
     security: str = Literal["tls", "ssl", "smtp"],
 ):
     """
-    Send an Intermediate Email object via SMTP.
+    Send an Email object via SMTP.
 
     Parameters
     ----------
@@ -291,7 +291,7 @@ def send_intermediate_email_with_smtp(
         SMTP account password
 
     i_email
-        IntermediateEmail object containing the email content and attachments
+        Email object containing the email content and attachments
 
     security
         Security protocol to use: "tls" (STARTTLS), "ssl" (SSL/TLS), or "smtp" (plain SMTP).
@@ -310,14 +310,14 @@ def send_intermediate_email_with_smtp(
     Examples
     --------
     ```python
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hello world</p>",
         subject="Test Email",
         recipients=["user@example.com"],
     )
 
     # TLS connection (port 587) - recommended
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         "smtp.example.com",
         587,
         "user@example.com",
@@ -327,7 +327,7 @@ def send_intermediate_email_with_smtp(
     )
 
     # SSL connection (port 465)
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         "smtp.example.com",
         465,
         "user@example.com",
@@ -337,7 +337,7 @@ def send_intermediate_email_with_smtp(
     )
 
     # Plain SMTP (port 25) - insecure, for testing only
-    send_intermediate_email_with_smtp(
+    send_email_with_smtp(
         "127.0.0.1",
         8025,
         "test@example.com",

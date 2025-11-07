@@ -1,5 +1,5 @@
 import pytest
-from emailer_lib.mjml import (
+from nbmail.mjml import (
     MJMLTag,
     mjml,
     head,

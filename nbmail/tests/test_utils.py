@@ -2,7 +2,7 @@ import base64
 from email.message import EmailMessage
 import re
 
-from emailer_lib.utils import (
+from nbmail.utils import (
     write_email_message_to_file,
     _add_base_64_to_inline_attachments,
 )

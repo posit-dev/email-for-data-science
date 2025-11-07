@@ -6,15 +6,15 @@ from email.message import EmailMessage
 
 from .utils import _add_base_64_to_inline_attachments
 
-__all__ = ["IntermediateEmail"]
+__all__ = ["Email"]
 
 
 @dataclass
-class IntermediateEmail:
+class Email:
     """
     A serializable, previewable, sendable email object for data science workflows.
 
-    The `IntermediateEmail` class provides a unified structure for representing email messages,
+    The `Email` class provides a unified structure for representing email messages,
     including HTML and plain text content, subject, inline or external attachments, and recipients.
     It is designed to be generated from a variety of authoring tools and sent via multiple providers.
 
@@ -47,7 +47,7 @@ class IntermediateEmail:
     Examples
     --------
     ```python
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hello world</p>",
         subject="Test Email",
         recipients=["user@example.com"],
@@ -123,7 +123,7 @@ class IntermediateEmail:
         """
         Return HTML representation with inline attachments for rich display.
 
-        This method enables rich display of the IntermediateEmail in Jupyter notebooks
+        This method enables rich display of the Email in Jupyter notebooks
         and other IPython-compatible environments. It converts cid: references to
         base64 data URIs so the email can be previewed directly in the notebook.
 
@@ -136,7 +136,7 @@ class IntermediateEmail:
         --------
         ```python
         # In a Jupyter notebook, simply display the email object:
-        email = IntermediateEmail(
+        email = Email(
             html='<p>Hello <img src="cid:img1.png"/></p>',
             subject="Test Email",
             inline_attachments={"img1.png": "iVBORw0KGgo..."}
@@ -188,10 +188,10 @@ class IntermediateEmail:
 
     def write_email_message(self) -> EmailMessage:
         """
-        Convert the IntermediateEmail to a Python EmailMessage.
+        Convert the Email to a Python EmailMessage.
 
         This method creates a standard library EmailMessage object from the
-        IntermediateEmail, including HTML, plain text, recipients, and attachments.
+        Email, including HTML, plain text, recipients, and attachments.
 
         Returns
         -------

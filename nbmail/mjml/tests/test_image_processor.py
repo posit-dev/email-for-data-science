@@ -1,8 +1,8 @@
 import pytest
 from io import BytesIO
 
-from emailer_lib.mjml.image_processor import _convert_to_bytes, _process_mjml_images
-from emailer_lib.mjml._core import MJMLTag
+from nbmail.mjml.image_processor import _convert_to_bytes, _process_mjml_images
+from nbmail.mjml._core import MJMLTag
 
 
 def test_convert_to_bytes_from_bytesio():

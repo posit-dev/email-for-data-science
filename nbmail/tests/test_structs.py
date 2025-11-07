@@ -1,11 +1,11 @@
 import re
 
 import pytest
-from emailer_lib.structs import IntermediateEmail
+from nbmail.structs import Email
 
 
 def test_creation_with_text_and_attachments():
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hi</p>",
         subject="With Text and Attachments",
         text="Plain text version",
@@ -21,7 +21,7 @@ def test_creation_with_text_and_attachments():
 
 
 def test_creation_without_text_and_attachments():
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hi</p>",
         subject="No Text or Attachments",
     )
@@ -34,7 +34,7 @@ def test_creation_without_text_and_attachments():
 
 def test_subject_inserts_after_body(tmp_path):
     html = "<html><body><p>Hello!</p></body></html>"
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="Test Subject",
         rsc_email_supress_report_attachment=False,
@@ -55,7 +55,7 @@ def test_subject_inserts_after_body(tmp_path):
 
 def test_subject_prepends_if_no_body(tmp_path):
     html = "<p>Hello!</p>"
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="NoBody",
     )
@@ -68,7 +68,7 @@ def test_subject_prepends_if_no_body(tmp_path):
 
 def test_raises_on_external_attachments(tmp_path):
     html = "<p>Test</p>"
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="Test",
         external_attachments=["file.txt"],
@@ -88,7 +88,7 @@ def test_raises_on_external_attachments(tmp_path):
 )
 def test_not_implemented_methods(method_name):
     """Test that unimplemented methods raise NotImplementedError."""
-    email = IntermediateEmail(
+    email = Email(
         html="<p>Hi</p>",
         subject="Test",
     )
@@ -99,7 +99,7 @@ def test_not_implemented_methods(method_name):
 
 def test_preview_email_simple_html(tmp_path, snapshot):
     html = "<html><body><p>Hello World!</p></body></html>"
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="Simple Test Email",
     )
@@ -120,7 +120,7 @@ def test_preview_email_with_inline_attachments(tmp_path, snapshot):
 <img src="cid:banner.jpg" alt="Banner" />
 </body>
 </html>"""
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="Email with Inline Images",
         inline_attachments={
@@ -163,7 +163,7 @@ def test_preview_email_complex_html(tmp_path, snapshot):
     </div>
 </body>
 </html>"""
-    email = IntermediateEmail(
+    email = Email(
         html=html,
         subject="Complex Email Structure",
         inline_attachments={

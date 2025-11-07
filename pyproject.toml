@@ -6,11 +6,11 @@ build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra --cov=emailer_lib --cov-report=term-missing"
-testpaths = ["emailer_lib/**/tests"]
+addopts = "-ra --cov=nbmail --cov-report=term-missing"
+testpaths = ["nbmail/**/tests"]
 
 [project]
-name = "emailer-lib"
+name = "nbmail"
 version = "0.0.1"
 description = "Email serialization and sending utilities"
 authors = [{name = "Jules Walzer-Goldfeld"}]
@@ -55,7 +55,7 @@ docs = [
 exclude_also = [
     "if TYPE_CHECKING:"
 ]
-include = ["emailer_lib/*"]
+include = ["nbmail/*"]
 omit = [
-    "emailer_lib/tests/*"
+    "nbmail/tests/*"
 ]

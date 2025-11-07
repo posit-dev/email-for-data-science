@@ -35,7 +35,7 @@ def mjml(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import mjml, text
+    from nbmail.mjml import mjml, text
     child = text("Hello World")
 
     result = mjml(child)
@@ -80,7 +80,7 @@ def head(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import head, text
+    from nbmail.mjml import head, text
     child = text("Hello World")
 
     result = head(child)
@@ -125,7 +125,7 @@ def body(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import body, text
+    from nbmail.mjml import body, text
     child = text("Hello World")
 
     result = body(child)
@@ -170,7 +170,7 @@ def mj_attributes(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import mj_attributes, text
+    from nbmail.mjml import mj_attributes, text
     child = text("Hello World")
 
     result = mj_attributes(child)
@@ -215,7 +215,7 @@ def mj_all(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import mj_all, text
+    from nbmail.mjml import mj_all, text
     child = text("Hello World")
 
     result = mj_all(child)
@@ -260,7 +260,7 @@ def mj_class(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import mj_class, text
+    from nbmail.mjml import mj_class, text
     child = text("Hello World")
 
     result = mj_class(child)
@@ -305,7 +305,7 @@ def breakpoint(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import breakpoint, text
+    from nbmail.mjml import breakpoint, text
     child = text("Hello World")
 
     result = breakpoint(child)
@@ -350,7 +350,7 @@ def font(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import font, text
+    from nbmail.mjml import font, text
     child = text("Hello World")
 
     result = font(child)
@@ -395,7 +395,7 @@ def html_attributes(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import html_attributes, text
+    from nbmail.mjml import html_attributes, text
     child = text("Hello World")
 
     result = html_attributes(child)
@@ -440,7 +440,7 @@ def html_attribute(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import html_attribute, text
+    from nbmail.mjml import html_attribute, text
     child = text("Hello World")
 
     result = html_attribute(child)
@@ -485,7 +485,7 @@ def preview(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import preview, text
+    from nbmail.mjml import preview, text
     child = text("Hello World")
 
     result = preview(child)
@@ -530,7 +530,7 @@ def style(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import style, text
+    from nbmail.mjml import style, text
     child = text("Hello World")
 
     result = style(child)
@@ -575,7 +575,7 @@ def accordion(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import accordion, text
+    from nbmail.mjml import accordion, text
     child = text("Hello World")
 
     result = accordion(child)
@@ -620,7 +620,7 @@ def accordion_element(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import accordion_element, text
+    from nbmail.mjml import accordion_element, text
     child = text("Hello World")
 
     result = accordion_element(child)
@@ -665,7 +665,7 @@ def carousel(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import carousel, text
+    from nbmail.mjml import carousel, text
     child = text("Hello World")
 
     result = carousel(child)
@@ -710,7 +710,7 @@ def column(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import column, text
+    from nbmail.mjml import column, text
     child = text("Hello World")
 
     result = column(child)
@@ -755,7 +755,7 @@ def divider(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import divider, text
+    from nbmail.mjml import divider, text
     child = text("Hello World")
 
     result = divider(child)
@@ -800,7 +800,7 @@ def group(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import group, text
+    from nbmail.mjml import group, text
     child = text("Hello World")
 
     result = group(child)
@@ -845,7 +845,7 @@ def hero(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import hero, text
+    from nbmail.mjml import hero, text
     child = text("Hello World")
 
     result = hero(child)
@@ -890,7 +890,7 @@ def image(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import image, text
+    from nbmail.mjml import image, text
     child = text("Hello World")
 
     result = image(child)
@@ -935,7 +935,7 @@ def navbar(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import navbar, text
+    from nbmail.mjml import navbar, text
     child = text("Hello World")
 
     result = navbar(child)
@@ -980,7 +980,7 @@ def section(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import section, text
+    from nbmail.mjml import section, text
     child = text("Hello World")
 
     result = section(child)
@@ -1025,7 +1025,7 @@ def social(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import social, text
+    from nbmail.mjml import social, text
     child = text("Hello World")
 
     result = social(child)
@@ -1070,7 +1070,7 @@ def spacer(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import spacer, text
+    from nbmail.mjml import spacer, text
     child = text("Hello World")
 
     result = spacer(child)
@@ -1115,7 +1115,7 @@ def wrapper(
     --------
     With children:
     ```{python}
-    from emailer_lib.mjml import wrapper, text
+    from nbmail.mjml import wrapper, text
     child = text("Hello World")
 
     result = wrapper(child)
@@ -1159,7 +1159,7 @@ def accordion_text(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import accordion_text
+    from nbmail.mjml import accordion_text
 
     result = accordion_text("Hello")
     ```
@@ -1197,7 +1197,7 @@ def accordion_title(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import accordion_title
+    from nbmail.mjml import accordion_title
 
     result = accordion_title("Hello")
     ```
@@ -1235,7 +1235,7 @@ def button(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import button
+    from nbmail.mjml import button
 
     result = button("Hello")
     ```
@@ -1273,7 +1273,7 @@ def carousel_image(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import carousel_image
+    from nbmail.mjml import carousel_image
 
     result = carousel_image("Hello")
     ```
@@ -1311,7 +1311,7 @@ def navbar_link(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import navbar_link
+    from nbmail.mjml import navbar_link
 
     result = navbar_link("Hello")
     ```
@@ -1349,7 +1349,7 @@ def raw(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import raw
+    from nbmail.mjml import raw
 
     result = raw("Hello")
     ```
@@ -1387,7 +1387,7 @@ def social_element(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import social_element
+    from nbmail.mjml import social_element
 
     result = social_element("Hello")
     ```
@@ -1425,7 +1425,7 @@ def table(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import table
+    from nbmail.mjml import table
 
     result = table("Hello")
     ```
@@ -1463,7 +1463,7 @@ def text(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import text
+    from nbmail.mjml import text
 
     result = text("Hello")
     ```
@@ -1501,7 +1501,7 @@ def title(
     --------
     With content:
     ```{python}
-    from emailer_lib.mjml import title
+    from nbmail.mjml import title
 
     result = title("Hello")
     ```

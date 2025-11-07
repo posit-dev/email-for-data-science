@@ -1,7 +1,7 @@
 import pytest
 from io import BytesIO
-from emailer_lib.ingress import mjml_to_intermediate_email
-from emailer_lib.mjml._core import MJMLTag, TagAttrDict
+from nbmail.ingress import mjml_to_email
+from nbmail.mjml._core import MJMLTag, TagAttrDict
 
 
 def test_accepts_dict_arguments():
@@ -122,14 +122,14 @@ def test_to_html_warns_and_wraps_other_tags():
     assert "html" in html_result
 
 
-def test_repr_html_returns_intermediate_email_repr_html():
+def test_repr_html_returns_email_repr_html():
     tag = MJMLTag("mjml", MJMLTag("mj-body"))
     html_from_repr = tag._repr_html_()
 
-    # _repr_html_() should return the HTML representation from mjml_to_intermediate_email
+    # _repr_html_() should return the HTML representation from mjml_to_email
     assert "<!doctype html" in html_from_repr.lower() or "<html" in html_from_repr
     assert isinstance(html_from_repr, str)
-    assert html_from_repr == mjml_to_intermediate_email(tag)._repr_html_()
+    assert html_from_repr == mjml_to_email(tag)._repr_html_()
 
 
 def test_to_html_passes_kwargs_to_mjml2html():
