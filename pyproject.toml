@@ -21,6 +21,7 @@ requires-python = ">=3.9"
 dependencies = [
     "dotenv",
     "mjml-python>=1.3.6",
+    "markdown"
 ]
 
 [project.optional-dependencies]
