@@ -255,7 +255,7 @@ class Email:
 
         Notes
         ------
-        The output JSON includes:
+        The output JSON includes:\n
         - email_subject: The subject line
         - email_attachments: List of attachment file paths
         - email_body_html: The HTML content of the email
