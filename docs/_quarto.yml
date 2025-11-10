@@ -48,6 +48,7 @@ quartodoc:
         - name: Email.write_preview_email
         - name: Email.write_email_message
         - name: Email.preview_send_email
+        - name: Email.write_quarto_json
     - title: Uploading emails
       desc: >
         Converting emails to Emails,

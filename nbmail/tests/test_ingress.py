@@ -225,8 +225,8 @@ def test_quarto_json_to_email_basic(tmp_path):
         "rsc_output_files": ["output.pdf"],
         "rsc_email_attachments": ["attachment.csv"],
         "rsc_email_images": {"img1": "base64encodedstring"},
-        "rsc_email_supress_report_attachment": True,
-        "rsc_email_supress_scheduled": False,
+        "rsc_email_suppress_report_attachment": True,
+        "rsc_email_suppress_scheduled": False,
     }
 
     json_file = tmp_path / "metadata.json"
@@ -240,8 +240,8 @@ def test_quarto_json_to_email_basic(tmp_path):
     assert result.text == "Plain text version"
     assert result.external_attachments == ["output.pdf", "attachment.csv"]
     assert result.inline_attachments == {"img1": "base64encodedstring"}
-    assert result.rsc_email_supress_report_attachment is True
-    assert result.rsc_email_supress_scheduled is False
+    assert result.email_suppress_report_attachment is True
+    assert result.email_suppress_scheduled is False
 
 
 def test_quarto_json_to_email_minimal(tmp_path):
@@ -261,8 +261,8 @@ def test_quarto_json_to_email_minimal(tmp_path):
     assert result.text == ""
     assert result.external_attachments == []
     assert result.inline_attachments == {}
-    assert result.rsc_email_supress_report_attachment is False
-    assert result.rsc_email_supress_scheduled is False
+    assert result.email_suppress_report_attachment is False
+    assert result.email_suppress_scheduled is False
 
 
 def test_quarto_json_to_email_empty_lists(tmp_path):
