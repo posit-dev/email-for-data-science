@@ -58,5 +58,6 @@ exclude_also = [
 ]
 include = ["nbmail/*"]
 omit = [
-    "nbmail/tests/*"
+    "nbmail/tests/*",
+    "nbmail/**/tests/*",
 ]

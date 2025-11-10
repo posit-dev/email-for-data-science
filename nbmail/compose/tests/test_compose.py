@@ -86,7 +86,7 @@ def test_create_blocks_with_multiple_blocks():
         block_text("Content"),
         block_spacer("20px"),
     )
-    
+
     assert block_list is not None
     assert len(block_list.items) == 3
 
@@ -200,3 +200,14 @@ def test_blocks_preserve_order_in_html():
     assert report_idx < data_idx < item1_idx, (
         "Blocks should appear in order: Report → Data → Items"
     )
+
+
+def test_blocklist_repr():
+    block_list = create_blocks(
+        block_text("First"),
+        block_text("Second"),
+        block_text("Third"),
+    )
+
+    repr_str = repr(block_list)
+    assert "<BlockList: 3 items>" in repr_str
