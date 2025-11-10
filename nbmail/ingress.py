@@ -80,8 +80,8 @@ def mjml_to_email(
     i_email = Email(
         html=email_content,
         subject="",
-        email_supress_report_attachment=False,
-        email_supress_scheduled=False,
+        email_suppress_report_attachment=False,
+        email_suppress_scheduled=False,
         inline_attachments=inline_attachments,
     )
 
@@ -188,21 +188,21 @@ def quarto_json_to_email(path: str) -> Email:
     # Get email images (dictionary: {filename: base64_string})
     email_images = metadata.get("rsc_email_images", metadata.get("email_images", {}))
 
-    # Support both old (supress) and new (suppress) spellings, with both prefixes
-    supress_report_attachment = metadata.get(
+    # Support both old (suppress) and new (suppress) spellings, with both prefixes
+    suppress_report_attachment = metadata.get(
         "rsc_email_suppress_report_attachment",
         metadata.get(
-            "rsc_email_supress_report_attachment",
+            "rsc_email_suppress_report_attachment",
             metadata.get("email_suppress_report_attachment", 
-                        metadata.get("email_supress_report_attachment", False))
+                        metadata.get("email_suppress_report_attachment", False))
         )
     )
-    supress_scheduled = metadata.get(
+    suppress_scheduled = metadata.get(
         "rsc_email_suppress_scheduled",
         metadata.get(
-            "rsc_email_supress_scheduled",
+            "rsc_email_suppress_scheduled",
             metadata.get("email_suppress_scheduled",
-                        metadata.get("email_supress_scheduled", False))
+                        metadata.get("email_suppress_scheduled", False))
         )
     )
 
@@ -212,8 +212,8 @@ def quarto_json_to_email(path: str) -> Email:
         inline_attachments=email_images,
         external_attachments=output_files,
         subject=email_subject,
-        email_supress_report_attachment=supress_report_attachment,
-        email_supress_scheduled=supress_scheduled,
+        email_suppress_report_attachment=suppress_report_attachment,
+        email_suppress_scheduled=suppress_scheduled,
     )
 
     return i_email

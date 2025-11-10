@@ -39,10 +39,10 @@ class Email:
     recipients
         Optional list of recipient email addresses.
 
-    email_supress_report_attachment
+    email_suppress_report_attachment
         Whether to suppress report attachments (used in some workflows).
 
-    email_supress_scheduled
+    email_suppress_scheduled
         Whether to suppress scheduled sending (used in some workflows).
 
     Examples
@@ -59,8 +59,8 @@ class Email:
 
     html: str
     subject: str
-    email_supress_report_attachment: bool | None = None
-    email_supress_scheduled: bool | None = None
+    email_suppress_report_attachment: bool | None = None
+    email_suppress_scheduled: bool | None = None
 
     # is a list of files in path from current directory
     external_attachments: list[str] = field(default_factory=list)
@@ -279,13 +279,13 @@ class Email:
             metadata["email_images"] = self.inline_attachments
 
         # Add suppression flags if they are set (not None)
-        if self.email_supress_report_attachment is not None:
+        if self.email_suppress_report_attachment is not None:
             metadata["email_suppress_report_attachment"] = (
-                self.email_supress_report_attachment
+                self.email_suppress_report_attachment
             )
 
-        if self.email_supress_scheduled is not None:
-            metadata["email_suppress_scheduled"] = self.email_supress_scheduled
+        if self.email_suppress_scheduled is not None:
+            metadata["email_suppress_scheduled"] = self.email_suppress_scheduled
 
         with open(out_file, "w", encoding="utf-8") as f:
             json.dump(metadata, f, indent=2)

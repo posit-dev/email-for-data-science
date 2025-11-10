@@ -301,8 +301,8 @@ def test_email_write_quarto_json_basic():
         text="Plain text version",
         external_attachments=["file1.pdf", "file2.csv"],
         inline_attachments={"img1": "base64data123"},
-        email_supress_report_attachment=True,
-        email_supress_scheduled=False,
+        email_suppress_report_attachment=True,
+        email_suppress_scheduled=False,
     )
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -356,8 +356,8 @@ def test_email_write_quarto_json_round_trip():
         text="Plain text version",
         external_attachments=["output.pdf"],
         inline_attachments={"img1": "base64encodedstring"},
-        email_supress_report_attachment=True,
-        email_supress_scheduled=False,
+        email_suppress_report_attachment=True,
+        email_suppress_scheduled=False,
     )
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -373,8 +373,8 @@ def test_email_write_quarto_json_round_trip():
         assert read_email.text == original_email.text
         assert read_email.external_attachments == original_email.external_attachments
         assert read_email.inline_attachments == original_email.inline_attachments
-        assert read_email.email_supress_report_attachment == original_email.email_supress_report_attachment
-        assert read_email.email_supress_scheduled == original_email.email_supress_scheduled
+        assert read_email.email_suppress_report_attachment == original_email.email_suppress_report_attachment
+        assert read_email.email_suppress_scheduled == original_email.email_suppress_scheduled
 
 
 def test_email_write_quarto_json_no_attachments():
