@@ -308,14 +308,14 @@
     "href": "reference/Email.html",
     "title": "Email",
     "section": "",
-    "text": "Email(\n    html,\n    subject,\n    rsc_email_supress_report_attachment=None,\n    rsc_email_supress_scheduled=None,\n    external_attachments=list(),\n    inline_attachments=dict(),\n    text=None,\n    recipients=None,\n)\nA serializable, previewable, sendable email object for data science workflows.\nThe Email class provides a unified structure for representing email messages, including HTML and plain text content, subject, inline or external attachments, and recipients. It is designed to be generated from a variety of authoring tools and sent via multiple providers.\n\n\n\nhtml : str\n\nThe HTML content of the email.\n\nsubject : str\n\nThe subject line of the email.\n\nexternal_attachments : list[str] = list()\n\nList of file paths for external attachments to include.\n\ninline_attachments : dict[str, str] = dict()\n\nDictionary mapping filenames to base64-encoded strings for inline attachments.\n\ntext : str | None = None\n\nOptional plain text version of the email.\n\nrecipients : list[str] | None = None\n\nOptional list of recipient email addresses.\n\nrsc_email_supress_report_attachment : bool | None = None\n\nWhether to suppress report attachments (used in some workflows).\n\nrsc_email_supress_scheduled : bool | None = None\n\nWhether to suppress scheduled sending (used in some workflows).\n\n\n\n\n\nemail = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\nemail.write_preview_email(\"preview.html\")\n\n\n\n\n\n\nName\nDescription\n\n\n\n\npreview_send_email\nSend a preview of the email to a test recipient.\n\n\nwrite_email_message\nConvert the Email to a Python EmailMessage.\n\n\nwrite_preview_email\nWrite a preview HTML file with inline attachments embedded."
+    "text": "Email(\n    html,\n    subject,\n    email_suppress_report_attachment=None,\n    email_suppress_scheduled=None,\n    external_attachments=list(),\n    inline_attachments=dict(),\n    text=None,\n    recipients=None,\n)\nA serializable, previewable, sendable email object for data science workflows.\nThe Email class provides a unified structure for representing email messages, including HTML and plain text content, subject, inline or external attachments, and recipients. It is designed to be generated from a variety of authoring tools and sent via multiple providers.\n\n\n\nhtml : str\n\nThe HTML content of the email.\n\nsubject : str\n\nThe subject line of the email.\n\nexternal_attachments : list[str] = list()\n\nList of file paths for external attachments to include.\n\ninline_attachments : dict[str, str] = dict()\n\nDictionary mapping filenames to base64-encoded strings for inline attachments.\n\ntext : str | None = None\n\nOptional plain text version of the email.\n\nrecipients : list[str] | None = None\n\nOptional list of recipient email addresses.\n\nemail_suppress_report_attachment : bool | None = None\n\nWhether to suppress report attachments (used in some workflows).\n\nemail_suppress_scheduled : bool | None = None\n\nWhether to suppress scheduled sending (used in some workflows).\n\n\n\n\n\nemail = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n    recipients=[\"user@example.com\"],\n)\nemail.write_preview_email(\"preview.html\")\n\n\n\n\n\n\nName\nDescription\n\n\n\n\npreview_send_email\nSend a preview of the email to a test recipient.\n\n\nwrite_email_message\nConvert the Email to a Python EmailMessage.\n\n\nwrite_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nwrite_quarto_json\nWrite the Email to Quarto’s output metadata JSON format."
   },
   {
     "objectID": "reference/Email.html#parameters",
     "href": "reference/Email.html#parameters",
     "title": "Email",
     "section": "",
-    "text": "html : str\n\nThe HTML content of the email.\n\nsubject : str\n\nThe subject line of the email.\n\nexternal_attachments : list[str] = list()\n\nList of file paths for external attachments to include.\n\ninline_attachments : dict[str, str] = dict()\n\nDictionary mapping filenames to base64-encoded strings for inline attachments.\n\ntext : str | None = None\n\nOptional plain text version of the email.\n\nrecipients : list[str] | None = None\n\nOptional list of recipient email addresses.\n\nrsc_email_supress_report_attachment : bool | None = None\n\nWhether to suppress report attachments (used in some workflows).\n\nrsc_email_supress_scheduled : bool | None = None\n\nWhether to suppress scheduled sending (used in some workflows)."
+    "text": "html : str\n\nThe HTML content of the email.\n\nsubject : str\n\nThe subject line of the email.\n\nexternal_attachments : list[str] = list()\n\nList of file paths for external attachments to include.\n\ninline_attachments : dict[str, str] = dict()\n\nDictionary mapping filenames to base64-encoded strings for inline attachments.\n\ntext : str | None = None\n\nOptional plain text version of the email.\n\nrecipients : list[str] | None = None\n\nOptional list of recipient email addresses.\n\nemail_suppress_report_attachment : bool | None = None\n\nWhether to suppress report attachments (used in some workflows).\n\nemail_suppress_scheduled : bool | None = None\n\nWhether to suppress scheduled sending (used in some workflows)."
   },
   {
     "objectID": "reference/Email.html#examples",
@@ -329,7 +329,7 @@
     "href": "reference/Email.html#methods",
     "title": "Email",
     "section": "",
-    "text": "Name\nDescription\n\n\n\n\npreview_send_email\nSend a preview of the email to a test recipient.\n\n\nwrite_email_message\nConvert the Email to a Python EmailMessage.\n\n\nwrite_preview_email\nWrite a preview HTML file with inline attachments embedded."
+    "text": "Name\nDescription\n\n\n\n\npreview_send_email\nSend a preview of the email to a test recipient.\n\n\nwrite_email_message\nConvert the Email to a Python EmailMessage.\n\n\nwrite_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nwrite_quarto_json\nWrite the Email to Quarto’s output metadata JSON format."
   },
   {
     "objectID": "reference/write_email_message_to_file.html",
@@ -465,130 +465,158 @@
     "text": "Examples\nWith content:\n\nfrom nbmail.mjml import accordion_text\n\nresult = accordion_text(\"Hello\")\n\nWith attributes and content:\n\nresult = accordion_text(\"Hello\", attributes={\"background-color\": \"red\"})"
   },
   {
-    "objectID": "reference/mjml.font.html",
-    "href": "reference/mjml.font.html",
-    "title": "mjml.font",
+    "objectID": "reference/nbmail.Email.write_quarto_json.html",
+    "href": "reference/nbmail.Email.write_quarto_json.html",
+    "title": "write_quarto_json",
     "section": "",
-    "text": "mjml.font(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-font&gt; tag."
+    "text": "Email.write_quarto_json(out_file='.output_metadata.json')\nWrite the Email to Quarto’s output metadata JSON format.\nThis method serializes the Email object to JSON in the format expected by Quarto, making it compatible with Quarto’s email integration workflows. This is the inverse of the quarto_json_to_email() ingress function.\n\n\n\nout_file : str = '.output_metadata.json'\n\nThe file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n)\nemail.write_quarto_json(\"email_metadata.json\")\n\n\n\nThe output JSON includes:\n\nemail_subject: The subject line\nemail_attachments: List of attachment file paths\nemail_body_html: The HTML content of the email\nemail_body_text: Plain text version (if present)\nemail_images: Dictionary of base64-encoded inline images (only if not empty)\nemail_suppress_report_attachment: Suppression flag for report attachments\nemail_suppress_scheduled: Suppression flag for scheduled sending"
   },
   {
-    "objectID": "reference/mjml.font.html#parameters",
-    "href": "reference/mjml.font.html#parameters",
-    "title": "mjml.font",
+    "objectID": "reference/nbmail.Email.write_quarto_json.html#parameters",
+    "href": "reference/nbmail.Email.write_quarto_json.html#parameters",
+    "title": "write_quarto_json",
+    "section": "",
+    "text": "out_file : str = '.output_metadata.json'\n\nThe file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”."
+  },
+  {
+    "objectID": "reference/nbmail.Email.write_quarto_json.html#returns",
+    "href": "reference/nbmail.Email.write_quarto_json.html#returns",
+    "title": "write_quarto_json",
+    "section": "",
+    "text": ": None"
+  },
+  {
+    "objectID": "reference/nbmail.Email.write_quarto_json.html#examples",
+    "href": "reference/nbmail.Email.write_quarto_json.html#examples",
+    "title": "write_quarto_json",
+    "section": "",
+    "text": "email = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n)\nemail.write_quarto_json(\"email_metadata.json\")"
+  },
+  {
+    "objectID": "reference/nbmail.Email.write_quarto_json.html#notes",
+    "href": "reference/nbmail.Email.write_quarto_json.html#notes",
+    "title": "write_quarto_json",
+    "section": "",
+    "text": "The output JSON includes:\n\nemail_subject: The subject line\nemail_attachments: List of attachment file paths\nemail_body_html: The HTML content of the email\nemail_body_text: Plain text version (if present)\nemail_images: Dictionary of base64-encoded inline images (only if not empty)\nemail_suppress_report_attachment: Suppression flag for report attachments\nemail_suppress_scheduled: Suppression flag for scheduled sending"
+  },
+  {
+    "objectID": "reference/mjml.hero.html",
+    "href": "reference/mjml.hero.html",
+    "title": "mjml.hero",
+    "section": "",
+    "text": "mjml.hero(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-hero&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.hero.html#parameters",
+    "href": "reference/mjml.hero.html#parameters",
+    "title": "mjml.hero",
     "section": "Parameters",
     "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/mjml.font.html#returns",
-    "href": "reference/mjml.font.html#returns",
-    "title": "mjml.font",
+    "objectID": "reference/mjml.hero.html#returns",
+    "href": "reference/mjml.hero.html#returns",
+    "title": "mjml.hero",
     "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-font&gt;"
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-hero&gt;"
   },
   {
-    "objectID": "reference/mjml.font.html#examples",
-    "href": "reference/mjml.font.html#examples",
-    "title": "mjml.font",
+    "objectID": "reference/mjml.hero.html#examples",
+    "href": "reference/mjml.hero.html#examples",
+    "title": "mjml.hero",
     "section": "Examples",
-    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import font, text\nchild = text(\"Hello World\")\n\nresult = font(child)\n\nWith attributes:\n\nresult = font(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = font(child, attributes={\"background-color\": \"yellow\"})"
+    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import hero, text\nchild = text(\"Hello World\")\n\nresult = hero(child)\n\nWith attributes:\n\nresult = hero(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = hero(child, attributes={\"background-color\": \"yellow\"})"
   },
   {
-    "objectID": "reference/mjml.divider.html",
-    "href": "reference/mjml.divider.html",
-    "title": "mjml.divider",
+    "objectID": "reference/mjml.button.html",
+    "href": "reference/mjml.button.html",
+    "title": "mjml.button",
     "section": "",
-    "text": "mjml.divider(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-divider&gt; tag."
+    "text": "mjml.button(content=None, attributes=None)\nCreate an MJML &lt;mj-button&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children."
   },
   {
-    "objectID": "reference/mjml.divider.html#parameters",
-    "href": "reference/mjml.divider.html#parameters",
-    "title": "mjml.divider",
+    "objectID": "reference/mjml.button.html#parameters",
+    "href": "reference/mjml.button.html#parameters",
+    "title": "mjml.button",
+    "section": "Parameters",
+    "text": "Parameters\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes"
+  },
+  {
+    "objectID": "reference/mjml.button.html#returns",
+    "href": "reference/mjml.button.html#returns",
+    "title": "mjml.button",
+    "section": "Returns",
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-button&gt;"
+  },
+  {
+    "objectID": "reference/mjml.button.html#examples",
+    "href": "reference/mjml.button.html#examples",
+    "title": "mjml.button",
+    "section": "Examples",
+    "text": "Examples\nWith content:\n\nfrom nbmail.mjml import button\n\nresult = button(\"Hello\")\n\nWith attributes and content:\n\nresult = button(\"Hello\", attributes={\"background-color\": \"red\"})"
+  },
+  {
+    "objectID": "reference/mjml.carousel.html",
+    "href": "reference/mjml.carousel.html",
+    "title": "mjml.carousel",
+    "section": "",
+    "text": "mjml.carousel(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-carousel&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.carousel.html#parameters",
+    "href": "reference/mjml.carousel.html#parameters",
+    "title": "mjml.carousel",
     "section": "Parameters",
     "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/mjml.divider.html#returns",
-    "href": "reference/mjml.divider.html#returns",
-    "title": "mjml.divider",
+    "objectID": "reference/mjml.carousel.html#returns",
+    "href": "reference/mjml.carousel.html#returns",
+    "title": "mjml.carousel",
     "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-divider&gt;"
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-carousel&gt;"
   },
   {
-    "objectID": "reference/mjml.divider.html#examples",
-    "href": "reference/mjml.divider.html#examples",
-    "title": "mjml.divider",
+    "objectID": "reference/mjml.carousel.html#examples",
+    "href": "reference/mjml.carousel.html#examples",
+    "title": "mjml.carousel",
     "section": "Examples",
-    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import divider, text\nchild = text(\"Hello World\")\n\nresult = divider(child)\n\nWith attributes:\n\nresult = divider(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = divider(child, attributes={\"background-color\": \"yellow\"})"
+    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import carousel, text\nchild = text(\"Hello World\")\n\nresult = carousel(child)\n\nWith attributes:\n\nresult = carousel(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = carousel(child, attributes={\"background-color\": \"yellow\"})"
   },
   {
-    "objectID": "reference/mjml.mj_attributes.html",
-    "href": "reference/mjml.mj_attributes.html",
-    "title": "mjml.mj_attributes",
+    "objectID": "reference/Email.write_quarto_json.html",
+    "href": "reference/Email.write_quarto_json.html",
+    "title": "Email.write_quarto_json",
     "section": "",
-    "text": "mjml.mj_attributes(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-attributes&gt; tag."
+    "text": "Email.write_quarto_json(out_file='.output_metadata.json')\nWrite the Email to Quarto’s output metadata JSON format.\nThis method serializes the Email object to JSON in the format expected by Quarto, making it compatible with Quarto’s email integration workflows. This is the inverse of the quarto_json_to_email() ingress function.\n\n\n\nout_file : str = '.output_metadata.json'\n\nThe file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”.\n\n\n\n\n\n\n : None\n\n\n\n\n\n\n\nemail = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n)\nemail.write_quarto_json(\"email_metadata.json\")\n\n\n\nThe output JSON includes:\n\nemail_subject: The subject line\nemail_attachments: List of attachment file paths\nemail_body_html: The HTML content of the email\nemail_body_text: Plain text version (if present)\nemail_images: Dictionary of base64-encoded inline images (only if not empty)\nemail_suppress_report_attachment: Suppression flag for report attachments\nemail_suppress_scheduled: Suppression flag for scheduled sending"
   },
   {
-    "objectID": "reference/mjml.mj_attributes.html#parameters",
-    "href": "reference/mjml.mj_attributes.html#parameters",
-    "title": "mjml.mj_attributes",
-    "section": "Parameters",
-    "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
-  },
-  {
-    "objectID": "reference/mjml.mj_attributes.html#returns",
-    "href": "reference/mjml.mj_attributes.html#returns",
-    "title": "mjml.mj_attributes",
-    "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-attributes&gt;"
-  },
-  {
-    "objectID": "reference/mjml.mj_attributes.html#examples",
-    "href": "reference/mjml.mj_attributes.html#examples",
-    "title": "mjml.mj_attributes",
-    "section": "Examples",
-    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import mj_attributes, text\nchild = text(\"Hello World\")\n\nresult = mj_attributes(child)\n\nWith attributes:\n\nresult = mj_attributes(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = mj_attributes(child, attributes={\"background-color\": \"yellow\"})"
-  },
-  {
-    "objectID": "reference/index.html",
-    "href": "reference/index.html",
-    "title": "API Reference",
+    "objectID": "reference/Email.write_quarto_json.html#parameters",
+    "href": "reference/Email.write_quarto_json.html#parameters",
+    "title": "Email.write_quarto_json",
     "section": "",
-    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nEmail.write_email_message\nConvert the Email to a Python EmailMessage.\n\n\nEmail.preview_send_email\nSend a preview of the email to a test recipient.\n\n\n\n\n\n\nConverting emails to Emails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_email\nConvert a Quarto output metadata JSON file to an Email\n\n\nmjml_to_email\nConvert MJML markup to an Email\n\n\nredmail_to_email\nConvert a Redmail EmailMessage object to an Email\n\n\nyagmail_to_email\nConvert a Yagmail email object to an Email\n\n\n\n\n\n\nFunctions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_email_with_gmail\nSend an Email object via Gmail.\n\n\nsend_email_with_smtp\nSend an Email object via SMTP.\n\n\nsend_email_with_redmail\nSend an Email object via Redmail.\n\n\nsend_email_with_yagmail\nSend an Email object via Yagmail.\n\n\nsend_email_with_mailgun\nSend an Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\n\n\n\nPreviews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\n\n\n\n\n\n\nWrite responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
+    "text": "out_file : str = '.output_metadata.json'\n\nThe file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”."
   },
   {
-    "objectID": "reference/index.html#the-email-object",
-    "href": "reference/index.html#the-email-object",
-    "title": "API Reference",
+    "objectID": "reference/Email.write_quarto_json.html#returns",
+    "href": "reference/Email.write_quarto_json.html#returns",
+    "title": "Email.write_quarto_json",
     "section": "",
-    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nEmail.write_email_message\nConvert the Email to a Python EmailMessage.\n\n\nEmail.preview_send_email\nSend a preview of the email to a test recipient."
+    "text": ": None"
   },
   {
-    "objectID": "reference/index.html#uploading-emails",
-    "href": "reference/index.html#uploading-emails",
-    "title": "API Reference",
+    "objectID": "reference/Email.write_quarto_json.html#examples",
+    "href": "reference/Email.write_quarto_json.html#examples",
+    "title": "Email.write_quarto_json",
     "section": "",
-    "text": "Converting emails to Emails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_email\nConvert a Quarto output metadata JSON file to an Email\n\n\nmjml_to_email\nConvert MJML markup to an Email\n\n\nredmail_to_email\nConvert a Redmail EmailMessage object to an Email\n\n\nyagmail_to_email\nConvert a Yagmail email object to an Email"
+    "text": "email = Email(\n    html=\"&lt;p&gt;Hello world&lt;/p&gt;\",\n    subject=\"Test Email\",\n)\nemail.write_quarto_json(\"email_metadata.json\")"
   },
   {
-    "objectID": "reference/index.html#sending",
-    "href": "reference/index.html#sending",
-    "title": "API Reference",
+    "objectID": "reference/Email.write_quarto_json.html#notes",
+    "href": "reference/Email.write_quarto_json.html#notes",
+    "title": "Email.write_quarto_json",
     "section": "",
-    "text": "Functions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_email_with_gmail\nSend an Email object via Gmail.\n\n\nsend_email_with_smtp\nSend an Email object via SMTP.\n\n\nsend_email_with_redmail\nSend an Email object via Redmail.\n\n\nsend_email_with_yagmail\nSend an Email object via Yagmail.\n\n\nsend_email_with_mailgun\nSend an Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file."
-  },
-  {
-    "objectID": "reference/index.html#utilities",
-    "href": "reference/index.html#utilities",
-    "title": "API Reference",
-    "section": "",
-    "text": "Previews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid)."
-  },
-  {
-    "objectID": "reference/index.html#mjml-authoring",
-    "href": "reference/index.html#mjml-authoring",
-    "title": "API Reference",
-    "section": "",
-    "text": "Write responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
+    "text": "The output JSON includes:\n\nemail_subject: The subject line\nemail_attachments: List of attachment file paths\nemail_body_html: The HTML content of the email\nemail_body_text: Plain text version (if present)\nemail_images: Dictionary of base64-encoded inline images (only if not empty)\nemail_suppress_report_attachment: Suppression flag for report attachments\nemail_suppress_scheduled: Suppression flag for scheduled sending"
   },
   {
     "objectID": "reference/mjml.group.html",
@@ -1053,88 +1081,130 @@
     "text": "Examples\nWith children:\n\nfrom nbmail.mjml import style, text\nchild = text(\"Hello World\")\n\nresult = style(child)\n\nWith attributes:\n\nresult = style(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = style(child, attributes={\"background-color\": \"yellow\"})"
   },
   {
-    "objectID": "reference/mjml.carousel.html",
-    "href": "reference/mjml.carousel.html",
-    "title": "mjml.carousel",
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "API Reference",
     "section": "",
-    "text": "mjml.carousel(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-carousel&gt; tag."
+    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nEmail.write_email_message\nConvert the Email to a Python EmailMessage.\n\n\nEmail.preview_send_email\nSend a preview of the email to a test recipient.\n\n\nEmail.write_quarto_json\nWrite the Email to Quarto’s output metadata JSON format.\n\n\n\n\n\n\nConverting emails to Emails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_email\nConvert a Quarto output metadata JSON file to an Email\n\n\nmjml_to_email\nConvert MJML markup to an Email\n\n\nredmail_to_email\nConvert a Redmail EmailMessage object to an Email\n\n\nyagmail_to_email\nConvert a Yagmail email object to an Email\n\n\n\n\n\n\nFunctions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_email_with_gmail\nSend an Email object via Gmail.\n\n\nsend_email_with_smtp\nSend an Email object via SMTP.\n\n\nsend_email_with_redmail\nSend an Email object via Redmail.\n\n\nsend_email_with_yagmail\nSend an Email object via Yagmail.\n\n\nsend_email_with_mailgun\nSend an Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file.\n\n\n\n\n\n\nPreviews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid).\n\n\n\n\n\n\nWrite responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
   },
   {
-    "objectID": "reference/mjml.carousel.html#parameters",
-    "href": "reference/mjml.carousel.html#parameters",
-    "title": "mjml.carousel",
+    "objectID": "reference/index.html#the-email-object",
+    "href": "reference/index.html#the-email-object",
+    "title": "API Reference",
+    "section": "",
+    "text": "An email object that in a serializable, previewable format, optimized for emails with content generated by data scientists.\n\n\n\nEmail\nA serializable, previewable, sendable email object for data science workflows.\n\n\nEmail.write_preview_email\nWrite a preview HTML file with inline attachments embedded.\n\n\nEmail.write_email_message\nConvert the Email to a Python EmailMessage.\n\n\nEmail.preview_send_email\nSend a preview of the email to a test recipient.\n\n\nEmail.write_quarto_json\nWrite the Email to Quarto’s output metadata JSON format."
+  },
+  {
+    "objectID": "reference/index.html#uploading-emails",
+    "href": "reference/index.html#uploading-emails",
+    "title": "API Reference",
+    "section": "",
+    "text": "Converting emails to Emails, at which point they can be previewed, tested, and sent.\n\n\n\nquarto_json_to_email\nConvert a Quarto output metadata JSON file to an Email\n\n\nmjml_to_email\nConvert MJML markup to an Email\n\n\nredmail_to_email\nConvert a Redmail EmailMessage object to an Email\n\n\nyagmail_to_email\nConvert a Yagmail email object to an Email"
+  },
+  {
+    "objectID": "reference/index.html#sending",
+    "href": "reference/index.html#sending",
+    "title": "API Reference",
+    "section": "",
+    "text": "Functions to sending emails with different providers. And a special handy one to bypass the intermediate object if you are sending a quarto email.\n\n\n\nsend_email_with_gmail\nSend an Email object via Gmail.\n\n\nsend_email_with_smtp\nSend an Email object via SMTP.\n\n\nsend_email_with_redmail\nSend an Email object via Redmail.\n\n\nsend_email_with_yagmail\nSend an Email object via Yagmail.\n\n\nsend_email_with_mailgun\nSend an Email object via Mailgun.\n\n\nsend_quarto_email_with_gmail\nSend an email using Gmail with content from a Quarto metadata JSON file."
+  },
+  {
+    "objectID": "reference/index.html#utilities",
+    "href": "reference/index.html#utilities",
+    "title": "API Reference",
+    "section": "",
+    "text": "Previews and more\n\n\n\nwrite_email_message_to_file\nWrites the HTML content of an email message to a file, inlining any images referenced by Content-ID (cid)."
+  },
+  {
+    "objectID": "reference/index.html#mjml-authoring",
+    "href": "reference/index.html#mjml-authoring",
+    "title": "API Reference",
+    "section": "",
+    "text": "Write responsive emails with MJML\n\n\n\nmjml.mjml\nCreate an MJML &lt;mjml&gt; tag.\n\n\nmjml.head\nCreate an MJML &lt;mj-head&gt; tag.\n\n\nmjml.body\nCreate an MJML &lt;mj-body&gt; tag.\n\n\nmjml.mj_attributes\nCreate an MJML &lt;mj-attributes&gt; tag.\n\n\nmjml.mj_all\nCreate an MJML &lt;mj-all&gt; tag.\n\n\nmjml.mj_class\nCreate an MJML &lt;mj-class&gt; tag.\n\n\nmjml.breakpoint\nCreate an MJML &lt;mj-breakpoint&gt; tag.\n\n\nmjml.font\nCreate an MJML &lt;mj-font&gt; tag.\n\n\nmjml.html_attributes\nCreate an MJML &lt;mj-html-attributes&gt; tag.\n\n\nmjml.html_attribute\nCreate an MJML &lt;mj-html-attribute&gt; tag.\n\n\nmjml.preview\nCreate an MJML &lt;mj-preview&gt; tag.\n\n\nmjml.style\nCreate an MJML &lt;mj-style&gt; tag.\n\n\nmjml.title\nCreate an MJML &lt;mj-title&gt; tag.\n\n\nmjml.accordion\nCreate an MJML &lt;mj-accordion&gt; tag.\n\n\nmjml.accordion_element\nCreate an MJML &lt;mj-accordion-element&gt; tag.\n\n\nmjml.accordion_text\nCreate an MJML &lt;mj-accordion-text&gt; tag.\n\n\nmjml.accordion_title\nCreate an MJML &lt;mj-accordion-title&gt; tag.\n\n\nmjml.button\nCreate an MJML &lt;mj-button&gt; tag.\n\n\nmjml.carousel\nCreate an MJML &lt;mj-carousel&gt; tag.\n\n\nmjml.carousel_image\nCreate an MJML &lt;mj-carousel-image&gt; tag.\n\n\nmjml.column\nCreate an MJML &lt;mj-column&gt; tag.\n\n\nmjml.divider\nCreate an MJML &lt;mj-divider&gt; tag.\n\n\nmjml.group\nCreate an MJML &lt;mj-group&gt; tag.\n\n\nmjml.hero\nCreate an MJML &lt;mj-hero&gt; tag.\n\n\nmjml.image\nCreate an MJML &lt;mj-image&gt; tag.\n\n\nmjml.navbar\nCreate an MJML &lt;mj-navbar&gt; tag.\n\n\nmjml.navbar_link\nCreate an MJML &lt;mj-navbar-link&gt; tag.\n\n\nmjml.raw\nCreate an MJML &lt;mj-raw&gt; tag.\n\n\nmjml.section\nCreate an MJML &lt;mj-section&gt; tag.\n\n\nmjml.social\nCreate an MJML &lt;mj-social&gt; tag.\n\n\nmjml.social_element\nCreate an MJML &lt;mj-social-element&gt; tag.\n\n\nmjml.spacer\nCreate an MJML &lt;mj-spacer&gt; tag.\n\n\nmjml.table\nCreate an MJML &lt;mj-table&gt; tag.\n\n\nmjml.text\nCreate an MJML &lt;mj-text&gt; tag.\n\n\nmjml.wrapper\nCreate an MJML &lt;mj-wrapper&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html",
+    "href": "reference/mjml.mj_attributes.html",
+    "title": "mjml.mj_attributes",
+    "section": "",
+    "text": "mjml.mj_attributes(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-attributes&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.mj_attributes.html#parameters",
+    "href": "reference/mjml.mj_attributes.html#parameters",
+    "title": "mjml.mj_attributes",
     "section": "Parameters",
     "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/mjml.carousel.html#returns",
-    "href": "reference/mjml.carousel.html#returns",
-    "title": "mjml.carousel",
+    "objectID": "reference/mjml.mj_attributes.html#returns",
+    "href": "reference/mjml.mj_attributes.html#returns",
+    "title": "mjml.mj_attributes",
     "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-carousel&gt;"
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-attributes&gt;"
   },
   {
-    "objectID": "reference/mjml.carousel.html#examples",
-    "href": "reference/mjml.carousel.html#examples",
-    "title": "mjml.carousel",
+    "objectID": "reference/mjml.mj_attributes.html#examples",
+    "href": "reference/mjml.mj_attributes.html#examples",
+    "title": "mjml.mj_attributes",
     "section": "Examples",
-    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import carousel, text\nchild = text(\"Hello World\")\n\nresult = carousel(child)\n\nWith attributes:\n\nresult = carousel(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = carousel(child, attributes={\"background-color\": \"yellow\"})"
+    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import mj_attributes, text\nchild = text(\"Hello World\")\n\nresult = mj_attributes(child)\n\nWith attributes:\n\nresult = mj_attributes(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = mj_attributes(child, attributes={\"background-color\": \"yellow\"})"
   },
   {
-    "objectID": "reference/mjml.button.html",
-    "href": "reference/mjml.button.html",
-    "title": "mjml.button",
+    "objectID": "reference/mjml.divider.html",
+    "href": "reference/mjml.divider.html",
+    "title": "mjml.divider",
     "section": "",
-    "text": "mjml.button(content=None, attributes=None)\nCreate an MJML &lt;mj-button&gt; tag.\nThis is an ending tag that accepts text/HTML content but not MJML children."
+    "text": "mjml.divider(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-divider&gt; tag."
   },
   {
-    "objectID": "reference/mjml.button.html#parameters",
-    "href": "reference/mjml.button.html#parameters",
-    "title": "mjml.button",
-    "section": "Parameters",
-    "text": "Parameters\n\ncontent : Optional[str] = None\n\nText or HTML content for the tag\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes"
-  },
-  {
-    "objectID": "reference/mjml.button.html#returns",
-    "href": "reference/mjml.button.html#returns",
-    "title": "mjml.button",
-    "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-button&gt;"
-  },
-  {
-    "objectID": "reference/mjml.button.html#examples",
-    "href": "reference/mjml.button.html#examples",
-    "title": "mjml.button",
-    "section": "Examples",
-    "text": "Examples\nWith content:\n\nfrom nbmail.mjml import button\n\nresult = button(\"Hello\")\n\nWith attributes and content:\n\nresult = button(\"Hello\", attributes={\"background-color\": \"red\"})"
-  },
-  {
-    "objectID": "reference/mjml.hero.html",
-    "href": "reference/mjml.hero.html",
-    "title": "mjml.hero",
-    "section": "",
-    "text": "mjml.hero(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-hero&gt; tag."
-  },
-  {
-    "objectID": "reference/mjml.hero.html#parameters",
-    "href": "reference/mjml.hero.html#parameters",
-    "title": "mjml.hero",
+    "objectID": "reference/mjml.divider.html#parameters",
+    "href": "reference/mjml.divider.html#parameters",
+    "title": "mjml.divider",
     "section": "Parameters",
     "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
   },
   {
-    "objectID": "reference/mjml.hero.html#returns",
-    "href": "reference/mjml.hero.html#returns",
-    "title": "mjml.hero",
+    "objectID": "reference/mjml.divider.html#returns",
+    "href": "reference/mjml.divider.html#returns",
+    "title": "mjml.divider",
     "section": "Returns",
-    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-hero&gt;"
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-divider&gt;"
   },
   {
-    "objectID": "reference/mjml.hero.html#examples",
-    "href": "reference/mjml.hero.html#examples",
-    "title": "mjml.hero",
+    "objectID": "reference/mjml.divider.html#examples",
+    "href": "reference/mjml.divider.html#examples",
+    "title": "mjml.divider",
     "section": "Examples",
-    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import hero, text\nchild = text(\"Hello World\")\n\nresult = hero(child)\n\nWith attributes:\n\nresult = hero(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = hero(child, attributes={\"background-color\": \"yellow\"})"
+    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import divider, text\nchild = text(\"Hello World\")\n\nresult = divider(child)\n\nWith attributes:\n\nresult = divider(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = divider(child, attributes={\"background-color\": \"yellow\"})"
+  },
+  {
+    "objectID": "reference/mjml.font.html",
+    "href": "reference/mjml.font.html",
+    "title": "mjml.font",
+    "section": "",
+    "text": "mjml.font(*args, attributes=None, content=None)\nCreate an MJML &lt;mj-font&gt; tag."
+  },
+  {
+    "objectID": "reference/mjml.font.html#parameters",
+    "href": "reference/mjml.font.html#parameters",
+    "title": "mjml.font",
+    "section": "Parameters",
+    "text": "Parameters\n\n*args : TagChild = ()\n\nChildren (MJMLTag objects)\n\nattributes : Optional[TagAttrs] = None\n\nOptional dict of tag attributes\n\ncontent : Optional[str] = None\n\nOptional text content for the tag"
+  },
+  {
+    "objectID": "reference/mjml.font.html#returns",
+    "href": "reference/mjml.font.html#returns",
+    "title": "mjml.font",
+    "section": "Returns",
+    "text": "Returns\n\n : MJMLTag\n\nMJMLTag object representing &lt;mj-font&gt;"
+  },
+  {
+    "objectID": "reference/mjml.font.html#examples",
+    "href": "reference/mjml.font.html#examples",
+    "title": "mjml.font",
+    "section": "Examples",
+    "text": "Examples\nWith children:\n\nfrom nbmail.mjml import font, text\nchild = text(\"Hello World\")\n\nresult = font(child)\n\nWith attributes:\n\nresult = font(attributes={\"attr\": \"value\"})\n\nWith both:\n\nresult = font(child, attributes={\"background-color\": \"yellow\"})"
   },
   {
     "objectID": "reference/nbmail.Email.write_preview_email.html",

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>mjml.preview – Email for Data Science</title>
+<title>email.write_quarto_json – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,74 +149,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">mjml.preview</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mjml.preview(<span class="op">*</span>args, attributes<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Create an MJML <code>&lt;mj-preview&gt;</code> tag.</p>
+<section id="nbmail.Email.write_quarto_json" class="level1">
+<h1>Email.write_quarto_json</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Email.write_quarto_json(out_file<span class="op">=</span><span class="st">'.output_metadata.json'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write the Email to Quarto’s output metadata JSON format.</p>
+<p>This method serializes the Email object to JSON in the format expected by Quarto, making it compatible with Quarto’s email integration workflows. This is the inverse of the <code>quarto_json_to_email()</code> ingress function.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name">*<strong>args</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">TagChild</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">()</span></code></dt>
+<dt><code><span class="parameter-name"><strong>out_file</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'.output_metadata.json'</span></code></dt>
 <dd>
-<p>Children (MJMLTag objects)</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>attributes</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[TagAttrs]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Optional dict of tag attributes</p>
-</dd>
-<dt><code><span class="parameter-name"><strong>content</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Optional[str]</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
-<dd>
-<p>Optional text content for the tag</p>
+<p>The file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”.</p>
 </dd>
 </dl>
 </section>
 <section id="returns" class="level2 doc-section doc-section-returns">
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <dl>
-<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">MJMLTag</span></code></dt>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
 <dd>
-<p>MJMLTag object representing <code>&lt;mj-preview&gt;</code></p>
+
 </dd>
 </dl>
 </section>
 <section id="examples" class="level2 doc-section doc-section-examples">
 <h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
-<p>With children:</p>
-<div id="bb5142b9" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbmail.mjml <span class="im">import</span> preview, text</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>child <span class="op">=</span> text(<span class="st">"Hello World"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> preview(child)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>With attributes:</p>
-<div id="a2120d98" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> preview(attributes<span class="op">=</span>{<span class="st">"attr"</span>: <span class="st">"value"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>With both:</p>
-<div id="ac38546d" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> preview(child, attributes<span class="op">=</span>{<span class="st">"background-color"</span>: <span class="st">"yellow"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> Email(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    html<span class="op">=</span><span class="st">"&lt;p&gt;Hello world&lt;/p&gt;"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    subject<span class="op">=</span><span class="st">"Test Email"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>email.write_quarto_json(<span class="st">"email_metadata.json"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="notes" class="level2 doc-section doc-section-notes">
+<h2 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h2>
+<p>The output JSON includes:</p>
+<ul>
+<li>email_subject: The subject line</li>
+<li>email_attachments: List of attachment file paths</li>
+<li>email_body_html: The HTML content of the email</li>
+<li>email_body_text: Plain text version (if present)</li>
+<li>email_images: Dictionary of base64-encoded inline images (only if not empty)</li>
+<li>email_suppress_report_attachment: Suppression flag for report attachments</li>
+<li>email_suppress_scheduled: Suppression flag for scheduled sending</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
