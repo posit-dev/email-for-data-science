@@ -1,8 +1,6 @@
 from .compose import compose_email, create_blocks
-from .blocks import block_text, block_title, block_spacer
+from .blocks import block_text, block_title, block_spacer, block_image, block_plot
 from .inline_utils import (
-    add_image,
-    add_plot,
     md,
     add_cta_button,
     add_readable_time,
@@ -14,8 +12,8 @@ __all__ = (
     "block_text",
     "block_title",
     "block_spacer",
-    "add_image",
-    "add_plot",
+    "block_image",
+    "block_plot",
     "md",
     "add_cta_button",
     "add_readable_time",

@@ -115,7 +115,7 @@ class Email:
             subject_ln = (
                 "<br><br><strong><span style=\"font-variant: small-caps;\">"
                 "email subject: </span></strong>"
-                f"{re.escape(self.subject)}"
+                f"{self.subject}"
                 "<br>"
             )
         else:

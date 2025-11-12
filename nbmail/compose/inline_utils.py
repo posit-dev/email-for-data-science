@@ -1,12 +1,13 @@
-# import base64
-# from datetime import datetime
-# from pathlib import Path
+import base64
+import mimetypes
+from datetime import datetime
+from pathlib import Path
 from typing import Optional
+
+import re
 
 __all__ = [
     "md",
-    "add_image",
-    "add_plot",
     "add_cta_button",
     "add_readable_time",
 ]
@@ -48,7 +49,6 @@ def md(text: str) -> str:
     Process Markdown text to HTML.
 
     Public utility function for converting Markdown strings to HTML.
-    Can include images created via `add_image()` or `add_plot()`.
 
     Parameters
     ----------
@@ -68,10 +68,6 @@ def md(text: str) -> str:
     # Simple markdown
     html = md("This is **bold** and this is *italic*")
 
-    # With embedded image
-    img_html = add_image("path/to/image.png")
-    html = md(f"Check this out!\\n\\n{img_html}")
-
     # Use in a block
     email = compose_email(body=block_text(html))
     ```
@@ -79,111 +75,83 @@ def md(text: str) -> str:
     return _process_markdown(text)
 
 
-def add_image(
-    src: str,
-    alt: str = "",
-    width: str = "520px",
-    align: str = "center",
-) -> str:
+def _is_url(file: str) -> bool:
     """
-    Create HTML img tag for embedding images.
+    Detect if the file parameter is a URL (HTTP/HTTPS) or protocol-relative URL.
 
     Parameters
     ----------
-    src
-        URL or path to image file.
+    file
+        The file path or URL string to test.
 
-    alt
-        Alt text for accessibility. Default is empty string.
+    Returns
+    -------
+    bool
+        True if file is a URL (http://, https://, or //), False otherwise.
+    """
+    pattern = r"^(https?:)?//"
+    return bool(re.match(pattern, file, re.IGNORECASE))
 
-    width
-        Image width (e.g., `"520px"`)
 
-    align
-        Image alignment.
+def _guess_mime_type(file: str) -> str:
+    """
+    Guess MIME type from file extension.
+
+    Parameters
+    ----------
+    file
+        File path or URL.
 
     Returns
     -------
     str
-        HTML img tag that can be embedded in Markdown or passed to `block_text()`.
-
-    Examples
-    --------
-    ```python
-    from nbmail.compose import add_image, block_text, compose_email
-
-    # From URL
-    img_html = add_image("https://example.com/image.png", alt="Example image")
-
-    # From local file
-    img_html = add_image("path/to/image.png", alt="My image", width="600px")
-
-    # Use in email
-    email = compose_email(
-        body=block_text(f"Check this out:\\n{img_html}")
-    )
-    ```
+        MIME type string (e.g., "image/png", "image/jpeg").
+        Defaults to "image/png" if type cannot be determined.
     """
-    # Determine alignment style
-    align_style = ""
-    if align == "center":
-        align_style = "display: block; margin: 0 auto;"
-    elif align == "left":
-        align_style = "display: block; margin: 0;"
-    elif align == "right":
-        align_style = "float: right;"
-    # "inline" has no special style
-
-    # Create img tag
-    img_tag = (
-        f'<img src="{src}" alt="{alt}" width="{width}" '
-        f'style="{align_style} max-width: 100%; height: auto;" />'
-    )
-
-    return img_tag
+    mime_type, _ = mimetypes.guess_type(file)
+    return mime_type or "image/png"
 
 
-def add_plot(
-    fig,
-    alt: str = "",
-    width: str = "520px",
-) -> str:
+def _read_local_file_as_data_uri(file: str) -> str:
     """
-    Convert a plot figure to embedded HTML img tag.
+    Read a local file and convert to data URI with base64 encoding.
 
     Parameters
     ----------
-    fig
-        Plot figure object. Supports matplotlib.figure.Figure and plotly.graph_objects.Figure.
-
-    alt
-        Alt text for accessibility. Default is empty string.
-
-    width
-        Image width (e.g., "520px"). Default is "520px".
+    file
+        Path to local file.
 
     Returns
     -------
     str
-        HTML img tag with base64-encoded plot that can be embedded in emails.
+        Data URI string (e.g., "data:image/png;base64,iVBORw0KG...").
 
-    Examples
-    --------
-    ```python
-    from nbmail.compose import add_plot, block_text, compose_email
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots()
-    ax.plot([1, 2, 3, 4], [1, 4, 2, 3])
-
-    plot_html = add_plot(fig, alt="Sales trends", width="600px")
-
-    email = compose_email(
-        body=block_text(f"Here's the trend:\\n{plot_html}")
-    )
-    ```
+    Raises
+    ------
+    FileNotFoundError
+        If the file does not exist.
+    IOError
+        If the file cannot be read.
     """
-    return NotImplementedError("Coming soon.")
+    file_path = Path(file)
+
+    if not file_path.exists():
+        raise FileNotFoundError(f"Image file not found: {file}")
+
+    if not file_path.is_file():
+        raise ValueError(f"Path is not a file: {file}")
+
+    # Read file as binary
+    with open(file_path, "rb") as f:
+        file_bytes = f.read()
+
+    # Encode to base64
+    b64_string = base64.b64encode(file_bytes).decode("utf-8")
+
+    # Guess MIME type
+    mime_type = _guess_mime_type(str(file_path))
+
+    return f"data:{mime_type};base64,{b64_string}"
 
 
 def add_cta_button(
@@ -240,7 +208,7 @@ def add_cta_button(
 
 
 def add_readable_time(
-    dt,
+    dt: datetime,
     format_str: str = "%B %d, %Y",
 ) -> str:
     """
@@ -258,6 +226,11 @@ def add_readable_time(
     -------
     str
         Formatted date/time string.
+
+    Raises
+    ------
+    TypeError
+        If dt is not a datetime object.
 
     Examples
     --------
@@ -277,9 +250,7 @@ def add_readable_time(
     )
     ```
     """
-    raise NotImplementedError("Coming soon.")
+    if not isinstance(dt, datetime):
+        raise TypeError(f"Expected datetime object, got {type(dt).__name__}")
 
-    # if not isinstance(dt, datetime):
-    #     raise TypeError(f"Expected datetime object, got {type(dt).__name__}")
-
-    # return dt.strftime(format_str)
+    return dt.strftime(format_str)

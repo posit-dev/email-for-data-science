@@ -140,12 +140,15 @@ def compose_email(
     Email with embedded images:
 
     ```python
-    from nbmail.compose import compose_email, add_image, block_text, md
+    from nbmail.compose import compose_email, block_image, block_text, md, create_blocks
 
-    img_html = add_image("path/to/image.png", alt="Product image", width="500px")
+    # Use block_image for embedding local files or URLs
     email = compose_email(
         title="Product Feature",
-        body=block_text(md(f"Check this out:\\n\\n{img_html}"))
+        body=create_blocks(
+            block_text(md("Check this out:")),
+            block_image("path/to/image.png", alt="Product image", width="500px")
+        )
     )
     ```
     """
@@ -185,12 +188,12 @@ def compose_email(
         ),
         mj_body(
             *all_sections,
-            attributes={"width": "600px"},  # TODO check what happens if we remove this
+            attributes={"width": "600px", "background-color": "#f6f6f6"},
         ),
     )
 
     # TODO: remove, this is for testing purposes
-    print(email_structure._to_mjml())
+    # print(email_structure._to_mjml())
 
     email_obj = mjml_to_email(email_structure)
 

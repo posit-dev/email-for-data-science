@@ -6,7 +6,6 @@ import pytest
 
 from nbmail.compose import (
     md,
-    add_image,
     add_cta_button,
     add_readable_time,
 )
@@ -41,37 +40,6 @@ def test_md_heading():
     assert "Heading 1</h1>" in result
 
 
-def test_add_image_url():
-    html = add_image("https://example.com/image.png", alt="Test image")
-
-    assert "<img" in html
-    assert 'src="https://example.com/image.png"' in html
-    assert 'alt="Test image"' in html
-
-
-def test_add_image_default_width():
-    html = add_image("test.png")
-
-    assert 'width="520px"' in html
-
-
-def test_add_image_custom_width():
-    html = add_image("test.png", width="600px")
-
-    assert 'width="600px"' in html
-
-
-def test_add_image_alignment():
-    html = add_image("test.png", align="center")
-    assert "display: block; margin: 0 auto;" in html
-
-    html = add_image("test.png", align="left")
-    assert "display: block; margin: 0;" in html
-
-    html = add_image("test.png", align="right")
-    assert "float: right;" in html
-
-
 def test_add_cta_button_basic():
     html = add_cta_button("Click Me", "https://example.com")
 
@@ -87,6 +55,7 @@ def test_add_cta_button_colors():
 
     assert "#FF0000" in html
     assert "#FFFFFF" in html
+
 
 @pytest.mark.xfail
 def test_add_readable_time_default_format():
