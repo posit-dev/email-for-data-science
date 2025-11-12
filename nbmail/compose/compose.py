@@ -249,59 +249,26 @@ def _apply_blastula_template(
     list[MJMLTag]
         Styled sections: header + wrapped_body + footer.
     """
-    # Apply attributes to header sections
-    styled_header = [
-        _apply_attributes(
-            section,
-            tag_names=None,
-            attributes={
-                "background-color": "#f6f6f6",
-                "padding": "0px 20px",
-            },
-        )
-        for section in header_sections
-    ]
+    section_attrs = {
+        "background-color": "#f6f6f6",
+        "padding": "0px 20px",
+    }
+    text_attrs = {
+        "font-size": "12px",
+        "color": "#999999",
+        "align": "center",
+    }
 
-    # Apply text-level attributes (like font-size) to footer text elements
-    styled_header = [
-        _apply_attributes(
-            section,
-            tag_names=["mj-text"],
-            attributes={
-                "font-size": "12px",
-                "color": "#999999",
-                "align": "center",
-            },
-        )
-        for section in styled_header
-    ]
-
-    # Apply attributes to footer sections
-    styled_footer = [
-        _apply_attributes(
-            section,
-            tag_names=None,
-            attributes={
-                "background-color": "#f6f6f6",
-                "padding": "0px 20px",
-            },
-        )
-        for section in footer_sections
-    ]
-
-    # Apply text-level attributes (like font-size) to footer text elements
-    styled_footer = [
-        _apply_attributes(
-            section,
-            tag_names=["mj-text"],
-            attributes={
-                "font-size": "12px",
-                "color": "#999999",
-                "align": "center",
-            },
-        )
-        for section in styled_footer
-    ]
+    def apply_blastula_styles(sections: list[MJMLTag]) -> list[MJMLTag]:
+        """Apply section-level and text-level attributes."""
+        result = [
+            _apply_attributes(s, tag_names=None, attributes=section_attrs)
+            for s in sections
+        ]
+        return [
+            _apply_attributes(s, tag_names=["mj-text"], attributes=text_attrs)
+            for s in result
+        ]
 
     # Apply attributes to body sections
     styled_body = [
@@ -325,7 +292,11 @@ def _apply_blastula_template(
         },
     )
 
-    return styled_header + [body_wrapper] + styled_footer
+    return (
+        apply_blastula_styles(header_sections)
+        + [body_wrapper]
+        + apply_blastula_styles(footer_sections)
+    )
 
 
 def _apply_attributes(
