@@ -1,4 +1,4 @@
-from typing import Literal, Optional, Union
+from typing import Optional, Union
 
 from nbmail.ingress import mjml_to_email
 from nbmail.structs import Email
@@ -9,11 +9,10 @@ from nbmail.mjml.tags import (
     mj_attributes,
     mj_all,
     section,
-    column,
     wrapper,
 )
 from nbmail.mjml._core import MJMLTag
-from .blocks import Block, BlockList, block_text, block_title
+from .blocks import Block, BlockList, block_title
 
 __all__ = [
     "compose_email",
@@ -151,9 +150,9 @@ def compose_email(
     ```
     """
     # Convert sections (header, body, footer) to MJML lists
-    header_mjml_list = _component_to_mjml_section(header, component_type="header")
-    body_mjml_list = _component_to_mjml_section(body, component_type="body")
-    footer_mjml_list = _component_to_mjml_section(footer, component_type="footer")
+    header_mjml_list = _component_to_mjml_section(header)
+    body_mjml_list = _component_to_mjml_section(body)
+    footer_mjml_list = _component_to_mjml_section(footer)
 
     # If title is provided, prepend it to header
     if title:
@@ -171,15 +170,15 @@ def compose_email(
     else:
         raise ValueError(f"Unknown template: {template}. Use 'blastula' or 'none'.")
 
-    # Build full MJML email structure with head containing spacing defaults (padding: 0px)
+    # Build full MJML email structure
     email_structure = mjml(
         head(
             mj_attributes(
-                # section(attributes={"padding": "55px"}),
                 mj_all(
                     attributes={
-                        "padding": "0px 6px",
+                        "padding": "0px",
                         "font-family": "Helvetica, sans-serif",
+                        "font-size": "14px",
                     }
                 ),
             ),
@@ -190,6 +189,7 @@ def compose_email(
         ),
     )
 
+    # TODO: remove, this is for testing purposes
     print(email_structure._to_mjml())
 
     email_obj = mjml_to_email(email_structure)
@@ -199,7 +199,6 @@ def compose_email(
 
 def _component_to_mjml_section(
     component: Optional[Union[str, Block, BlockList]],
-    component_type: Literal["body", "header", "footer"],
 ) -> list[MJMLTag]:
     """
     Convert a component (string, Block, BlockList, or None) to a list of MJML tags.
@@ -237,9 +236,10 @@ def _component_to_mjml_section(
         )
 
 
-
 def _apply_blastula_template(
-    header_sections: list, body_sections: list, footer_sections: list
+    header_sections: list[MJMLTag],
+    body_sections: list[MJMLTag],
+    footer_sections: list[MJMLTag],
 ) -> list[MJMLTag]:
     """
     Apply Blastula-style template with grey border around body content.
@@ -249,61 +249,129 @@ def _apply_blastula_template(
     list[MJMLTag]
         Styled sections: header + wrapped_body + footer.
     """
-    # Apply grey background to header sections
-    grey_attrs = {
-        "background-color": "#f6f6f6",
-        "padding-right": "16px",
-        "padding-left": "16px",
-    }
-
+    # Apply attributes to header sections
     styled_header = [
-        _apply_section_attributes(section, grey_attrs) for section in header_sections
+        _apply_attributes(
+            section,
+            tag_names=None,
+            attributes={
+                "background-color": "#f6f6f6",
+                "padding": "0px 20px",
+            },
+        )
+        for section in header_sections
     ]
 
+    # Apply text-level attributes (like font-size) to footer text elements
+    styled_header = [
+        _apply_attributes(
+            section,
+            tag_names=["mj-text"],
+            attributes={
+                "font-size": "12px",
+                "color": "#999999",
+                "align": "center",
+            },
+        )
+        for section in styled_header
+    ]
+
+    # Apply attributes to footer sections
     styled_footer = [
-        _apply_section_attributes(section, grey_attrs) for section in footer_sections
+        _apply_attributes(
+            section,
+            tag_names=None,
+            attributes={
+                "background-color": "#f6f6f6",
+                "padding": "0px 20px",
+            },
+        )
+        for section in footer_sections
     ]
 
-    body_attrs = {
-        "background-color": "white",
-        "padding": "0px",
-    }
+    # Apply text-level attributes (like font-size) to footer text elements
+    styled_footer = [
+        _apply_attributes(
+            section,
+            tag_names=["mj-text"],
+            attributes={
+                "font-size": "12px",
+                "color": "#999999",
+                "align": "center",
+            },
+        )
+        for section in styled_footer
+    ]
 
+    # Apply attributes to body sections
     styled_body = [
-        _apply_section_attributes(section, body_attrs) for section in body_sections
+        _apply_attributes(
+            section,
+            tag_names=None,
+            attributes={
+                "background-color": "white",
+                "padding": "0px 10px",
+            },
+        )
+        for section in body_sections
     ]
 
+    # Wrap body with styling
     body_wrapper = wrapper(
         *styled_body,
         attributes={
             "background-color": "#f6f6f6",
-            "padding": "16px",
+            "padding": "10px",
         },
     )
-
 
     return styled_header + [body_wrapper] + styled_footer
 
 
-def _apply_section_attributes(section: MJMLTag, attributes: dict) -> MJMLTag:
+def _apply_attributes(
+    tag: MJMLTag, tag_names: Optional[list[str]], attributes: dict
+) -> MJMLTag:
     """
-    Apply or merge attributes to a section tag.
+    Recursively apply attributes to tags matching specified names.
 
-    Internal helper for `_apply_blastula_template()`.
+    If tag_names is None, applies attributes to the top-level tag itself.
+    If tag_names is a list, applies attributes only to matching tags within children.
+
+    Internal helper for applying attributes to MJML structures.
 
     Parameters
     ----------
-    section
-        The section tag to modify.
+    tag
+        The tag to traverse.
+
+    tag_names
+        List of tag names to match (e.g., ["mj-text", "mj-button"]).
+        If None, applies to the top-level tag.
 
     attributes
-        Attributes to apply or merge.
+        Attributes to apply to matching tags.
 
     Returns
     -------
     MJMLTag
-        A new section tag with merged attributes.
+        The tag with attributes applied.
     """
-    merged_attrs = {**(section.attrs or {}), **attributes}
-    section.attrs = merged_attrs
-    return section
+    if tag_names is None:
+        # Apply to the tag itself
+        merged_attrs = {**(tag.attrs or {}), **attributes}
+        tag.attrs = merged_attrs
+    else:
+        # Recursively apply to matching child tags
+        def apply_to_children(current_tag: MJMLTag) -> None:
+            if current_tag.children:
+                for child in current_tag.children:
+                    if isinstance(child, MJMLTag):
+                        if child.tagName in tag_names:
+                            if child.attrs is None:
+                                child.attrs = {}
+                            child.attrs.update(attributes)
+                        apply_to_children(child)
+
+        apply_to_children(tag)
+
+    return tag

@@ -100,7 +100,7 @@ class BlockList:
                 # Create a simple text block from the string
                 mjml_section = section(
                     column(mjml_text(content=html)), # or mj-raw?
-                    attributes={"padding": "0px"}, # TODO check what happens if we remove this
+                    # attributes={"padding": "0px"}, # TODO check what happens if we remove this
                 )
 
                 result.append(mjml_section)
@@ -151,7 +151,7 @@ def block_text(
         column(
             mjml_text(content=html, attributes={"align": align}),
         ),
-        attributes={"padding": "0px"},
+        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
@@ -201,7 +201,7 @@ def block_title(
                 attributes={"align": align},
             )
         ),
-        attributes={"padding": "0px"},
+        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
@@ -238,7 +238,7 @@ def block_spacer(height: str = "20px") -> Block:
         column(
             mjml_spacer(attributes={"height": height}),
         ),
-        attributes={"padding": "0px"},
+        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
