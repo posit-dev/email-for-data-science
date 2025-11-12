@@ -1,9 +1,14 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
+from functools import partial
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from pathlib import Path
 import re
 import json
 
 from email.message import EmailMessage
+import tempfile
+import webbrowser
 
 from .utils import _add_base_64_to_inline_attachments
 
@@ -106,18 +111,28 @@ class Email:
         str
             HTML with subject header added
         """
+        if self.subject:
+            subject_ln = (
+                "<br><br><strong><span style=\"font-variant: small-caps;\">"
+                "email subject: </span></strong>"
+                f"{re.escape(self.subject)}"
+                "<br>"
+            )
+        else:
+            subject_ln = ""
+
         if "<body" in html:
             html = re.sub(
                 r"(<body[^>]*>)",
-                r'\1\n<h2 style="padding-left:16px;">Subject: {}</h2>'.format(self.subject),
+                r'\1' + subject_ln,
                 html,
                 count=1,
                 flags=re.IGNORECASE,
             )
         else:
             # Fallback: prepend if no <body> tag found
-            html = f'<h2 style="padding-left:16px;">Subject: {self.subject}</h2>\n' + html
-        
+            html = subject_ln + html
+
         return html
 
     def _repr_html_(self) -> str:
@@ -207,6 +222,20 @@ class Email:
         """
         raise NotImplementedError
 
+    def show_browser(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            f_path = Path(tmp_dir) / "index.html"
+
+            # Generate the preview HTML with inline base64 images
+            html_with_inline = self._generate_preview_html()
+            html_with_inline = self._add_subject_header(html_with_inline)
+            f_path.write_text(html_with_inline, encoding="utf-8")
+
+            # create a server that closes after 1 request ----
+            server = _create_temp_file_server(f_path)
+            webbrowser.open(f"http://127.0.0.1:{server.server_port}/{f_path.name}")
+            server.handle_request()
+
     def preview_send_email(self):
         """
         Send a preview of the email to a test recipient.
@@ -291,3 +320,18 @@ class Email:
             json.dump(metadata, f, indent=2)
 
 
+#### Helpers ####
+
+
+## To help mimic Great Tables method: GT.show(target="browser")
+class PatchedHTTPRequestHandler(SimpleHTTPRequestHandler):
+    """Patched handler, which does not log requests to stderr"""
+
+
+def _create_temp_file_server(fname: Path) -> HTTPServer:
+    """Return a HTTPServer, so we can serve a single request (to show the table)."""
+
+    Handler = partial(PatchedHTTPRequestHandler, directory=str(fname.parent))
+    server = HTTPServer(("127.0.0.1", 0), Handler)
+
+    return server
