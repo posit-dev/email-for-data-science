@@ -88,14 +88,14 @@ def test_create_blocks_with_multiple_blocks():
     )
 
     assert block_list is not None
-    assert len(block_list.items) == 3
+    assert len(block_list.sections) == 3
 
 
 def test_create_blocks_with_strings():
     block_list = create_blocks("Hello", "World")
 
     assert block_list is not None
-    assert len(block_list.items) == 2
+    assert len(block_list.sections) == 2
 
 
 def test_create_blocks_mixed_content():
@@ -106,7 +106,7 @@ def test_create_blocks_mixed_content():
     )
 
     assert block_list is not None
-    assert len(block_list.items) == 3
+    assert len(block_list.sections) == 3
 
 
 def test_compose_email_with_body_string():
@@ -210,4 +210,4 @@ def test_blocklist_repr():
     )
 
     repr_str = repr(block_list)
-    assert "<BlockList: 3 items>" in repr_str
+    assert "<BlockList: 3 sections>" in repr_str
