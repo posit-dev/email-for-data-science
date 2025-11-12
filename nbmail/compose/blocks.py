@@ -21,7 +21,7 @@ class Block:
     Parameters
     ----------
     mjml_tag
-        The underlying MJML tag
+        The underlying MJML section tag
     """
 
     def __init__(self, mjml_tag: MJMLTag):
@@ -49,7 +49,7 @@ class Block:
 
 class BlockList:
     """
-    Container for multiple block components.
+    Container for multiple block components. A block is equivalent to an mj-section.
 
     Parameters
     ----------
@@ -77,7 +77,7 @@ class BlockList:
         *args
             One or more `Block` objects or strings.
         """
-        self.items = list(args)
+        self.sections = list(args)
 
     def _to_mjml_list(self) -> list[MJMLTag]:
         """
@@ -88,25 +88,27 @@ class BlockList:
         Returns
         -------
         list[MJMLTag]
-            A list of MJML tag structures.
+            A list of MJML sections.
         """
         result = []
-        for item in self.items:
+        for item in self.sections:
             if isinstance(item, Block):
                 result.append(item._to_mjml())
             elif isinstance(item, str):
                 html = _process_markdown(item)
 
                 # Create a simple text block from the string
-                mjml_tree = section(
-                    column(mjml_text(content=html)),
+                mjml_section = section(
+                    column(mjml_text(content=html)), # or mj-raw?
                     attributes={"padding": "0px"}, # TODO check what happens if we remove this
                 )
-                result.append(mjml_tree)
+
+                result.append(mjml_section)
         return result
 
+    # TODO improve repr to display actual content
     def __repr__(self) -> str:
-        return f"<BlockList: {len(self.items)} items>"
+        return f"<BlockList: {len(self.sections)} sections>"
 
 
 def block_text(
@@ -145,14 +147,14 @@ def block_text(
     """
     html = _process_markdown(text)
 
-    mjml_tree = section(
+    mjml_section = section(
         column(
             mjml_text(content=html, attributes={"align": align}),
         ),
         attributes={"padding": "0px"},
     )
 
-    return Block(mjml_tree)
+    return Block(mjml_section)
 
 
 def block_title(
@@ -191,7 +193,8 @@ def block_title(
         f'<h1 style="margin: 0; font-size: 32px; font-weight: 300;">{html}</h1>'
     )
 
-    mjml_tree = section(
+
+    mjml_section = section(
         column(
             mjml_text(
                 content=html_wrapped,
@@ -201,7 +204,7 @@ def block_title(
         attributes={"padding": "0px"},
     )
 
-    return Block(mjml_tree)
+    return Block(mjml_section)
 
 
 def block_spacer(height: str = "20px") -> Block:
@@ -231,11 +234,11 @@ def block_spacer(height: str = "20px") -> Block:
     )
     ```
     """
-    mjml_tree = section(
+    mjml_section = section(
         column(
             mjml_spacer(attributes={"height": height}),
         ),
         attributes={"padding": "0px"},
     )
 
-    return Block(mjml_tree)
+    return Block(mjml_section)

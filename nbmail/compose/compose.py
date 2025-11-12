@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Literal, Optional, Union
 
 from nbmail.ingress import mjml_to_email
 from nbmail.structs import Email
@@ -10,9 +10,10 @@ from nbmail.mjml.tags import (
     mj_all,
     section,
     column,
+    wrapper,
 )
 from nbmail.mjml._core import MJMLTag
-from .blocks import Block, BlockList, block_title
+from .blocks import Block, BlockList, block_text, block_title
 
 __all__ = [
     "compose_email",
@@ -150,9 +151,9 @@ def compose_email(
     ```
     """
     # Convert sections (header, body, footer) to MJML lists
-    header_mjml_list = _section_to_mjml_list(header)
-    body_mjml_list = _section_to_mjml_list(body)
-    footer_mjml_list = _section_to_mjml_list(footer)
+    header_mjml_list = _component_to_mjml_section(header, component_type="header")
+    body_mjml_list = _component_to_mjml_section(body, component_type="body")
+    footer_mjml_list = _component_to_mjml_section(footer, component_type="footer")
 
     # If title is provided, prepend it to header
     if title:
@@ -174,8 +175,13 @@ def compose_email(
     email_structure = mjml(
         head(
             mj_attributes(
-                mj_all(attributes={"padding": "0px"}),
-                section(attributes={"padding": "0px"}),
+                # section(attributes={"padding": "55px"}),
+                mj_all(
+                    attributes={
+                        "padding": "0px 6px",
+                        "font-family": "Helvetica, sans-serif",
+                    }
+                ),
             ),
         ),
         mj_body(
@@ -184,40 +190,45 @@ def compose_email(
         ),
     )
 
+    print(email_structure._to_mjml())
+
     email_obj = mjml_to_email(email_structure)
 
     return email_obj
 
 
-def _section_to_mjml_list(section: Optional[Union[str, Block, BlockList]]):
+def _component_to_mjml_section(
+    component: Optional[Union[str, Block, BlockList]],
+    component_type: Literal["body", "header", "footer"],
+) -> list[MJMLTag]:
     """
-    Convert a section (string, Block, BlockList, or None) to a list of MJML tags.
+    Convert a component (string, Block, BlockList, or None) to a list of MJML tags.
 
     Internal helper for `compose_email()`.
 
     Parameters
     ----------
-    section
-        The section content to convert.
+    component
+        The component content to convert.
 
     Returns
     -------
     list[MJMLTag]
-        A list of MJML tag structures (empty if section is None).
+        A list of MJML sections (empty if component is None).
     """
-    if section is None:
+    if component is None:
         return []
 
-    elif isinstance(section, Block):
+    elif isinstance(component, Block):
         # Auto-wrap single Block in BlockList
-        return [section._to_mjml()]
+        return [component._to_mjml()]
 
-    elif isinstance(section, BlockList):
-        return section._to_mjml_list()
+    elif isinstance(component, BlockList):
+        return component._to_mjml_list()
 
-    elif isinstance(section, str):
+    elif isinstance(component, str):
         # Convert string to BlockList and then to MJML
-        block_list = BlockList(section)
+        block_list = BlockList(component)
         return block_list._to_mjml_list()
 
     else:
@@ -226,30 +237,12 @@ def _section_to_mjml_list(section: Optional[Union[str, Block, BlockList]]):
         )
 
 
+
 def _apply_blastula_template(
     header_sections: list, body_sections: list, footer_sections: list
-):
+) -> list[MJMLTag]:
     """
     Apply Blastula-style template with grey border around body content.
-
-    This creates a three-part layout:\n
-    - Header sections with grey background at top
-    - Body sections wrapped in a white box with grey border/padding around it
-    - Footer sections with grey background at bottom
-
-    All three parts together form a unified visual container with the body
-    content highlighted in white against the grey border.
-
-    Parameters
-    ----------
-    header_sections
-        MJML sections for the header (styled with grey background).
-
-    body_sections
-        MJML sections for the main content (wrapped in white box with grey border).
-
-    footer_sections
-        MJML sections for the footer (styled with grey background).
 
     Returns
     -------
@@ -262,29 +255,32 @@ def _apply_blastula_template(
         "padding-right": "16px",
         "padding-left": "16px",
     }
+
     styled_header = [
         _apply_section_attributes(section, grey_attrs) for section in header_sections
     ]
 
-    # Wrap body sections in a white box with grey border/padding
-    body_wrapper = section(
-        column(
-            *body_sections,
-            attributes={
-                "background-color": "white",
-                "padding": "0px",
-            },
-        ),
+    styled_footer = [
+        _apply_section_attributes(section, grey_attrs) for section in footer_sections
+    ]
+
+    body_attrs = {
+        "background-color": "white",
+        "padding": "0px",
+    }
+
+    styled_body = [
+        _apply_section_attributes(section, body_attrs) for section in body_sections
+    ]
+
+    body_wrapper = wrapper(
+        *styled_body,
         attributes={
-            "background-color": "#f6f6f6",  # Grey background creates the "border" effect
+            "background-color": "#f6f6f6",
             "padding": "16px",
         },
     )
 
-    # Apply grey background to footer sections
-    styled_footer = [
-        _apply_section_attributes(section, grey_attrs) for section in footer_sections
-    ]
 
     return styled_header + [body_wrapper] + styled_footer
 
