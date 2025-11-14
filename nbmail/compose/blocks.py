@@ -202,7 +202,6 @@ def block_text(
         column(
             mjml_text(content=html, attributes={"align": align}),
         ),
-        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
@@ -248,7 +247,6 @@ def block_title(
                 attributes={"align": align},
             )
         ),
-        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
@@ -285,7 +283,6 @@ def block_spacer(height: str = "20px") -> Block:
         column(
             mjml_spacer(attributes={"height": height}),
         ),
-        # attributes={"padding": "0px"},
     )
 
     return Block(mjml_section)
@@ -354,32 +351,26 @@ def block_image(
     - Images from local files are converted to inline attachments with CID references
       during email processing by mjml_to_email().
     - If `float` is not "none", it takes precedence and overrides `align`.
-    """    
-    # Convert integer width to CSS string
+    """
     if isinstance(width, int):
         width_str = f"{width}px"
     else:
         width_str = width
 
-    # Determine alignment style based on float and align parameters
     align_style = ""
     
-    # Float takes precedence if not "none"
     if float != "none":
         align_style = f"float: {float};"
     else:
-        # Use align parameter if float is "none"
         if align == "center":
             align_style = "display: block; margin: 0 auto;"
         elif align == "left":
             align_style = "display: block; margin: 0;"
         elif align == "right":
             align_style = "display: block; margin: 0 0 0 auto;"
-        # "inline" has no special style
 
     # Detect URL vs local file
     if _is_url(file):
-        # For URLs, use as-is
         src = file
     else:
         # For local files, read as bytes for processing by _process_mjml_images

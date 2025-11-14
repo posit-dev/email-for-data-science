@@ -134,7 +134,6 @@ def compose_email(
     )
     ```
     """
-    # Convert sections (header, body, footer) to MJML lists
     header_mjml_list = _component_to_mjml_section(header)
     body_mjml_list = _component_to_mjml_section(body)
     footer_mjml_list = _component_to_mjml_section(footer)
@@ -144,13 +143,11 @@ def compose_email(
         title_block_mjml = block_title(title)._to_mjml()
         header_mjml_list = [title_block_mjml] + header_mjml_list
 
-    # Apply template wrapper if requested
     if template == "blastula":
         all_sections = _apply_blastula_template(
             header_mjml_list, body_mjml_list, footer_mjml_list
         )
     elif template == "none":
-        # Combine all sections without template
         all_sections = header_mjml_list + body_mjml_list + footer_mjml_list
     else:
         raise ValueError(f"Unknown template: {template}. Use 'blastula' or 'none'.")
@@ -173,9 +170,6 @@ def compose_email(
             attributes={"width": "600px", "background-color": "#f6f6f6"},
         ),
     )
-
-    # TODO: remove, this is for testing purposes
-    # print(email_structure._to_mjml())
 
     email_obj = mjml_to_email(email_structure)
 
@@ -211,7 +205,6 @@ def _component_to_mjml_section(
         return component._to_mjml_list()
 
     elif isinstance(component, str):
-        # Convert string to BlockList and then to MJML
         block_list = BlockList(component)
         return block_list._to_mjml_list()
 
@@ -268,7 +261,6 @@ def _apply_blastula_template(
         for section in body_sections
     ]
 
-    # Wrap body with styling
     body_wrapper = wrapper(
         *styled_body,
         attributes={

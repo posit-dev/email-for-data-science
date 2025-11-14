@@ -144,7 +144,6 @@ def _read_local_file_as_data_uri(file: str) -> str:
     with open(file_path, "rb") as f:
         file_bytes = f.read()
 
-    # Encode to base64
     b64_string = base64.b64encode(file_bytes).decode("utf-8")
 
     # Guess MIME type
