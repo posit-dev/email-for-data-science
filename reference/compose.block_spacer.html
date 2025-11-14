@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>nbmail.email.write_quarto_json – Email for Data Science</title>
+<title>compose.block_spacer – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../reference/_styles-quartodoc.css">
@@ -147,49 +150,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">compose.block_spacer</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="nbmail.Email.write_quarto_json" class="level1">
-<h1>write_quarto_json</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Email.write_quarto_json(out_file<span class="op">=</span><span class="st">'.output_metadata.json'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Write the Email to Quarto’s output metadata JSON format.</p>
-<p>This method serializes the Email object to JSON in the format expected by Quarto, making it compatible with Quarto’s email integration workflows. This is the inverse of the <code>quarto_json_to_email()</code> ingress function.</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>compose.block_spacer(height<span class="op">=</span><span class="st">'20px'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Insert vertical spacing.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name"><strong>out_file</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'.output_metadata.json'</span></code></dt>
+<dt><code><span class="parameter-name"><strong>height</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'20px'</span></code></dt>
 <dd>
-<p>The file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”.</p>
+<p>The height of the spacer. Can be any valid CSS height value (e.g., “20px”, “2em”). Default is “20px”.</p>
 </dd>
 </dl>
 </section>
 <section id="returns" class="level2 doc-section doc-section-returns">
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <dl>
-<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Block</span></code></dt>
 <dd>
-
+<p>A block containing the spacer.</p>
 </dd>
 </dl>
 </section>
-<section id="notes" class="level2 doc-section doc-section-notes">
-<h2 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h2>
-<p>The output JSON includes:</p>
-<ul>
-<li>email_subject: The subject line</li>
-<li>email_attachments: List of attachment file paths</li>
-<li>email_body_html: The HTML content of the email</li>
-<li>email_body_text: Plain text version (if present)</li>
-<li>email_images: Dictionary of base64-encoded inline images (only if not empty)</li>
-<li>email_suppress_report_attachment: Suppression flag for report attachments</li>
-<li>email_suppress_scheduled: Suppression flag for scheduled sending</li>
-</ul>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<div id="8dcfebf2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbmail.compose <span class="im">import</span> block_spacer, create_blocks, block_text</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>create_blocks(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    block_text(<span class="st">"First section"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    block_spacer(<span class="st">"30px"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    block_text(<span class="st">"Second section"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div style="background-color: white; padding: 0; margin: 0; overflow: auto;"><title></title><!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]--><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+#outlook a { padding: 0; }
+body { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+table, td { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+p { display: block; margin: 13px 0; }
+</style>
+<!--[if mso]>
+<noscript>
+<xml>
+<o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+</noscript>
+<![endif]-->
+<!--[if lte mso 11]>
+<style type="text/css">
+.mj-outlook-group-fix { width:100% !important; }
+</style>
+<![endif]-->
+<style type="text/css">@media only screen and (min-width:480px) { .mj-column-per-100 { width:100% !important; max-width:100%; }  }</style><style media="screen and (min-width:480px)">.moz-text-html .mj-column-per-100 { width:100% !important; max-width:100%; } </style><style type="text/css"></style><div style="background-color:#f6f6f6;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation" bgcolor="#f6f6f6" align="center" width="600" style="width:600px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style="background:#f6f6f6;background-color:#f6f6f6;margin:0px auto;max-width:600px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="background:#f6f6f6;background-color:#f6f6f6;width:100%;"><tbody><tr><td style="direction:ltr;font-size:0px;padding:10px;text-align:center;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td width="600px"><![endif]--><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation" bgcolor="white" align="center" width="580" style="width:580px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style="background:white;background-color:white;margin:0px auto;max-width:580px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="background:white;background-color:white;width:100%;"><tbody><tr><td style="direction:ltr;font-size:0px;padding:0px 10px;text-align:center;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:580px;"><![endif]--><div class="mj-outlook-group-fix mj-column-per-100" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td style="vertical-align:top;padding:0px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td align="left" style="font-size:0px;padding:0px;word-break:break-word;"><div style="font-family:Helvetica, sans-serif;font-size:14px;line-height:1;text-align:left;color:#000000;"><p>First section</p></div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--><!--[if mso | IE]></td></tr><tr><td width="600px"><![endif]--><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation" bgcolor="white" align="center" width="580" style="width:580px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style="background:white;background-color:white;margin:0px auto;max-width:580px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="background:white;background-color:white;width:100%;"><tbody><tr><td style="direction:ltr;font-size:0px;padding:0px 10px;text-align:center;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:580px;"><![endif]--><div class="mj-outlook-group-fix mj-column-per-100" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td style="vertical-align:top;padding:0px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td style="font-size:0px;padding:0px;word-break:break-word;"><div style="height:30px;line-height:30px;"> </div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--><!--[if mso | IE]></td></tr><tr><td width="600px"><![endif]--><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation" bgcolor="white" align="center" width="580" style="width:580px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style="background:white;background-color:white;margin:0px auto;max-width:580px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="background:white;background-color:white;width:100%;"><tbody><tr><td style="direction:ltr;font-size:0px;padding:0px 10px;text-align:center;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:580px;"><![endif]--><div class="mj-outlook-group-fix mj-column-per-100" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td style="vertical-align:top;padding:0px;"><table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"><tbody><tr><td align="left" style="font-size:0px;padding:0px;word-break:break-word;"><div style="font-family:Helvetica, sans-serif;font-size:14px;line-height:1;text-align:left;color:#000000;"><p>Second section</p></div></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></div></div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
