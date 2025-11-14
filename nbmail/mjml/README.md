@@ -26,18 +26,15 @@ from nbmail import mjml as mj
 from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
-email = mjml(
+mjml(
     body(
         section(
             column(
-                text(content="Hello, World!", color="#ff6600")
+                text(content="Hello, World!", attributes={"color":"#ff6600"})
             )
         )
     )
 )
-
-# Render to MJML markup
-mjml_string = email.render()
 ```
 
 ## Tag Types
@@ -53,6 +50,9 @@ These tags accept children (other MJML components) and optional content:
 
 Example:
 ```python
+from nbmail.mjml import mjml, body, section, column, text
+
+# Build an MJML email structure
 section(
     column(
         text(content="First column")
@@ -60,7 +60,7 @@ section(
     column(
         text(content="Second column")
     ),
-    background_color="#f0f0f0"
+    attributes={"background_color":"#f0f0f0"}
 )
 ```
 
@@ -81,36 +81,14 @@ Example:
 ```python
 text(
     content="<strong>Bold text</strong> and <a href='#'>a link</a>",
-    font_size="16px",
-    color="#333333"
+    attributes={"font_size": "16px", "color": "#333333"}
 )
 
 button(
     content="Click Here",
-    href="https://example.com",
-    background_color="#007bff"
+    attributes={"href": "https://example.com", "background_color": "#007bff"}
 )
 ```
-
-## Core Classes
-
-### `MJMLTag`
-
-The base class for all MJML elements. Can be instantiated directly or via helper functions.
-
-```python
-from nbmail.mjml import MJMLTag
-
-tag = MJMLTag(
-    "mj-text",
-    content="Hello",
-    color="#ff6600"
-)
-```
-
-### `TagAttrDict`
-
-A dictionary type for tag attributes.
 
 ## Examples
 
@@ -119,7 +97,7 @@ A dictionary type for tag attributes.
 ```python
 from nbmail.mjml import mjml, head, body, section, column, text, title
 
-email = mjml(
+mjml_email = mjml(
     head(
         title(content="Welcome Email")
     ),
@@ -141,7 +119,7 @@ from nbmail.mjml import body, section, column, text, image
 layout = body(
     section(
         column(
-            image(src="https://example.com/logo.png"),
+            image(attributes={"src": "https://example.com/logo.png"}),
             text(content="Column 1")
         ),
         column(
@@ -159,28 +137,18 @@ layout = body(
 ```python
 from nbmail.mjml import section, column, text
 
-# Attributes as kwargs
+# Using attributes parameter
 section(
     column(
-        text(content="Styled text", color="#ff0000", font_size="20px")
+        text(content="Styled text", attributes={"color": "#ff0000", "font_size": "20px"})
     ),
-    background_color="#f5f5f5",
-    padding="20px"
+    attributes={"background_color": "#f5f5f5", "padding": "20px"}
 )
-```
-
-## Rendering
-
-Use the `.render()` method to convert MJML structures to markup:
-
-```python
-mjml_markup = email.render()
-# Pass to MJML API or tool for HTML conversion
 ```
 
 ## API Reference
 
-For detailed documentation of all tags and their attributes, see the [API Reference](https://posit-dev.github.io/email-for-data-science/reference/).
+For detailed documentation of all tags and their attributes, see the [API Reference](https://posit-dev.github.io/nbmail/reference/).
 
 ## Resources
 

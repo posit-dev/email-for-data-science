@@ -12,8 +12,7 @@
           .content { padding: 20px; }
       </style>
   </head>
-  <body>
-  <h2 style="padding-left:16px;">Subject: Complex Email Structure</h2>
+  <body><br><br><strong><span style="font-variant: small-caps;">email subject: </span></strong>Complex Email Structure<br>
       <div class="header">
           <h1>Welcome!</h1>
       </div>
@@ -31,16 +30,12 @@
   '''
 # ---
 # name: test_preview_email_simple_html
-  '''
-  <html><body>
-  <h2 style="padding-left:16px;">Subject: Simple Test Email</h2><p>Hello World!</p></body></html>
-  '''
+  '<html><body><br><br><strong><span style="font-variant: small-caps;">email subject: </span></strong>Simple Test Email<br><p>Hello World!</p></body></html>'
 # ---
 # name: test_preview_email_with_inline_attachments
   '''
   <html>
-  <body>
-  <h2 style="padding-left:16px;">Subject: Email with Inline Images</h2>
+  <body><br><br><strong><span style="font-variant: small-caps;">email subject: </span></strong>Email with Inline Images<br>
   <h1>Email with Images</h1>
   <img src="data:image;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Logo" />
   <p>Some text content</p>

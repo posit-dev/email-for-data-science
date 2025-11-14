@@ -325,26 +325,6 @@ def send_email_with_smtp(
         email,
         security="tls"
     )
-
-    # SSL connection (port 465)
-    send_email_with_smtp(
-        "smtp.example.com",
-        465,
-        "user@example.com",
-        "password123",
-        email,
-        security="ssl"
-    )
-
-    # Plain SMTP (port 25) - insecure, for testing only
-    send_email_with_smtp(
-        "127.0.0.1",
-        8025,
-        "test@example.com",
-        "password",
-        email,
-        security="smtp"
-    )
     ```
     """
     if security not in ("tls", "ssl", "smtp"):

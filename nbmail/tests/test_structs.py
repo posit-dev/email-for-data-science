@@ -45,11 +45,9 @@ def test_subject_inserts_after_body(tmp_path):
     email.write_preview_email(str(out_file))
     content = out_file.read_text(encoding="utf-8")
 
-    # Check subject is inserted after <body>
     assert re.search(
-        r"<body[^>]*>\s*<h2 style=\"padding-left:16px;\">Subject: Test Subject</h2>",
+        r'<html><body><br><br><strong><span style="font-variant: small-caps;">email subject:',
         content,
-        re.IGNORECASE,
     )
 
 
@@ -62,8 +60,8 @@ def test_subject_prepends_if_no_body(tmp_path):
     out_file = tmp_path / "preview2.html"
     email.write_preview_email(str(out_file))
     content = out_file.read_text(encoding="utf-8")
-    # Should start with the subject h2
-    assert content.startswith('<h2 style="padding-left:16px;">Subject: NoBody</h2>')
+
+    assert content == '<br><br><strong><span style="font-variant: small-caps;">email subject: </span></strong>NoBody<br><p>Hello!</p>'
 
 
 def test_raises_on_external_attachments(tmp_path):

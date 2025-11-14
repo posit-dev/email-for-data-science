@@ -77,6 +77,22 @@ quartodoc:
       contents:
         - write_email_message_to_file
 
+    - title: Templated Authoring
+      desc: >
+        Write responsive emails with the Blastula template
+      package: nbmail
+      contents:
+        - compose.compose_email
+        - compose.create_blocks
+        - compose.block_text
+        - compose.block_title
+        - compose.block_spacer
+        - compose.block_image
+        - compose.block_plot
+        - compose.md
+        - compose.add_cta_button
+        - compose.add_readable_time
+
     - title: MJML Authoring
       desc: >
         Write responsive emails with MJML

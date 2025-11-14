@@ -151,7 +151,7 @@ class MJMLTag:
                 raise ValueError(
                     "Cannot render MJML with BytesIO/bytes in image src attribute. "
                     "Pass the MJMLTag object directly to mjml_to_email() instead of calling _to_mjml() first. "
-                    "Example: i_email = mjml_to_email(doc)"
+                    "Example: email = mjml_to_email(doc)"
                 )
 
         # Build attribute string
