@@ -16,13 +16,13 @@ This module provides Python functions for creating MJML markup, the responsive e
 
 This module is part of the `nbmail` package:
 
-```python
+```{python}
 from nbmail import mjml as mj
 ```
 
 ## Quick Start
 
-```python
+```{python}
 from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
@@ -49,7 +49,7 @@ These tags accept children (other MJML components) and optional content:
 - Configuration: `attributes`, `breakpoint`, `font`, `html_attributes`, `style`, `title`
 
 Example:
-```python
+```{python}
 from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
@@ -78,7 +78,7 @@ These tags accept text or HTML content but **not** MJML children:
 - `carousel_image` - Carousel images
 
 Example:
-```python
+```{python}
 text(
     content="<strong>Bold text</strong> and <a href='#'>a link</a>",
     attributes={"font_size": "16px", "color": "#333333"}
@@ -90,34 +90,14 @@ button(
 )
 ```
 
-## Core Classes
-
-### `MJMLTag`
-
-The base class for all MJML elements. Can be instantiated directly or via helper functions.
-
-```python
-from nbmail.mjml import MJMLTag
-
-tag = MJMLTag(
-    "mj-text",
-    content="Hello",
-    attributes={"color": "#ff6600"}
-)
-```
-
-### `TagAttrDict`
-
-A dictionary type for tag attributes.
-
 ## Examples
 
 ### Simple Email
 
-```python
+```{python}
 from nbmail.mjml import mjml, head, body, section, column, text, title
 
-email = mjml(
+mjml_email = mjml(
     head(
         title(content="Welcome Email")
     ),
@@ -133,7 +113,7 @@ email = mjml(
 
 ### Multi-column Layout
 
-```python
+```{python}
 from nbmail.mjml import body, section, column, text, image
 
 layout = body(
@@ -154,7 +134,7 @@ layout = body(
 
 ### Using Attributes
 
-```python
+```{python}
 from nbmail.mjml import section, column, text
 
 # Using attributes parameter
@@ -166,18 +146,9 @@ section(
 )
 ```
 
-## Rendering
-
-Use the `.render()` method to convert MJML structures to markup:
-
-```python
-mjml_markup = email.render()
-# Pass to MJML API or tool for HTML conversion
-```
-
 ## API Reference
 
-For detailed documentation of all tags and their attributes, see the [API Reference](https://posit-dev.github.io/email-for-data-science/reference/).
+For detailed documentation of all tags and their attributes, see the [API Reference](https://posit-dev.github.io/nbmail/reference/).
 
 ## Resources
 
