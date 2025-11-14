@@ -5,6 +5,7 @@ from nbmail.mjml._core import MJMLTag
 from .inline_utils import _is_url, _process_markdown
 
 
+
 __all__ = [
     "Block",
     "BlockList",
@@ -48,6 +49,22 @@ class Block:
         """
         return self._mjml_tag
 
+    def _repr_html_(self) -> str:
+        """
+        Return HTML representation for rich display in Jupyter notebooks.
+
+        Examples
+        --------
+        ```{python}
+        from nbmail.compose import block_text
+
+        block = block_text("Hello world!")
+        block 
+        ```
+        """
+        block_list = BlockList(self)
+        return block_list._repr_html_()
+
 
 class BlockList:
     """
@@ -62,7 +79,7 @@ class BlockList:
     --------
     Users typically create BlockList via the `create_blocks()` function:
 
-    ```python
+    ```{python}
     from nbmail.compose import create_blocks, block_text, block_title
 
     content = create_blocks(
@@ -80,6 +97,36 @@ class BlockList:
             One or more `Block` objects or strings.
         """
         self.sections = list(args)
+    
+    def _repr_html_(self) -> str:
+        """
+        Return HTML representation for rich display in Jupyter notebooks.
+
+        This method wraps the BlockList in a compose_email() call and delegates
+        to the Email's _repr_html_() method for rendering, enabling interactive
+        preview of blocks directly in notebooks.
+
+        Returns
+        -------
+        str
+            HTML content with inline attachments embedded as base64 data URIs.
+
+        Examples
+        --------
+        ```{python}
+        from nbmail.compose import create_blocks, block_title, block_text
+
+        content = create_blocks(
+            block_title("My Email"),
+            block_text("Hello world!")
+        )
+        content
+        ```
+        """
+        from .compose import compose_email
+
+        email = compose_email(body=self)
+        return email._repr_html_()
 
     def _to_mjml_list(self) -> list[MJMLTag]:
         """
@@ -134,11 +181,13 @@ def block_text(
 
     Examples
     --------
-    ```python
+    ```{python}
     from nbmail.compose import block_text
 
     # Simple text
     block = block_text("Hello world")
+
+    print(1+1)
 
     # Markdown text
     block = block_text("This is **bold** and this is *italic*")
@@ -179,14 +228,10 @@ def block_title(
 
     Examples
     --------
-    ```python
+    ```{python}
     from nbmail.compose import block_title
 
-    # Simple title
-    title = block_title("My Newsletter")
-
-    # Centered title (default)
-    title = block_title("Welcome!", align="center")
+    block_title("My Newsletter")
     ```
     """
 
@@ -226,10 +271,10 @@ def block_spacer(height: str = "20px") -> Block:
 
     Examples
     --------
-    ```python
+    ```{python}
     from nbmail.compose import block_spacer, create_blocks, block_text
 
-    email_body = create_blocks(
+    create_blocks(
         block_text("First section"),
         block_spacer("30px"),
         block_text("Second section"),
@@ -292,14 +337,14 @@ def block_image(
 
     Examples
     --------
-    ```python
-    from nbmail.compose import block_image, create_blocks, block_text
+    ```{python}
+    from nbmail.compose import block_image, create_blocks, block_text, compose_email, md
 
-    email = compose_email(
+    compose_email(
+        title="Product Feature",
         body=create_blocks(
-            block_text("Here's an image:"),
-            block_image("path/to/image.png", alt="Example", width=600),
-            block_text("And some text after it.")
+            block_text(md("Check this out:")),
+            block_image("https://fastly.picsum.photos/id/630/300/200.jpg?hmac=dSM5_yM5Z9Pb3CX6OviVW3dEbyHmkD04otrIKU2LQ50", alt="Product image", width="500px")
         )
     )
     ```
@@ -409,16 +454,17 @@ def block_plot(
 
     Examples
     --------
-    ```python
-    from nbmail.compose import block_plot, create_blocks, block_text
-    from plotnine import ggplot, aes, geom_point, mtcars
+    ```{python}
+    from nbmail.compose import block_plot, create_blocks, block_text, compose_email
+    from plotnine import ggplot, aes, geom_point
+    from great_tables.data import gtcars
 
     plot = (
-        ggplot(mtcars, aes("disp", "hp"))
+        ggplot(gtcars, aes("trq", "hp"))
         + geom_point()
     )
 
-    email = compose_email(
+    compose_email(
         body=create_blocks(
             block_text("Here's my plot:"),
             block_plot(plot, alt="Scatter plot"),

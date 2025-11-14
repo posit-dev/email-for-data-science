@@ -62,14 +62,13 @@ def md(text: str) -> str:
 
     Examples
     --------
-    ```python
-    from nbmail.compose import md, block_text
+    ```{python}
+    from nbmail.compose import md, block_text, compose_email
 
-    # Simple markdown
     html = md("This is **bold** and this is *italic*")
 
     # Use in a block
-    email = compose_email(body=block_text(html))
+    compose_email(body=block_text(html))
     ```
     """
     return _process_markdown(text)
@@ -184,12 +183,12 @@ def add_cta_button(
 
     Examples
     --------
-    ```python
+    ```{python}
     from nbmail.compose import add_cta_button, block_text, compose_email
 
     button_html = add_cta_button("Learn More", "https://example.com")
 
-    email = compose_email(
+    compose_email(
         body=block_text(f"Ready?\\n\\n{button_html}")
     )
     ```
@@ -234,18 +233,13 @@ def add_readable_time(
 
     Examples
     --------
-    ```python
+    ```{python}
     from datetime import datetime
     from nbmail.compose import add_readable_time, block_text, compose_email
 
     time_str = add_readable_time(datetime.now())
-    # Output: "November 10, 2025"
 
-    # Custom format
-    time_str = add_readable_time(datetime.now(), format_str="%A, %B %d")
-    # Output: "Sunday, November 10"
-
-    email = compose_email(
+    compose_email(
         body=block_text(f"Report generated: {time_str}")
     )
     ```

@@ -38,10 +38,10 @@ def create_blocks(*args: Union[Block, str]) -> BlockList:
 
     Examples
     --------
-    ```python
+    ```{python}
     from nbmail.compose import create_blocks, block_text, block_title, block_spacer
 
-    content = create_blocks(
+    create_blocks(
         block_title("Welcome!"),
         block_text("This is the main content."),
         block_spacer("20px"),
@@ -100,21 +100,21 @@ def compose_email(
     --------
     Simple email with single block:
 
-    ```python
+    ```{python}
     from nbmail.compose import compose_email, block_text
 
-    email = compose_email(
+    compose_email(
         body=block_text("This is a simple email.")
     )
     ```
 
     Email with title/header and multiple blocks:
 
-    ```python
+    ```{python}
     from nbmail.compose import compose_email, create_blocks, block_title, block_text
 
-    email = compose_email(
-        title="Welcome!",  # Creates a large title block at top
+    compose_email(
+        title="Welcome!",
         body=create_blocks(
             block_text("Welcome to this week's update!"),
             block_text("Here's what's new...")
@@ -124,31 +124,16 @@ def compose_email(
 
     Email with header section and body:
 
-    ```python
+    ```{python}
     from nbmail.compose import compose_email, create_blocks, block_title, block_text
 
-    email = compose_email(
+    compose_email(
         header=create_blocks(block_title("Newsletter")),
         body=create_blocks(
             block_text("Welcome to this week's update!"),
             block_text("Here's what's new...")
         ),
         footer=create_blocks(block_text("© 2025 My Company"))
-    )
-    ```
-
-    Email with embedded images:
-
-    ```python
-    from nbmail.compose import compose_email, block_image, block_text, md, create_blocks
-
-    # Use block_image for embedding local files or URLs
-    email = compose_email(
-        title="Product Feature",
-        body=create_blocks(
-            block_text(md("Check this out:")),
-            block_image("path/to/image.png", alt="Product image", width="500px")
-        )
     )
     ```
     """

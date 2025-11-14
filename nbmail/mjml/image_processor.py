@@ -66,24 +66,40 @@ def _process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
     Returns
     -------
     Tuple[MJMLTag, Dict[str, str]]
-        A tuple of:
+        A tuple of:\n
         - The modified MJML tag tree with BytesIO/bytes converted to CID references
         - Dictionary mapping CID filenames to base64-encoded image data
         
     Examples
     --------
-    ```python
-    from nbmail.mjml import mjml, body, section, column, image
+    ```{python}
+    from nbmail.mjml import mjml, body, section, column, image, text
     from nbmail import mjml_to_email
     from io import BytesIO
-    
-    # Create BytesIO with image data
-    buf = BytesIO(b'...png binary data...')
-    
-    # Create MJML using regular image() with BytesIO as src
+    import numpy as np
+    import pandas as pd
+    from plotnine import ggplot, aes, geom_boxplot
+
+    # Create the plot data
+    variety = np.repeat(["A", "B", "C", "D", "E", "F", "G"], 40)
+    treatment = np.tile(np.repeat(["high", "low"], 20), 7)
+    note = np.arange(1, 281) + np.random.choice(np.arange(1, 151), 280, replace=True)
+    data = pd.DataFrame({"variety": variety, "treatment": treatment, "note": note})
+
+    # Create the plot
+    gg = ggplot(data, aes(x="variety", y="note", fill="treatment")) + geom_boxplot()
+
+    # Save plot to BytesIO buffer
+    buf = BytesIO()
+    gg.save(buf, format='png', dpi=100, verbose=False)
+    buf.seek(0)
+
     email = mjml(
         body(
             section(
+                column(
+                    text("A plot from plotnine in an email")
+                ),
                 column(
                     image(attributes={
                         "src": buf,
@@ -94,11 +110,8 @@ def _process_mjml_images(mjml_tag: MJMLTag) -> Tuple[MJMLTag, Dict[str, str]]:
             )
         )
     )
-    
-    # Pass directly to mjml_to_email (calls _process_mjml_images internally)
-    i_email = mjml_to_email(email)
-    
-    # Result: i_email.inline_attachments = {"plot_1.png": "iVBORw0KGgo..."}
+
+    mjml_to_email(email)
     ```
     """
     inline_attachments: Dict[str, str] = {}

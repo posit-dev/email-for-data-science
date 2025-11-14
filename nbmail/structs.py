@@ -52,13 +52,14 @@ class Email:
 
     Examples
     --------
-    ```python
-    email = Email(
+    ```{python}
+    from nbmail import Email
+
+    Email(
         html="<p>Hello world</p>",
         subject="Test Email",
         recipients=["user@example.com"],
     )
-    email.write_preview_email("preview.html")
     ```
     """
 
@@ -113,7 +114,7 @@ class Email:
         """
         if self.subject:
             subject_ln = (
-                "<br><br><strong><span style=\"font-variant: small-caps;\">"
+                '<br><br><strong><span style="font-variant: small-caps;">'
                 "email subject: </span></strong>"
                 f"{self.subject}"
                 "<br>"
@@ -124,7 +125,7 @@ class Email:
         if "<body" in html:
             html = re.sub(
                 r"(<body[^>]*>)",
-                r'\1' + subject_ln,
+                r"\1" + subject_ln,
                 html,
                 count=1,
                 flags=re.IGNORECASE,
@@ -150,18 +151,42 @@ class Email:
 
         Examples
         --------
-        ```python
-        # In a Jupyter notebook, simply display the email object:
+        ```{python}
+        from nbmail import Email
+
         email = Email(
-            html='<p>Hello <img src="cid:img1.png"/></p>',
+            html='<p>Hello</p>',
             subject="Test Email",
-            inline_attachments={"img1.png": "iVBORw0KGgo..."}
         )
-        email  # This will automatically call _repr_html_() for rich display
+        email
         ```
         """
         html_with_inline = self._generate_preview_html()
-        return self._add_subject_header(html_with_inline)
+        html_with_subject = self._add_subject_header(html_with_inline)
+
+        # TODO: this is a dirty workaround for some weird quarto behavior. 
+        # There is probably a better approach to previewing that doesn't
+        # involve removing content from the email
+
+        # Strip the <body> tag from MJML output to prevent style bleed
+        # MJML generates a full HTML document with <body> styles that can
+        # interfere with Quarto/Jupyter page rendering
+        html_without_body = re.sub(
+            r"<body[^>]*>(.*?)</body>",
+            r"\1",
+            html_with_subject,
+            flags=re.DOTALL | re.IGNORECASE,
+        )
+
+        # Also remove any <html> tags
+        html_without_html = re.sub(
+            r"</?html[^>]*>", "", html_without_body, flags=re.IGNORECASE
+        )
+
+        # Wrap in a container div to isolate the email preview styles
+        wrapped_html = f'<div style="background-color: white; padding: 0; margin: 0; overflow: auto;">{html_without_html}</div>'
+
+        return wrapped_html
 
     def write_preview_email(self, out_file: str = "preview_email.html") -> None:
         """
@@ -180,12 +205,6 @@ class Email:
         Returns
         -------
         None
-
-        Examples
-        --------
-        ```python
-        email.write_preview_email("preview.html")
-        ```
 
         Notes
         ------
@@ -214,11 +233,6 @@ class Email:
         EmailMessage
             The constructed EmailMessage object.
 
-        Examples
-        --------
-        ```python
-        msg = email.write_email_message()
-        ```
         """
         raise NotImplementedError
 
@@ -247,11 +261,6 @@ class Email:
         -------
         None
 
-        Examples
-        --------
-        ```python
-        email.preview_send_email()
-        ```
         """
         raise NotImplementedError
 
@@ -272,15 +281,6 @@ class Email:
         -------
         None
 
-        Examples
-        --------
-        ```python
-        email = Email(
-            html="<p>Hello world</p>",
-            subject="Test Email",
-        )
-        email.write_quarto_json("email_metadata.json")
-        ```
 
         Notes
         ------
