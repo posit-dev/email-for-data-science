@@ -115,10 +115,7 @@ def compose_email(
 
     compose_email(
         title="Welcome!",
-        body=create_blocks(
-            block_text("Welcome to this week's update!"),
-            block_text("Here's what's new...")
-        )
+        body=block_text("Welcome to this week's update!"),
     )
     ```
 
