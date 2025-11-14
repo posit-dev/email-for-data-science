@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>nbmail.email.write_quarto_json – Email for Data Science</title>
+<title>compose.block_text – Email for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,49 +147,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">compose.block_text</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="nbmail.Email.write_quarto_json" class="level1">
-<h1>write_quarto_json</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Email.write_quarto_json(out_file<span class="op">=</span><span class="st">'.output_metadata.json'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Write the Email to Quarto’s output metadata JSON format.</p>
-<p>This method serializes the Email object to JSON in the format expected by Quarto, making it compatible with Quarto’s email integration workflows. This is the inverse of the <code>quarto_json_to_email()</code> ingress function.</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>compose.block_text(text, align<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create a block of text (supports Markdown).</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
 <h2 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h2>
 <dl>
-<dt><code><span class="parameter-name"><strong>out_file</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'.output_metadata.json'</span></code></dt>
+<dt><code><span class="parameter-name"><strong>text</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">str</span></code></dt>
 <dd>
-<p>The file path to write the Quarto metadata JSON. Defaults to “.output_metadata.json”.</p>
+<p>Plain text or Markdown. Markdown will be converted to HTML.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>align</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Literal['left', 'center', 'right', 'justify']</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'left'</span></code></dt>
+<dd>
+<p>Text alignment. Default is <code>"left"</code>.</p>
 </dd>
 </dl>
 </section>
 <section id="returns" class="level2 doc-section doc-section-returns">
 <h2 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h2>
 <dl>
-<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">None</span></code></dt>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">Block</span></code></dt>
 <dd>
-
+<p>A block containing the formatted text.</p>
 </dd>
 </dl>
 </section>
-<section id="notes" class="level2 doc-section doc-section-notes">
-<h2 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h2>
-<p>The output JSON includes:</p>
-<ul>
-<li>email_subject: The subject line</li>
-<li>email_attachments: List of attachment file paths</li>
-<li>email_body_html: The HTML content of the email</li>
-<li>email_body_text: Plain text version (if present)</li>
-<li>email_images: Dictionary of base64-encoded inline images (only if not empty)</li>
-<li>email_suppress_report_attachment: Suppression flag for report attachments</li>
-<li>email_suppress_scheduled: Suppression flag for scheduled sending</li>
-</ul>
+<section id="examples" class="level2 doc-section doc-section-examples">
+<h2 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h2>
+<div id="98404cf0" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbmail.compose <span class="im">import</span> block_text</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple text</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>block <span class="op">=</span> block_text(<span class="st">"Hello world"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span><span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Markdown text</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>block <span class="op">=</span> block_text(<span class="st">"This is **bold** and this is *italic*"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Centered text</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>block <span class="op">=</span> block_text(<span class="st">"Centered content"</span>, align<span class="op">=</span><span class="st">"center"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
