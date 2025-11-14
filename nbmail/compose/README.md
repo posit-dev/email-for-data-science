@@ -4,7 +4,7 @@ The `compose` module provides a high-level, Pythonic API for building HTML email
 
 ## Quick Start
 
-```{python}
+```python
 from nbmail.compose import compose_email, block_text, block_title, create_blocks
 
 # Simple email

@@ -16,13 +16,13 @@ This module provides Python functions for creating MJML markup, the responsive e
 
 This module is part of the `nbmail` package:
 
-```{python}
+```python
 from nbmail import mjml as mj
 ```
 
 ## Quick Start
 
-```{python}
+```python
 from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
@@ -49,7 +49,7 @@ These tags accept children (other MJML components) and optional content:
 - Configuration: `attributes`, `breakpoint`, `font`, `html_attributes`, `style`, `title`
 
 Example:
-```{python}
+```python
 from nbmail.mjml import mjml, body, section, column, text
 
 # Build an MJML email structure
@@ -78,7 +78,7 @@ These tags accept text or HTML content but **not** MJML children:
 - `carousel_image` - Carousel images
 
 Example:
-```{python}
+```python
 text(
     content="<strong>Bold text</strong> and <a href='#'>a link</a>",
     attributes={"font_size": "16px", "color": "#333333"}
@@ -94,7 +94,7 @@ button(
 
 ### Simple Email
 
-```{python}
+```python
 from nbmail.mjml import mjml, head, body, section, column, text, title
 
 mjml_email = mjml(
@@ -113,7 +113,7 @@ mjml_email = mjml(
 
 ### Multi-column Layout
 
-```{python}
+```python
 from nbmail.mjml import body, section, column, text, image
 
 layout = body(
@@ -134,7 +134,7 @@ layout = body(
 
 ### Using Attributes
 
-```{python}
+```python
 from nbmail.mjml import section, column, text
 
 # Using attributes parameter
